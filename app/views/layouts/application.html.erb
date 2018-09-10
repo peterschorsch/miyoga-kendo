@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MiyogaKendo</title>
+    <title>Miyoga Kendo - <%= controller.controller_name.sub(/^./, &:upcase) %></title>
+    <link rel="shortcut icon" href="http://www.midwestkendofederation.com/wp-content/uploads/2016/11/japanese-cultural-center-chicago.png"/>
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,7 +11,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="container-fluid">
+    <%= render "layouts/header" %>
+
     <%= yield %>
   </body>
 </html>
