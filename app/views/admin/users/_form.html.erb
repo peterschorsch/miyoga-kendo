@@ -1,0 +1,44 @@
+<%= form_with(model: [:admin, admin_user], local: true, class: "form-horizontal", html: { autocomplete: "off" }) do |form| %>
+  <% if admin_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(admin_user.errors.count, "error") %> prohibited this admin_user from being saved:</h2>
+
+      <ul>
+      <% admin_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :firstname %>
+    <%= form.text_field :firstname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lastname %>
+    <%= form.text_field :lastname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  
+  <% if admin_user.new_record? %>
+    <div class="field">
+      <%= form.label :password %>
+      <%= form.text_field :password %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :active %>
+    <%= form.check_box :active %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
