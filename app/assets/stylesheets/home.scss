@@ -2,6 +2,25 @@
 	width: 100%;
 }
 
-.blue-line{
-	border-top: 1px solid #000080;
+.miyoga-header{
+	padding: 10px;
+}
+.miyoga_header_image{
+	vertical-align:middle;
+}
+
+.miyoga-heading-text{
+	font-weight: bold;
+	font-size: 50px;
+	font-variant: small-caps;
+	padding-left: 15px;
+}
+
+.jcc_logo_container a:hover {
+	background-color: transparent;
+	text-decoration: none;
+}
+
+.jcc_logo{
+	width: 25%;
 }
