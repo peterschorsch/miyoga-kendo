@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get 'home', to: 'home#index'
 
+  get :practices, to: 'practices#index', path: 'class-schedule'
+
   namespace :admin do
     resources :users
   end

@@ -9,3 +9,17 @@
 .align-right{
 	text-align: right;
 }
+
+.paragraph-indentation{
+	text-indent: 75px;
+}
+
+.center-map{
+	object-position: 50% 50%;
+}
+
+.no-link-text:hover, .no-link-text:visited, .no-link-text:link, .no-link-text.active {
+  text-decoration: none;
+  color: inherit;
+  background-color: white;
+}
