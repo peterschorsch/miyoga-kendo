@@ -18,8 +18,14 @@
 	object-position: 50% 50%;
 }
 
-.no-link-text:hover, .no-link-text:visited, .no-link-text:link, .no-link-text.active {
+.header-link-text:hover, .header-link-text:visited, .header-link-text:link, .header-link-text.active {
   text-decoration: none;
   color: inherit;
   background-color: white;
+}
+
+.no-link-text:hover, .no-link-text:visited, .no-link-text:link, .no-link-text.active {
+  text-decoration: none;
+  color: white;
+  background-color: #000080;
 }
