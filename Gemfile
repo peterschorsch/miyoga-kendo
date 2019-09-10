@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/peterschorsch/miyoga-kendo.git" }
 
-ruby '2.3.3'
+ruby '2.6.3'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'bcrypt', '~> 3.1.7'
