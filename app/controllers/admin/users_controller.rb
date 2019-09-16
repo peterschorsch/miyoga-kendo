@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/users
   # GET /admin/users.json
@@ -24,7 +24,12 @@ class Admin::UsersController < ApplicationController
   # POST /admin/users
   # POST /admin/users.json
   def create
-    @user = User.new(user)
+    @user = User.new(user_params)
+
+    temp_password = ('0'..'z').to_a.shuffle.first(8).join
+
+    puts "TEMPORARY PASSWORD: " + temp_password
+    @user.password = temp_password
 
     respond_to do |format|
       if @user.save
@@ -63,12 +68,12 @@ class Admin::UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_admin_user
+    def set_user
       @user = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:firstname, :lastname, :email, :password, :active)
+      params.require(:user).permit(:firstname, :lastname, :email, :role, :password, :active)
     end
 end

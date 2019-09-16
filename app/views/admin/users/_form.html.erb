@@ -1,44 +1,49 @@
-<%= form_with(model: [:admin, admin_user], local: true, class: "form-horizontal", html: { autocomplete: "off" }) do |form| %>
-  <% if admin_user.errors.any? %>
+<%= form_with(model: [:admin, user], local: true, class: "form-horizontal", html: { autocomplete: "off" }) do |form| %>
+  <% if user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(admin_user.errors.count, "error") %> prohibited this admin_user from being saved:</h2>
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% admin_user.errors.full_messages.each do |message| %>
+      <% user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :firstname %>
-    <%= form.text_field :firstname %>
-  </div>
-
-  <div class="field">
-    <%= form.label :lastname %>
-    <%= form.text_field :lastname %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-  
-  <% if admin_user.new_record? %>
-    <div class="field">
-      <%= form.label :password %>
-      <%= form.text_field :password %>
+  <table class="table table-responsive">
+    <thead>
+      <tr>
+        <th class="table-header" colspan="6">User Information</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="align-right table-cell-background"><%= form.label :firstname, 'First Name:' %></td>
+        <td colspan="2"><%= form.text_field :firstname, id: :user_firstname, class: 'form-control' %></td>
+        <td class="align-right table-cell-background"><%= form.label :lastname, 'Last Name:' %></td>
+        <td colspan="2"><%= form.text_field :lastname, id: :user_lastname, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="align-right table-cell-background"><%= form.label :email, 'Email:' %></td>
+        <td colspan="5"><%= form.text_field :email, id: :user_email, class: 'form-control' %></td>
+      </tr>
+      <tr>
+        <td class="align-right table-cell-background"><%= form.label :user_role_id, 'User Role:' %></td>
+        <td colspan="2"><%= form.select :role, ["Admin", "User"], {:include_blank => "Please select a User Role"}, {class: "form-control", id: :user_role} %></td>
+        <td class="align-right table-cell-background"><%= form.label :active, 'Active?', class: 'cursor-pointer' %></td>
+        <td class="cursor-pointer" colspan="2"><label><%= form.check_box :active, id: :user_active %><span class="checkmark"></span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row row-padding">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form.submit "Create User", class: "btn btn-primary btn-block" %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :active %>
-    <%= form.check_box :active %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="row row-padding">
+    <div class="col-md-6 col-md-offset-3">
+      <%= link_to "Back", admin_users_path, class: "btn btn-danger btn-block" %>
+    </div>
   </div>
 <% end %>
