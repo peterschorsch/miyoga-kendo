@@ -20,7 +20,11 @@
         <li><a href="<%=practices_path%>">Classes</a></li>
         <li><a href="<%=events_path%>">Events</a></li>
         <li><a href="<%=helpful_links_path%>">Helpful Links</a></li>
-        <li><a href="#">Login</a></li>
+        <% if current_user %>
+          <li><a href="<%=logout_path%>">Logout</a></li>
+        <% else %>
+          <li><a href="<%=login_path%>">Login</a></li>
+        <% end %>
       </ul>
     </div>
   </div>
