@@ -9,13 +9,10 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-
   get :abouts, to: 'abouts#index', path: 'about'
   get :practices, to: 'practices#index', path: 'class-schedule'
   get :events, to: 'events#index', path: 'events'
   get :helpful_links, to: 'helpful_links#index', path: 'helpful-links'
-  resources :users
-
   
   namespace :admin do
     resources :users

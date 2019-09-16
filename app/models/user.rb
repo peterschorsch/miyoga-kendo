@@ -15,6 +15,10 @@ class User < ApplicationRecord
 		where(:active => false)
 	}
 
+	def is_admin?
+		self.role == "Admin"
+	end
+
 	def is_active?
 		self.active
 	end
@@ -23,7 +27,16 @@ class User < ApplicationRecord
 		!self.archive
 	end
 
+	### DISPLAY METHODS ###
 	def concat_name
 		self.firstname << " " << self.lastname
+	end
+
+	def display_role
+		self.is_admin? ? "Admin" : "User"
+	end
+
+	def display_active
+		self.is_active? ? "Active" : "Archived"
 	end
 end
