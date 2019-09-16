@@ -1,16 +1,24 @@
 <p id=”alert”><%= alert %></p>
 
-<h1>Login</h1>
-<%= form_tag sessions_path do |form| %>
-  <div class=”field”>
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
-  </div>
-  <div class=”field”>
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-  <div class=”actions”>
-    <%= submit_tag "Login" %>
-  </div>
-<% end %>
+<div class="row">
+  <div class="col-xs-4 col-xs-offset-4"><h1 class="align-center">Login</h1></div>
+  <%= form_tag sessions_path do |form| %>
+    <div class="col-xs-4 col-xs-offset-4">
+      <div class="form-group">
+        <label>Email Address</label>
+        <%= text_field_tag :email, "", class: "form-control", placeholder: "Enter your Email" %>
+      </div>
+    </div>
+    <div class="col-xs-4 col-xs-offset-4">
+      <div class="form-group">
+        <label>Password</label>
+        <%= password_field_tag :password, "", class: "form-control", placeholder: "Enter your Password" %>
+      </div>
+    </div>
+    <div class="col-xs-2 col-xs-offset-5">
+      <div class="actions form-group">
+        <%= submit_tag 'Login', class: 'btn btn-success btn-block' %>
+      </div>
+    </div>
+  <% end %>
+</div>

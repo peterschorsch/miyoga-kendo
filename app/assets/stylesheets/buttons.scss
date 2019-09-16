@@ -1,0 +1,21 @@
+/* ############### */
+/* ### BUTTONS ### */
+/* ############### */
+	.btn{
+		font-size: 16px;
+	}
+	.btn-green{
+		background-color: #32CD32;
+	}
+	.btn-green:hover{
+		background-color: #2db92d;
+	}
+
+	.btn-primary, .btn-success, .btn-info, .btn-danger, .btn-warning, .btn-green, .btn-nupurple{
+		color: white !important;
+	}
+
+	.btn-block-padding{
+		margin-top: 15px;
+		margin-bottom: 10px;
+	}
