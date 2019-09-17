@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       if @user.is_admin?
-        redirect_to admin_users_path, notice: "Welcome, #{user.concat_name}!"
+        redirect_to admin_users_path, notice: "Welcome, #{@user.concat_name}!"
       else
         redirect_to root_url, notice: "Welcome, #{helpers.full_name(@user)}!"
       end

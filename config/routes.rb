@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get :helpful_links, to: 'helpful_links#index', path: 'helpful-links'
   
   namespace :admin do
+    root 'home#dashboard'
     resources :users
   end
 end

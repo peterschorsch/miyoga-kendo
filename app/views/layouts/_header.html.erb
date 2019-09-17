@@ -21,6 +21,7 @@
         <li><a href="<%=events_path%>">Events</a></li>
         <li><a href="<%=helpful_links_path%>">Helpful Links</a></li>
         <% if current_user %>
+          <li><a href="<%=admin_root_path%>">Admin Home</a></li>
           <li><a href="<%=logout_path%>">Logout</a></li>
         <% else %>
           <li><a href="<%=login_path%>">Login</a></li>
