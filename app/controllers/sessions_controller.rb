@@ -6,6 +6,8 @@ class SessionsController < ApplicationController
   	@user = User.find_by_email(params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      @user.update_last_login
+
       if @user.is_admin?
         redirect_to admin_users_path, notice: "Welcome, #{@user.concat_name}!"
       else

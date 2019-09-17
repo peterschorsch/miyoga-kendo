@@ -27,6 +27,10 @@ class User < ApplicationRecord
 		!self.archive
 	end
 
+	def update_last_login
+		self.update_attribute(:last_login, DateTime.now)
+	end
+
 	### DISPLAY METHODS ###
 	def concat_name
 		self.firstname << " " << self.lastname
