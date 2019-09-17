@@ -15,6 +15,10 @@ class User < ApplicationRecord
 		where(:active => false)
 	}
 
+	scope :order_by_last_login, -> {
+		order('last_login desc')
+	}
+
 	def is_admin?
 		self.role == "Admin"
 	end

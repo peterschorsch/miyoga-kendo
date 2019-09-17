@@ -1,1 +1,42 @@
-<h1>Hello</h1>
+<h1 class="align-center">Admin Dashboard</h1>
+<hr />
+
+<div class="row row-padding">
+	<div class="col-md-6">
+		<div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h1>
+						<span class="glyphicon glyphicon-user"></span> Users
+						<span class='badge' style='background-color: #777777'><%=@user_count%></span>
+					</h1>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<thead>
+							<tr class="align-center">
+								<th>Name</th>
+								<th>Email</th>
+								<th>Active</th>
+								<th>Role</th>
+								<th>Last Login</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @users.each do |user| %>
+								<tr class="align-center">
+									<td><%=user.concat_name%></td>
+									<td><%=user.email%></td>
+									<td><%=user.display_active%></td>
+									<td><%=user.role%></td>
+									<td><%=nil_check(user.last_login) ? "n/a" : formateDateTimeWithAt(user.last_login) %></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+					<%= link_to "View All Users &raquo".html_safe, admin_users_path, :class => "btn btn-success" %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
