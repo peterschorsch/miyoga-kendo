@@ -1,7 +1,10 @@
-<div class="row miyoga-header">
+<div class="miyoga-header">
   <div class="col-sm-12 col-md-1"><%= link_to image_tag("miyoga_crest.png", class: "miyoga_header_image", alt: "Miyoga Logo"), root_path, class: "header-link-text" %></div>
   <div class="col-sm-12 col-md-11"><%= link_to raw("<h1 class='miyoga-heading-text'>Miyoga Kendo Club</h1>"), root_path, class: "header-link-text" %></div>
 </div>
+
+<p class="align-right padding-right">Logged in as: <strong><%=current_user.concat_name%></strong></p>
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
