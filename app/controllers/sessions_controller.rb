@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       @user.update_last_login
 
       if @user.is_admin?
-        redirect_to admin_users_path, notice: "Welcome, #{@user.concat_name}!"
+        redirect_to admin_root_path, notice: "Welcome, #{@user.concat_name}!"
       else
         redirect_to root_url, notice: "Welcome, #{helpers.full_name(@user)}!"
       end
@@ -21,6 +21,6 @@ class SessionsController < ApplicationController
 
   def destroy
   	session[:user_id] = nil
-    redirect_to root_url, notice: "Logged out!"
+    redirect_to root_url, notice: "You have been logged out!"
   end
 end
