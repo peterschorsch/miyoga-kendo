@@ -4,5 +4,5 @@
 <% if current_user.is_admin? %>
 	<h3>Active or Archived?: <%=@user.display_active%></h3>
 	<h3>Role: <%=@user.role%></h3>
-	<h3>Last Login: <%=formateDateTimeWithAt(@user.last_login)%></h3>
+	<h3>Last Login: <%=user_nil_last_login((@user.last_login)%></h3>
 <% end %>

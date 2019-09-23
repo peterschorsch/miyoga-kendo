@@ -9,7 +9,8 @@
       <th>Email</th>
       <th>Role</th>
       <th>Active?</th>
-      <th colspan="3"></th>
+      <th>Last Login</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -19,9 +20,15 @@
         <td><%= user.email %></td>
         <td><%= user.display_role %></td>
         <td><%= user.display_active %></td>
-        <td><%= link_to 'Show', admin_user_path(user) %></td>
-        <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
-        <td><%= link_to 'Remove', admin_users_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= user_nil_last_login(user.last_login) %></td>
+        <td>
+          <%= link_to edit_admin_user_path(user), :class => "btn btn-warning", title: "Edit #{user.firstname}", 'data-toggle' => 'tooltip' do %> 
+            <span class="glyphicon glyphicon-edit"></span> Edit
+          <% end %>
+          <%= link_to admin_users_path, :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }, title: "Remove #{user.firstname}", 'data-toggle' => 'tooltip' do %> 
+            <span class="glyphicon glyphicon-trash"></span> Remove
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -29,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Admin User', new_admin_user_path %>
+<%= link_to 'Create New User', new_admin_user_path, class: "btn btn-success" %>
