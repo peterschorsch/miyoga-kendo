@@ -20,18 +20,18 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="<%=abouts_path%>">About</a></li>
-        <li><a href="<%=practices_path%>">Classes</a></li>
-        <li><a href="<%=events_path%>">Events</a></li>
-        <li><a href="<%=helpful_links_path%>">Helpful Links</a></li>
+        <li><%= link_to "About", abouts_path %></li>
+        <li><%= link_to "Classes", practices_path %></li>
+        <li><%= link_to "Events", events_path %></li>
+        <li><%= link_to "Helpful Links", helpful_links_path %></li>
         <% if current_user %>
-          <li><a href="<%=admin_user_path(current_user)%>">My Profile</a></li>
+          <li><%= link_to "My Profile", admin_user_path(current_user) %></li>
           <% if current_user.is_admin? %>
-            <li><a href="<%=admin_root_path%>">Admin Home</a></li>
+            <li><%= link_to "Admin Home", admin_root_path %></li>
           <% end %>
-          <li><a href="<%=logout_path%>">Logout</a></li>
+          <li><%= link_to "Logout", logout_path %></li>
         <% else %>
-          <li><a href="<%=login_path%>">Login</a></li>
+          <li><%= link_to "Login", login_path %></li>
         <% end %>
       </ul>
     </div>
