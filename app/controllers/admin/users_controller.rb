@@ -4,7 +4,7 @@ class Admin::UsersController < ApplicationController
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @users = User.all
+    @users = User.all.order_by_role
   end
 
   # GET /admin/users/1
@@ -54,6 +54,10 @@ class Admin::UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def update_password
+
   end
 
   # DELETE /admin/users/1

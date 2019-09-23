@@ -15,6 +15,10 @@ class User < ApplicationRecord
 		where(:active => false)
 	}
 
+	scope :order_by_role, -> {
+		order(:role, :lastname, :firstname, :email)
+	}
+
 	scope :order_by_last_login, -> {
 		order('last_login desc')
 	}
