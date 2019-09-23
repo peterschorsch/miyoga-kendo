@@ -26,19 +26,29 @@
       </tr>
       <tr>
         <td class="align-right table-cell-background"><%= form.label :email, 'Email:' %></td>
-        <td colspan="5"><%= form.text_field :email, id: :user_email, class: 'form-control' %></td>
-      </tr>
-      <tr>
+        <td colspan="2"><%= form.text_field :email, id: :user_email, class: 'form-control' %></td>
         <td class="align-right table-cell-background"><%= form.label :user_role_id, 'User Role:' %></td>
         <td colspan="2"><%= form.select :role, ["Admin", "User"], {:include_blank => "Please select a User Role"}, {class: "form-control", id: :user_role} %></td>
+      </tr>
+      <tr>
         <td class="align-right table-cell-background"><%= form.label :active, 'Active?', class: 'cursor-pointer' %></td>
         <td class="cursor-pointer" colspan="2"><label><%= form.check_box :active, id: :user_active %><span class="checkmark"></span></td>
       </tr>
+      <% if not user.new_record? %>
+        <tr>
+          <td class="align-right table-cell-background"><%= form.label :password, "Old Password:" %></td>
+          <td colspan="2"><%= form.text_field :password, id: :user_password, class: 'form-control' %></td>
+          <td class="align-right table-cell-background"><%= form.label :password, "New Password:" %></td>
+          <td colspan="2"><%= form.text_field :password, id: :user_password, class: 'form-control' %></td>
+          <td class="align-right table-cell-background"><%= form.label :password, "Confirm Password:" %></td>
+          <td colspan="2"><%= form.text_field :password, id: :user_password, class: 'form-control' %></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
   <div class="row row-padding">
     <div class="col-md-6 col-md-offset-3">
-      <%= form.submit "Create User", class: "btn btn-primary btn-block" %>
+      <%= form.submit "Save", class: "btn btn-primary btn-block" %>
     </div>
   </div>
   <div class="row row-padding">
