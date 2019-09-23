@@ -121,6 +121,8 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.5)
@@ -216,7 +218,7 @@ DEPENDENCIES
   duktape
   jbuilder (~> 2.5)
   jquery-rails
-  pry
+  pry-rails
   puma (~> 3.11)
   rails (~> 5.2.1)
   sass-rails (~> 5.0)
