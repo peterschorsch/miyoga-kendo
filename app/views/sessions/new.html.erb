@@ -1,24 +1,26 @@
-<p id=”alert”><%= alert %></p>
-
 <div class="row">
   <div class="col-xs-4 col-xs-offset-4"><h1 class="align-center">Login</h1></div>
+  <div class="col-xs-4 col-xs-offset-4"><h3 class="align-center" id=”alert”><%= alert %></h3></div>
   <%= form_tag sessions_path do |form| %>
     <div class="col-xs-4 col-xs-offset-4">
       <div class="form-group">
         <label>Email Address</label>
-        <%= text_field_tag :email, "", class: "form-control", placeholder: "Enter your Email" %>
+        <%= text_field_tag :email, "", class: "form-control", placeholder: "Please enter your Email" %>
       </div>
     </div>
     <div class="col-xs-4 col-xs-offset-4">
       <div class="form-group">
         <label>Password</label>
-        <%= password_field_tag :password, "", class: "form-control", placeholder: "Enter your Password" %>
+        <%= password_field_tag :password, "", class: "form-control", placeholder: "Please enter your Password" %>
       </div>
     </div>
     <div class="col-xs-2 col-xs-offset-5">
       <div class="actions form-group">
         <%= submit_tag 'Login', class: 'btn btn-success btn-block' %>
       </div>
+    </div>
+    <div class="col-xs-2 col-xs-offset-5">
+        <%= link_to 'Return to Home', root_path, class: 'btn btn-danger btn-block' %>
     </div>
   <% end %>
 </div>
