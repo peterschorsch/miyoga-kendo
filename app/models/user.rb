@@ -54,8 +54,30 @@ class User < ApplicationRecord
 
 	# Returns the hash digest of the given string.
 	def User.digest(string)
-	  cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
 	                                                BCrypt::Engine.cost
-	  BCrypt::Password.create(string, cost: cost)
+		BCrypt::Password.create(string, cost: cost)
+	end
+
+	def generate_password_token!
+		self.reset_password_token = generate_token
+		self.reset_password_sent_at = Time.zone.now
+		save!(:validate => false)
+	end
+
+	def password_token_valid?
+		(self.reset_password_sent_at + 1.hour) > Time.zone.now
+	end
+
+	def reset_password!(password)
+		self.reset_password_token = nil
+		self.password = password
+		save!
+	end
+
+	private
+
+	def generate_token
+		SecureRandom.hex(10)
 	end
 end

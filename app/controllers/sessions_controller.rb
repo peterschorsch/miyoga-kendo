@@ -1,4 +1,11 @@
 class SessionsController < ApplicationController
+  def forgot_password
+  end
+  def sent_email
+  end
+  def reset_password
+  end
+
   def new
   end
 
