@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-  
+
   ### PAGES FOR FORGOTTEN PASSWORD ###
   get 'forgotton-password', to: 'sessions#forgot_password'
   get 'sent-email', to: 'sessions#sent_email'
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get :practices, to: 'practices#index', path: 'class-schedule'
   get :events, to: 'events#index', path: 'events'
   get :helpful_links, to: 'helpful_links#index', path: 'helpful-links'
+  resources :users, only: [:show, :edit, :update]
   
   namespace :admin do
     root 'home#dashboard'

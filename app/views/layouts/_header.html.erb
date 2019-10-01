@@ -25,7 +25,7 @@
         <li><%= link_to "Events", events_path %></li>
         <li><%= link_to "Helpful Links", helpful_links_path %></li>
         <% if current_user %>
-          <li><%= link_to "My Profile", admin_user_path(current_user) %></li>
+          <li><%= link_to "My Profile", user_path(current_user) %></li>
           <% if current_user.is_admin? %>
             <li><%= link_to "Admin Home", admin_root_path %></li>
           <% end %>

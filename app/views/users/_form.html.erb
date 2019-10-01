@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, user], local: true, class: "form-horizontal", html: { autocomplete: "off" }) do |form| %>
+<%= form_with(model: user, local: true, class: "form-horizontal", html: { autocomplete: "off" }) do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -27,15 +27,21 @@
       <tr>
         <td class="align-right table-cell-background"><%= form.label :email, 'Email:' %></td>
         <td colspan="2"><%= form.text_field :email, id: :user_email, class: 'form-control' %></td>
-        <td class="align-right table-cell-background"><%= form.label :user_role_id, 'User Role:' %></td>
-        <td colspan="2"><%= form.select :role, ["Admin", "User"], {:include_blank => "Please select a User Role"}, {class: "form-control", id: :user_role} %></td>
-      </tr>
-      <tr>
-        <td class="align-right table-cell-background"><%= form.label :active, 'Active?', class: 'cursor-pointer' %></td>
-        <td class="cursor-pointer" colspan="2"><label><%= form.check_box :active, id: :user_active %><span class="checkmark"></span></td>
-        <td class="table-cell-background"></td>
-        <td></td>
-      </tr>
+      <% if user.is_admin? %>
+          <td class="align-right table-cell-background"><%= form.label :user_role_id, 'User Role:' %></td>
+          <td colspan="2"><%= form.select :role, ["Admin", "User"], {:include_blank => "Please select a User Role"}, {class: "form-control", id: :user_role} %></td>
+        </tr>
+        <tr>
+          <td class="align-right table-cell-background"><%= form.label :active, 'Active?', class: 'cursor-pointer' %></td>
+          <td class="cursor-pointer" colspan="2"><label><%= form.check_box :active, id: :user_active %><span class="checkmark"></span></td>
+          <td class="table-cell-background"></td>
+          <td></td>
+        </tr>
+      <% else %>
+          <td class="align-right table-cell-background"></td>
+          <td colspan="2"></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 
@@ -46,7 +52,7 @@
   </div>
   <div class="row row-padding">
     <div class="col-md-6 col-md-offset-3">
-      <%= link_to "Back", admin_users_path, class: "btn btn-danger btn-block" %>
+      <%= link_to "Back", user_path(user), class: "btn btn-danger btn-block" %>
     </div>
   </div>
 <% end %>

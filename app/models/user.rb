@@ -5,7 +5,7 @@ class User < ApplicationRecord
 	validates :email, presence: true, email: true, uniqueness: true
 	has_secure_password
 
-	validates :password, presence: true, length: { minimum: 8 }
+	validates :password, presence: true, length: { minimum: 8 }, on: :create
 	
 	scope :active_users, -> {
 		where(:active => true)
@@ -41,7 +41,7 @@ class User < ApplicationRecord
 
 	### DISPLAY METHODS ###
 	def concat_name
-		self.firstname << " " << self.lastname
+		self.firstname + " " + self.lastname
 	end
 
 	def display_role

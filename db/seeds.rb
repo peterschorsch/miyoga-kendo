@@ -4,10 +4,10 @@ puts ""
 
 ### CREATE TEST USERS ###
 puts "CREATE TEST USERS"
-
+password_digest: #{User.digest('foobar')} )
 ## ADMINS ##
 puts "ADMINS"
-@admin_user = User.create_with(firstname: "Peter", lastname: "Schorsch", active: true, password_digest: User.digest('peteschorsch'), role: "Admin", last_login: DateTime.now-1.week).find_or_create_by(email: "peteschorsch@@gmail.com")
+@admin_user = User.create_with(firstname: "Peter", lastname: "Schorsch", active: true, password_digest: User.digest("peteschorsch"), role: "Admin", last_login: DateTime.now-1.week).find_or_create_by(email: "peteschorsch@@gmail.com")
 puts @admin_user.inspect
 @admin_user = User.create_with(firstname: "Jason", lastname: "Toy", active: true, password: User.digest("jasontoy"), role: "Admin", last_login: DateTime.now-1.week).find_or_create_by(email: "jasontoy@icloud.com")
 puts @admin_user.inspect
