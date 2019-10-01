@@ -27,12 +27,16 @@ class User < ApplicationRecord
 		self.role == "Admin"
 	end
 
+	def is_user?
+		self.role == "User"
+	end
+
 	def is_active?
 		self.active
 	end
 
 	def is_archived?
-		!self.archive
+		!self.active
 	end
 
 	def update_last_login

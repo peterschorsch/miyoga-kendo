@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   
   namespace :admin do
-    root 'home#dashboard'
+    root to: 'admin#dashboard'
     resources :users
   end
 end
