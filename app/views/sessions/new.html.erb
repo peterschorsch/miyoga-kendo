@@ -4,7 +4,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="col-xs-8 col-xs-offset-2"><h3 class="align-center" id=”alert”><%= alert %></h3></div>
-        <div class="col-xs-4 col-xs-offset-4"><h3 class="align-center" id="notice"><%= notice %></h3></div>
+        <div class="col-xs-8 col-xs-offset-2"><h3 class="align-center" id="notice"><%= notice %></h3></div>
         <div class="col-xs-4 col-xs-offset-4"><h1 class="align-center">Login</h1></div>
 
         <%= form_tag sessions_path, html: { autocomplete: "off" } do |form| %>
@@ -20,7 +20,7 @@
           </div>
           <%= link_to 'Return to Home', root_path, class: 'btn btn-danger btn-block' %>
         <% end %>
-        <br /><br /><br /><br />
+        <br /><br />
       </div>
     </div>
   </div>

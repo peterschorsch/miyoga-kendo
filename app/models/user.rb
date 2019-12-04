@@ -6,6 +6,15 @@ class User < ApplicationRecord
 	has_secure_password
 
 	validates :password, presence: true, length: { minimum: 8 }, on: :create
+	validates :password, :confirmation => true, :length => {:within => 8..40}, :on => :update
+	PASSWORD_FORMAT = /\A
+		(?=.{8,})          # Must contain 8 or more characters
+		(?=.*\d)           # Must contain a digit
+		(?=.*[a-z])        # Must contain a lower case character
+		(?=.*[A-Z])        # Must contain an upper case character
+		(?=.*[[:^alnum:]]) # Must contain a symbol
+	/x
+
 	
 	scope :active_users, -> {
 		where(:active => true)
@@ -76,7 +85,7 @@ class User < ApplicationRecord
 	def reset_password!(password)
 		self.reset_password_token = nil
 		self.password = password
-		save!
+		save
 	end
 
 	private

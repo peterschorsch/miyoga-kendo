@@ -32,7 +32,7 @@ class PasswordsController < ApplicationController
 		      if @user.reset_password!(params[:password])
 		      	format.html { redirect_to login_path, notice: "Your password was successfully updated." }
 		      else
-		      	format.html { redirect_to reset_password_path, notice: "Your password was unsuccessfully updated" }
+		      	format.html { redirect_to reset_password_path, notice: "Your password was unsuccessfully updated." }
 		      end
 		    else
 		      format.html { redirect_to reset_password_path, notice: "User and/or token not found." }
