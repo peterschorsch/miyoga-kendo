@@ -16,11 +16,20 @@
 	padding-left: 15px;
 }
 
-.jcc_logo_container a:hover {
+.jcc_logo_container a:hover, .social_media_logo:hover {
 	background-color: transparent;
 	text-decoration: none;
+	color: #333333;
 }
 
 .jcc_logo{
 	width: 25%;
+}
+
+.social_media_logo img, .social_media_logo img{
+	width: 48px !important;
+    height: 48px !important;
+}
+.social_media_logo, .social_media_logo:visited{
+	color: #333333;
 }
