@@ -1,0 +1,9 @@
+//= require natural_sorting
+
+$(function() {
+	$('#users_table').dataTable( {
+		"order": [[ 3, "asc" ], [ 2, "asc"]],
+		responsive: true,
+		"pageLength": 25
+	});
+});
