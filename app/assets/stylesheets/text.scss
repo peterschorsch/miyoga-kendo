@@ -17,7 +17,7 @@
 .center-map{
 	object-position: 50% 50%;
 }
-
+//Header Links/Tabs
 .header-link-text:hover, .header-link-text:visited, .header-link-text:link, .header-link-text.active {
   text-decoration: none;
   color: inherit;
@@ -28,6 +28,13 @@
   text-decoration: none;
   color: white;
   background-color: #000080;
+}
+
+//Email Links
+.email-link-text:hover, .email-link-text:visited, .email-link-text:link, .email-link-text.active {
+  text-decoration: none;
+  color: #428bca;
+  background-color: transparent;
 }
 
 .paragraph-container{
