@@ -1,3 +1,7 @@
+h1{
+  font-size: 36px !important;
+}
+
 .align-left{
 	text-align: left;
 }
@@ -30,8 +34,8 @@
   background-color: #000080;
 }
 
-//Email Links
-.email-link-text:hover, .email-link-text:visited, .email-link-text:link, .email-link-text.active {
+//Emails & Links
+.link-text:hover, .link-text:visited, .link-text:link, .link-text.active {
   text-decoration: none;
   color: #428bca;
   background-color: transparent;
