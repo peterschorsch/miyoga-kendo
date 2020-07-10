@@ -14,8 +14,7 @@
 
   <body class="container-fluid">
     <%= render "layouts/header" %>
-    <div class="padding">
-      <%= yield %>
-    </div>
+    <%= '<div class="padding">'.html_safe unless current_page?(root_path) %>
+    <%= yield %>
   </body>
 </html>

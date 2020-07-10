@@ -33,3 +33,45 @@
 .social_media_logo, .social_media_logo:visited{
 	color: #333333;
 }
+
+
+/* Container holding the image and the text */
+.container {
+  position: relative;
+  text-align: center;
+  color: #000080;
+  width: 100% !important;
+  padding: 0px !important;
+}
+
+/* Centered text */
+.middle-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bottom-centered {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.very-bottom-centered {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.blue-back{
+  background-color: #0000cd;
+  height: 320px;
+}
+
+.white-back{
+  color: #333333;
+  height: 320px;
+}
+
