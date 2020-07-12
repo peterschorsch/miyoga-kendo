@@ -28,6 +28,7 @@ h1{
 .center-map{
 	object-position: 50% 50%;
 }
+
 //Header Links/Tabs
 .header-link-text:hover, .header-link-text:visited, .header-link-text:link, .header-link-text.active {
   text-decoration: none;
@@ -39,6 +40,14 @@ h1{
   text-decoration: none;
   color: white;
   background-color: #000080;
+}
+
+//Link that looks like text
+.text-link:hover, .text-link:visited, .text-link:link, .text-link:active, 
+.text-link a:hover, .text-link a:visited, .text-link a:link, .text-link a:active {
+  text-decoration: none;
+  color: #333333;
+  background-color: transparent;
 }
 
 //Emails & Links

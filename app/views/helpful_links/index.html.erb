@@ -4,77 +4,96 @@
 	</div>
 </div>
 <div class="row">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1 col-sm-12">
-			<div class="row">
-				<div class="col-md-12">
-					<h2>Equipment</h2><hr />
+	<div class="col-md-10 col-md-offset-1 col-sm-12">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-default">
+						<div class="panel-heading text-link">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+								<h2 class="panel-title">Equipment<i class="indicator glyphicon glyphicon-chevron-down pull-right"></i></h2>
+					      	</a>
+					    </div>
+					   	<div id="collapseOne" class="panel-collapse collapse in">
+					      	<div class="panel-body">
+					        	<div class="row">
+					        		<div class="col-md-3 col-sm-6">
+										<%= link_to image_tag("logos/e_bogu.png", class: "image-center", alt: "E-Bogu"), "https://www.e-bogu.com/", class: "header-link-text", target: :_blank %>
+									</div>
+									<div class="col-md-3 col-sm-6">
+										<%= link_to image_tag("logos/tozando.jpg", class: "image-center", alt: "Tozando"), "https://www.tozandoshop.com/", class: "header-link-text", target: :_blank %>
+									</div>
+									<div class="col-md-3 col-sm-6">
+										<%= link_to image_tag("logos/maruyama.jpg", class: "image-center", alt: "E-Bogu"), "https://maruyamakendosupply.com/", class: "header-link-text", target: :_blank %>
+									</div>
+									<div class="col-md-3 col-sm-6">
+										<%= link_to image_tag("logos/kendo_star.jpeg", class: "image-center", alt: "Tozando"), "https://kendostar.com/", class: "header-link-text", target: :_blank %>
+									</div>
+					        	</div>	
+					      	</div>
+					    </div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading text-link">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+								<h2 class="panel-title">Federations<i class="indicator glyphicon glyphicon-chevron-down pull-right"></i></h2>
+					      	</a>
+					    </div>
+					   	<div id="collapseTwo" class="panel-collapse collapse in">
+					      	<div class="panel-body">
+					        	<div class="row">
+									<div class="col-md-3 col-sm-6">
+										<%= link_to image_tag("logos/mwkf.jpg", class: "image-center", alt: "MWKF"), "https://midwestkendofederation.wordpress.com/", class: "header-link-text", target: :_blank %>
+									</div>
+									<div class="col-md-3 col-sm-6">
+										<%= link_to image_tag("logos/auskf.png", class: "image-center", alt: "AUSKF"), "http://www.auskf.info/index.htm", class: "header-link-text", target: :_blank %>
+									</div>
+								</div>
+					      	</div>
+					    </div>
+					</div>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="col-md-3 col-sm-6">
+		</div>
+	</div>	
+</div>		
+<div class="row">
+	<div class="col-md-12">
+		<h2>Readings</h2><hr />
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1 col-sm-12">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel-group" id="accordion">
 					<div class="panel panel-default">
-					  <div class="panel-body"><%= link_to image_tag("logos/e_bogu.png", class: "image-center", alt: "E-Bogu"), "https://www.e-bogu.com/", class: "header-link-text", target: :_blank %></div>
+						<div class="panel-heading text-link">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+								<h2 class="panel-title">Keiko<i class="indicator glyphicon glyphicon-chevron-down pull-right"></i></h2>
+				     		</a>
+				    	</div>
+				   		<div id="collapseThree" class="panel-collapse collapse in">
+				      		<div class="panel-body">
+					        	Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+					        	<br />
+					        	<%= link_to "Read More", "https://kenshi247.net/", :class => "btn btn-info", target: :_blank %>
+					      	</div>
+					    </div>
 					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
 					<div class="panel panel-default">
-					  <div class="panel-body"><%= link_to image_tag("logos/tozando.jpg", class: "image-center", alt: "Tozando"), "https://www.tozandoshop.com/", class: "header-link-text", target: :_blank %></div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="panel panel-default">
-					  <div class="panel-body">
-						<%= link_to image_tag("logos/maruyama.jpg", class: "image-center", alt: "E-Bogu"), "https://maruyamakendosupply.com/", class: "header-link-text", target: :_blank %></div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="panel panel-default">
-					  <div class="panel-body">
-					  	<%= link_to image_tag("logos/kendo_star.jpeg", class: "image-center", alt: "Tozando"), "https://kendostar.com/", class: "header-link-text", target: :_blank %></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-12">
-					<h2>Federations</h2><hr />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-3 col-sm-6">
-					<div class="panel panel-default">
-					  <div class="panel-body"><%= link_to image_tag("logos/mwkf.jpg", class: "image-center", alt: "MWKF"), "https://midwestkendofederation.wordpress.com/", class: "header-link-text", target: :_blank %></div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="panel panel-default">
-					  <div class="panel-body"><%= link_to image_tag("logos/auskf.png", class: "image-center", alt: "AUSKF"), "http://www.auskf.info/index.htm", class: "header-link-text", target: :_blank %></div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-12">
-					<h2>Readings</h2><hr />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">Keiko</div>
-						<div class="panel-body">Read this article about keiko.</div>
-						<div class="panel-footer"><%= link_to "Read more here...", "https://kenshi247.net/", class: "header-link-text", target: :_blank %></div>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">Kata</div>
-						<div class="panel-body">Read this article about kata.</div>
-						<div class="panel-footer"><%= link_to "Read more here...", "https://kenshi247.net/", class: "header-link-text", target: :_blank %></div>
+						<div class="panel-heading text-link">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+								<h2 class="panel-title">Kata<i class="indicator glyphicon glyphicon-chevron-down pull-right"></i></h2>
+					      	</a>
+					    </div>
+					   	<div id="collapseFour" class="panel-collapse collapse in">
+					      	<div class="panel-body">
+					        	Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+					        	<br />
+					        	<%= link_to "Read More", "https://kenshi247.net/", :class => "btn btn-info", target: :_blank %>
+					      	</div>
+					    </div>
 					</div>
 				</div>
 			</div>
