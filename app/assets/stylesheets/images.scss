@@ -1,0 +1,29 @@
+// For Side by Side Text and Image
+.text-image-column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.text-image{
+	width: 100%;
+}
+
+.responsive-image {
+	max-width: 100%;
+	height: auto;
+}
+.jcc-images{
+	text-align: center;
+}
+.jcc-images img{
+	width: 400px;
+	height: auto;
+	padding: 5px;
+}

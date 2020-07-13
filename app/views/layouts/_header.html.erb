@@ -24,7 +24,7 @@
         <li><%= link_to "About", abouts_path %></li>
         <li><%= link_to "Classes", practices_path %></li>
         <li><%= link_to "Events", events_path %></li>
-        <li><%= link_to "Helpful Links", helpful_links_path %></li>
+        <li><%= link_to "Resources", helpful_links_path %></li>
         <% if current_user %>
           <li><%= link_to "My Profile", user_path(current_user) %></li>
           <% if current_user.is_admin? %>
