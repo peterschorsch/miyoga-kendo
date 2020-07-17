@@ -62,6 +62,11 @@ end
 puts "SEEDED all 50 States"
 puts ""
 
+@jcc_state = State.find_by_abbr("IL")
+puts @jcc_state.inspect
+@address = Address.create_with(location_name: "Japanese Culture Center", address_line_1: "1016 W Belmont Ave", city: "Chicago", state_id: @jcc_state.id, zip_code: "60657", :dojo_flag => true, :current_dojo_flag => true).find_or_create_by(location_name: "Japanese Culture Center")
+puts @address.inspect
+puts ""
 
 puts ""
 puts "RAN SEEDING IN " + (Time.now - start).to_s + " SECONDS"
