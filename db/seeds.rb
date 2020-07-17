@@ -63,10 +63,18 @@ puts "SEEDED all 50 States"
 puts ""
 
 @jcc_state = State.find_by_abbr("IL")
-puts @jcc_state.inspect
-@address = Address.create_with(location_name: "Japanese Culture Center", address_line_1: "1016 W Belmont Ave", city: "Chicago", state_id: @jcc_state.id, zip_code: "60657", :dojo_flag => true, :current_dojo_flag => true).find_or_create_by(location_name: "Japanese Culture Center")
-puts @address.inspect
+@jcc_address = Address.create_with(address_line_1: "1016 W Belmont Ave", city: "Chicago", state_id: @jcc_state.id, zip_code: "60657", :dojo_flag => true, :current_dojo_flag => true).find_or_create_by(address_line_1: "1016 W Belmont Ave")
+puts @jcc_address.inspect
 puts ""
+
+@miyoga = Contact.create_with(name: "Miyoga Kendo Club", email: "miyoga.kendo.kai@gmail.com", notes: "Contact Us:", address_id: @jcc_address.id).find_or_create_by(name: "Miyoga Kendo Club")
+puts @miyoga.inspect
+puts ""
+
+@jcc = Contact.create_with(name: "Japanese Culture Center", email: "info@japaneseculturecenter.com", phone: "7735253141", website: "https://japaneseculturecenter.com/", notes: "To learn more about the Japanese Culture Center visit:", address_id: @jcc_address.id).find_or_create_by(name: "Japanese Culture Center")
+puts @jcc.inspect
+puts ""
+
 
 puts ""
 puts "RAN SEEDING IN " + (Time.now - start).to_s + " SECONDS"

@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_013405) do
+ActiveRecord::Schema.define(version: 2020_07_17_032108) do
 
   create_table "addresses", force: :cascade do |t|
-    t.string "location_name", null: false
     t.string "address_line_1", null: false
     t.string "address_line_2"
     t.string "city", null: false
@@ -24,6 +23,18 @@ ActiveRecord::Schema.define(version: 2020_07_17_013405) do
     t.boolean "dojo_flag", default: false
     t.boolean "current_dojo_flag", default: false
     t.index ["state_id"], name: "index_addresses_on_state_id"
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "phone", limit: 10
+    t.string "email"
+    t.string "website"
+    t.text "notes"
+    t.integer "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_contacts_on_address_id"
   end
 
   create_table "pages", force: :cascade do |t|
