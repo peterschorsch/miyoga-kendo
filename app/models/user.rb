@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+	has_many :pages, dependent: :destroy
+
 	include EmailValidator
 
 	validates :firstname, :lastname, presence: true

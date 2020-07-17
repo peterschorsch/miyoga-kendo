@@ -27,5 +27,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'admin#dashboard'
     resources :users
+    resources :pages
   end
 end

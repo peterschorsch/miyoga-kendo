@@ -20,11 +20,9 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "About", abouts_path %></li>
-        <li><%= link_to "Classes", practices_path %></li>
-        <li><%= link_to "Events", events_path %></li>
-        <li><%= link_to "Resources", helpful_links_path %></li>
+        <% @active_ordered_pages.each do |page| %>
+          <li><%= link_to page.name, page.path %></li>
+        <% end %>
         <% if current_user %>
           <li><%= link_to "My Profile", user_path(current_user) %></li>
           <% if current_user.is_admin? %>

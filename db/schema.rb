@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_27_174130) do
+ActiveRecord::Schema.define(version: 2020_07_16_223826) do
+
+  create_table "pages", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "path", null: false
+    t.string "index", limit: 2, null: false
+    t.boolean "active", default: true
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_pages_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "firstname", null: false
