@@ -31,16 +31,16 @@ puts ""
 
 puts "PAGES"
 admin_user_id = User.active_users.first.id
-@page = Page.create_with(name: "About", path: "abouts", index: 1, user_id: admin_user_id).find_or_create_by(name: "About")
+@page = Page.create_with(name: "About", path: "abouts_path", index: 1, user_id: admin_user_id).find_or_create_by(name: "About")
 puts @page.inspect
 
-@page = Page.create_with(name: "Classes", path: "practices", index: 2, user_id: admin_user_id).find_or_create_by(name: "Classes")
+@page = Page.create_with(name: "Classes", path: "practices_path", index: 2, user_id: admin_user_id).find_or_create_by(name: "Classes")
 puts @page.inspect
 
-@page = Page.create_with(name: "Events", path: "events", index: 3, user_id: admin_user_id).find_or_create_by(name: "Events")
+@page = Page.create_with(name: "Events", path: "events_path", index: 3, user_id: admin_user_id).find_or_create_by(name: "Events")
 puts @page.inspect
 
-@page = Page.create_with(name: "Resources", path: "helpful_links", index: 4, user_id: admin_user_id).find_or_create_by(name: "Resources")
+@page = Page.create_with(name: "Resources", path: "helpful_links_path", index: 4, user_id: admin_user_id).find_or_create_by(name: "Resources")
 puts @page.inspect
 puts ""
 

@@ -22,7 +22,7 @@
       <ul class="nav navbar-nav">
         <li><%= link_to "Home", root_path %></li>
         <% @active_ordered_pages.each do |page| %>
-          <li><%= link_to page.name, :controller => page.path, :action => :index %></li>
+          <li><%= link_to page.name, send("#{page.path}") %></li>
         <% end %>
         <% if current_user %>
           <li><%= link_to "My Profile", user_path(current_user) %></li>
