@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_005618) do
+ActiveRecord::Schema.define(version: 2020_07_17_012014) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "location_name", null: false
@@ -32,6 +32,13 @@ ActiveRecord::Schema.define(version: 2020_07_17_005618) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_pages_on_user_id"
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "abbreviation", limit: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
