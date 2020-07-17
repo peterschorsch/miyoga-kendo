@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_203525) do
+ActiveRecord::Schema.define(version: 2020_07_17_211909) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "address_line_1", null: false
@@ -47,6 +47,18 @@ ActiveRecord::Schema.define(version: 2020_07_17_203525) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["page_id"], name: "index_contents_on_page_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "content_id"
+    t.integer "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_events_on_address_id"
+    t.index ["content_id"], name: "index_events_on_content_id"
   end
 
   create_table "links", force: :cascade do |t|
