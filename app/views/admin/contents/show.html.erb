@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Heading:</strong>
+  <%= @content.heading %>
+</p>
+
+<p>
+  <strong>Subheading:</strong>
+  <%= @content.subheading %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @content.description %>
+</p>
+
+<p>
+  <strong>Index:</strong>
+  <%= @content.index %>
+</p>
+
+<p>
+  <strong>Display:</strong>
+  <%= @content.display %>
+</p>
+
+<%= link_to 'Edit', edit_content_path(@content) %> |
+<%= link_to 'Back', contents_path %>
