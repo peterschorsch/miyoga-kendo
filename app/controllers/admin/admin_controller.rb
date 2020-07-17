@@ -4,6 +4,8 @@ class Admin::AdminController < ApplicationController
 	def dashboard
 		@user_count = User.all.count
 		@users = User.order_by_last_login.first(5)
+
+		@social_media = SocialMedium.all
 	end
 
 	def active_header_pages

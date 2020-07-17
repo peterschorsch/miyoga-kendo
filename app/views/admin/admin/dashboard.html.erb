@@ -48,15 +48,11 @@
 				</div>
 				<div class="panel-body">
 					<div class="row align-center">
-						<div class="col-md-4 col-sm-12 padding-top-bottom">
-							<%= link_to image_tag("logos/gmail.png", alt: "Gmail Logo") + " Miyoga Email", "https://mail.google.com/mail/u/0/#inbox", target: '_blank', class: "social_media_logo" %>
-						</div>
-						<div class="col-md-4 col-sm-12 padding-top-bottom">
-							<%= link_to image_tag("logos/facebook.png", alt: "Facebook Logo") + " Facebook Group", "https://www.facebook.com/groups/672754536102008/", target: '_blank', class: "social_media_logo" %>
-						</div>
-						<div class="col-md-4 col-sm-12 padding-top-bottom">
-							<%= link_to image_tag("logos/dropbox.png", alt: "Dropbox Logo") + " Miyoga Dropbox", "https://www.dropbox.com/home/Miyoga%20Kendo%20Kai", target: '_blank', class: "social_media_logo" %>
-						</div>
+						<% @social_media.each do |social_media| %>
+							<div class="col-md-4 col-sm-12 padding-top-bottom">
+								<%= link_to image_tag("logos/#{social_media.image_link}", alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, target: '_blank', class: "social_media_logo" %>
+							</div>
+						<% end %>
 					</div>
 				</div>
 			</div>

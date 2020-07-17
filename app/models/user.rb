@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 	has_many :pages, dependent: :destroy
+	has_many :social_medium
 
 	include EmailValidator
 
