@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day_of_week: MyString
+  start_time: 2020-07-17 14:29:34
+  end_time: 2020-07-17 14:29:34
+  cost_per_month: MyString
+
+two:
+  day_of_week: MyString
+  start_time: 2020-07-17 14:29:34
+  end_time: 2020-07-17 14:29:34
+  cost_per_month: MyString
