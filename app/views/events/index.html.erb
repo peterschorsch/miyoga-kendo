@@ -1,0 +1,17 @@
+<% @events.each do |event| %>
+	<div class="row">
+		<div class="col-md-12">
+			<h1><%=event.title%></h1>
+			<hr />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<h2><%=formatDateRange(event.start_date, event.end_date)%></h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-sm-12"><p><%=event.description%></p></div>
+		<div class="col-md-6 col-sm-12"><%= render "templates/google_maps", location_name: event.address.contacts.first.name, address: event.address, height: 600, width: 650 %></div>
+	</div>
+<% end %>

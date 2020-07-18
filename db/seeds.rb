@@ -84,11 +84,32 @@ puts ""
 puts @content.inspect
 puts ""
 
+@event_page_id = Page.named("Events").id
+@uwm_rec_address = Address.create_with(address_line_1: "702 West Johnson Street", city: "Madison", state_id: State.find_by_abbr("WI").id, zip_code: "53706").find_or_create_by(address_line_1: "702 West Johnson Street")
+puts @uwm_rec_address.inspect
+puts ""
+@uwm_rec_contact = Contact.create_with(name: "Office of Admissions and Recruitment", email: "memberships@recsports.wisc.edu", phone: "6082623742", website: "https://recwell.wisc.edu/", address_id: @uwm_rec_address.id).find_or_create_by(name: "Office of Admissions and Recruitment")
+puts @uwm_rec_contact.inspect
+puts ""
+@event = Event.create_with(title: "2020 MWKF Summer Camp", start_date: Date.new(2020, 7, 31), end_date: Date.new(2020, 8, 2), address_id: @uwm_rec_address.id, description: "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.").find_or_create_by(title: "2020 MWKF Summer Camp")
+puts @event.inspect
+puts ""
+
+@detroit_address = Address.create_with(address_line_1: "2436 West Lincoln Street", city: "Birmingham", state_id: State.find_by_abbr("MI").id, zip_code: "48009").find_or_create_by(address_line_1: "2436 West Lincoln Street")
+puts @detroit_address.inspect
+puts ""
+@detroit_contact = Contact.create_with(name: "Seaholm High School", phone: "2482033700", address_id: @detroit_address.id).find_or_create_by(name: "Seaholm High School")
+puts @detroit_contact.inspect
+puts ""
+@event = Event.create_with(title: "2020 Detroit Taikai", start_date: Date.new(2020, 2, 15), end_date: Date.new(2020, 2, 16), address_id: @detroit_address.id, description: "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.").find_or_create_by(title: "2020 Detroit Taikai")
+puts @event.inspect
+puts ""
+
 puts "CLASS SCHEDULE"
 now = DateTime.now
-@class_schedule = ClassSchedule.create_with(day_of_week: "Sunday", start_time: Time.parse("06:30").in_time_zone('Central Time (US & Canada)'), end_time: Time.parse("07:45").in_time_zone('Central Time (US & Canada)'), cost_per_month: "30", :address_id => @jcc_address.id, :content_id => @content.id).find_or_create_by(day_of_week: "Sunday")
+@class_schedule = ClassSchedule.create_with(day_of_week: "Sunday", start_time: Time.parse("06:30").in_time_zone('Central Time (US & Canada)'), end_time: Time.parse("07:45").in_time_zone('Central Time (US & Canada)'), cost_per_month: "30", address_id: @jcc_address.id, content_id: @content.id).find_or_create_by(day_of_week: "Sunday")
 puts @class_schedule.inspect
-@class_schedule = ClassSchedule.create_with(day_of_week: "Friday", start_time: Time.parse("20:30").in_time_zone('Central Time (US & Canada)'), end_time: Time.parse("21:45").in_time_zone('Central Time (US & Canada)'), cost_per_month: "30", :address_id => @jcc_address.id, :content_id => @content.id).find_or_create_by(day_of_week: "Friday")
+@class_schedule = ClassSchedule.create_with(day_of_week: "Friday", start_time: Time.parse("20:30").in_time_zone('Central Time (US & Canada)'), end_time: Time.parse("21:45").in_time_zone('Central Time (US & Canada)'), cost_per_month: "30", address_id: @jcc_address.id, content_id: @content.id).find_or_create_by(day_of_week: "Friday")
 puts @class_schedule.inspect
 puts ""
 

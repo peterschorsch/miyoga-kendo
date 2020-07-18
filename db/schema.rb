@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_212934) do
+ActiveRecord::Schema.define(version: 2020_07_18_223332) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "address_line_1", null: false
@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 2020_07_17_212934) do
     t.string "email"
     t.string "website"
     t.text "notes"
-    t.integer "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "address_id"
     t.index ["address_id"], name: "index_contacts_on_address_id"
   end
 
@@ -63,15 +63,14 @@ ActiveRecord::Schema.define(version: 2020_07_17_212934) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "title"
-    t.date "start_date"
-    t.date "end_date"
-    t.integer "content_id"
+    t.string "title", null: false
+    t.text "description"
+    t.date "start_date", null: false
+    t.date "end_date", null: false
     t.integer "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_events_on_address_id"
-    t.index ["content_id"], name: "index_events_on_content_id"
   end
 
   create_table "links", force: :cascade do |t|

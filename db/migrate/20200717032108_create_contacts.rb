@@ -7,8 +7,6 @@ class CreateContacts < ActiveRecord::Migration[5.2]
       t.string :website
       t.text :notes
 
-      t.references :address, index: true, foreign_key: true
-
       t.timestamps
     end
 

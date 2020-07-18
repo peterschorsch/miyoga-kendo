@@ -13,9 +13,14 @@ module FormatdatetimeHelper
   def formatDate(date)
     date.strftime("%m/%d/%y")
   end
-
+  # 04:38pm
   def formatTime(date)
     date.strftime("%I:%M%p")
+  end
+
+  # 09/19-09/19/17
+  def formatDateRange(startdate, enddate)
+    startdate.strftime("%B %d") + " - " + enddate.strftime("%B %d, %Y")
   end
 
   # 09/19/17 04:38pm
