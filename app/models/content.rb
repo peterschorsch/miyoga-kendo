@@ -6,4 +6,8 @@ class Content < ApplicationRecord
 	scope :of_page, -> (page) {
 		where(page_id: page).references(:forms)
 	}
+
+	scope :display_ordered, -> {
+		where(display: true).order(:index)
+	}
 end
