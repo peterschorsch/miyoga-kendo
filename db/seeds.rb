@@ -66,10 +66,25 @@ puts "SEEDED all 50 States"
 puts ""
 
 @jcc_state = State.find_by_abbr("IL")
+puts "ADDRESS"
 @jcc_address = Address.create_with(address_line_1: "1016 W Belmont Ave", city: "Chicago", state_id: @jcc_state.id, zip_code: "60657", :dojo_flag => true, :current_dojo_flag => true).find_or_create_by(address_line_1: "1016 W Belmont Ave")
 puts @jcc_address.inspect
 puts ""
 
+puts "CONTENT"
+@content = Content.create_with(heading: "Class Schedule", :index => 1, :display => true, :page_id => Page.named("Classes").id).find_or_create_by(heading: "Class Schedule")
+puts @content.inspect
+puts ""
+
+puts "CLASS SCHEDULE"
+now = DateTime.now
+@class_schedule = ClassSchedule.create_with(day_of_week: "Sunday", start_time: Time.parse("06:30").in_time_zone('Central Time (US & Canada)'), end_time: Time.parse("07:45").in_time_zone('Central Time (US & Canada)'), cost_per_month: "30", :address_id => @jcc_address.id, :content_id => @content.id).find_or_create_by(day_of_week: "Sunday")
+puts @class_schedule.inspect
+@class_schedule = ClassSchedule.create_with(day_of_week: "Friday", start_time: Time.parse("20:30").in_time_zone('Central Time (US & Canada)'), end_time: Time.parse("21:45").in_time_zone('Central Time (US & Canada)'), cost_per_month: "30", :address_id => @jcc_address.id, :content_id => @content.id).find_or_create_by(day_of_week: "Friday")
+puts @class_schedule.inspect
+puts ""
+
+puts "CONTACT"
 @miyoga = Contact.create_with(name: "Miyoga Kendo Club", email: "miyoga.kendo.kai@gmail.com", notes: "Contact Us:", address_id: @jcc_address.id).find_or_create_by(name: "Miyoga Kendo Club")
 puts @miyoga.inspect
 puts ""

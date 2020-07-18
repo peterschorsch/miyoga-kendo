@@ -11,6 +11,10 @@ class Page < ApplicationRecord
 		order(:index)
 	}
 
+	scope :named, -> (name) {
+		find_by(:name => name)
+	}
+
 	def self.active_ordered_pages
 		active_pages.ordered
 	end

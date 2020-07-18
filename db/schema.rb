@@ -26,14 +26,16 @@ ActiveRecord::Schema.define(version: 2020_07_17_212934) do
   end
 
   create_table "class_schedules", force: :cascade do |t|
-    t.string "day_of_week"
-    t.time "start_time"
-    t.time "end_time"
-    t.string "cost_per_month"
+    t.string "day_of_week", null: false
+    t.time "start_time", null: false
+    t.time "end_time", null: false
+    t.string "cost_per_month", null: false
     t.integer "address_id"
+    t.integer "content_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_class_schedules_on_address_id"
+    t.index ["content_id"], name: "index_class_schedules_on_content_id"
   end
 
   create_table "contacts", force: :cascade do |t|

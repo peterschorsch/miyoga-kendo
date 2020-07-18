@@ -1,31 +1,28 @@
 <div class="row paragraph-indentation">
-	<div class="col-md-6 col-sm-6">
-		<h1 class="align-center">Class Schedule</h1>
-		<hr />
-	</div>
-	<div class="col-md-6 col-sm-6">
-		<h1 class="align-center">Cost</h1>
-		<hr />
-	</div>
+	<% @content.each do |content| %>
+		<div class="col-md-12">
+			<h1 class="align-center"><%= content.heading %></h1>
+			<hr />
+		</div>
+	<% end %>
 </div>
 
 <div class="row paragraph-indentation">
-	<div class="col-md-6 col-sm-6">
-		<p class="align-center">Fridays | 8:30pm-9:45pm</p>
-		<p class="align-center">&</p>
-		<p class="align-center">Sundays | 8:30am-9:45am</p>
-	</div>
-	<div class="col-md-6 col-sm-6">
-		<p class="align-center">$30/month</p>
+	<div class="col-md-12">
+		<% @practices.each_with_index do |practice, index| %>
+			<p class="align-center"><%= practice.day_of_week %> | <%= practice.start_time.strftime("%l:%M%P") %> - <%= practice.end_time.strftime("%l:%M%P") %></p>
+			<p class="align-center"><%= @practice_count==index ? "" : "&" %></p>
+		<% end %>
+		<br /><br />
+		<p class="align-center"><%=@practice_cost%></p>
 	</div>
 </div>
 <br />
 <div class="row paragraph-indentation">
-	
 	<div class="col-md-10 col-md-offset-1">
 		<table style="width:100%;">
 			<tr>
-				<td rowspan="2"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2967.8002533847484!2d-87.65705524878119!3d41.94014337911529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd3ab8f1a9341%3A0x41ac508872f36f17!2sJapanese+Culture+Center!5e0!3m2!1sen!2sus!4v1565555905657!5m2!1sen!2sus" frameborder="0" style="border:0; display:block;width:600px; height: 400px;" allowfullscreen></iframe></td>
+				<td rowspan="2"><%= embed_google_maps(address: "#{@practice_location.address_line_1} #{@practice_location.city} #{@practice_location.state.abbreviation}, #{@practice_location.zip_code}", height: 600, width: 600).html_safe %></td>
 				<td class="jcc-images"><%= image_tag("outside_jcc.jpg", alt: "JCC") %></td>
 			</tr>
 			<tr>
@@ -36,16 +33,14 @@
 	</div>
 </div>
 
-<br />
-<br />
-<br />
+<br /><br /><br />
 
 <div class="row paragraph-indentation">
 	<div class="col-md-6 col-md-offset-3">
-		<p class="align-center">Feel free to contact us at:</p>
-		<p class="align-center"><%= mail_to "miyoga.kendo.kai@gmail.com", "miyoga.kendo.kai@gmail.com", class: "link-text" %></p>
+		<p class="align-center"><%=@miyoga_contact.notes%></p>
+		<p class="align-center"><%= mail_to @miyoga_contact.email, @miyoga_contact.email, class: "link-text" %></p>
 		<br />
-		<p class="align-center">To learn more about the Japanese Culture Center visit:</p>
-		<p class="align-center"><%= link_to "https://japaneseculturecenter.com/", "https://japaneseculturecenter.com/", class: "link-text", target: :_blank %></p>
+		<p class="align-center"><%=@jcc_contact.notes%></p>
+		<p class="align-center"><%= link_to @jcc_contact.website, @jcc_contact.website, class: "link-text", target: :_blank %></p>
 	</div>
 </div>
