@@ -22,7 +22,7 @@
 	<div class="col-md-10 col-md-offset-1">
 		<table style="width:100%;">
 			<tr>
-				<td rowspan="2"><%= embed_google_maps(address: "#{@practice_location.address_line_1} #{@practice_location.city} #{@practice_location.state.abbreviation}, #{@practice_location.zip_code}", height: 600, width: 600).html_safe %></td>
+				<td rowspan="2"><%= render "templates/google_maps", location_name: @jcc_contact.name, address: @practice_location, height: 600, width: 600 %></td>
 				<td class="jcc-images"><%= image_tag("outside_jcc.jpg", alt: "JCC") %></td>
 			</tr>
 			<tr>
