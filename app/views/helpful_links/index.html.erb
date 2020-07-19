@@ -1,54 +1,29 @@
 <div class="row">
 	<div class="col-md-12">
-		<h1>Resources</h1><hr />
+		<h1><%=@current_page.name%></h1><hr />
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-10 col-md-offset-1 col-sm-12">
 		<div class="row">
-			<h2>Equipment</h2>
-			<div class="col-md-12">
-				<div class="row">
-					<div class="col-md-3 col-sm-6">
-						<div class="panel panel-default">
-						  <div class="panel-body"><%= link_to image_tag("logos/e_bogu.png", class: "image-center", alt: "E-Bogu"), "https://www.e-bogu.com/", class: "header-link-text", target: :_blank %></div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-6">
-						<div class="panel panel-default">
-						  <div class="panel-body"><%= link_to image_tag("logos/tozando.jpg", class: "image-center", alt: "Tozando"), "https://www.tozandoshop.com/", class: "header-link-text", target: :_blank %></div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-6">
-						<div class="panel panel-default">
-						  <div class="panel-body">
-							<%= link_to image_tag("logos/maruyama.jpg", class: "image-center", alt: "E-Bogu"), "https://maruyamakendosupply.com/", class: "header-link-text", target: :_blank %></div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-6">
-						<div class="panel panel-default">
-						  <div class="panel-body">
-						  	<%= link_to image_tag("logos/kendo_star.jpeg", class: "image-center", alt: "Tozando"), "https://kendostar.com/", class: "header-link-text", target: :_blank %></div>
-						</div>
+			<% @resources.each do |content| %>
+				<h2><%= content.heading %></h2>
+				<div class="col-md-12">
+					<div class="row">
+						<% content.links.each do |link| %>
+							<div class="col-md-3 col-sm-6">
+								<div class="panel panel-default">
+								  <div class="panel-body"><%= link_to image_tag("logos/#{link.image_link}", class: "image-center", alt: link.name), link.link, class: "header-link-text", target: :_blank %></div>
+								</div>
+							</div>
+						<% end %>
 					</div>
 				</div>
-				<div class="row">
-					<h2>Federations</h2>
-					<div class="col-md-3 col-sm-6">
-						<div class="panel panel-default">
-							<div class="panel-body"><%= link_to image_tag("logos/mwkf.jpg", class: "image-center", alt: "MWKF"), "https://midwestkendofederation.wordpress.com/", class: "header-link-text", target: :_blank %></div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-6">
-						<div class="panel panel-default">
-							<div class="panel-body"><%= link_to image_tag("logos/auskf.png", class: "image-center", alt: "AUSKF"), "http://www.auskf.info/index.htm", class: "header-link-text", target: :_blank %></div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<% end %>
 		</div>
 	</div>	
-</div>		
+</div>
+
 <div class="row">
 	<div class="col-md-12">
 		<h1>Readings</h1><hr />
@@ -59,34 +34,23 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel-group" id="accordion">
-					<div class="panel panel-default">
-						<div class="panel-heading text-link">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-								<h2 class="panel-title">Kata<i class="indicator glyphicon glyphicon-chevron-down pull-right"></i></h2>
-				     		</a>
-				    	</div>
-				   		<div id="collapseThree" class="panel-collapse collapse in">
-				      		<div class="panel-body">
-					        	Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-					        	<br />
-					        	<%= link_to "Read More", "https://kenshi247.net/", :class => "btn btn-info", target: :_blank %>
-					      	</div>
-					    </div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading text-link">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-								<h2 class="panel-title">How to tie your Hakama<i class="indicator glyphicon glyphicon-chevron-down pull-right"></i></h2>
-					      	</a>
-					    </div>
-					   	<div id="collapseFour" class="panel-collapse collapse in">
-					      	<div class="panel-body">
-					        	Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-					        	<br />
-					        	<%= link_to "Read More", "https://kenshi247.net/", :class => "btn btn-info", target: :_blank %>
-					      	</div>
-					    </div>
-					</div>
+					<% @articles.each_with_index do |article, index| %>
+						<div class="panel panel-default">
+							<div class="panel-heading text-link">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=index%>">
+									<h2 class="panel-title"><%=article.heading%><i class="indicator glyphicon glyphicon-chevron-down pull-right"></i></h2>
+								</a>
+							</div>
+							<div id="collapse<%=index%>" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<p><%=article.description%></p>
+									<% article.links.each do |link| %>
+										<%= link_to "See More &raquo".html_safe, link.link, :class => "btn btn-info", target: :_blank %>
+									<% end %>
+								</div>
+							</div>
+						</div>
+					<% end %>
 				</div>
 			</div>
 		</div>
