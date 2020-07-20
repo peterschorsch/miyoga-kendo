@@ -6,6 +6,8 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.date :start_date, :null => false
       t.date :end_date, :null => false
 
+      t.boolean :active, :default => true
+
       t.belongs_to :address
 
       t.timestamps

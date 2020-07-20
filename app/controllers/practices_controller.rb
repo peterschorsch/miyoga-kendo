@@ -3,8 +3,8 @@ class PracticesController < ApplicationController
 
 	def index
 		@content = Content.of_page(@current_page).display_ordered
-		@miyoga_contact = Contact.named("Miyoga Kendo Club")
-		@jcc_contact = Contact.named("Japanese Culture Center")
+		@miyoga_contact = Contact.find_club_contact
+		@jcc_contact = Contact.find_dojo_contact
 		
 		@practice_location = @miyoga_contact.address
 		@practices = @practice_location.class_schedules

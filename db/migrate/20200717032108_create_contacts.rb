@@ -7,6 +7,10 @@ class CreateContacts < ActiveRecord::Migration[5.2]
       t.string :website
       t.text :notes
 
+      t.boolean :club, :boolean, :default => false
+      t.boolean :dojo_name, :boolean, :default => false
+      t.boolean :dojo_location, :boolean, :default => false
+
       t.timestamps
     end
 

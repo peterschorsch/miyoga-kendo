@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 	before_action :set_event, only: [:update, :destroy]
 
 	def index
-		@events = Event.order_by_recent.includes(:address).first(3)
+		@events = Event.display_active.includes(:address).first(3)
 	end
 
 	def update
@@ -17,7 +17,7 @@ class EventsController < ApplicationController
 	end
 
 	def destroy
-		@event.destroy
+		@event.active = false
 	    respond_to do |format|
 	      format.html { redirect_to events_path, notice: 'Event was successfully deleted.' }
 	    end

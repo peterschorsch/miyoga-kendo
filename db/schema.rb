@@ -20,8 +20,6 @@ ActiveRecord::Schema.define(version: 2020_07_18_223332) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "state_id"
-    t.boolean "dojo_flag", default: false
-    t.boolean "current_dojo_flag", default: false
     t.index ["state_id"], name: "index_addresses_on_state_id"
   end
 
@@ -44,6 +42,10 @@ ActiveRecord::Schema.define(version: 2020_07_18_223332) do
     t.string "email"
     t.string "website"
     t.text "notes"
+    t.boolean "club", default: false
+    t.boolean "boolean", default: false
+    t.boolean "dojo_name", default: false
+    t.boolean "dojo_location", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "address_id"
@@ -67,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_07_18_223332) do
     t.text "description"
     t.date "start_date", null: false
     t.date "end_date", null: false
+    t.boolean "active", default: true
     t.integer "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
