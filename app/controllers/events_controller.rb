@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-	before_action :set_page
 	before_action :set_event, only: [:update, :destroy]
 
 	def index
@@ -19,16 +18,16 @@ class EventsController < ApplicationController
 	def destroy
 		@event.active = false
 	    respond_to do |format|
-	      format.html { redirect_to events_path, notice: 'Event was successfully deleted.' }
+			if @event.save
+				format.html { redirect_to events_path, notice: 'Event was successfully deleted.' }
+			else
+				format.html { render :index, notice: 'Event was not deleted.' }
+			end
 	    end
 	end
 
 
 	private
-		def set_page
-			@current_page = Page.named("Events")
-		end
-
 		# Use callbacks to share common setup or constraints between actions.
 	    def set_event
 			@event = Event.find(params[:id])
