@@ -6,10 +6,10 @@ class Contact < ApplicationRecord
 	}
 
 	scope :find_club_contact, -> {
-		find_by(:club => true)
+		where(:club => true).select(:name, :phone, :email, :notes, :address_id)[0]
 	}
 
 	scope :find_dojo_contact, -> {
-		find_by(:dojo_name => true, :dojo_location => true)
+		where(:dojo_name => true, :dojo_location => true).select(:name, :phone, :email, :website, :notes, :address_id)[0]
 	}
 end
