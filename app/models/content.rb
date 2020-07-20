@@ -7,6 +7,10 @@ class Content < ApplicationRecord
 		where(page_id: page).references(:forms).display_ordered
 	}
 
+	scope :about_miyoga, -> {
+		find_by(heading: "About Miyoga Kendo")
+	}
+
 	scope :display_ordered, -> {
 		where(display: true).order(:index)
 	}

@@ -1,8 +1,8 @@
 <div class="container">
 	<%= image_tag("home_page/group_practice_shot.jpg", class: "home_image", alt: "Group Shot") %>
 	<div class="bottom-centered">
-		<h1 class='miyoga-heading-text'>About Miyoga Kendo</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique turpis ac tellus mattis consectetur. Morbi a consectetur nulla. Nulla ut molestie mi, sed aliquam sem. Praesent eget sodales est, ut finibus orci. Aliquam a fermentum ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rutrum diam lectus, vel hendrerit tellus semper eu.</p>
+		<h1 class='miyoga-heading-text'><%= @about_miyoga.heading %></h1>
+		<p><%= @about_miyoga.description.truncate_words(60).html_safe %></p>
 		<%= link_to "More Information", abouts_path, :class => "btn btn-info btn-lg" %>
 		<%= link_to "Class Schedule", practices_path, :class => "btn btn-info btn-lg" %>
 	</div>
@@ -10,14 +10,16 @@
 <div class="container blue-back">
 	<div class="middle-centered white-text">
 		<h1 class='miyoga-heading-text'>Upcoming Events</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique turpis ac tellus mattis consectetur. Morbi a consectetur nulla. Nulla ut molestie mi, sed aliquam sem. Praesent eget sodales est, ut finibus orci. Aliquam a fermentum ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rutrum diam lectus, vel hendrerit tellus semper eu.</p>
+		<p><%= @upcoming_event.title %></p>
+		<p><%= formatEventsHomeDateRange(@upcoming_event.start_date, @upcoming_event.end_date) %></p>
+		<p><%= @upcoming_event.description.truncate_words(50).html_safe %></p>
 		<%= link_to "See More", events_path, :class => "btn btn-info btn-lg" %>
 	</div>
 </div>
 <div class="container">
 	<%= image_tag("home_page/group_post_practice.jpg", class: "home_image", alt: "Group Shot Post Practice") %>
 	<div class="very-bottom-centered">
-		<h3>Contact us:</h3>
-		<h3><%= mail_to "miyoga.kendo.kai@gmail.com", "miyoga.kendo.kai@gmail.com", class: "link-text", style: "color: #000080" %></h3>
+		<h3><%= @miyoga_contact.notes %></h3>
+		<h3><%= mail_to @miyoga_contact.email, @miyoga_contact.email, class: "link-text", style: "color: #000080" %></h3>
 	</div>
 </div>
