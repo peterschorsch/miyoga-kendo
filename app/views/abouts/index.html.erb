@@ -6,7 +6,7 @@
 	<div class="paragraph-container">
 		<div class="row">
 			<div class="text-image-column">
-				<p class="indent-paragraph"><%=content.description%></p>
+				<p class="indent-paragraph"><%=content.description.html_safe%></p>
 			</div>
 			<div class="text-image-column">
 				<%= image_tag("about_page/old_kendo_postcard.jpg", class: "text-image", alt: "Old Kendo Image") %>
