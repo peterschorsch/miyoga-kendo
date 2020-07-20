@@ -12,7 +12,7 @@ class PracticesController < ApplicationController
 		@practice_cost = "$" + @practices.first.cost_per_month + " per month"
 	end
 
-
+	private
 	def set_page
 		@current_page = Page.named("Classes")
 	end

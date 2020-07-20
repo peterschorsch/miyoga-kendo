@@ -28,13 +28,13 @@ class EventsController < ApplicationController
 
 
 	private
-		# Use callbacks to share common setup or constraints between actions.
-	    def set_event
-			@event = Event.find(params[:id])
-	    end
+	# Use callbacks to share common setup or constraints between actions.
+	def set_event
+		@event = Event.find(params[:id])
+	end
 
-	    # Only allow a list of trusted parameters through.
-	    def event_params
-			params.require(:event).permit(:title, :start_date, :end_date, :description)
-	    end
+	# Only allow a list of trusted parameters through.
+	def event_params
+		params.require(:event).permit(:title, :start_date, :end_date, :description)
+	end
 end

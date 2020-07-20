@@ -5,7 +5,7 @@ class AboutsController < ApplicationController
 		@content = Content.of_page(@current_page).display_ordered
 	end
 
-
+	private
 	def set_page
 		@current_page = Page.named("About")
 	end
