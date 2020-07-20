@@ -18,7 +18,6 @@
 							<tr class="align-center">
 								<th>Name</th>
 								<th>Email</th>
-								<th>Active</th>
 								<th>Role</th>
 								<th>Last Login</th>
 							</tr>
@@ -28,7 +27,6 @@
 								<tr class="align-center">
 									<td><%=user.concat_name%></td>
 									<td><%=user.email%></td>
-									<td><%=user.display_active%></td>
 									<td><%=user.role%></td>
 									<td><%=nil_check(user.last_login) ? "n/a" : formateDateTimeWithAt(user.last_login) %></td>
 								</tr>

@@ -4,7 +4,7 @@ class Admin::UsersController < Admin::AdminController
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @users = User.all.order_by_role
+    @users = User.select(:id, :firstname, :lastname, :email, :role, :active, :last_login).order_by_role
   end
 
   # GET /admin/users/1

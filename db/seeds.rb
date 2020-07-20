@@ -25,6 +25,11 @@ puts @user.inspect
 puts @user.inspect
 puts ""
 
+puts "GUEST"
+@guest = User.create_with(firstname: "Not Logged In", lastname: "User", active: false, password_digest: User.digest("Testpassword1!"), role: "Guest", last_login: DateTime.now-2.weeks).find_or_create_by(email: "guestuser@gmail.com")
+puts @guest.inspect
+puts ""
+
 puts "SOCIAL MEDIA"
 @social_media = SocialMedium.create_with(site_name: "Miyoga Gmail", site_link: "https://mail.google.com/mail/u/0/#inbox", image_link: "gmail.png", user_id: @admin_user.id).find_or_create_by(site_name: "Miyoga Gmail")
 puts @social_media.inspect

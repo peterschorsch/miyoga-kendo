@@ -4,11 +4,7 @@ class ApplicationController < ActionController::Base
 	before_action :active_header_pages
 
 	def current_user
-		if session[:user_id]
-			@current_user ||= User.find(session[:user_id])
-		else
-			@current_user = nil
-		end
+		@current_user ||= session[:user_id] ? User.find(session[:user_id]) : User.get_guest_user
 	end
 
 	def active_header_pages
