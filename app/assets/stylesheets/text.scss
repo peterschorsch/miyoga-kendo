@@ -21,6 +21,10 @@ h1{
 	text-align: right;
 }
 
+.no-margin{
+  margin: 0px;
+}
+
 .paragraph-indentation{
 	text-indent: 75px;
 }
@@ -72,4 +76,15 @@ h1{
 }
 .panel-body{
   font-size: 16px;
+}
+
+.vertical-align-middle{
+  display:flex;
+  align-items:center; /* vertically aligns */
+  justify-content: center;
+}
+
+.error-list-padding li{
+  padding-top: 5px;
+  padding-bottom: 5px;
 }

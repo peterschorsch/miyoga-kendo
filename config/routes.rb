@@ -20,7 +20,8 @@ Rails.application.routes.draw do
 
   get :abouts, to: 'abouts#index', path: 'about'
   get :practices, to: 'practices#index', path: 'class-schedule'
-  get :events, to: 'events#index', path: 'events'
+  resources :events, path: 'events', only: [:index, :update, :destroy]
+
   get :helpful_links, to: 'helpful_links#index', path: 'resources'
   resources :users, only: [:show, :edit, :update]
   

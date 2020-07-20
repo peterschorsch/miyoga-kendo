@@ -38,6 +38,10 @@ class User < ApplicationRecord
 		self.role == "Admin"
 	end
 
+	def is_not_admin?
+		self.role != "Admin"
+	end
+
 	def is_user?
 		self.role == "User"
 	end

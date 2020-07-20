@@ -9,6 +9,8 @@ gem 'pry-rails'
 gem 'database_cleaner'
 gem 'google_maps_rails'
 gem 'awesome_print'
+gem 'ckeditor'
+#gem 'paperclip'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
