@@ -2,7 +2,8 @@ class EventsController < ApplicationController
 	before_action :set_event, only: [:update, :destroy]
 
 	def index
-		@events = Event.display_active.includes(:address).first(3)
+		@events = Event.display_active.includes(address: :contacts).first(3)
+		@states = State.sort_by_abbr.select(:id, :abbreviation)
 	end
 
 	def update
@@ -35,6 +36,8 @@ class EventsController < ApplicationController
 
 	# Only allow a list of trusted parameters through.
 	def event_params
-		params.require(:event).permit(:title, :start_date, :end_date, :description)
+		params.require(:event).permit(:title, :start_date, :end_date, :description, 
+			address_attributes: [:id, :address_line_1, :address_line_2, :city, :state_id, :zip_code, 
+			contacts_attributes: [:id, :name, :email, :phone, :website]])
 	end
 end

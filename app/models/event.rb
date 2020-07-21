@@ -1,5 +1,8 @@
 class Event < ApplicationRecord
 	belongs_to :address
+	accepts_nested_attributes_for :address, :reject_if => proc { |attributes| attributes['address_line_1'].blank? || attributes['city'].nil? || attributes['state_id'].nil?|| attributes['zip_code'].nil? }
+
+	validates :title, :start_date, :end_date, presence: true
 
 	scope :display_active, -> {
 		where(:active => true).order_by_recent
@@ -16,6 +19,5 @@ class Event < ApplicationRecord
 	scope :order_by_oldest, -> {
 		order('start_date ASC')
 	}
-
 	
 end

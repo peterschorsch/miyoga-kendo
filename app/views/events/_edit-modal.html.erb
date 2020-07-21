@@ -1,33 +1,84 @@
-<div class="modal fade" id="aboutEditModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="eventEditModal-<%=index%>" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="modal-title" id="aboutModalLabel">Edit Event</h1>
+				<h1 class="modal-title" id="eventModalLabel">Edit Event</h1>
 			</div>
 			<div class="modal-body">
 				<%= render "templates/alerts/form-errors", model: event %>
 
 				<%= form_with(model: event, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
 					<div class="row vertical-align-middle">
-						<div class="col-xs-2 align-right"><%= f.label :title, 'Title:' %></div>
-		          		<div class="col-xs-10"><%= f.text_field :title, { class: 'form-control' } %></div>
-		          	</div>
-		          	<hr />
-		          	<div class="row vertical-align-middle">
-		          		<div class="col-xs-2 align-right"><%= f.label :start_date, 'Start Date:' %></div>
-		          		<div class="col-xs-4"><%= f.date_field :start_date, { class: 'form-control' } %></div>
-		          		<div class="col-xs-2 align-right"><%= f.label :end_date, 'End Date:' %></div>
-		          		<div class="col-xs-4"><%= f.date_field :end_date, { class: 'form-control' } %></div>
-		          	</div>
-		          	<hr />
-		          	<div class="row">
-		          		<div class="col-xs-2 align-right"><%= f.label :description, 'Description:' %></div>
-		          		<div class="col-xs-10"><%= f.cktext_area :description, { class: 'form-control', language: "us" } %></div>
+						<div class="col-xs-12"><%= f.label :title, 'Event Name:' %></div>
+					</div>
+					<div class="row">
+		          		<div class="col-xs-12"><%= f.text_field :title, { class: 'form-control' } %></div>
 		          	</div>
 		          	<br />
+		          	<div class="row vertical-align-middle">
+		          		<div class="col-xs-5"><%= f.label :start_date, 'Start Date:' %></div>
+		          		<div class="col-xs-2 align-center"></div>
+		          		<div class="col-xs-5"><%= f.label :end_date, 'End Date:' %></div>
+		          	</div>
+		          	<div class="row vertical-align-middle">
+		          		<div class="col-xs-5"><%= f.date_field :start_date, { class: 'form-control' } %></div>
+		          		<div class="col-xs-2 align-center"><p>to</p></div>
+		          		<div class="col-xs-5"><%= f.date_field :end_date, { class: 'form-control' } %></div>
+		          	</div>
+		          	<br />
+		          	<div class="row vertical-align-middle">
+						<div class="col-xs-12"><%= f.label :description, 'Event Description:' %></div>
+					</div>
+		          	<div class="row">
+		          		<div class="col-xs-12"><%= f.cktext_area :description, { class: 'form-control', language: "us" } %></div>
+		          	</div>
+		          	<hr />
+		          	<h1>Edit Event Address</h1>
+		          	<%= f.fields_for :address do |address| %>
+		          		<%= address.fields_for :contacts do |contact| %>
+				          	<div class="row">
+				          		<div class="col-xs-12"><%= contact.text_field :name, { placeholder: "Location Name", class: 'form-control' } %></div>
+				          	</div>
+				          	<br />
+				          	<div class="row">
+				          		<div class="col-xs-12"><%= address.text_field :address_line_1, { placeholder: "Address Line 1", class: 'form-control' } %></div>
+				          	</div>
+				          	<br />
+				          	<div class="row">
+				          		<div class="col-xs-12"><%= address.text_field :address_line_2, { placeholder: "Address Line 2", class: 'form-control' } %></div>
+				          	</div>
+				          	<br />
+				          	<div class="row">
+				          		<div class="col-xs-8"><%= address.text_field :city, { class: 'form-control' } %></div>
+				          		<div class="col-xs-2"><%= address.collection_select :state_id, @states, :id, :abbreviation, {:include_blank => "Select a State"}, {class: "form-control chosen-select"} %></div>
+				          		<div class="col-xs-2"><%= address.text_field :zip_code, { class: 'form-control', size: 5 } %></div>
+				          	</div>
+				          	<hr />
+				          	<div class="row vertical-align-middle">
+								<div class="col-xs-12"><%= f.label :email, 'Venue Email' %> (not required):</div>
+							</div>
+							<div class="row">
+				          		<div class="col-xs-12"><%= contact.text_field :email, { placeholder: "Venue Email", class: 'form-control' } %></div>
+				          	</div>
+				          	<br />
+				          	<div class="row vertical-align-middle">
+								<div class="col-xs-12"><%= f.label :phone, 'Venue Phone' %> (not required):</div>
+							</div>
+							<div class="row">
+				          		<div class="col-xs-12"><%= contact.text_field :phone, { placeholder: "Venue Phone", class: 'form-control' } %></div>
+				          	</div>
+				          	<br />
+				          	<div class="row vertical-align-middle">
+								<div class="col-xs-12"><%= f.label :website, 'Venue Website' %> (not required):</div>
+							</div>
+							<div class="row">
+				          		<div class="col-xs-12"><%= contact.text_field :website, { placeholder: "Venue Website", class: 'form-control' } %></div>
+				          	</div>
+						<% end %>
+					<% end %>
 			</div>
 			<div class="modal-footer">
-				<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': '#aboutEditModal' } %>
+				<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#eventEditModal-#{index}" } %>
 				<%= f.submit "Save Changes", class: 'btn btn-success' %>
 			</div>
 			<% end %>	

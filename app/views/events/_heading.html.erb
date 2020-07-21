@@ -1,17 +1,17 @@
 <% if current_user.is_not_admin? %>
 	<div class="row padding-top-bottom">
-		<div class="col-md-12"><h1 class="no-margin"><%=event.title.html_safe%></h1></div>
+		<div class="col-md-12"><h1 class="no-margin"><%= event.title.html_safe %></h1></div>
 	</div>
 <% else %>
 	<div class="row padding-top-bottom">
-		<div class="col-md-8"><h1 class="no-margin"><%=event.title.html_safe%></h1></div>
+		<div class="col-md-8"><h1 class="no-margin"><%= event.title.html_safe %></h1></div>
 		<div class="col-md-2">
-			<%= button_tag :class => "btn btn-warning btn-block btn-lg", title: 'Edit', 'data-toggle' => 'modal', 'data-target' => '#aboutEditModal' do %>
+			<%= button_tag :class => "btn btn-warning btn-block btn-lg", title: 'Edit', data: { toggle: 'modal', target: "#eventEditModal-#{index}" } do %>
 				<span class="glyphicon glyphicon-edit"></span> Edit
 			<% end %>
 		</div>
 		<div class="col-md-2">
-			<%= button_tag :class => "btn btn-danger btn-block btn-lg", title: 'Remove', 'data-toggle' => 'modal', 'data-target' => "#youSureModal-#{index}" do %>
+			<%= button_tag :class => "btn btn-danger btn-block btn-lg", title: 'Remove', data: { toggle: 'modal', target: "#youSureModal-#{index}" } do %>
 				<span class="glyphicon glyphicon-trash"></span> Remove
 			<% end %>
 		</div>
