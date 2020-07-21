@@ -13,4 +13,13 @@ class State < ApplicationRecord
 		order(:abbreviation, :name)
 	}
 
+	### FOR FORMS ###
+	scope :return_states_w_names, -> {
+		sort_by_abbr.select(:id, :name)
+	}
+
+	scope :return_states_w_abbr, -> {
+		sort_by_abbr.select(:id, :abbreviation)
+	}
+
 end

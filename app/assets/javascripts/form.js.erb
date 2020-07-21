@@ -1,0 +1,26 @@
+$(function() {
+	$("#address_contact_form_div").show();
+
+	$('#event_address_dropdown').change(function() {
+		/* RESET FORM */
+		//resetForm($('#address_contact_form'));
+
+		/* IF USER WANTS TO ADD NEW ADDRESS */
+		if ($(this).val()==0){
+			$("#address_contact_form_div").show();
+		}
+		/* IF USER SELECTS A SAVED ADDRESS */
+		else{
+			$("#address_contact_form_div").hide();
+		}
+	});
+
+	function resetForm($form) {
+		console.log("RAN");
+		console.log($form);
+		console.log($form.find('input:text, input:password, input:file, select, textarea').length);
+		console.log("---------");
+	    form_inputs = $form.find('input:text, input:password, input:file, select, textarea').val('');
+	}
+
+});

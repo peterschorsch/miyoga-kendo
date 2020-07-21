@@ -1,4 +1,6 @@
 class Admin::AdminController < ApplicationController
+	#skip_before_action :load_admin_layout!, :only => "dashboard", :raise => false
+
 	before_action :authorized?, :active_header_pages
 
 	def dashboard
@@ -9,7 +11,7 @@ class Admin::AdminController < ApplicationController
 	end
 
 	def active_header_pages
-		@active_ordered_pages = Page.active_ordered_pages
+		@active_ordered_pages = Page.active_ordered_pages.select(:name, :path)
 	end
 
 	private
@@ -20,4 +22,9 @@ class Admin::AdminController < ApplicationController
 	    	redirect_to root_path
 	    end
 	  end
+
+	  def load_admin_layout
+		render layout: current_user.is_admin? ? 'layouts/admin/application' : 'layouts/application'
+	  end
+
 end

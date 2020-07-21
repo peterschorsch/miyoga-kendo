@@ -1,32 +1,76 @@
-<%= form_with(model: event, local: true) do |form| %>
-  <% if event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
-      <% event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_with(model: address, local: true, :validate => true, :url => admin_events_path, html: { class: "form-horizontal", autocomplete: "off" }) do |address| %>
+  <%#= render "templates/alerts/form-errors", model: address %>
+  <%= address.fields_for :events do |event| %>
+    <div class="row vertical-align-middle">
+      <div class="col-md-2 col-xs-12 align-right"><%= event.label :title, 'Event Name:' %></div>
+      <div class="col-md-9 col-xs-12"><%= event.text_field :title, { class: 'form-control' } %></div>
     </div>
+    <br />
+    <div class="row vertical-align-middle">
+      <div class="col-md-2 col-xs-12 align-right"><%= event.label :start_date, 'Start Date:' %></div>
+      <div class="col-md-2 col-xs-12"><%= event.date_field :start_date, { class: 'form-control' } %></div>
+      <div class="col-md-2 col-xs-12 align-right"><%= event.label :end_date, 'End Date:' %></div>
+      <div class="col-md-2 col-xs-12"><%= event.date_field :end_date, { class: 'form-control' } %></div>
+    </div>
+    <br />
+    <div class="row vertical-align-middle">
+      <div class="col-md-2 col-xs-12 align-right"><%= event.label :Description, 'Event Description:' %></div>
+      <div class="col-md-9 col-xs-12"><%= event.cktext_area :description, { class: 'form-control', language: "us" } %></div>
+    </div>
+    <br />
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start_date %>
-    <%= form.date_select :start_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.date_select :end_date %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <h1>Event Address</h1>
+    <hr />
+    <div class="row vertical-align-middle">
+      <div class="col-md-2 col-xs-12 align-right"><%= address.label :id, 'Saved Addresses:' %></div>
+      <div class="col-md-9 col-xs-12"><%= address.collection_select :id, Address.all.includes(:state), :id, :concat_address_dropdown, {:include_blank => "Select an Address"}, { class: "form-control chosen-select", id: "event_address_dropdown"} %></div>
+    </div>
+    <br />
+    <div id="address_contact_form_div">
+      <%= address.fields_for :contacts, :html => { :id => "address_contact_form" } do |contact| %>
+          <div class="row vertical-align-middle">
+            <div class="col-md-2 col-xs-12 align-right"><%= contact.label :name, 'Location Name:' %></div>
+            <div class="col-md-9 col-xs-12"><%= contact.text_field :name, { placeholder: "Location Name", class: 'form-control' } %></div>
+          </div>
+          <br />
+          <div class="row vertical-align-middle">
+            <div class="col-md-2 col-xs-12 align-right"><%= address.label :address_line_1, 'Address Line 1:' %></div>
+            <div class="col-md-9 col-xs-12"><%= address.text_field :address_line_1, { placeholder: "Address Line 1", class: 'form-control' } %></div>
+          </div>
+          <br />
+          <div class="row vertical-align-middle">
+            <div class="col-md-2 col-xs-12 align-right"><%= address.label :address_line_2, 'Address Line 2:' %></div>
+            <div class="col-md-9 col-xs-12"><%= address.text_field :address_line_2, { placeholder: "Address Line 2", class: 'form-control' } %></div>
+          </div>
+          <br />
+          <div class="row vertical-align-middle">
+            <div class="col-md-2 col-xs-12 align-right"><%= address.label :city, 'City, State Zip Code:' %></div>
+            <div class="col-md-4 col-xs-12"><%= address.text_field :city, { placeholder: "City", class: 'form-control' } %></div>
+            <div class="col-md-3 col-xs-12"><%= address.collection_select :state_id, @states, :id, :name, {:include_blank => "Select a State"}, {class: "form-control chosen-select"} %></div>
+            <div class="col-md-2 col-xs-12"><%= address.text_field :zip_code, { placeholder: "Zip Code", class: 'form-control', size: 5 } %></div>
+          </div>
+          <hr />
+          <div class="row vertical-align-middle">
+            <div class="col-md-2 col-xs-12 align-right"><%= contact.label :email, 'Venue Email' %> (not required):</div>
+            <div class="col-md-9 col-xs-12"><%= contact.text_field :email, { placeholder: "Venue Email", class: 'form-control' } %></div>
+          </div>
+          <br />
+          <div class="row vertical-align-middle">
+            <div class="col-md-2 col-xs-12 align-right"><%= contact.label :phone, 'Venue Phone' %> (not required):</div>
+            <div class="col-md-9 col-xs-12"><%= contact.text_field :phone, { placeholder: "Venue Phone", class: 'form-control' } %></div>
+          </div>
+          <br />
+          <div class="row vertical-align-middle">
+            <div class="col-md-2 col-xs-12 align-right"><%= contact.label :website, 'Venue Website' %> (not required):</div>
+            <div class="col-md-9 col-xs-12"><%= contact.text_field :website, { placeholder: "Venue Website", class: 'form-control' } %></div>
+          </div>
+      <% end %>
+    </div>
+  <br />
+  <div class="row">
+    <div class="col-md-4 col-xs-12 col-md-offset-4">
+      <%= address.submit "Save Event", class: 'btn btn-success btn-block' %>
+    </div>
   </div>
 <% end %>

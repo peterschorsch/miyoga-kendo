@@ -1,5 +1,8 @@
-<h1>New Event</h1>
+<%= link_to admin_events_path, :class => "btn btn-danger", title: "Go Back", 'data-toggle' => 'tooltip' do %> 
+	<span class="glyphicon glyphicon-chevron-left"></span> Back to Events
+<% end %>
 
-<%= render 'form', event: @event %>
+<h1>Create New Event</h1>
+<hr />
 
-<%= link_to 'Back', events_path %>
+<%= render 'form', address: @address %>
