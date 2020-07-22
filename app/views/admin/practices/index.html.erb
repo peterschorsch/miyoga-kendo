@@ -1,0 +1,39 @@
+<%= render "templates/buttons/back-to-admin-home" %>
+
+<h1 class="h1-heading">Class Schedule</h1>
+<hr />
+
+<h1 id="notice"><%= notice %></h1>
+
+<table class="table table-responsive table-striped" id="class_schedule_table">
+  <thead>
+    <tr class="align-center">
+      <th>Day</th>
+      <th>Time</th>
+      <th>Cost per Month</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @practices.each do |practice| %>
+      <tr class="align-center">
+        <td><%= practice.day_of_week %></td>
+        <td><%= formatTime(practice.start_time) %> - <%= formatTime(practice.end_time) %></td>
+        <td>$<%= practice.cost_per_month %></td>
+        <td>
+          <%= link_to edit_admin_practice_path(practice), :class => "btn btn-warning", title: "Edit #{practice.day_of_week}", 'data-toggle' => 'tooltip' do %> 
+            <span class="glyphicon glyphicon-edit"></span> Edit
+          <% end %>
+          <%= link_to [:admin, practice], :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }, title: "Remove #{practice.day_of_week} Class", 'data-toggle' => 'tooltip' do %> 
+            <span class="glyphicon glyphicon-trash"></span> Remove
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= render "templates/buttons/add-new", path: new_admin_practice_path, text: "Class" %>
+
