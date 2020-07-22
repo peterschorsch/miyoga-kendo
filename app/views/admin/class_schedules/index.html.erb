@@ -1,28 +1,33 @@
-<p id="notice"><%= notice %></p>
+<%= render "templates/buttons/back-to-admin-home" %>
 
-<h1>Class Schedules</h1>
+<h1 class="h1-heading">Class Schedule</h1>
+<hr />
 
-<table>
+<h1 id="notice"><%= notice %></h1>
+
+<table class="table table-responsive table-striped" id="class_schedule_table">
   <thead>
-    <tr>
-      <th>Day of week</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Cost per month</th>
-      <th colspan="3"></th>
+    <tr class="align-center">
+      <th>Day</th>
+      <th>Time</th>
+      <th>Cost per Month</th>
+      <th></th>
     </tr>
   </thead>
-
   <tbody>
     <% @class_schedules.each do |class_schedule| %>
-      <tr>
+      <tr class="align-center">
         <td><%= class_schedule.day_of_week %></td>
-        <td><%= class_schedule.start_time %></td>
-        <td><%= class_schedule.end_time %></td>
-        <td><%= class_schedule.cost_per_month %></td>
-        <td><%= link_to 'Show', class_schedule %></td>
-        <td><%= link_to 'Edit', edit_class_schedule_path(class_schedule) %></td>
-        <td><%= link_to 'Destroy', class_schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= formatTime(class_schedule.start_time) %> - <%= formatTime(class_schedule.end_time) %></td>
+        <td>$<%= class_schedule.cost_per_month %></td>
+        <td>
+          <%= link_to edit_admin_class_schedule_path(class_schedule), :class => "btn btn-warning", title: "Edit #{class_schedule.day_of_week}", 'data-toggle' => 'tooltip' do %> 
+            <span class="glyphicon glyphicon-edit"></span> Edit
+          <% end %>
+          <%= link_to [:admin, class_schedule], :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }, title: "Remove #{class_schedule.day_of_week} Class", 'data-toggle' => 'tooltip' do %> 
+            <span class="glyphicon glyphicon-trash"></span> Remove
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +35,5 @@
 
 <br>
 
-<%= link_to 'New Class Schedule', new_class_schedule_path %>
+<%= render "templates/buttons/add-new", path: new_admin_class_schedule_path, text: "Class" %>
+

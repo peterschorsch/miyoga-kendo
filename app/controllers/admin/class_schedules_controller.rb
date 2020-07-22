@@ -1,5 +1,6 @@
 class Admin::ClassSchedulesController < Admin::AdminController
   before_action :set_class_schedule, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_page, only: [:create]
 
   # GET /class_schedules
   # GET /class_schedules.json
@@ -26,9 +27,14 @@ class Admin::ClassSchedulesController < Admin::AdminController
   def create
     @class_schedule = ClassSchedule.new(class_schedule_params)
 
+    @class_schedule.day_of_week_index = check_day_for_index(class_schedule_params.dig("day_of_week"))
+    @class_schedule.start_time = class_schedule_params.dig("start_time(4i)") + ":" + class_schedule_params.dig("start_time(5i)")
+    @class_schedule.end_time = class_schedule_params.dig("end_time(4i)") + ":" + class_schedule_params.dig("end_time(5i)")
+    @class_schedule.content_id = Content.of_page(@current_page).first.id
+
     respond_to do |format|
       if @class_schedule.save
-        format.html { redirect_to @class_schedule, notice: 'Class schedule was successfully created.' }
+        format.html { redirect_to admin_class_schedules_path, notice: 'A New Class was successfully created.' }
         format.json { render :show, status: :created, location: @class_schedule }
       else
         format.html { render :new }
@@ -42,7 +48,7 @@ class Admin::ClassSchedulesController < Admin::AdminController
   def update
     respond_to do |format|
       if @class_schedule.update(class_schedule_params)
-        format.html { redirect_to @class_schedule, notice: 'Class schedule was successfully updated.' }
+        format.html { redirect_to admin_class_schedules_path, notice: 'The class schedule was successfully updated.' }
         format.json { render :show, status: :ok, location: @class_schedule }
       else
         format.html { render :edit }
@@ -56,12 +62,16 @@ class Admin::ClassSchedulesController < Admin::AdminController
   def destroy
     @class_schedule.destroy
     respond_to do |format|
-      format.html { redirect_to class_schedules_url, notice: 'Class schedule was successfully destroyed.' }
+      format.html { redirect_to admin_class_schedules_path, notice: 'The class was successfully removed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_current_page
+      @current_page = Page.named("Classes")
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_class_schedule
       @class_schedule = ClassSchedule.find(params[:id])
@@ -69,6 +79,11 @@ class Admin::ClassSchedulesController < Admin::AdminController
 
     # Only allow a list of trusted parameters through.
     def class_schedule_params
-      params.require(:class_schedule).permit(:day_of_week, :start_time, :end_time, :cost_per_month)
+      params.require(:class_schedule).permit(:day_of_week, :start_time, :end_time, :cost_per_month, :content_id)
+    end
+
+    def check_day_for_index(day_of_week)
+      days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+      return days.index(day_of_week)+1
     end
 end

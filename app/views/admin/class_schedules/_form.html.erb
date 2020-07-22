@@ -1,37 +1,27 @@
-<%= form_with(model: class_schedule, local: true) do |form| %>
-  <% if class_schedule.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(class_schedule.errors.count, "error") %> prohibited this class_schedule from being saved:</h2>
-
-      <ul>
-      <% class_schedule.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_with(model: [:admin, class_schedule], local: true) do |form| %>
+  <%= render "templates/alerts/form-errors", model: class_schedule %>
+  
+  <div class="row vertical-align-middle">
+    <div class="col-md-2 col-xs-12 align-right"><%= form.label :day_of_week, 'Day of Week:' %></div>
+    <div class="col-md-2 col-xs-12">
+      <%#= form.select :day_of_week, options_for_select(ClassSchedule.days_of_week_dropdown_options), {}, { class: 'form-control' } %>
+      <%= form.select :day_of_week, ClassSchedule.days_of_week_dropdown_options, {}, { class: 'form-control' } %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :day_of_week %>
-    <%= form.text_field :day_of_week %>
   </div>
-
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.time_select :start_time %>
+  <br />
+  <div class="row vertical-align-middle">
+    <div class="col-md-1 col-md-offset-1 col-xs-12 align-right"><%= form.label :start_time, 'Time:' %></div>
+    <div class="col-md-3 col-xs-12"><%= form.time_select :start_time, { ampm: true } %> to <%= form.time_select :end_time, {ampm: true} %></div>
   </div>
-
-  <div class="field">
-    <%= form.label :end_time %>
-    <%= form.time_select :end_time %>
+  <br />
+  <div class="row vertical-align-middle">
+    <div class="col-md-2 col-xs-12 align-right"><%= form.label :cost_per_month, 'Cost per Month:' %></div>
+    <div class="col-md-2 col-xs-12"><%= form.text_field :cost_per_month, { class: "form-control" } %></div>
   </div>
-
-  <div class="field">
-    <%= form.label :cost_per_month %>
-    <%= form.text_field :cost_per_month %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <br />
+  <div class="row">
+    <div class="col-md-4 col-xs-12 col-md-offset-4">
+      <%= form.submit "Save Class", class: 'btn btn-success btn-block' %>
+    </div>
   </div>
 <% end %>

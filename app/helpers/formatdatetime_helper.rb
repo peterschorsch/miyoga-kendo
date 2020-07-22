@@ -13,9 +13,9 @@ module FormatdatetimeHelper
   def formatDate(date)
     date.strftime("%m/%d/%y")
   end
-  # 04:38pm
+  # 4:38pm
   def formatTime(date)
-    date.strftime("%I:%M%p")
+    date.strftime("%-I:%M%p")
   end
 
   # 7.31.20 - 8.2.20
