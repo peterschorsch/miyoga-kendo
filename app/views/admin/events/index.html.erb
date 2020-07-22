@@ -1,6 +1,4 @@
-<%= link_to admin_root_path, :class => "btn btn-danger", title: "Back to Admin Home", 'data-toggle' => 'tooltip' do %> 
-  <span class="glyphicon glyphicon-chevron-left"></span> Back to Admin Home
-<% end %>
+<%= render "templates/buttons/back-to-admin-home" %>
 
 <h1 class="h1-heading">Events</h1>
 
@@ -36,6 +34,4 @@
 
 <br>
 
-<%= link_to new_admin_event_path, :class => "btn btn-info", title: "Add New Event", 'data-toggle' => 'tooltip' do %> 
-  <span class="glyphicon glyphicon-plus"></span> Add New Event
-<% end %>
+<%= render "templates/buttons/add-new", path: new_admin_event_path, text: "Event" %>

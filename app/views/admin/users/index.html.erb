@@ -1,6 +1,8 @@
-<h1 id="notice"><%= notice %></h1>
+<%= render "templates/buttons/back-to-admin-home" %>
 
 <h1 class="h1-heading">Miyoga Kendo Roster</h1>
+
+<h1 id="notice"><%= notice %></h1>
 
 <table class="table table-responsive table-striped" id="users_table">
   <thead>
@@ -36,4 +38,4 @@
 
 <br>
 
-<%= link_to 'Create New User', new_admin_user_path, class: "btn btn-success" %>
+<%= render "templates/buttons/add-new", path: new_admin_user_path, text: "User" %>
