@@ -25,10 +25,11 @@ class Admin::SocialMediaController < Admin::AdminController
   # POST /social_media.json
   def create
     @social_medium = SocialMedium.new(social_medium_params)
+    @social_medium.user_id = current_user.id
 
     respond_to do |format|
       if @social_medium.save
-        format.html { redirect_to @social_medium, notice: 'Social medium was successfully created.' }
+        format.html { redirect_to admin_social_media_path, notice: 'Social Media was successfully created.' }
         format.json { render :show, status: :created, location: @social_medium }
       else
         format.html { render :new }
@@ -40,9 +41,11 @@ class Admin::SocialMediaController < Admin::AdminController
   # PATCH/PUT /social_media/1
   # PATCH/PUT /social_media/1.json
   def update
+    @social_medium.user_id = current_user.id
+
     respond_to do |format|
       if @social_medium.update(social_medium_params)
-        format.html { redirect_to @social_medium, notice: 'Social medium was successfully updated.' }
+        format.html { redirect_to admin_social_media_path, notice: 'Social Media was successfully updated.' }
         format.json { render :show, status: :ok, location: @social_medium }
       else
         format.html { render :edit }
@@ -56,7 +59,7 @@ class Admin::SocialMediaController < Admin::AdminController
   def destroy
     @social_medium.destroy
     respond_to do |format|
-      format.html { redirect_to social_media_url, notice: 'Social medium was successfully destroyed.' }
+      format.html { redirect_to admin_social_media_path, notice: 'Social Media was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +72,6 @@ class Admin::SocialMediaController < Admin::AdminController
 
     # Only allow a list of trusted parameters through.
     def social_medium_params
-      params.require(:social_medium).permit(:site_name, :link, :image_name)
+      params.require(:social_medium).permit(:site_name, :site_link, :image_link)
     end
 end

@@ -10,10 +10,17 @@
 		<div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h1>
-						<span class="glyphicon glyphicon-user"></span> Users
-						<span class='badge' style='background-color: #777777'><%=@user_count%></span>
-					</h1>
+					<div class="row vertical-align-middle">
+						<div class="col-xs-8">
+							<h1>
+								<span class="glyphicon glyphicon-user"></span> Users
+								<span class='badge' style='background-color: #777777'><%=@user_count%></span>
+							</h1>
+						</div>
+						<div class="col-xs-4">
+							<%= link_to "View All Users &raquo".html_safe, admin_users_path, :class => "btn btn-success btn-block" %>
+						</div>
+					</div>
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped">
@@ -36,7 +43,6 @@
 							<% end %>
 						</tbody>
 					</table>
-					<%= link_to "View All Users &raquo".html_safe, admin_users_path, :class => "btn btn-success" %>
 				</div>
 			</div>
 		</div>
@@ -45,16 +51,25 @@
 		<div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h1><span class="glyphicon glyphicon-user"></span> Social Media Accounts</h1>
+					<div class="row vertical-align-middle">
+						<div class="col-xs-8">
+							<h1><span class="glyphicon glyphicon-user"></span> Social Media Accounts</h1>
+						</div>
+						<div class="col-xs-4">
+							<%= link_to "View All Social Media &raquo".html_safe, admin_social_media_path, :class => "btn btn-success btn-block" %>
+						</div>
+					</div>
 				</div>
 				<div class="panel-body">
-					<div class="row align-center">
-						<% @social_media.each do |social_media| %>
-							<div class="col-md-4 col-sm-12 padding-top-bottom">
-								<%= link_to image_tag("logos/#{social_media.image_link}", alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, target: '_blank', class: "social_media_logo" %>
-							</div>
-						<% end %>
-					</div>
+					<% @social_media.in_groups_of(3) do |social_media_array| %>
+						<div class="row align-center">
+							<% social_media_array.compact.each do |social_media| %>
+								<div class="col-md-4 col-sm-12 padding-top-bottom">
+									<%= link_to image_tag("logos/#{social_media.image_link}", alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, target: '_blank', class: "social_media_logo" %>
+								</div>
+							<% end %>
+						</div>
+					<% end %>	
 				</div>
 			</div>
 		</div>

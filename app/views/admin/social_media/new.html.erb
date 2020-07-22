@@ -1,5 +1,8 @@
-<h1>New Social Medium</h1>
+<%= link_to admin_social_media_path, :class => "btn btn-danger", title: "Go Back", 'data-toggle' => 'tooltip' do %> 
+	<span class="glyphicon glyphicon-chevron-left"></span> Back to Social Media
+<% end %>
+
+<h1>Create New Social Media Site</h1>
+<hr />
 
 <%= render 'form', social_medium: @social_medium %>
-
-<%= link_to 'Back', social_media_path %>

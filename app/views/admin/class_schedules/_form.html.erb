@@ -4,7 +4,6 @@
   <div class="row vertical-align-middle">
     <div class="col-md-2 col-xs-12 align-right"><%= form.label :day_of_week, 'Day of Week:' %></div>
     <div class="col-md-2 col-xs-12">
-      <%#= form.select :day_of_week, options_for_select(ClassSchedule.days_of_week_dropdown_options), {}, { class: 'form-control' } %>
       <%= form.select :day_of_week, ClassSchedule.days_of_week_dropdown_options, {}, { class: 'form-control' } %>
     </div>
   </div>
