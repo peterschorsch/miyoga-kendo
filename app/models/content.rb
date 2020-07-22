@@ -1,6 +1,6 @@
 class Content < ApplicationRecord
 	belongs_to :page
-	has_many :class_schedules
+	has_many :practices
 	has_many :links
 
 	scope :of_page, -> (page) {

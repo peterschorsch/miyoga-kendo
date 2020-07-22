@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
 	def index
 		@events = Event.display_active.includes(address: :contacts).first(3)
-		@states = State.return_states_w_names
+		@states = State.return_states_w_abbr
 	end
 
 	def update

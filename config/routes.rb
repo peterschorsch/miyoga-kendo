@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   post 'password/reset', to: 'passwords#reset'
 
   get :abouts, to: 'abouts#index', path: 'about'
-  get :practices, to: 'practices#index', path: 'class-schedule'
+  #get :practices, to: 'practices#index', path: 'class-schedule'
+  resources :practices, only: [:index, :update, :destroy]
   resources :events, path: 'events', only: [:index, :update, :destroy]
 
   get :helpful_links, to: 'helpful_links#index', path: 'resources'

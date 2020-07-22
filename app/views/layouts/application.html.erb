@@ -17,5 +17,6 @@
     <%= render "layouts/header" %>
     <%= '<div class="padding">'.html_safe unless current_page?(root_path) %>
     <%= yield %>
+    <%= '</div>'.html_safe unless current_page?(root_path) %>
   </body>
 </html>

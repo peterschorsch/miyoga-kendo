@@ -18,6 +18,10 @@ module FormatdatetimeHelper
     date.strftime("%-I:%M%p")
   end
 
+  def formatPracticeTime(start_time, end_time)
+    start_time.strftime("%l:%M%P") + " - " + end_time.strftime("%l:%M%P")
+  end
+
   # 7.31.20 - 8.2.20
   def formatEventsHomeDateRange(startdate, enddate)
     startdate.strftime("%-m.%-d.%y") + " - " + enddate.strftime("%-m.%-d.%y")

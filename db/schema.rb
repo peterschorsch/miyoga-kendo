@@ -25,18 +25,6 @@ ActiveRecord::Schema.define(version: 2020_07_18_223332) do
     t.index ["state_id"], name: "index_addresses_on_state_id"
   end
 
-  create_table "class_schedules", force: :cascade do |t|
-    t.string "day_of_week", null: false
-    t.integer "day_of_week_index", null: false
-    t.time "start_time", null: false
-    t.time "end_time", null: false
-    t.string "cost_per_month", null: false
-    t.integer "content_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["content_id"], name: "index_class_schedules_on_content_id"
-  end
-
   create_table "contacts", force: :cascade do |t|
     t.string "name", null: false
     t.string "phone", limit: 10
@@ -93,6 +81,18 @@ ActiveRecord::Schema.define(version: 2020_07_18_223332) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_pages_on_user_id"
+  end
+
+  create_table "practices", force: :cascade do |t|
+    t.string "day_of_week", null: false
+    t.integer "day_of_week_index", null: false
+    t.time "start_time", null: false
+    t.time "end_time", null: false
+    t.string "cost_per_month", null: false
+    t.integer "content_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content_id"], name: "index_practices_on_content_id"
   end
 
   create_table "social_media", force: :cascade do |t|

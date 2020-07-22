@@ -1,4 +1,4 @@
-class ClassSchedule < ApplicationRecord
+class Practice < ApplicationRecord
 	belongs_to :content
 
 	validates :day_of_week, :day_of_week_index, :start_time, :end_time, :cost_per_month, presence: true
