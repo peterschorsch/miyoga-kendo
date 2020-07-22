@@ -1,0 +1,39 @@
+<%= render "templates/buttons/back-to-admin-home" %>
+
+<h1 class="align-center"><%= @page.name %> Page</h1>
+<hr />
+<br /><br />
+<p id="notice"><%= notice %></p>
+
+<% @page.contents.order_by_index.each_with_index do |content, index| %>
+	<%= render "templates/alerts/form-errors", model: content %>
+
+	<div class="row vertical-align-middle">
+		<div class="col-md-8">
+			<h1><u><%= content.index %></u>. <%= content.heading.html_safe %> *will <%=content.display_content_on_page ? " " : " NOT " %>be shown to users <%=content.display_content_on_page%>*</h1>
+		</div>
+		<div class="col-md-2">
+			<%= button_tag :class => "btn btn-warning btn-block btn-lg", title: 'Edit', data: { toggle: 'modal', target: "#adminAboutEditModal-#{index}" } do %>
+				<span class="glyphicon glyphicon-edit"></span> Edit
+			<% end %>
+		</div>
+		<div class="col-md-2">
+			<%= button_tag :class => "btn btn-danger btn-block btn-lg", title: 'Remove', data: { toggle: 'modal', target: "#youSureModal-#{index}" } do %>
+				<span class="glyphicon glyphicon-trash"></span> Remove
+			<% end %>
+		</div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="col-md-12"><h2><%= content.subheading.blank? ? "*NO SUBHEADING CURRENTLY*" : content.subheading.html_safe %></h2></div>
+		<hr />
+	</div>
+	<br />
+	<div class="row">
+		<div class="col-md-12"><p><%= content.description.blank? ? "*NO DESCRIPTION CURRENTLY*" : content.description.html_safe %></p></div>
+		<hr />
+	</div>
+	<br />
+	<%= render "edit-about-modal", content: content, index: index %>
+	<%= render "templates/modals/remove-record-dialog", record: [:admin, content], index: index, heading: "About" %>
+<% end %>

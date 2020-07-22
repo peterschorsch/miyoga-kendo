@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   post 'password/reset', to: 'passwords#reset'
 
   get :abouts, to: 'abouts#index', path: 'about'
-  #get :practices, to: 'practices#index', path: 'class-schedule'
   resources :practices, only: [:index, :update, :destroy]
   resources :events, path: 'events', only: [:index, :update, :destroy]
 
@@ -29,6 +28,9 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'admin#dashboard'
     resources :users, :pages, :contents, :links, :events, :practices, :addresses, :contacts
+    get :abouts, to: 'contents#about_page'
+    patch :content, to: 'contents#update'
+    get :content, to: 'contents#destroy'
     resources :social_media, path: 'social-media'
   end
 end

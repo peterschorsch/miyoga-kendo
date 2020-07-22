@@ -42,7 +42,8 @@ ActiveRecord::Schema.define(version: 2020_07_18_223332) do
     t.string "subheading"
     t.string "description"
     t.integer "index", null: false
-    t.boolean "display", default: false
+    t.boolean "display_content_on_page", default: false
+    t.boolean "display_content_fields", default: false
     t.integer "page_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
