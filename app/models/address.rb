@@ -2,8 +2,8 @@ class Address < ApplicationRecord
 	has_many :contacts
     accepts_nested_attributes_for :contacts, reject_if: lambda {|attributes| attributes['name'].blank?}
 
-	has_many :events
-    accepts_nested_attributes_for :events
+	belongs_to :event
+    accepts_nested_attributes_for :event
 
 	has_many :class_schedules
 	belongs_to :state

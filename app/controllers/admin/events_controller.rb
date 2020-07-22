@@ -1,5 +1,7 @@
 class Admin::EventsController < Admin::AdminController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show]
+  before_action :set_edit_event, only: [:edit]
+  before_action :set_state_collection, only: [:new, :edit]
 
   # GET /events
   # GET /events.json
@@ -15,10 +17,8 @@ class Admin::EventsController < Admin::AdminController
   # GET /events/new
   def new
     @address = Address.new
-    @address.events.build
+    @address.build_event
     @address.contacts.build
-
-    @states = State.return_states_w_names
   end
 
   # GET /events/1/edit
@@ -91,6 +91,16 @@ class Admin::EventsController < Admin::AdminController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    def set_edit_event
+      @event = Event.find(params[:id])
+      @address = @event.address
+      @contacts = @address.contacts.first
+    end
+
+    def set_state_collection
+      @states = State.return_states_w_names
     end
 
     def new_event_page_params

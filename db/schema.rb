@@ -17,22 +17,23 @@ ActiveRecord::Schema.define(version: 2020_07_18_223332) do
     t.string "address_line_2"
     t.string "city", null: false
     t.string "zip_code", null: false
+    t.integer "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "state_id"
+    t.index ["event_id"], name: "index_addresses_on_event_id"
     t.index ["state_id"], name: "index_addresses_on_state_id"
   end
 
   create_table "class_schedules", force: :cascade do |t|
     t.string "day_of_week", null: false
+    t.integer "day_of_week_index", null: false
     t.time "start_time", null: false
     t.time "end_time", null: false
     t.string "cost_per_month", null: false
-    t.integer "address_id"
     t.integer "content_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_class_schedules_on_address_id"
     t.index ["content_id"], name: "index_class_schedules_on_content_id"
   end
 
@@ -42,10 +43,6 @@ ActiveRecord::Schema.define(version: 2020_07_18_223332) do
     t.string "email"
     t.string "website"
     t.text "notes"
-    t.boolean "club", default: false
-    t.boolean "boolean", default: false
-    t.boolean "dojo_name", default: false
-    t.boolean "dojo_location", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "address_id"
@@ -70,10 +67,8 @@ ActiveRecord::Schema.define(version: 2020_07_18_223332) do
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.boolean "active", default: true
-    t.integer "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_events_on_address_id"
   end
 
   create_table "links", force: :cascade do |t|

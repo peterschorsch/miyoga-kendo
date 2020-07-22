@@ -8,6 +8,8 @@ class CreateAddresses < ActiveRecord::Migration[5.2]
       t.string :state, :null => false, limit: 2
       t.string :zip_code, :null => false
 
+      t.references :event, index: true, foreign_key: true
+
       t.timestamps
     end
   end

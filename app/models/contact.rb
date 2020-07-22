@@ -17,14 +17,6 @@ class Contact < ApplicationRecord
 		find_by(:name => name)
 	}
 
-	scope :find_club_contact, -> {
-		where(:club => true).select(:name, :phone, :email, :notes, :address_id)[0]
-	}
-
-	scope :find_dojo_contact, -> {
-		where(:dojo_name => true, :dojo_location => true).select(:name, :phone, :email, :website, :notes, :address_id)[0]
-	}
-
 	protected
 		def strip_fields
 			self.phone = nil if phone.blank?

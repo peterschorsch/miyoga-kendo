@@ -22,7 +22,9 @@
 	<div class="col-md-10 col-md-offset-1">
 		<table style="width:100%;">
 			<tr>
-				<td rowspan="2"><%= render "templates/google_maps", location_name: @jcc_contact.name, address: @practice_location, height: 600, width: 600 %></td>
+				<td rowspan="2">
+					<%= embed_google_maps(address: "Japanese Culture Center 1016 W. Belmont Ave Chicago IL 60657", height: 600, width: 600).html_safe %>	
+				</td>
 				<td class="jcc-images"><%= image_tag("practices_page/outside_jcc.jpg", alt: "JCC") %></td>
 			</tr>
 			<tr>
@@ -37,10 +39,10 @@
 
 <div class="row paragraph-indentation">
 	<div class="col-md-6 col-md-offset-3">
-		<p class="align-center"><%=@miyoga_contact.notes%></p>
-		<p class="align-center"><%= mail_to @miyoga_contact.email, @miyoga_contact.email, class: "link-text" %></p>
+		<p class="align-center">Contact Us:</p>
+		<p class="align-center"><%= mail_to @miyoga_user.email, @miyoga_user.email, class: "link-text" %></p>
 		<br />
-		<p class="align-center"><%=@jcc_contact.notes%></p>
-		<p class="align-center"><%= link_to @jcc_contact.website, @jcc_contact.website, class: "link-text", target: :_blank %></p>
+		<p class="align-center">To Learn more information about the Japanese Culture Center:</p>
+		<p class="align-center"><%= link_to "https://japaneseculturecenter.com/", "https://japaneseculturecenter.com/", class: "link-text", target: :_blank %></p>
 	</div>
 </div>

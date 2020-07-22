@@ -1,16 +1,14 @@
 //= require natural_sorting
 
 $(function() {
-	$(document).on('turbolinks:load', function() {
-		$('#users_table').dataTable( {
-			"order": [[ 3, "asc" ], [ 2, "asc"]],
-			responsive: true,
-			"pageLength": 25
-		});
-		$('#events_table').dataTable( {
-			"order": [[ 1, "desc" ]],
-			responsive: true,
-			"pageLength": 25
-		});
+	$('#users_table').dataTable( {
+		"order": [[ 3, "asc" ], [ 2, "asc"]],
+		responsive: true,
+		"pageLength": 25
+	});
+	$('#events_table').dataTable( {
+		"order": [[ 1, "desc" ]],
+		responsive: true,
+		"pageLength": 25
 	});
 });

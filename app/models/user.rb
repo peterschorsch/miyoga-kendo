@@ -39,6 +39,10 @@ class User < ApplicationRecord
 		find_by(:role => "Guest", :firstname => "Not Logged In")
 	}
 
+	scope :get_miyoga_user, -> {
+		find_by(:firstname => "Miyoga", :lastname => "Kendo Club")
+	}
+
 	def is_admin?
 		self.role == "Admin"
 	end
