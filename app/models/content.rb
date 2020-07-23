@@ -2,9 +2,10 @@ class Content < ApplicationRecord
 	belongs_to :page
 	has_many :practices
 	has_many :links
+	accepts_nested_attributes_for :links, allow_destroy: true#, :reject_if => proc { |attributes| attributes['address_line_1'].blank? || attributes['city'].nil? || attributes['state_id'].nil?|| attributes['zip_code'].nil? }
 
 	validates :heading, presence: true
-	validate :validate_index
+	validate :strip_fields, :validate_index
 
 	scope :of_page, -> (page) {
 		where(page_id: page).references(:forms).display_ordered
@@ -29,6 +30,11 @@ class Content < ApplicationRecord
 	scope :only_articles, -> {
 		includes(:links).where('links.article' => true).display_ordered
 	}
+
+	def strip_fields
+		self.subheading = self.subheading.blank? ? nil : nil
+		self.description = self.description ? nil : nil
+	end
 
 	def validate_index
 		page = self.page

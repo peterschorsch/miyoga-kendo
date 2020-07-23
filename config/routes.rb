@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     resources :contents, only: [:update]
     ### ABOUT PAGE ###
     get :abouts, to: 'contents#about_page'
+    ### RESOURCES PAGE ###
+    get :resources, to: 'contents#resource_page'
     
     resources :social_media, path: 'social-media'
   end

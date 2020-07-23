@@ -6,6 +6,11 @@ class Admin::ContentsController < Admin::AdminController
     @page = Page.named("About")
   end
 
+  def resource_page
+    @page = Page.named("Resources")
+    @contents = @page.contents.includes(:links)
+  end
+
   # GET /contents
   # GET /contents.json
   def index
@@ -48,9 +53,9 @@ class Admin::ContentsController < Admin::AdminController
   def update
     respond_to do |format|
       if @content.update(content_params)
-        format.html { redirect_to admin_abouts_path, notice: 'Content was successfully updated.' }
+        format.html { redirect_to request.referrer, notice: 'Content was successfully updated.' }
       else
-        format.html { render "admin/contents/about_page", notice: 'Content was successfully updated.' }
+        format.html { redirect_to request.referrer, notice: 'Content was unsuccessfully updated.' }
       end
     end
   end
@@ -80,6 +85,7 @@ class Admin::ContentsController < Admin::AdminController
 
     # Only allow a list of trusted parameters through.
     def content_params
-      params.require(:content).permit(:heading, :subheading, :description, :index, :display_content_on_page)
+      params.require(:content).permit(:heading, :subheading, :description, :index, :display_content_on_page,
+      links_attributes: [:id, :name, :link, :image_link, :index, :display_logo, :article, :content_id, :_destroy])
     end
 end
