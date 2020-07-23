@@ -3,6 +3,7 @@ class AboutsController < ApplicationController
 
 	def index
 		@content = Content.of_page(@current_page).display_ordered
+		@content_count = @content.count
 	end
 
 	private

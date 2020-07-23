@@ -1,8 +1,26 @@
-<% @content.each do |content| %>
-	<h1><%=content.heading%></h1>
+<p id="notice"><%= notice %></p>
+
+<% @content.each_with_index do |content, index| %>
+	<div class="row vertical-align-middle">
+		<div class="col-md-10">
+			<h1><%=content.heading%></h1>
+		</div>
+		<% if current_user.is_admin? %>
+			<div class="col-md-2">
+				<%= button_tag :class => "btn btn-warning btn-block btn-lg", title: 'Edit', data: { toggle: 'modal', target: "#aboutEditModal-#{index}" } do %>
+					<span class="glyphicon glyphicon-edit"></span> Edit
+				<% end %>
+			</div>
+		<% end %>
+	</div>
 	<hr />
-	<%= content.subheading.nil? ? "" : "<h3>#{content.subheading}</h3>".html_safe %>
-	
+	<% if not content.subheading.blank? %>
+		<div class="row">
+			<div class="col-md-12">
+				<h2><%= content.subheading.html_safe %></h2>
+			</div>
+		</div>
+	<% end %>
 	<div class="paragraph-container">
 		<div class="row">
 			<div class="text-image-column">
@@ -14,6 +32,7 @@
 		</div>
 	</div>
 	<br />
+	<%= render "edit-modal", content: content, index: index if current_user.is_admin? %>
 <% end %>
 
 <%#= image_tag("about_page/kendo_strike.jpg", class: "text-image", alt: "Kendo Strike") %>

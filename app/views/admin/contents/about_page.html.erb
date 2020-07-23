@@ -9,17 +9,12 @@
 	<%= render "templates/alerts/form-errors", model: content %>
 
 	<div class="row vertical-align-middle">
-		<div class="col-md-8">
+		<div class="col-md-10">
 			<h1><u><%= content.index %></u>. <%= content.heading.html_safe %> *will <%=content.display_content_on_page ? " " : " NOT " %>be shown to users <%=content.display_content_on_page%>*</h1>
 		</div>
 		<div class="col-md-2">
 			<%= button_tag :class => "btn btn-warning btn-block btn-lg", title: 'Edit', data: { toggle: 'modal', target: "#adminAboutEditModal-#{index}" } do %>
 				<span class="glyphicon glyphicon-edit"></span> Edit
-			<% end %>
-		</div>
-		<div class="col-md-2">
-			<%= button_tag :class => "btn btn-danger btn-block btn-lg", title: 'Remove', data: { toggle: 'modal', target: "#youSureModal-#{index}" } do %>
-				<span class="glyphicon glyphicon-trash"></span> Remove
 			<% end %>
 		</div>
 	</div>
@@ -35,5 +30,4 @@
 	</div>
 	<br />
 	<%= render "edit-about-modal", content: content, index: index %>
-	<%= render "templates/modals/remove-record-dialog", record: [:admin, content], index: index, heading: "About" %>
 <% end %>

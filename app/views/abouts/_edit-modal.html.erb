@@ -1,11 +1,11 @@
-<div class="modal fade" id="adminAboutEditModal-<%=index%>" tabindex="-1" role="dialog" aria-labelledby="adminAboutModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="aboutEditModal-<%=index%>" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="modal-title" id="adminAboutModalLabel">Edit Content</h1>
+				<h1 class="modal-title" id="aboutModalLabel">Edit Content</h1>
 			</div>
 			<div class="modal-body">
-				<%= form_with(model: [:admin, content], local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
+				<%= form_with(model: content, url: content_path(content), method: "patch", local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
 					<div class="row vertical-align-middle">
 						<div class="col-xs-2 align-right"><%= f.label :heading, 'Heading:' %></div>
 		          		<div class="col-xs-9"><%= f.text_field :heading, { class: 'form-control' } %></div>
@@ -23,13 +23,14 @@
 		          	<br />
 		          	<div class="row vertical-align-middle">
 						<div class="col-xs-3"><%= f.label :index, 'Content Order:' %></div>
-		          		<div class="col-xs-2"><%= f.select :index, (1..Content.of_page(@page).count+1), {}, { class: 'form-control' } %></div>
+		          		<div class="col-xs-2"><%= f.select :index, (1..@content_count+1), {}, { class: 'form-control' } %></div>
 						<div class="col-xs-3"><%= f.label :display_content_on_page, 'Display Content:' %></div>
 		          		<div class="col-xs-2"><%= f.check_box :display_content_on_page, { class: 'form-control' } %></div>
 		          	</div>
 			</div>
 			<div class="modal-footer">
-				<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#adminAboutEditModal-#{index}" } %>
+				<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#aboutEditModal-#{index}" } %>
+				<%= f.hidden_field :id, :value => content.id %>
 				<%= f.submit "Save Changes", class: 'btn btn-success' %>
 			</div>
 			<% end %>

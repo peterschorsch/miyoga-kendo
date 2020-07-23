@@ -4,15 +4,6 @@ class Admin::ContentsController < Admin::AdminController
 
   def about_page
     @page = Page.named("About")
-    @content_count = Content.of_page(@page).count
-  end
-
-  def update_about
-
-  end
-
-  def remove_about
-
   end
 
   # GET /contents
