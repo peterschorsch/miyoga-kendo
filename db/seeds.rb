@@ -145,14 +145,14 @@ puts ""
 puts @link.inspect
 puts ""
 puts "KATA"
-@content = Content.create_with(heading: "Kata", :index => 3, :display_content_on_page => true, :display_content_fields => true, :page_id => @resources_page_id, description: "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.").find_or_create_by(heading: "Kata")
+@content = Content.create_with(:heading => "Kata 2", :description => "A very interesting article about kata number 2.", :index => 3, :display_content_on_page => true, :display_content_fields => true, :page_id => @resources_page_id).find_or_create_by(heading: "Kata 2")
 puts @content.inspect
 puts ""
 @link = Link.create_with(name: "Kenshi 24/7", :link => "https://kenshi247.net/", :index => 1, article: true, :content_id => @content.id).find_or_create_by(name: "Kenshi 24/7")
 puts @link.inspect
 puts ""
 puts "TIE HAKAMA"
-@content = Content.create_with(heading: "How to tie your Hakama", :index => 4, :display_content_on_page => true, :display_content_fields => true, :page_id => @resources_page_id, description: "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.").find_or_create_by(heading: "How to tie your Hakama")
+@content = Content.create_with(:heading => "How to tie your Hakama", :description => "Checkout this article on how to tie your hakama.", :index => 4, :display_content_on_page => true, :display_content_fields => true, :page_id => @resources_page_id).find_or_create_by(heading: "How to tie your Hakama")
 puts @content.inspect
 puts ""
 @link = Link.create_with(name: "Kenshi 24/7 copy", :link => "https://kenshi247.net/", :index => 2, article: true, :content_id => @content.id).find_or_create_by(name: "Kenshi 24/7 copy")

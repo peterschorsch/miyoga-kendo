@@ -1,11 +1,12 @@
 class Content < ApplicationRecord
 	belongs_to :page
 	has_many :practices
-	has_many :links
-	accepts_nested_attributes_for :links, allow_destroy: true#, :reject_if => proc { |attributes| attributes['address_line_1'].blank? || attributes['city'].nil? || attributes['state_id'].nil?|| attributes['zip_code'].nil? }
+	has_many :links, dependent: :destroy
+	accepts_nested_attributes_for :links#, allow_destroy: true#, :reject_if => proc { |attributes| attributes['address_line_1'].blank? || attributes['city'].nil? || attributes['state_id'].nil?|| attributes['zip_code'].nil? }
 
 	validates :heading, presence: true
-	validate :strip_fields, :validate_index
+	validates_uniqueness_of :index, scope: :page_id
+	#validate :strip_fields, :validate_index
 
 	scope :of_page, -> (page) {
 		where(page_id: page).references(:forms).display_ordered
@@ -33,16 +34,7 @@ class Content < ApplicationRecord
 
 	def strip_fields
 		self.subheading = self.subheading.blank? ? nil : nil
-		self.description = self.description ? nil : nil
-	end
-
-	def validate_index
-		page = self.page
-
-		contents = Content.of_page(page).where.not(:id => self.id).select(:id, :index)
-		contents.each do |content|
-			errors.add(:index, "can't be the same as another entry") if self.index == content.index
-		end
+		self.description = self.description.blank? ? nil : nil
 	end
 
 end

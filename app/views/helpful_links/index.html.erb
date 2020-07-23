@@ -1,6 +1,7 @@
 <div class="row">
 	<div class="col-md-12">
-		<h1><%=@current_page.name%></h1><hr />
+		<h1><%=@current_page.name%></h1>
+		<hr />
 	</div>
 </div>
 <div class="row">
@@ -26,33 +27,28 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<h1>Readings</h1><hr />
+		<h1>Readings</h1>
+		<hr />
 	</div>
 </div>
-<div class="row">
-	<div class="col-md-10 col-md-offset-1 col-sm-12">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="panel-group" id="accordion">
-					<% @articles.each_with_index do |article, index| %>
-						<div class="panel panel-default">
-							<div class="panel-heading text-link">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<%=index%>">
-									<h2 class="panel-title"><%=article.heading%><i class="indicator glyphicon glyphicon-chevron-down pull-right"></i></h2>
-								</a>
-							</div>
-							<div id="collapse<%=index%>" class="panel-collapse collapse in">
-								<div class="panel-body">
-									<p><%=article.description%></p>
-									<% article.links.each do |link| %>
-										<%= link_to "See More &raquo".html_safe, link.link, :class => "btn btn-info", target: :_blank %>
-									<% end %>
-								</div>
-							</div>
+<% @articles.each_with_index do |article, index| %>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1 col-sm-12">
+			<div class="panel panel-default card">
+					<div class="row padding">
+						<div class="col-md-3">
+							<%= image_tag("helpful_links_page/stock-article-image.jpg", class: "text-image", alt: "Article Image") %>
 						</div>
-					<% end %>
-				</div>
+						<div class="col-md-9">
+							<h4 class="card-title"><%= article.heading %></h4>
+							<hr />
+							<p class="card-text"><%= article.description %></p>
+							<% article.links.each do |link| %>
+								<%= link_to "Visit Article &raquo".html_safe, link.link, :class => "btn btn-info", target: :_blank %>
+							<% end %>
+						</div>
+					</div>
 			</div>
 		</div>
 	</div>
-</div>
+<% end %>
