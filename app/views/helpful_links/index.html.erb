@@ -4,25 +4,39 @@
 		<hr />
 	</div>
 </div>
+
+<p id="notice"><%= notice %></p>
+
 <div class="row">
 	<div class="col-md-10 col-md-offset-1 col-sm-12">
 		<div class="row">
-			<% @resources.each do |content| %>
-				<h2><%= content.heading %></h2>
-				<div class="col-md-12">
-					<div class="row">
-						<% content.links.each do |link| %>
-							<div class="col-md-3 col-sm-6">
-								<div class="panel panel-default">
-								  <div class="panel-body"><%= link_to image_tag("logos/#{link.image_link}", class: "image-center", alt: link.name), link.link, class: "header-link-text", target: :_blank %></div>
-								</div>
-							</div>
-						<% end %>
+			<% @resources.each_with_index do |content, index| %>
+				<div class="row vertical-align-middle">
+					<div class="col-md-10">
+						<h2><%= content.heading %></h2>
 					</div>
+					<% if current_user.is_admin? %>
+						<div class="col-md-2">
+							<%= button_tag :class => "btn btn-warning btn-block", title: 'Edit', data: { toggle: 'modal', target: "#resourcesEditModal-#{index}" } do %>
+								<span class="glyphicon glyphicon-edit"></span> Edit
+							<% end %>
+						</div>
+						<%= render "edit-modal", content: content, index: index, content_end_count: @resource_count, link_end_count: content.links.count+1 %>
+					<% end %>
 				</div>
+				<div class="row">
+					<% content.links.each do |link| %>
+						<div class="col-md-3 col-sm-6">
+							<div class="panel panel-default">
+								<div class="panel-body"><%= link_to image_tag("logos/#{link.image_link}", class: "image-center", alt: link.name), link.link, class: "header-link-text", target: :_blank %></div>
+							</div>
+						</div>
+					<% end %>
+				</div>
+				<br />
 			<% end %>
 		</div>
-	</div>	
+	</div>
 </div>
 
 <div class="row">
@@ -40,9 +54,19 @@
 							<%= image_tag("helpful_links_page/stock-article-image.jpg", class: "text-image", alt: "Article Image") %>
 						</div>
 						<div class="col-md-9">
-							<h4 class="card-title"><%= article.heading %></h4>
+							<div class="row vertical-align-middle">
+								<div class="col-md-10 col-xs-12"><h3 class="card-title"><%= article.heading %></h3></div>
+								<% if current_user.is_admin? %>
+									<div class="col-md-2 col-xs-12">
+										<%= button_tag :class => "btn btn-warning btn-block", title: 'Edit', data: { toggle: 'modal', target: "#resourcesEditModal-#{index}" } do %>
+											<span class="glyphicon glyphicon-edit"></span> Edit
+										<% end %>
+									</div>
+									<%= render "edit-modal", content: article, index: index, content_end_count: @article_count, link_end_count: article.links.count+1 %>
+								<% end %>
+							</div>
 							<hr />
-							<p class="card-text"><%= article.description %></p>
+							<p class="card-text"><%= article.description.html_safe %></p>
 							<% article.links.each do |link| %>
 								<%= link_to "Visit Article &raquo".html_safe, link.link, :class => "btn btn-info", target: :_blank %>
 							<% end %>

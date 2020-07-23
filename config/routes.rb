@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post 'password/forgot', to: 'passwords#forgot'
   post 'password/reset', to: 'passwords#reset'
 
-  resources :contents, only: [:update]
+  resources :contents, only: [:update, :destroy]
   ### ABOUT PAGE ###
   get :abouts, to: 'abouts#index', path: 'about'
 

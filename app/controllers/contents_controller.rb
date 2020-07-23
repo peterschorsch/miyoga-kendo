@@ -1,14 +1,25 @@
 class ContentsController < ApplicationController
-	before_action :set_content, only: [:update]
+	before_action :set_content, only: [:update, :destroy]
 
 	def update
 		respond_to do |format|
-	      if @content.update(content_params)
-	        format.html { redirect_to abouts_path, notice: 'Content was successfully updated.' }
+	      if @content.update!(content_params)
+	        format.html { redirect_to request.referrer, notice: 'Content was successfully updated.' }
 	      else
-	        format.html { render request.referrer, notice: 'Content was unsuccessfully updated.' }
+	        format.html { redirect_to request.referrer, notice: 'Content was unsuccessfully updated.' }
 	      end
 	    end
+	end
+
+	def destroy
+		@content.display_content_on_page = false
+		respond_to do |format|
+			if @content.update(content_params)
+				format.html { redirect_to request.referrer, notice: 'Content was successfully removed.' }
+				else
+				format.html { redirect_to request.referrer, notice: 'Content was successfully removed.' }
+			end
+		end
 	end
 	
 	private
@@ -24,7 +35,8 @@ class ContentsController < ApplicationController
 
 	    # Only allow a list of trusted parameters through.
 	    def content_params
-	      params.require(:content).permit(:id, :heading, :subheading, :description, :index, :display_content_on_page)
+			params.require(:content).permit(:id, :heading, :subheading, :description, :index, :display_content_on_page,
+			links_attributes: [:id, :name, :link, :image_link, :index, :display_logo, :article, :content_id, :_destroy])
 	    end
 
 end
