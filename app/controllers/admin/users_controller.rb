@@ -33,7 +33,7 @@ class Admin::UsersController < Admin::AdminController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to admin_user_path(@user), notice: "#{@user.concat_name} was successfully created." }
+        format.html { redirect_to admin_users_path, notice: "#{@user.concat_name} was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -46,8 +46,8 @@ class Admin::UsersController < Admin::AdminController
   # PATCH/PUT /admin/users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to admin_user_path(@user), notice: "#{@user.concat_name} was successfully updated." }
+      if @user.update!(user_params)
+        format.html { redirect_to edit_admin_user_path(@user), notice: "#{@user.concat_name} was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

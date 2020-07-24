@@ -1,5 +1,8 @@
-<%= render 'templates/buttons/back-to-page', path: admin_events_path, text: "Events" %>
+<%= render "templates/buttons/back-to-admin-home" %>
 
-<h1>Editing: <strong><%=@user.concat_name%></strong></h1>
+<%= render "templates/heading", text: "My Profile", list_of_classes: "align-center" %>
+
+<%= render "templates/alerts/notice" if notice %>
+<%= render "templates/alerts/form-errors", model: @user %>
 
 <%= render 'form', user: @user %>

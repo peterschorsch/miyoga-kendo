@@ -10,7 +10,7 @@ class Admin::AdminController < ApplicationController
 	end
 
 	def sidebar_objects
-		@miscellaneous = [["Users", admin_users_path], ["Social Media", admin_social_media_path], ["My User Settings", admin_user_path(current_user)]]
+		@miscellaneous = [["Users", admin_users_path], ["Social Media", admin_social_media_path], ["My User Settings", edit_admin_user_path(current_user)]]
 	end
 
 	private

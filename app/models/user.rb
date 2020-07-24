@@ -8,7 +8,7 @@ class User < ApplicationRecord
 	validates :email, presence: true, email: true, uniqueness: true
 	has_secure_password
 
-	validates :password, :confirmation => true, :length => {:within => 8..40}, :on => :update
+	validates :password, :confirmation => true, :length => {:within => 8..40}, :on => :create
 	PASSWORD_FORMAT = /\A
 		(?=.{8,})          # Must contain 8 or more characters
 		(?=.*\d)           # Must contain a digit
