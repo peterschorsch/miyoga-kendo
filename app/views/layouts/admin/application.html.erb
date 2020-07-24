@@ -14,9 +14,15 @@
   </head>
 
   <body class="container-fluid">
-    <%= render "layouts/header" %>
-    <div class="padding">
-      <%= yield %>
+    <%= render 'layouts/header' %>
+    <div class="row padding">
+      <div class="col-md-3">
+        <%= render "layouts/admin/left-sidebar" %>
+      </div>
+      <div class="col-md-9">
+        <%= yield %>
+      </div>
     </div>
   </body>
+
 </html>

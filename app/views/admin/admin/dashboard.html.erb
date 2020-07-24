@@ -1,33 +1,14 @@
-<%= render "templates/heading", text: "Admin Dashboard", list_of_classes: "align-center" %>
+<%#= render "templates/heading", text: "Admin Dashboard", list_of_classes: "align-center" %>
 <%= render "templates/alerts/notice" if notice && current_user.is_admin? %>
+<%= render "templates/alerts/alert" %>
 
-<%#= link_to "About", admin_abouts_path, :class => "btn btn-danger" %>
-<%#= link_to "Events", admin_events_path, :class => "btn btn-success" %>
-<%#= link_to "Class Schedule", admin_practices_path, :class => "btn btn-info" %>
-<%#= link_to "Resources", admin_resources_path, :class => "btn btn-primary" %>
-<div class="btn-group-vertical" style = "background-color: #00009a">
-	<%= link_to "About", admin_users_path, :class => "btn btn-primary btn-lg" %>
-	<%= link_to "Events", admin_users_path, :class => "btn btn-primary btn-lg" %>
-	<%= link_to "Class Schedule", admin_users_path, :class => "btn btn-primary btn-lg" %>
-	<%= link_to "Resources", admin_users_path, :class => "btn btn-primary btn-lg" %>
-</div>
-
-
-<div class="row row-padding">
+<div class="row">
 	<div class="col-md-6 col-sm-12">
 		<div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<div class="row vertical-align-middle">
-						<div class="col-xs-8">
-							<h1>
-								<span class="glyphicon glyphicon-user"></span> Users
-								<span class='badge' style='background-color: #777777'><%=@user_count%></span>
-							</h1>
-						</div>
-						<div class="col-xs-4">
-							<%= link_to "View All Users &raquo".html_safe, admin_users_path, :class => "btn btn-success btn-block" %>
-						</div>
+					<div class="row">
+						<div class="col-xs-12"><h1 class="align-center">Recent Users</h1></div>
 					</div>
 				</div>
 				<div class="panel-body">
@@ -35,7 +16,6 @@
 						<thead>
 							<tr class="align-center">
 								<th>Name</th>
-								<th>Email</th>
 								<th>Role</th>
 								<th>Last Login</th>
 							</tr>
@@ -44,13 +24,17 @@
 							<% @users.each do |user| %>
 								<tr class="align-center">
 									<td><%=user.concat_name%></td>
-									<td><%=user.email%></td>
 									<td><%=user.role%></td>
 									<td><%=nil_check(user.last_login) ? "n/a" : formateDateTimeWithAt(user.last_login) %></td>
 								</tr>
 							<% end %>
 						</tbody>
 					</table>
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2">
+							<p><%= link_to "View All Users", admin_users_path, :class => "btn btn-success btn-block" %></p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -59,13 +43,30 @@
 		<div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<div class="row vertical-align-middle">
-						<div class="col-xs-8">
-							<h1><span class="glyphicon glyphicon-user"></span> Social Media Accounts</h1>
+					<div class="row">
+						<div class="col-xs-12"><h1 class="align-center">My Profile</h1></div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<h2 class="align-center"><%= current_user.concat_name %></h2>
+					<p class="align-center"><%= current_user.email %></p>
+					<p class="align-center"><%= current_user.role %></p>
+					<br />
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2">
+							<p><%= link_to 'View My Profile', admin_user_path(current_user), :class => "btn btn-primary btn-block" %></p>
 						</div>
-						<div class="col-xs-4">
-							<%= link_to "View All Social Media &raquo".html_safe, admin_social_media_path, :class => "btn btn-success btn-block" %>
-						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-12"><h1 class="align-center">Social Media Accounts</h1></div>
 					</div>
 				</div>
 				<div class="panel-body">

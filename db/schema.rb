@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2020_07_17_212934) do
 
   create_table "addresses", force: :cascade do |t|
+    t.string "location_name", null: false
     t.string "address_line_1", null: false
     t.string "address_line_2"
     t.string "city", null: false
@@ -21,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_07_17_212934) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "state_id"
-    t.string "location_name"
     t.index ["event_id"], name: "index_addresses_on_event_id"
     t.index ["state_id"], name: "index_addresses_on_state_id"
   end
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2020_07_17_212934) do
   create_table "pages", force: :cascade do |t|
     t.string "name", null: false
     t.string "path", null: false
+    t.string "admin_path", null: false
     t.string "index", limit: 2, null: false
     t.boolean "active", default: true
     t.integer "user_id"

@@ -4,6 +4,7 @@ class CreatePagesTable < ActiveRecord::Migration[5.2]
       t.string :name, :null => false
 
       t.string :path, :null => false
+      t.string :admin_path, :null => false
       t.string :index, :null => false, :limit => 2
       t.boolean :active, :default => true
 

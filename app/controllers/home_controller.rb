@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+	layout "landing_page"
 
 	def landing_page
 		@about_miyoga = Content.about_miyoga

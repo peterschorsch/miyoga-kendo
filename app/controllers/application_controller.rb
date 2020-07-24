@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def active_header_pages
-		@active_ordered_pages = Page.active_ordered_pages.select(:name, :path)
+		@active_pages = Page.active_ordered_pages.select(:name, :path, :admin_path)
 	end
 
 end

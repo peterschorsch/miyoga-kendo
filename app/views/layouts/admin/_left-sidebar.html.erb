@@ -1,0 +1,26 @@
+<div class="panel-group">
+	<div class="panel panel-navy-blue">
+		<div class="panel-heading">
+			<h1 class="align-center">Editable Content</h1>
+		</div>
+		<div class="panel-body">
+			<% @active_pages.each do |page| %>
+				<%= link_to page.name, send("#{page.admin_path}"), :class => "btn btn-sidebar btn-block btn-lg" %>
+			<% end %>
+		</div>
+	</div>
+</div>
+<br />
+
+<div class="panel-group">
+	<div class="panel panel-navy-blue">
+		<div class="panel-heading">
+			<h1 class="align-center">Miscellaneous</h1>
+		</div>
+		<div class="panel-body">
+			<% @miscellaneous.each do |item| %>
+				<%= link_to item[0], item[1], :class => "btn btn-sidebar btn-block btn-lg" %>
+			<% end %>
+		</div>
+	</div>
+</div>
