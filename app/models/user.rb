@@ -16,23 +16,25 @@ class User < ApplicationRecord
 		(?=.*[A-Z])        # Must contain an upper case character
 		(?=.*[[:^alnum:]]) # Must contain a symbol
 	/x
-
-	#default_scope { where.not(:role => "Guest", :firstname => "Not Logged In") }
 	
 	scope :active_users, -> {
-		where(:active => true)
+		where(:active => true).remove_guest_account
 	}
 
 	scope :archived_users, -> {
-		where(:active => false)
+		where(:active => false).remove_guest_account
 	}
 
 	scope :order_by_role, -> {
-		order(:role, :lastname, :firstname, :email)
+		order(:role, :lastname, :firstname, :email).remove_guest_account
+	}
+
+	scope :remove_guest_account, -> {
+		where.not(:role => "Guest", :firstname => "Not Logged In")
 	}
 
 	scope :order_by_last_login, -> {
-		order('last_login desc')
+		order('last_login desc').remove_guest_account
 	}
 
 	scope :get_guest_user, -> {
