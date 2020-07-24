@@ -35,46 +35,23 @@
 		          	<hr />
 		          	<h1>Edit Event Address</h1>
 		          	<%= f.fields_for :address do |address| %>
-		          		<%= address.fields_for :contacts do |contact| %>
-				          	<div class="row">
-				          		<div class="col-xs-12"><%= contact.text_field :name, { placeholder: "Location Name", class: 'form-control' } %></div>
-				          	</div>
-				          	<br />
-				          	<div class="row">
-				          		<div class="col-xs-12"><%= address.text_field :address_line_1, { placeholder: "Address Line 1", class: 'form-control' } %></div>
-				          	</div>
-				          	<br />
-				          	<div class="row">
-				          		<div class="col-xs-12"><%= address.text_field :address_line_2, { placeholder: "Address Line 2", class: 'form-control' } %></div>
-				          	</div>
-				          	<br />
-				          	<div class="row">
-				          		<div class="col-xs-8"><%= address.text_field :city, { class: 'form-control' } %></div>
-				          		<div class="col-xs-2"><%= address.collection_select :state_id, @states, :id, :abbreviation, {:include_blank => "Select a State"}, {class: "form-control chosen-select"} %></div>
-				          		<div class="col-xs-2"><%= address.text_field :zip_code, { class: 'form-control', size: 5 } %></div>
-				          	</div>
-				          	<hr />
-				          	<div class="row vertical-align-middle">
-								<div class="col-xs-12"><%= f.label :email, 'Venue Email' %> (not required):</div>
-							</div>
-							<div class="row">
-				          		<div class="col-xs-12"><%= contact.text_field :email, { placeholder: "Venue Email", class: 'form-control' } %></div>
-				          	</div>
-				          	<br />
-				          	<div class="row vertical-align-middle">
-								<div class="col-xs-12"><%= f.label :phone, 'Venue Phone' %> (not required):</div>
-							</div>
-							<div class="row">
-				          		<div class="col-xs-12"><%= contact.text_field :phone, { placeholder: "Venue Phone", class: 'form-control' } %></div>
-				          	</div>
-				          	<br />
-				          	<div class="row vertical-align-middle">
-								<div class="col-xs-12"><%= f.label :website, 'Venue Website' %> (not required):</div>
-							</div>
-							<div class="row">
-				          		<div class="col-xs-12"><%= contact.text_field :website, { placeholder: "Venue Website", class: 'form-control' } %></div>
-				          	</div>
-						<% end %>
+						<div class="row">
+							<div class="col-xs-12"><%= address.text_field :location_name, { placeholder: "Location Name", class: 'form-control' } %></div>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-xs-12"><%= address.text_field :address_line_1, { placeholder: "Address Line 1", class: 'form-control' } %></div>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-xs-12"><%= address.text_field :address_line_2, { placeholder: "Address Line 2", class: 'form-control' } %></div>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col-xs-8"><%= address.text_field :city, { class: 'form-control' } %></div>
+							<div class="col-xs-2"><%= address.collection_select :state_id, @states, :id, :abbreviation, {:include_blank => "Select a State"}, {class: "form-control chosen-select"} %></div>
+				          	<div class="col-xs-2"><%= address.text_field :zip_code, { class: 'form-control', size: 5 } %></div>
+						</div>
 					<% end %>
 			</div>
 			<div class="modal-footer">

@@ -3,14 +3,16 @@
 <% @events.each_with_index do |event, index| %>
 	<%= render "heading", event: event, index: index %>
 	<div class="row">
-		<div class="col-md-12">
-			<h2><%= formatEventsDateRange(event.start_date, event.end_date) %></h2>
+		<div class="col-md-6 col-sm-12">
+			<% @address = event.address %>
+			<h3><%= formatEventsDateRange(event.start_date, event.end_date) %></h3>
+			<p><%= @address.location_name %></p>
+			<p><%= @address.city %>, <%= @address.state.name %></p><br />
+			<p><%= event.description.html_safe %></p>
 		</div>
-	</div>
-	<br />
-	<div class="row">
-		<div class="col-md-6 col-sm-12"><p><%= event.description.html_safe %></p></div>
-		<div class="col-md-6 col-sm-12"><%= render "templates/google_maps", location_name: event.address.contacts.first.name, address: event.address, height: 600, width: 650 %></div>
+		<div class="col-md-6 col-sm-12">
+			<%= render "templates/google_maps", location_name: event.address.location_name, address: event.address, height: 600, width: 650 %>
+		</div>
 	</div>
 	<br /><hr /><br />
 	<%= render "edit-modal", event: event, index: index %>

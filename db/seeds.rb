@@ -89,22 +89,15 @@ puts ""
 @event = Event.create_with(title: "2020 MWKF Summer Camp", start_date: Date.new(2020, 7, 31), end_date: Date.new(2020, 8, 2), description: "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.").find_or_create_by(title: "2020 MWKF Summer Camp")
 puts @event.inspect
 puts ""
-@uwm_rec_address = Address.create_with(address_line_1: "702 West Johnson Street", city: "Madison", state_id: State.find_by_abbr("WI").id, zip_code: "53706", event_id: @event.id).find_or_create_by(address_line_1: "702 West Johnson Street")
+@uwm_rec_address = Address.create_with(location_name: "Office of Admissions and Recruitment", address_line_1: "702 West Johnson Street", city: "Madison", state_id: State.find_by_abbr("WI").id, zip_code: "53706", event_id: @event.id).find_or_create_by(address_line_1: "702 West Johnson Street")
 puts @uwm_rec_address.inspect
 puts ""
-@uwm_rec_contact = Contact.create_with(name: "Office of Admissions and Recruitment", email: "memberships@recsports.wisc.edu", phone: "6082623742", website: "https://recwell.wisc.edu/", address_id: @uwm_rec_address.id).find_or_create_by(name: "Office of Admissions and Recruitment")
-puts @uwm_rec_contact.inspect
-puts ""
-
 
 @event = Event.create_with(title: "2020 Detroit Taikai", start_date: Date.new(2020, 2, 15), end_date: Date.new(2020, 2, 16), description: "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.").find_or_create_by(title: "2020 Detroit Taikai")
 puts @event.inspect
 puts ""
-@detroit_address = Address.create_with(address_line_1: "2436 West Lincoln Street", city: "Birmingham", state_id: State.find_by_abbr("MI").id, zip_code: "48009", event_id: @event.id).find_or_create_by(address_line_1: "2436 West Lincoln Street")
+@detroit_address = Address.create_with(location_name: "Seaholm High School", address_line_1: "2436 West Lincoln Street", city: "Birmingham", state_id: State.find_by_abbr("MI").id, zip_code: "48009", event_id: @event.id).find_or_create_by(address_line_1: "2436 West Lincoln Street")
 puts @detroit_address.inspect
-puts ""
-@detroit_contact = Contact.create_with(name: "Seaholm High School", phone: "2482033700", address_id: @detroit_address.id).find_or_create_by(name: "Seaholm High School")
-puts @detroit_contact.inspect
 puts ""
 
 

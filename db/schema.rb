@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_223332) do
+ActiveRecord::Schema.define(version: 2020_07_17_212934) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "address_line_1", null: false
@@ -21,20 +21,9 @@ ActiveRecord::Schema.define(version: 2020_07_18_223332) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "state_id"
+    t.string "location_name"
     t.index ["event_id"], name: "index_addresses_on_event_id"
     t.index ["state_id"], name: "index_addresses_on_state_id"
-  end
-
-  create_table "contacts", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "phone", limit: 10
-    t.string "email"
-    t.string "website"
-    t.text "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "address_id"
-    t.index ["address_id"], name: "index_contacts_on_address_id"
   end
 
   create_table "contents", force: :cascade do |t|
