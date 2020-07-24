@@ -17,7 +17,7 @@ class User < ApplicationRecord
 		(?=.*[[:^alnum:]]) # Must contain a symbol
 	/x
 
-	default_scope { where.not(:role => "Guest", :firstname => "Not Logged In") }
+	#default_scope { where.not(:role => "Guest", :firstname => "Not Logged In") }
 	
 	scope :active_users, -> {
 		where(:active => true)
@@ -42,6 +42,10 @@ class User < ApplicationRecord
 	scope :get_miyoga_user, -> {
 		find_by(:firstname => "Miyoga", :lastname => "Kendo Club")
 	}
+
+	def is_logged_in?
+		self.is_admin? || self.is_user?
+	end
 
 	def is_admin?
 		self.role == "Admin"
