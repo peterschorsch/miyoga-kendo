@@ -7,7 +7,6 @@
 			<div class="modal-body">
 				<%= render "templates/alerts/form-errors", model: content %>
 
-				<%#= form_with(model: content, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
 				<%= form_with(model: content, url: content_path(content), method: "patch", local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
 					<div class="row vertical-align-middle">
 						<div class="col-xs-2 align-right"><%= f.label :heading, 'Heading:' %></div>

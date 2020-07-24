@@ -11,29 +11,18 @@ class Admin::ContentsController < Admin::AdminController
     @contents = @page.contents.includes(:links)
   end
 
-  # GET /contents
-  # GET /contents.json
   def index
     @contents = Content.all
     @pages = @contents.pages.includes(:contents)
   end
 
-  # GET /contents/1
-  # GET /contents/1.json
   def show
   end
 
-  # GET /contents/new
   def new
     @content = Content.new
   end
 
-  # GET /contents/1/edit
-  def edit
-  end
-
-  # POST /contents
-  # POST /contents.json
   def create
     @content = Content.new(content_params)
 
@@ -48,8 +37,6 @@ class Admin::ContentsController < Admin::AdminController
     end
   end
 
-  # PATCH/PUT /contents/1
-  # PATCH/PUT /contents/1.json
   def update
     respond_to do |format|
       if @content.update(content_params)

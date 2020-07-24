@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#index'
-
-  get 'home', to: 'home#index'
+  root 'home#landing_page'
 
   ### LOGIN ###
   resources :sessions, only: [:new, :create, :destroy]
@@ -18,26 +16,45 @@ Rails.application.routes.draw do
   post 'password/forgot', to: 'passwords#forgot'
   post 'password/reset', to: 'passwords#reset'
 
+  ### UPDATE CONTENT PAGES (ABOUT, RESOURCES) ###
   resources :contents, only: [:update, :destroy]
   ### ABOUT PAGE ###
   get :abouts, to: 'abouts#index', path: 'about'
-
+  ### CLASS SCHEDULE PAGE ###
   resources :practices, only: [:index, :update, :destroy]
+  ### EVENTS PAGE ###
   resources :events, path: 'events', only: [:index, :update, :destroy]
+  ### RESOURCES PAGE ###
+  get :resources, to: 'resources#index'
 
-  get :helpful_links, to: 'helpful_links#index', path: 'resources'
+  ### USERS ###
   resources :users, only: [:show, :edit, :update]
   
+  ##### ADMIN NAMESPACE #####
   namespace :admin do
-    root to: 'admin#dashboard'
-    resources :users, :pages, :links, :events, :practices, :addresses, :contacts
+    root 'admin#dashboard'
+
+    ### USERS PAGE ###
+    resources :users
     
+    ### UPDATE CONTENT PAGES (ABOUT, RESOURCES) ###
     resources :contents, only: [:update]
     ### ABOUT PAGE ###
     get :abouts, to: 'contents#about_page'
     ### RESOURCES PAGE ###
     get :resources, to: 'contents#resource_page'
-    
-    resources :social_media, path: 'social-media'
+
+    ### CLASS SCHEDULE PAGE ###
+    resources :practices, except: [:show]
+    ### EVENTS PAGE ###
+    resources :events, except: [:show]
+
+    ### CONTACTS PAGE ###
+    resources :contacts
+    ### ADDRESS PAGE ###
+    resources :addresses
+
+    ### SOCIAL MEDIA PAGE ###
+    resources :social_media, path: 'social-media', except: [:show]
   end
 end

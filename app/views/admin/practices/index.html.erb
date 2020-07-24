@@ -1,9 +1,8 @@
 <%= render "templates/buttons/back-to-admin-home" %>
 
-<h1 class="h1-heading">Class Schedule</h1>
-<hr />
+<%= render "templates/heading", text: "Class Schedule", list_of_classes: "align-center" %>
 
-<h1 id="notice"><%= notice %></h1>
+<%= render "templates/alerts/notice" if notice %>
 
 <table class="table table-responsive table-striped" id="class_schedule_table">
   <thead>
@@ -36,4 +35,3 @@
 <br>
 
 <%= render "templates/buttons/add-new", path: new_admin_practice_path, text: "Class" %>
-

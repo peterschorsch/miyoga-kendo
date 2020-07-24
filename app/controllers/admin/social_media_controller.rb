@@ -7,11 +7,6 @@ class Admin::SocialMediaController < Admin::AdminController
     @social_media = SocialMedium.all
   end
 
-  # GET /social_media/1
-  # GET /social_media/1.json
-  def show
-  end
-
   # GET /social_media/new
   def new
     @social_medium = SocialMedium.new

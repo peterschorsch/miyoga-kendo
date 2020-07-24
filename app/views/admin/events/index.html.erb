@@ -1,8 +1,8 @@
 <%= render "templates/buttons/back-to-admin-home" %>
 
-<h1 class="h1-heading">Events</h1>
+<%= render "templates/heading", text: "Events", list_of_classes: "align-center" %>
 
-<p id="notice"><%= notice %></p>
+<%= render "templates/alerts/notice" if notice %>
 
 <table class="table table-responsive table-striped" id="events_table">
   <thead>

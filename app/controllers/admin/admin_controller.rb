@@ -4,7 +4,7 @@ class Admin::AdminController < ApplicationController
 	before_action :authorized?, :active_header_pages
 
 	def dashboard
-		@user_count = User.pluck(:id).count
+		@user_count = User.remove_guest_account.pluck(:id).count
 		@users = User.select(:firstname, :lastname, :email, :role, :last_login).order_by_last_login.first(5)
 
 		@social_media = SocialMedium.all

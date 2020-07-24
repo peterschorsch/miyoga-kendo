@@ -49,7 +49,7 @@ puts @page.inspect
 puts @page.inspect
 @page = Page.create_with(name: "Events", path: "events_path", index: 3, user_id: admin_user_id).find_or_create_by(name: "Events")
 puts @page.inspect
-@page = Page.create_with(name: "Resources", path: "helpful_links_path", index: 4, user_id: admin_user_id).find_or_create_by(name: "Resources")
+@page = Page.create_with(name: "Resources", path: "resources_path", index: 4, user_id: admin_user_id).find_or_create_by(name: "Resources")
 puts @page.inspect
 puts ""
 

@@ -9,11 +9,6 @@ class Admin::EventsController < Admin::AdminController
     @events = Event.includes(address: :state).all
   end
 
-  # GET /events/1
-  # GET /events/1.json
-  def show
-  end
-
   # GET /events/new
   def new
     @address = Address.new

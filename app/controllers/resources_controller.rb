@@ -1,8 +1,8 @@
-class HelpfulLinksController < ApplicationController
+class ResourcesController < ApplicationController
 	before_action :set_page
 
 	def index
-		@all_resources_content = Content.of_page(@current_page)
+		@all_resources_content = @page.contents
 		@resources = @all_resources_content.only_logos
 		@resource_count = @resources.count+1
 
@@ -12,6 +12,6 @@ class HelpfulLinksController < ApplicationController
 
 	private
 	def set_page
-		@current_page = Page.named("Resources")
+		@page = Page.named("Resources")
 	end
 end

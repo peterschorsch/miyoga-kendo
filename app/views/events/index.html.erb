@@ -1,10 +1,4 @@
-<% if notice && current_user.is_admin? %>
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2 col-xs-1">
-			<%= render "templates/alerts/notice" %>
-		</div>
-	</div>
-<% end %>
+<%= render "templates/alerts/notice" if notice && current_user.is_admin? %>
 
 <% @events.each_with_index do |event, index| %>
 	<%= render "heading", event: event, index: index %>

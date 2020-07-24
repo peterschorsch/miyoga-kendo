@@ -1,9 +1,8 @@
 <%= render "templates/buttons/back-to-admin-home" %>
 
-<h1 class="align-center"><%= @page.name %> Page</h1>
-<hr />
-<br /><br />
-<p id="notice"><%= notice %></p>
+<%= render "templates/heading", text: @page.name + " Page", list_of_classes: "align-center" %>
+
+<%= render "templates/alerts/notice" if notice %>
 
 <% @contents.order_by_index.each_with_index do |content, index| %>
 	<%= render "templates/alerts/form-errors", model: content %>
