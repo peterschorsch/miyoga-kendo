@@ -1,5 +1,5 @@
 <%= form_with(model: [:admin, event], local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |event| %>
-  <%#= render "templates/alerts/form-errors", model: address %>
+  <%= render "templates/alerts/form-errors", model: event %>
   <%= event.fields_for :address do |address| %>
     <div class="row vertical-align-middle">
       <div class="col-md-2 col-xs-12 align-right"><%= event.label :title, 'Event Name:' %></div>

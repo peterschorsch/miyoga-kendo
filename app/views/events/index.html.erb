@@ -1,5 +1,17 @@
 <%= render "templates/alerts/notice" if notice && current_user.is_admin? %>
 
+<% if current_user.is_admin? %>
+	<div class="row">
+		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
+			<%= button_tag :class => "btn btn-info btn-block btn-lg", title: 'Add', data: { toggle: 'modal', target: "#eventAddModal" } do %>
+				<span class="glyphicon glyphicon-plus"></span> Add New Event
+			<% end %>
+		</div>
+	</div>
+	<%= render "add-modal", new_event: @new_event %>
+	<%= render "templates/alerts/form-errors", model: @new_event %>
+<% end %>
+
 <% @events.each_with_index do |event, index| %>
 	<%= render "heading", event: event, index: index %>
 	<div class="row">

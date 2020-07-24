@@ -12,9 +12,7 @@
 
 <%= render "templates/heading", text: @content.heading, list_of_classes: "align-center" %>
 
-<% if current_user.is_admin? %>
-	<%= render "templates/alerts/notice" if notice %>
-<% end %>
+<%= render "templates/alerts/notice" if notice && current_user.is_admin? %>
 
 <% @practices.each_with_index do |practice, index| %>
 	<%= render "edit-modal", practice: practice, index: index %>

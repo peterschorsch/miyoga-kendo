@@ -3,7 +3,24 @@ class EventsController < ApplicationController
 
 	def index
 		@events = Event.display_active.includes(address: :state).first(3)
-		@states = State.return_states_w_abbr
+		@states_new_form_drop = State.return_states_w_names
+		@states_edit_form_drop = State.return_states_w_abbr
+
+		@new_event = Event.new
+		@new_event.build_address
+	end
+
+	def create
+		@event = Event.new(event_params)
+
+		respond_to do |format|
+			if @event.save!
+				format.html { redirect_to request.referrer, notice: 'A New Event was successfully created.' }
+			else
+				format.html { redirect_back(fallback_location: root_path) }
+				format.json { render json: @event.errors, status: :unprocessable_entity }
+			end
+		end
 	end
 
 	def update

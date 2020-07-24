@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   ### CLASS SCHEDULE PAGE ###
   resources :practices, only: [:index, :create, :update, :destroy]
   ### EVENTS PAGE ###
-  resources :events, path: 'events', only: [:index, :update, :destroy]
+  resources :events, path: 'events', only: [:index, :create, :update, :destroy]
   ### RESOURCES PAGE ###
   get :resources, to: 'resources#index'
 
