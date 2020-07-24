@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   post 'password/reset', to: 'passwords#reset'
 
   ### UPDATE CONTENT PAGES (ABOUT, RESOURCES) ###
-  resources :contents, only: [:update, :destroy]
+  resources :contents, only: [:create, :update, :destroy]
   ### ABOUT PAGE ###
   get :abouts, to: 'abouts#index', path: 'about'
   ### CLASS SCHEDULE PAGE ###

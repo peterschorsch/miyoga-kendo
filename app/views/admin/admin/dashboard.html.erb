@@ -1,10 +1,17 @@
 <%= render "templates/heading", text: "Admin Dashboard", list_of_classes: "align-center" %>
 <%= render "templates/alerts/notice" if notice && current_user.is_admin? %>
 
-<%= link_to "About", admin_abouts_path, :class => "btn btn-danger" %>
-<%= link_to "Events", admin_events_path, :class => "btn btn-success" %>
-<%= link_to "Class Schedule", admin_practices_path, :class => "btn btn-info" %>
-<%= link_to "Resources", admin_resources_path, :class => "btn btn-primary" %>
+<%#= link_to "About", admin_abouts_path, :class => "btn btn-danger" %>
+<%#= link_to "Events", admin_events_path, :class => "btn btn-success" %>
+<%#= link_to "Class Schedule", admin_practices_path, :class => "btn btn-info" %>
+<%#= link_to "Resources", admin_resources_path, :class => "btn btn-primary" %>
+<div class="btn-group-vertical" style = "background-color: #00009a">
+	<%= link_to "About", admin_users_path, :class => "btn btn-primary btn-lg" %>
+	<%= link_to "Events", admin_users_path, :class => "btn btn-primary btn-lg" %>
+	<%= link_to "Class Schedule", admin_users_path, :class => "btn btn-primary btn-lg" %>
+	<%= link_to "Resources", admin_users_path, :class => "btn btn-primary btn-lg" %>
+</div>
+
 
 <div class="row row-padding">
 	<div class="col-md-6 col-sm-12">

@@ -1,14 +1,29 @@
 class ContentsController < ApplicationController
 	before_action :set_content, only: [:update, :destroy]
+	before_action :set_page, only: [:create]
+
+	def create
+		@content = Content.new(content_params)
+		@content.page_id = Page.named("About").id
+
+		respond_to do |format|
+			if @content.save!
+				format.html { redirect_to request.referrer, notice: 'Content was successfully created.' }
+			else
+				format.html { redirect_back(fallback_location: root_path) }
+				format.json { render json: @content.errors, status: :unprocessable_entity }
+	      end
+	    end
+	  end
 
 	def update
 		respond_to do |format|
-	      if @content.update!(content_params)
-	        format.html { redirect_to request.referrer, notice: 'Content was successfully updated.' }
-	      else
-	        format.html { redirect_to request.referrer, notice: 'Content was unsuccessfully updated.' }
-	      end
-	    end
+			if @content.update(content_params)
+				format.html { redirect_to request.referrer, notice: 'Content was successfully updated.' }
+			else
+				format.html { redirect_to request.referrer, notice: 'Content was unsuccessfully updated.' }
+			end
+		end
 	end
 
 	def destroy
@@ -16,7 +31,7 @@ class ContentsController < ApplicationController
 		respond_to do |format|
 			if @content.update(content_params)
 				format.html { redirect_to request.referrer, notice: 'Content was successfully removed.' }
-				else
+			else
 				format.html { redirect_to request.referrer, notice: 'Content was successfully removed.' }
 			end
 		end
@@ -30,7 +45,7 @@ class ContentsController < ApplicationController
 	    end
 
 	    def set_page
-	      @page = @content.page
+	      @current_page = Page.named("About")
 	    end
 
 	    # Only allow a list of trusted parameters through.

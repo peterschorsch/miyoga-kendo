@@ -1,4 +1,16 @@
-<%= render "templates/alerts/notice" if notice && current_user.is_admin? %>
+<% if current_user.is_admin? %>
+	<div class="row">
+		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
+			<%= button_tag :class => "btn btn-info btn-block btn-lg", title: 'Add', data: { toggle: 'modal', target: "#aboutAddModal" } do %>
+				<span class="glyphicon glyphicon-plus"></span> Add New Content
+			<% end %>
+		</div>
+	</div>
+	<%= render "add-modal", new_content: @new_content %>
+	<%= render "templates/alerts/form-errors", model: @new_content %>
+	<%= render "templates/alerts/notice" if notice %>
+<% end %>
+
 
 <% @content.each_with_index do |content, index| %>
 	<% if not current_user.is_admin? %>
@@ -14,6 +26,7 @@
 				<% end %>
 			</div>
 		</div>
+		<%= render "edit-modal", content: content, index: index %>
 	<% end %>
 	<hr />
 	<% if not content.subheading.blank? %>
@@ -34,7 +47,6 @@
 		</div>
 	</div>
 	<br />
-	<%= render "edit-modal", content: content, index: index if current_user.is_admin? %>
 <% end %>
 
 <%#= image_tag("about_page/kendo_strike.jpg", class: "text-image", alt: "Kendo Strike") %>
