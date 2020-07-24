@@ -7,14 +7,14 @@ class ContentsController < ApplicationController
 		@content.page_id = Page.named("About").id
 
 		respond_to do |format|
-			if @content.save!
+			if @content.save
 				format.html { redirect_to request.referrer, notice: 'Content was successfully created.' }
 			else
 				format.html { redirect_back(fallback_location: root_path) }
 				format.json { render json: @content.errors, status: :unprocessable_entity }
-	      end
-	    end
-	  end
+			end
+		end
+	end
 
 	def update
 		respond_to do |format|

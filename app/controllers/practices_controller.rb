@@ -1,21 +1,38 @@
 class PracticesController < ApplicationController
-	before_action :set_page, only: [:index, :update]
+	before_action :set_page, only: [:index, :create, :update]
+	before_action :set_content, only: [:index, :create, :update]
 	before_action :set_practice, only: [:update, :destroy]
 
 	def index
-		@content = Content.of_page(@current_page).display_ordered
 		@miyoga_user = User.get_miyoga_user
 		
 		@practices = Practice.all
 		@practice_count = @practices.count-1
 		@practice_cost = "$" + @practices.first.cost_per_month + " per month"
+
+		@new_practice = Practice.new
+	end
+
+	def create
+		@new_practice = Practice.new(practice_params)
+		@new_practice.content_id = @content.id
+		@new_practice.day_of_week_index = check_day_for_index(practice_params.dig("day_of_week"))
+
+		respond_to do |format|
+			if @new_practice.save
+				format.html { redirect_to request.referrer, notice: 'The New Practice was successfully created.' }
+			else
+				format.html { redirect_back(fallback_location: root_path) }
+				format.json { render json: @new_practice.errors, status: :unprocessable_entity }
+			end
+		end
 	end
 
 	def update
 		@practice.day_of_week_index = check_day_for_index(practice_params.dig("day_of_week"))
 		@practice.start_time = practice_params.dig("start_time(4i)") + ":" + practice_params.dig("start_time(5i)")
 		@practice.end_time = practice_params.dig("end_time(4i)") + ":" + practice_params.dig("end_time(5i)")
-		@practice.content_id = @current_page.id
+		@practice.content_id = @content.id
 
 		respond_to do |format|
 	      if @practice.update(practice_params)
@@ -39,6 +56,10 @@ class PracticesController < ApplicationController
 	private
 	def set_page
 		@current_page = Page.named("Classes")
+	end
+
+	def set_content
+		@content = Content.of_page(@current_page).named("Class Schedule")
 	end
 
 	def set_practice

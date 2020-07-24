@@ -13,6 +13,10 @@ class Content < ApplicationRecord
 		where(page_id: page).references(:forms).display_ordered
 	}
 
+	scope :named, -> (text) {
+		find_by!(heading: text)
+	}
+
 	scope :about_miyoga, -> {
 		find_by(heading: "About Miyoga Kendo")
 	}

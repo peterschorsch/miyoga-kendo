@@ -1,18 +1,19 @@
-<div class="row">
-	<% @content.each do |content| %>
-		<div class="col-md-12">
-			<h1 class="align-center"><%= content.heading %></h1>
-			<hr />
-		</div>
-	<% end %>
-</div>
-
-<% if notice && current_user.is_admin? %>
+<% if current_user.is_admin? %>
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2 col-xs-1">
-			<%= render "templates/alerts/notice" %>
+		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
+			<%= button_tag :class => "btn btn-info btn-block btn-lg", title: 'Add', data: { toggle: 'modal', target: "#practiceAddModal" } do %>
+				<span class="glyphicon glyphicon-plus"></span> Add New Class
+			<% end %>
 		</div>
 	</div>
+	<%= render "add-modal", new_practice: @new_practice %>
+	<%= render "templates/alerts/form-errors", model: @new_practice %>
+<% end %>
+
+<%= render "templates/heading", text: @content.heading, list_of_classes: "align-center" %>
+
+<% if current_user.is_admin? %>
+	<%= render "templates/alerts/notice" if notice %>
 <% end %>
 
 <% @practices.each_with_index do |practice, index| %>
