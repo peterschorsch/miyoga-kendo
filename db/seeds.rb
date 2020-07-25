@@ -148,7 +148,7 @@ puts "TIE HAKAMA"
 @content = Content.create_with(:heading => "How to tie your Hakama", :description => "Checkout this article on how to tie your hakama.", :index => 4, :display_content_on_page => true, :display_content_fields => true, :page_id => @resources_page_id).find_or_create_by(heading: "How to tie your Hakama")
 puts @content.inspect
 puts ""
-@link = Link.create_with(name: "Kenshi 24/7 copy", :link => "https://kenshi247.net/", :index => 2, article: true, :content_id => @content.id).find_or_create_by(name: "Kenshi 24/7 copy")
+@link = Link.create_with(name: "Kenshi 24/7 copy", :link => "https://www.kendo-world.com/", :index => 2, article: true, :content_id => @content.id).find_or_create_by(name: "Kenshi 24/7 copy")
 puts @link.inspect
 puts ""
 
