@@ -1,6 +1,7 @@
 <%= render 'templates/buttons/back-to-page', path: admin_practices_path, text: "Class Schedule" %>
 
-<h1>New Class</h1>
-<hr />
+<%= render "templates/heading", text: "Class Schedule", list_of_classes: "align-center" %>
+
+<%= render "templates/alerts/notice" %>
 
 <%= render 'form', practice: @practice %>

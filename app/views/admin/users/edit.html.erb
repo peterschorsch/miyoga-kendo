@@ -1,8 +1,12 @@
-<%= render "templates/buttons/back-to-admin-home" %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render "templates/buttons/back-to-page", text: "Miyoga Roster", path: admin_users_path %>
+  </div>
+</div>
 
-<%= render "templates/heading", text: "My Profile", list_of_classes: "align-center" %>
+<%= render "templates/heading", text: "Editing: #{@user.concat_name}", list_of_classes: "align-center" %>
 
-<%= render "templates/alerts/notice" if notice %>
+<%= render "templates/alerts/notice" %>
 <%= render "templates/alerts/form-errors", model: @user %>
 
 <%= render 'form', user: @user %>

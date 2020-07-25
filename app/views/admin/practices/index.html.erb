@@ -1,8 +1,15 @@
-<%= render "templates/buttons/back-to-admin-home" %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render "templates/buttons/back-to-admin-home" %>
+  </div>
+  <div class="col-md-3 col-md-offset-6">
+    <%= render "templates/buttons/add-new", path: new_admin_practice_path, text: "Class" %>
+  </div>
+</div>
 
 <%= render "templates/heading", text: "Class Schedule", list_of_classes: "align-center" %>
 
-<%= render "templates/alerts/notice" if notice %>
+<%= render "templates/alerts/notice" %>
 
 <table class="table table-responsive table-striped" id="class_schedule_table">
   <thead>
@@ -31,7 +38,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= render "templates/buttons/add-new", path: new_admin_practice_path, text: "Class" %>

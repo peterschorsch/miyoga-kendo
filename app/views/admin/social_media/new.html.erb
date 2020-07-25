@@ -1,8 +1,12 @@
-<%= link_to admin_social_media_path, :class => "btn btn-danger", title: "Go Back", 'data-toggle' => 'tooltip' do %> 
-	<span class="glyphicon glyphicon-chevron-left"></span> Back to Social Media
-<% end %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render "templates/buttons/back-to-page", text: "Social Media", path: admin_social_media_path %>
+  </div>
+</div>
 
-<h1>Create New Social Media Site</h1>
-<hr />
+<%= render "templates/heading", text: "Create New Social Media Site", list_of_classes: "align-center" %>
+
+<%= render "templates/alerts/notice" %>
+<%= render "templates/alerts/form-errors", model: @social_medium %>
 
 <%= render 'form', social_medium: @social_medium %>

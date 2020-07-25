@@ -1,8 +1,15 @@
-<%= render "templates/buttons/back-to-admin-home" %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render "templates/buttons/back-to-admin-home" %>
+  </div>
+  <div class="col-md-3 col-md-offset-6">
+    <%= render "templates/buttons/add-new", path: new_admin_content_path, text: "Event" %>
+  </div>
+</div>
 
 <%= render "templates/heading", text: @page.name + " Page", list_of_classes: "align-center" %>
 
-<%= render "templates/alerts/notice" if notice %>
+<%= render "templates/alerts/notice" %>
 
 <% @page.contents.order_by_index.each_with_index do |content, index| %>
 	<%= render "templates/alerts/form-errors", model: content %>

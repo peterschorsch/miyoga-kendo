@@ -1,6 +1,14 @@
-<%= render 'templates/buttons/back-to-page', path: admin_social_media_path, text: "Social Media" %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render "templates/buttons/back-to-page", text: "Social Media", path: admin_social_media_path %>
+  </div>
+</div>
 
-<h1>Editing Social Medium</h1>
-<hr />
+<%= render "templates/heading", text: "Editing Social Medium", list_of_classes: "align-center" %>
+
+<%= render "templates/alerts/notice" %>
+<%= render "templates/alerts/form-errors", model: @social_medium %>
 
 <%= render 'form', social_medium: @social_medium %>
+
+

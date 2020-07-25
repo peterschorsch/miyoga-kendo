@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     resources :users, except: [:show]
     
     ### UPDATE CONTENT PAGES (ABOUT, RESOURCES) ###
-    resources :contents, only: [:update]
+    resources :contents, only: [:new, :create, :update]
     ### ABOUT PAGE ###
     get :abouts, to: 'contents#about_page'
     ### RESOURCES PAGE ###
