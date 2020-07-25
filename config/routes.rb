@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get :resources, to: 'resources#index'
 
   ### USERS ###
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:edit, :update]
   
   ##### ADMIN NAMESPACE #####
   namespace :admin do

@@ -1,29 +1,20 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
-
   before_action :authorized?
-
-  # GET /admin/users/1
-  # GET /admin/users/1.json
-  def show
-  end
 
   # GET /admin/users/1/edit
   def edit
-    puts @user.inspect
-    puts @user.firstname
   end
 
   # PATCH/PUT /admin/users/1
   # PATCH/PUT /admin/users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to user_path(@user), notice: "#{@user.concat_name} was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
+      if current_user.update(user_params)
+        format.html { redirect_to edit_user_path(current_user), notice: "#{current_user.concat_name} was successfully updated." }
+        format.json { render :show, status: :ok, location: @current_user }
       else
         format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: current_user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -33,11 +24,6 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:firstname, :lastname, :email, :role, :password, :active)
@@ -45,7 +31,9 @@ class UsersController < ApplicationController
 
     private
     def authorized?
-    if current_user && (current_user.is_admin? || current_user.is_archived? || current_user.is_guest?)
+    user = User.find(params[:id])
+    ### IF CURRENT USER IS EXISTS || USER DOESN'T MATCH CURRENT USER || IS NOT AN ADMIN, ARCHIVED OR A GUEST
+    if current_user.blank? || current_user != user || (current_user.is_admin? || current_user.is_archived? || current_user.is_guest?)
         flash[:alert] = "You are not authorized to do said action."
         redirect_to admin_root_path
       end

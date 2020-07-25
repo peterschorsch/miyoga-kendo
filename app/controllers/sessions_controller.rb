@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       @user.update_last_login
 
-      redirect_to @user.is_admin? ? admin_root_path : root_url, notice: "Welcome, #{@user.concat_name}!"
+      redirect_to @user.is_admin? ? admin_root_path : root_url
     else
       flash.now[:alert] = @user.is_archived? ? "Your account has been marked as inactive" : "Email or password is invalid"
       render "new"
