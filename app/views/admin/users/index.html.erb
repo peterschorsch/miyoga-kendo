@@ -26,7 +26,7 @@
     <% @users.each do |user| %>
       <tr class="align-center">
         <td><%= user.concat_name %></td>
-        <td><%= user.email %></td>
+        <td><%= mail_to user.email, user.email, class: "link-text" %></td>
         <td><%= user.display_role %></td>
         <td><%= user.display_active %></td>
         <td><%= user_nil_last_login(user.last_login) %></td>
