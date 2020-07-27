@@ -1,5 +1,5 @@
 class Link < ApplicationRecord
-	belongs_to :content
+	belongs_to :content, optional: true
 
 	before_save :fix_link
 

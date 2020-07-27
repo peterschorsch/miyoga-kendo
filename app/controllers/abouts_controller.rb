@@ -6,6 +6,7 @@ class AboutsController < ApplicationController
 		@content_count = @content.count
 		
 		@new_content = Content.new
+		@new_content.images.build
 	end
 
 	private

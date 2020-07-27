@@ -4,7 +4,10 @@ class ContentsController < ApplicationController
 
 	def create
 		@content = Content.new(content_params)
-		@content.page_id = Page.named("About").id
+		@content.page_id = @current_page.id
+		@content.images.each do |image|
+			image.content_id = @content.id
+		end
 
 		respond_to do |format|
 			if @content.save
@@ -51,7 +54,8 @@ class ContentsController < ApplicationController
 	    # Only allow a list of trusted parameters through.
 	    def content_params
 			params.require(:content).permit(:id, :heading, :subheading, :description, :index, :display_content_on_page,
-			links_attributes: [:id, :name, :link, :image_link, :index, :display_logo, :article, :content_id, :_destroy])
+			links_attributes: [:id, :name, :link, :image_link, :index, :display_logo, :article, :content_id, :_destroy],
+			images_attributes: [:id, :image, :_destroy])
 	    end
 
 end

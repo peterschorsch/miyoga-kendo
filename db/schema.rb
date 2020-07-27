@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_212934) do
+ActiveRecord::Schema.define(version: 2020_07_26_183130) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "location_name", null: false
@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 2020_07_17_212934) do
     t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer "content_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content_id"], name: "index_images_on_content_id"
   end
 
   create_table "links", force: :cascade do |t|

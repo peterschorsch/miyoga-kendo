@@ -32,7 +32,7 @@
 	<% if not content.subheading.blank? %>
 		<div class="row">
 			<div class="col-md-12">
-				<h2><%= content.subheading.html_safe %></h2>
+				<h2><%= content.subheading %></h2>
 			</div>
 		</div>
 	<% end %>
@@ -42,12 +42,11 @@
 				<p class="indent-paragraph"><%=content.description.html_safe%></p>
 			</div>
 			<div class="text-image-column">
-				<%= image_tag("about_page/old_kendo_postcard.jpg", class: "text-image", alt: "Old Kendo Image") %>
+				<% content.images.each do |image| %>
+					<%= image_tag(image.image.url, class: "text-image", alt: "Image") %>
+				<% end %>
 			</div>
 		</div>
 	</div>
 	<br />
 <% end %>
-
-<%#= image_tag("about_page/kendo_strike.jpg", class: "text-image", alt: "Kendo Strike") %>
-<%#= image_tag("about_page/sensei.jpg", class: "text-image", alt: "Old Kendo Image") %>

@@ -2,7 +2,6 @@ class Address < ApplicationRecord
 	belongs_to :event
     accepts_nested_attributes_for :event
 
-	has_many :class_schedules
 	belongs_to :state
 
     validates :location_name, :address_line_1, :city, :zip_code, presence: true
