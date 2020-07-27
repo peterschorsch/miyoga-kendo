@@ -2,10 +2,10 @@ class Content < ApplicationRecord
 	belongs_to :page, optional: true
 	has_many :practices
 
-	has_many :links, dependent: :destroy
+	has_many :links, inverse_of: :content, dependent: :destroy
 	accepts_nested_attributes_for :links, allow_destroy: true#, :reject_if => proc { |attributes| attributes['address_line_1'].blank? || attributes['city'].nil? || attributes['state_id'].nil?|| attributes['zip_code'].nil? }
 
-	has_many :images, dependent: :destroy
+	has_many :images, inverse_of: :content, dependent: :destroy
 	accepts_nested_attributes_for :images, allow_destroy: true
 
 	validates :heading, presence: true
@@ -33,11 +33,11 @@ class Content < ApplicationRecord
 		order(:index)
 	}
 
-	scope :only_logos, -> {
-		includes(:links).where('links.display_logo' => true).where('links.article' => false).display_ordered
+	scope :display_non_articles, -> {
+		includes(:links).where('links.article' => false).display_ordered
 	}
 
-	scope :only_articles, -> {
+	scope :display_articles, -> {
 		includes(:links).where('links.article' => true).display_ordered
 	}
 

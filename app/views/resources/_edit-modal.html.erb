@@ -31,7 +31,7 @@
 		          	</div>
 		          	<h1>Edit Links</h1>
 		          	<hr />
-		          	<%= f.fields_for :links do |link| %>
+					<%= f.fields_for :links do |link| %>
 			          	<div class="row vertical-align-middle">
 							<div class="col-xs-2 align-right"><%= link.label :name, 'Name:' %></div>
 			          		<div class="col-xs-9"><%= link.text_field :name, { class: 'form-control' } %></div>
@@ -42,13 +42,21 @@
 			          		<div class="col-xs-9"><%= link.text_field :link, { class: 'form-control' } %></div>
 			          	</div>
 			          	<br />
+			          	<%= link.fields_for :image do |image| %>
+							<div class="row vertical-align-middle">
+								<div class="col-xs-2 align-right"><%= image.label :image, 'New Image:' %></div>
+								<div class="col-xs-9"><%= image.file_field :image, { class: 'form-control' } %></div>
+							</div>
+						<% end %>
+						<br />
 			          	<div class="row vertical-align-middle">
 			          		<div class="col-xs-3 align-right"><%= link.label :index, 'Index:' %></div>
 			          		<div class="col-xs-2"><%= link.select :index, (1..link_end_count), {}, { class: 'form-control' } %></div>
 			          		<div class="col-xs-3 align-right"><%= link.label :destroy, 'Remove Link:' %></div>
 			          		<div class="col-xs-2"><%= link.check_box '_destroy', { class: 'form-control' } %></div>
-			          	</div>
-			          	<br /><br />
+						</div>
+						<hr />
+						<br />
 		          	<% end %>
 			</div>
 			<div class="modal-footer">

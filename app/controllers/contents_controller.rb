@@ -21,7 +21,7 @@ class ContentsController < ApplicationController
 
 	def update
 		respond_to do |format|
-			if @content.update(content_params)
+			if @content.update!(content_params)
 				format.html { redirect_to request.referrer, notice: 'Content was successfully updated.' }
 			else
 				format.html { redirect_to request.referrer, notice: 'Content was unsuccessfully updated.' }
@@ -54,8 +54,7 @@ class ContentsController < ApplicationController
 	    # Only allow a list of trusted parameters through.
 	    def content_params
 			params.require(:content).permit(:id, :heading, :subheading, :description, :index, :display_content_on_page,
-			links_attributes: [:id, :name, :link, :image_link, :index, :display_logo, :article, :content_id, :_destroy],
-			images_attributes: [:id, :image, :_destroy])
+			links_attributes: [:id, :name, :link, :index, :content_id, :_destroy, image_attributes: [:id, :image, :link_id, :_destroy]],)
 	    end
 
 end

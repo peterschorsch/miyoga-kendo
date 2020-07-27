@@ -3,10 +3,10 @@ class ResourcesController < ApplicationController
 
 	def index
 		@all_resources_content = @page.contents
-		@resources = @all_resources_content.only_logos
+		@resources = @all_resources_content.display_non_articles
 		@resource_count = @resources.count+1
 
-		@articles = @all_resources_content.only_articles
+		@articles = @all_resources_content.display_articles
 		@article_count = @articles.count+1
 	end
 
