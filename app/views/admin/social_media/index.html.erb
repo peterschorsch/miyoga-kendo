@@ -15,21 +15,22 @@
   <thead>
     <tr class="align-center">
       <th>Site</th>
-      <th>Link</th>
       <th>Last Edited by</th>
-      <th></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
   <tbody>
     <% @social_media.each do |social_media| %>
       <tr class="align-center">
         <td><%= link_to image_tag("logos/#{social_media.image_link}", alt: "#{social_media.site_name} Logo"), social_media.site_link, target: '_blank', class: "social_media_logo" %> <%= social_media.site_name %></td>
-        <td><%= link_to social_media.site_link, social_media.site_link, class: 'link-text', target: :_blank %></td>
+        <td><%= social_media.user.concat_name %></td>
         <td>
-          <%= link_to edit_admin_social_medium_path(social_media), :class => "btn btn-warning", title: "Edit #{social_media.site_name}", 'data-toggle' => 'tooltip' do %> 
+          <%= link_to edit_admin_social_medium_path(social_media), :class => "btn btn-warning btn-block", title: "Edit #{social_media.site_name}", 'data-toggle' => 'tooltip' do %> 
             <span class="glyphicon glyphicon-edit"></span> Edit
           <% end %>
-          <%= link_to [:admin, social_media], :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }, title: "Remove #{social_media.site_name}", 'data-toggle' => 'tooltip' do %> 
+        </td>
+        <td>
+          <%= link_to [:admin, social_media], :class => "btn btn-danger btn-block", method: :delete, data: { confirm: 'Are you sure?' }, title: "Remove #{social_media.site_name}", 'data-toggle' => 'tooltip' do %> 
             <span class="glyphicon glyphicon-trash"></span> Remove
           <% end %>
         </td>

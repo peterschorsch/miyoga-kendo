@@ -4,7 +4,7 @@ class Admin::SocialMediaController < Admin::AdminController
   # GET /social_media
   # GET /social_media.json
   def index
-    @social_media = SocialMedium.all
+    @social_media = SocialMedium.includes(:user).all
   end
 
   # GET /social_media/new
