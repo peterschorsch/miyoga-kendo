@@ -44,17 +44,6 @@ class Admin::AboutsController < Admin::AdminController
     end
   end
 
-  def destroy
-    @content.display_content_on_page = false
-    respond_to do |format|
-      if @content.update(content_params)
-        format.html { redirect_to admin_abouts_path, notice: 'Content was successfully removed.' }
-      else
-        format.html { render "admin/contents/about_page", notice: 'Content was successfully removed.' }
-      end
-    end
-  end
-
   private
     def set_current_page
       @current_page = Page.named("About")

@@ -36,13 +36,11 @@ Rails.application.routes.draw do
 
     ### USERS PAGE ###
     resources :users, except: [:show, :destroy]
-    
-    ### UPDATE CONTENT PAGES (ABOUT, RESOURCES) ###
-    resources :contents, only: [:new, :create, :update, :destroy]
+
     ### ABOUT PAGE ###
-    resources :abouts
+    resources :abouts, except: [:destroy]
     ### RESOURCES PAGE ###
-    resources :resources
+    resources :resources, except: [:destroy]
 
     ### CLASS SCHEDULE PAGE ###
     resources :practices, except: [:show]
