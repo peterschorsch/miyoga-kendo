@@ -4,7 +4,11 @@ class Admin::UsersController < Admin::AdminController
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @users = User.select(:id, :firstname, :lastname, :email, :role, :active, :last_login).order_by_role
+    @users = User.select(:id, :firstname, :lastname, :email, :role, :active, :last_login).remove_guest_account
+    @active_users = @users.user_accounts.order_by_name
+    @active_admins = @users.admin_accounts.active_accounts.order_by_name
+    @inactive_users = @users.user_accounts.archived_accounts.order_by_name
+    @inactive_admins = @users.admin_accounts.archived_accounts.order_by_name
   end
 
   # GET /admin/users/1

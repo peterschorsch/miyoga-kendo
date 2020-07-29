@@ -17,16 +17,28 @@ class User < ApplicationRecord
 		(?=.*[[:^alnum:]]) # Must contain a symbol
 	/x
 	
-	scope :active_users, -> {
+	scope :active_accounts, -> {
 		where(:active => true).remove_guest_account
 	}
 
-	scope :archived_users, -> {
+	scope :archived_accounts, -> {
 		where(:active => false).remove_guest_account
 	}
 
+	scope :admin_accounts, -> {
+		where(:role => "Admin")
+	}
+
+	scope :user_accounts, -> {
+		where(:role => "User")
+	}
+
+	scope :order_by_name, -> {
+		order(:lastname, :firstname, :email, :last_login)
+	}
+
 	scope :order_by_role, -> {
-		order(:role, :lastname, :firstname, :email).remove_guest_account
+		order(:role, :lastname, :firstname, :email)
 	}
 
 	scope :remove_guest_account, -> {

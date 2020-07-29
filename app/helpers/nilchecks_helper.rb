@@ -14,4 +14,9 @@ module NilchecksHelper
 		return tf_check(field) ? raw("<i>n/a</i>") : field.html_safe
 	end
 
+	##### RETURNS N/A - FOR USER LAST LOGIN #####
+	def user_nil_last_login(last_login)
+		return tf_check(last_login) ? "n/a" : formateDateTimeWithAt(last_login)
+	end
+
 end

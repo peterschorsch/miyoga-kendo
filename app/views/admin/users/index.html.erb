@@ -11,34 +11,28 @@
 
 <%= render "templates/alerts/notice" %>
 
-<table class="table table-responsive table-striped" id="users_table">
-  <thead>
-    <tr class="align-center">
-      <th>Name</th>
-      <th>Email</th>
-      <th>Role</th>
-      <th>Active?</th>
-      <th>Last Login</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr class="align-center">
-        <td><%= user.concat_name %></td>
-        <td><%= mail_to user.email, user.email, class: "link-text" %></td>
-        <td><%= user.display_role %></td>
-        <td><%= user.display_active %></td>
-        <td><%= user_nil_last_login(user.last_login) %></td>
-        <td>
-          <%= link_to edit_admin_user_path(user), :class => "btn btn-warning", title: "Edit #{user.firstname}", 'data-toggle' => 'tooltip' do %> 
-            <span class="glyphicon glyphicon-edit"></span> Edit
-          <% end %>
-          <%= link_to [:admin, user], :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }, title: "Remove #{user.firstname}", 'data-toggle' => 'tooltip' do %> 
-            <span class="glyphicon glyphicon-trash"></span> Remove
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<ul class="nav nav-tabs nav-justified text-link">
+  <li class="active"><a data-toggle="tab" href="#active_users">Active Users</a></li>
+  <li><a data-toggle="tab" href="#active_admins">Active Admins</a></li>
+  <li><a data-toggle="tab" href="#inactive_users">Inactive Users</a></li>
+  <li><a data-toggle="tab" href="#inactive_admins">Inactive Admins</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="active_users" class="tab-pane fade in active">
+    <br />
+    <%= render "table", users: @active_users %>
+  </div>
+  <div id="active_admins" class="tab-pane fade">
+    <br />
+    <%= render "table", users: @active_admins %>
+  </div>
+  <div id="inactive_users" class="tab-pane fade in">
+    <br />
+    <%= render "table", users: @inactive_users %>
+  </div>
+  <div id="inactive_admins" class="tab-pane fade">
+    <br />
+    <%= render "table", users: @inactive_admins %>
+  </div>
+</div>

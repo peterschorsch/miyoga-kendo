@@ -22,10 +22,10 @@
 						</thead>
 						<tbody>
 							<% @users.each do |user| %>
-								<tr class="align-center">
+								<tr class="align-center table-hover">
 									<td><%=user.concat_name%></td>
 									<td><%=user.role%></td>
-									<td><%=nil_check(user.last_login) ? "n/a" : formateDateTimeWithAt(user.last_login) %></td>
+									<td><%=user_nil_last_login(user.last_login)%></td>
 								</tr>
 							<% end %>
 						</tbody>
