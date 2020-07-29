@@ -1,3 +1,5 @@
+<%= render "templates/alerts/notice" %>
+
 <div class="row">
 	<div class="col-md-3">
 		<%= render "templates/buttons/back-to-page", text: "Resources", path: admin_resources_path %>
@@ -16,7 +18,7 @@
 </div>
 <hr />
 
-<% if tf_check(@resource.subheading) %>
+<% if not tf_check(@resource.subheading) %>
 	<div class="row">
 		<div class="col-md-12">
 			<h2><%= @resource.subheading %></h2>
@@ -25,13 +27,23 @@
 <% end %>
 
 <% @resource.links.includes(:image).each do |link| %>
-	<div class="col-md-3">
-		<%= link_to image_tag(link.image.image.url, class: "text-image", alt: link.image.image_file_name), link.link, target: :_blank if not link.image.blank? %>
-	</div>
+	<% if not link.image.blank? %>
+		<div class="col-md-3">
+			<%= link_to image_tag(link.image.image.url, class: "text-image", alt: link.image.image_file_name), link.link, target: :_blank  %>
+		</div>
+	<% end %>
 	<% if link.article %>
 		<div class="col-md-7">
 			<p><%= @resource.description.html_safe if not tf_check(@resource.description) %></p>
 			<p><%= link_to "Visit Article &raquo".html_safe, link.link, :class => "btn btn-info", target: :_blank if link.article %></p>
 		</div>
+	<% else %>
+		<% if not tf_check(@resource.description) %>
+			<div class="row">
+				<div class="col-md-12">
+					<p><%= @resource.description.html_safe %></p>
+				</div>
+			</div>
+		<% end %>
 	<% end %>
 <% end %>

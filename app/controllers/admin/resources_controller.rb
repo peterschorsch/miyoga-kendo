@@ -1,6 +1,7 @@
 class Admin::ResourcesController < Admin::AdminController
-  before_action :set_current_page, only: [:index, :show, :edit, :update, :destroy]
-  before_action :set_resource, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_page, except: [:new]
+  before_action :set_resource, except: [:index, :new, :create]
+  
 
   def index
     @contents = @current_page.contents
@@ -14,9 +15,24 @@ class Admin::ResourcesController < Admin::AdminController
 
   def new
     @resource = Content.new
+    @resource.links.build
+
   end
 
-  def edit
+  def create
+    @resource = Content.new(resource_params)
+    @resource.display_content_on_page = true
+    @resource.page_id = @current_page.id
+
+    respond_to do |format|
+      if @resource.save
+        format.html { redirect_to admin_resource_path(@resource), notice: 'Resource was successfully created.' }
+        format.json { render :show, status: :created, location: @resource }
+      else
+        format.html { render :new }
+        format.json { render json: @resource.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
@@ -54,7 +70,8 @@ class Admin::ResourcesController < Admin::AdminController
     # Only allow a list of trusted parameters through.
     def resource_params
       params.require(:content).permit(:heading, :subheading, :description, :index, :display_content_on_page, :_destroy,
-      links_attributes: [:id, :name, :link, :image_link, :index, :display_logo, :article, :content_id, :_destroy])
+      links_attributes: [:id, :name, :link, :image_link, :index, :display_logo, :article, :content_id, :_destroy, 
+        image_attributes: [:id, :image, :link_id]])
     end
 
 end

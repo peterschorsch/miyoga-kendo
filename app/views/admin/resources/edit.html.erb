@@ -9,4 +9,4 @@
 <%= render "templates/alerts/notice" %>
 <%= render "templates/alerts/form-errors", model: @resource %>
 
-<%= render "form", resource: @resource %>
+<%= render "form", resource: @resource, path: admin_resource_path(@resource) %>
