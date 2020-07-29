@@ -22,7 +22,7 @@
   </thead>
   <tbody>
     <% @practices.each do |practice| %>
-      <tr class="align-center">
+      <tr class="align-center table-hover">
         <td><%= practice.day_of_week %></td>
         <td><%= formatTime(practice.start_time) %> - <%= formatTime(practice.end_time) %></td>
         <td>$<%= practice.cost_per_month %></td>

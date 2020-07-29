@@ -21,7 +21,7 @@
   </thead>
   <tbody>
     <% @social_media.each do |social_media| %>
-      <tr class="align-center">
+      <tr class="align-center table-hover">
         <td><%= link_to image_tag("logos/#{social_media.image_link}", alt: "#{social_media.site_name} Logo"), social_media.site_link, target: '_blank', class: "social_media_logo" %> <%= social_media.site_name %></td>
         <td><%= social_media.user.concat_name %></td>
         <td>
