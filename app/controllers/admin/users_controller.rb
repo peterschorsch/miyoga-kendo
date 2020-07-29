@@ -1,11 +1,11 @@
 class Admin::UsersController < Admin::AdminController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update]
 
   # GET /admin/users
   # GET /admin/users.json
   def index
     @users = User.select(:id, :firstname, :lastname, :email, :role, :active, :last_login).remove_guest_account
-    @active_users = @users.user_accounts.order_by_name
+    @active_users = @users.user_accounts.active_accounts.order_by_name
     @active_admins = @users.admin_accounts.active_accounts.order_by_name
     @inactive_users = @users.user_accounts.archived_accounts.order_by_name
     @inactive_admins = @users.admin_accounts.archived_accounts.order_by_name
@@ -51,7 +51,7 @@ class Admin::UsersController < Admin::AdminController
   def update
     respond_to do |format|
       if @user.update!(user_params)
-        format.html { redirect_to edit_admin_user_path(@user), notice: "#{@user.concat_name} was successfully updated." }
+        format.html { redirect_to admin_users_path, notice: "#{@user.concat_name} was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -62,16 +62,6 @@ class Admin::UsersController < Admin::AdminController
 
   def update_password
 
-  end
-
-  # DELETE /admin/users/1
-  # DELETE /admin/users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_users_path, notice: 'User was successfully removed.' }
-      format.json { head :no_content }
-    end
   end
 
   private

@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     root 'admin#dashboard'
 
     ### USERS PAGE ###
-    resources :users, except: [:show]
+    resources :users, except: [:show, :destroy]
     
     ### UPDATE CONTENT PAGES (ABOUT, RESOURCES) ###
     resources :contents, only: [:new, :create, :update, :destroy]
