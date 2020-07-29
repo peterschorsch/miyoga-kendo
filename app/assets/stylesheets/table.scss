@@ -1,3 +1,9 @@
 .table-cell-background{
 	background-color: #dee2e6;
 }
+
+// When hovering over table rows, change background color and font color
+.table-hover:hover {
+	background-color: #000080 !important;
+	color: white !important;
+}

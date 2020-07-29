@@ -30,7 +30,7 @@
 					<% content.links.each do |link| %>
 						<div class="col-md-3 col-sm-6">
 							<div class="panel panel-default">
-								<div class="panel-body"><%= link_to image_tag(link.image.image.url, class: "image-center", alt: link.image.image_file_name), link.link, class: "header-link-text", target: :_blank if not link.image.blank?%></div>
+								<div class="panel-body"><%= link_to image_tag(link.image.image.url, class: "image-center", alt: link.image.image_file_name), link.link, class: "header-link-text", target: :_blank if not link.image.blank? %></div>
 							</div>
 						</div>
 					<% end %>

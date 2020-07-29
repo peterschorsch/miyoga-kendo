@@ -6,11 +6,6 @@ class Admin::ContentsController < Admin::AdminController
     @page = Page.named("About")
   end
 
-  def resource_page
-    @page = Page.named("Resources")
-    @contents = @page.contents.includes(:links)
-  end
-
   def index
     @contents = Content.all
     @pages = @contents.pages.includes(:contents)

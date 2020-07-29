@@ -2,7 +2,7 @@ class AboutsController < ApplicationController
 	before_action :set_page
 
 	def index
-		@content = Content.of_page(@current_page).display_ordered
+		@content = Content.of_page(@current_page).active_ordered
 		@content_count = @content.count
 		
 		@new_content = Content.new

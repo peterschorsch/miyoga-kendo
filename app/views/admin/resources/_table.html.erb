@@ -1,0 +1,22 @@
+<table class="table table-responsive table-striped">
+	<thead>
+		<tr class="align-center">
+			<th>Heading</th>
+			<th>Subheading</th>
+			<th>Description</th>
+			<th>Link(s) to</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% contents.each do |content| %>
+			<tr class="align-center table-hover">
+				<td><%= content.heading.truncate_words(5) %></td>
+				<td><%= nil_check(content.subheading).truncate_words(5) %></td>
+				<td><%= description_nil_check(content.description).truncate_words(5) %></td>
+				<td><%= content.links.map{ |l| l.name }.join(", ") %></td>
+				<td><%= link_to "Show", admin_resource_path(content), :class => "btn btn-success" %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

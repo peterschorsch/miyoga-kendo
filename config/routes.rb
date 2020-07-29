@@ -38,11 +38,11 @@ Rails.application.routes.draw do
     resources :users, except: [:show]
     
     ### UPDATE CONTENT PAGES (ABOUT, RESOURCES) ###
-    resources :contents, only: [:new, :create, :update]
+    resources :contents, only: [:new, :create, :update, :destroy]
     ### ABOUT PAGE ###
     get :abouts, to: 'contents#about_page'
     ### RESOURCES PAGE ###
-    get :resources, to: 'contents#resource_page'
+    resources :resources
 
     ### CLASS SCHEDULE PAGE ###
     resources :practices, except: [:show]

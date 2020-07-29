@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-md-3">
+		<%= render "templates/buttons/back-to-page", text: "Resources", path: admin_resources_path %>
+	</div>
+</div>
+
+<div class="row vertical-align-middle">
+	<div class="col-md-10">
+		<h1><%= @resource.heading %></h1>
+	</div>
+	<div class="col-md-2">
+		<%= link_to edit_admin_resource_path(@resource), :class => "btn btn-warning btn-block", title: "Edit", 'data-toggle' => 'tooltip' do %> 
+			<span class="glyphicon glyphicon-edit"></span> Edit
+		<% end %>
+	</div>
+</div>
+<hr />
+
+<% if tf_check(@resource.subheading) %>
+	<div class="row">
+		<div class="col-md-12">
+			<h2><%= @resource.subheading %></h2>
+		</div>
+	</div>
+<% end %>
+
+<% @resource.links.includes(:image).each do |link| %>
+	<div class="col-md-3">
+		<%= link_to image_tag(link.image.image.url, class: "text-image", alt: link.image.image_file_name), link.link, target: :_blank if not link.image.blank? %>
+	</div>
+	<% if link.article %>
+		<div class="col-md-7">
+			<p><%= @resource.description.html_safe if not tf_check(@resource.description) %></p>
+			<p><%= link_to "Visit Article &raquo".html_safe, link.link, :class => "btn btn-info", target: :_blank if link.article %></p>
+		</div>
+	<% end %>
+<% end %>

@@ -14,7 +14,7 @@ class Content < ApplicationRecord
 	validate :strip_fields
 
 	scope :of_page, -> (page) {
-		where(page_id: page).references(:forms).display_ordered
+		where(page_id: page).references(:forms).active_ordered
 	}
 
 	scope :named, -> (text) {
@@ -25,20 +25,33 @@ class Content < ApplicationRecord
 		find_by(heading: "About Miyoga Kendo")
 	}
 
-	scope :display_ordered, -> {
-		where(display_content_on_page: true).order(:index)
+	scope :active_ordered, -> {
+		where(display_content_on_page: true).order_by_index
+	}
+
+	scope :inactive_ordered, -> {
+		where(display_content_on_page: true).order_by_index
 	}
 
 	scope :order_by_index, -> {
 		order(:index)
 	}
 
+	### FOR RESOURCES PAGE ###
 	scope :display_non_articles, -> {
-		includes(:links).where('links.article' => false).display_ordered
+		includes(:links).where('links.article' => false).active_ordered
 	}
 
 	scope :display_articles, -> {
-		includes(:links).where('links.article' => true).display_ordered
+		includes(:links).where('links.article' => true).active_ordered
+	}
+
+	scope :inactive_non_articles, -> {
+		includes(:links).where('links.article' => false).inactive_ordered
+	}
+
+	scope :inactive_articles, -> {
+		includes(:links).where('links.article' => true).inactive_ordered
 	}
 
 	def strip_fields
