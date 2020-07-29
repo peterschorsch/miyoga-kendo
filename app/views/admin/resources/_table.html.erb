@@ -5,7 +5,7 @@
 			<th>Subheading</th>
 			<th>Description</th>
 			<th>Link(s) to</th>
-			<th></th>
+			<th colspan="2"></th>
 			<th></th>
 		</tr>
 	</thead>
@@ -16,9 +16,9 @@
 				<td><%= nil_check(content.subheading).truncate_words(5) %></td>
 				<td><%= description_nil_check(content.description).truncate_words(5) %></td>
 				<td><%= content.links.map{ |l| l.name }.join(", ") %></td>
-				<td><%= link_to "Show", admin_resource_path(content), :class => "btn btn-success" %></td>
+				<td><%= link_to "Show", admin_resource_path(content), :class => "btn btn-success btn-block" %></td>
 				<td>
-					<%= link_to edit_admin_resource_path(content), :class => "btn btn-warning" do %> 
+					<%= link_to edit_admin_resource_path(content), :class => "btn btn-warning btn-block" do %> 
 						<span class="glyphicon glyphicon-edit"></span> Edit
 					<% end %>
 				</td>

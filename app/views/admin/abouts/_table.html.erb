@@ -4,8 +4,7 @@
 			<th>Heading</th>
 			<th>Subheading</th>
 			<th>Description</th>
-			<th></th>
-			<th></th>
+			<th colspan="2"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -14,9 +13,9 @@
 				<td><%= content.heading.truncate_words(5) %></td>
 				<td><%= nil_check(content.subheading).truncate_words(5) %></td>
 				<td><%= description_nil_check(content.description).truncate_words(10) %></td>
-				<td><%= link_to "Show", admin_about_path(content), :class => "btn btn-success" %></td>
+				<td><%= link_to "Show", admin_about_path(content), :class => "btn btn-success btn-block" %></td>
 				<td>
-					<%= link_to edit_admin_about_path(content), :class => "btn btn-warning" do %> 
+					<%= link_to edit_admin_about_path(content), :class => "btn btn-warning btn-block" do %> 
 						<span class="glyphicon glyphicon-edit"></span> Edit
 					<% end %>
 				</td>
