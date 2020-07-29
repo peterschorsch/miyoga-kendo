@@ -1,7 +1,6 @@
 class Admin::EventsController < Admin::AdminController
   before_action :set_event_address, only: [:show, :edit, :update]
   before_action :set_state_collection, only: [:new, :edit]
-  before_action :set_event, only: [:make_inactive]
 
   # GET /events
   # GET /events.json
@@ -75,7 +74,7 @@ class Admin::EventsController < Admin::AdminController
   # PATCH/PUT /events/1.json
   def update
     respond_to do |format|
-      if @event.update!(new_event_params)
+      if @event.update(new_event_params)
         format.html { redirect_to admin_events_path, notice: 'Event was successfully updated.' }
         format.json { render :index, status: :ok, location: @event }
       else
@@ -85,18 +84,6 @@ class Admin::EventsController < Admin::AdminController
     end
   end
 
-  # DELETE /events/1
-  # DELETE /events/1.json
-  def make_inactive
-    @event.active = false
-    if @event.update!(new_event_params)
-        format.html { redirect_to admin_events_path, notice: 'Event was successfully updated.' }
-        format.json { render :index, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @address.errors, status: :unprocessable_entity }
-      end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
