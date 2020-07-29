@@ -20,6 +20,7 @@ class Admin::AboutsController < Admin::AdminController
 
   def create
     @content = Content.new(content_params)
+    @content.display_content_on_page = true
     @content.page_id = @current_page.id
 
     respond_to do |format|
