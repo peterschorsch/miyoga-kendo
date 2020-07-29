@@ -1,6 +1,12 @@
-<%= render 'templates/buttons/back-to-page', path: admin_events_path, text: "Events" %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render "templates/buttons/back-to-page", text: "Events", path: admin_events_path %>
+  </div>
+</div>
 
-<h1>Editing Event</h1>
-<hr />
+<%= render "templates/heading", text: "Editing Event", list_of_classes: "align-center" %>
 
-<%= render 'form', event: @event %>
+<%= render "templates/alerts/notice" %>
+<%= render "templates/alerts/form-errors", model: @event %>
+
+<%= render "form", event: @event %>

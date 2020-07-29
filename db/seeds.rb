@@ -42,7 +42,7 @@ puts @social_media.inspect
 puts ""
 
 puts "PAGES"
-admin_user_id = User.active_users.first.id
+admin_user_id = User.active_accounts.first.id
 @page = Page.create_with(name: "About", path: "abouts_path", admin_path: "admin_abouts_path", index: 1, user_id: admin_user_id).find_or_create_by(name: "About")
 puts @page.inspect
 @page = Page.create_with(name: "Classes", path: "practices_path", admin_path: "admin_practices_path", index: 2, user_id: admin_user_id).find_or_create_by(name: "Classes")

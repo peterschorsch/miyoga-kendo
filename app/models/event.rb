@@ -5,11 +5,11 @@ class Event < ApplicationRecord
 	validates :title, :start_date, :end_date, presence: true
 
 	scope :display_active, -> {
-		where(:active => true).order_by_recent
+		where(:display => true).order_by_recent
 	}
 
 	scope :display_inactive, -> {
-		where(:active => false).order_by_oldest
+		where(:display => false).order_by_oldest
 	}
 
 	scope :order_by_recent, -> {

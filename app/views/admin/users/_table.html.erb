@@ -17,7 +17,7 @@
           <%= link_to edit_admin_user_path(user), :class => "btn btn-warning", title: "Edit #{user.firstname}", 'data-toggle' => 'tooltip' do %> 
             <span class="glyphicon glyphicon-edit"></span> Edit
           <% end %>
-          <%= link_to [:admin, user], :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }, title: "Remove #{user.firstname}", 'data-toggle' => 'tooltip' do %> 
+          <%= link_to [:admin, user], :class => "btn btn-danger", data: { confirm: 'Are you sure?' }, title: "Remove #{user.firstname}", 'data-toggle' => 'tooltip' do %> 
             <span class="glyphicon glyphicon-trash"></span> Remove
           <% end %>
         </td>

@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     ### CLASS SCHEDULE PAGE ###
     resources :practices, except: [:show]
     ### EVENTS PAGE ###
-    resources :events, except: [:show]
+    resources :events
 
     ### ADDRESS PAGE ###
     resources :addresses, except: [:show]

@@ -18,21 +18,19 @@
       <th>Name</th>
       <th>Date</th>
       <th>Held in</th>
-      <th></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
   <tbody>
     <% @events.each do |event| %>
-      <tr class="align-center">
+      <tr class="align-center table-hover">
         <td><%= event.title %></td>
         <td><%= formatEventsDateRange(event.start_date, event.end_date) %></td>
         <td><%= event.address.city %>, <%= event.address.state.name %></td>
+        <td><%= link_to "Show", admin_event_path(event), :class => "btn btn-success btn-block" %></td>
         <td>
-          <%= link_to edit_admin_event_path(event), :class => "btn btn-warning", title: "Edit #{event.title}", 'data-toggle' => 'tooltip' do %> 
+          <%= link_to edit_admin_event_path(event), :class => "btn btn-warning btn-block", title: "Edit #{event.title}", 'data-toggle' => 'tooltip' do %> 
             <span class="glyphicon glyphicon-edit"></span> Edit
-          <% end %>
-          <%= link_to [:admin, event], :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }, title: "Remove #{event.title}", 'data-toggle' => 'tooltip' do %> 
-            <span class="glyphicon glyphicon-trash"></span> Remove
           <% end %>
         </td>
       </tr>

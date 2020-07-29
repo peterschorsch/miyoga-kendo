@@ -1,11 +1,15 @@
 class Admin::EventsController < Admin::AdminController
-  before_action :set_edit_event, only: [:edit, :update]
+  before_action :set_event_address, only: [:show, :edit, :update]
   before_action :set_state_collection, only: [:new, :edit]
+  before_action :set_event, only: [:make_inactive]
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.includes(address: :state).all
+    @events = Event.includes(address: :state).display_active
+  end
+
+  def show
   end
 
   # GET /events/new
@@ -83,12 +87,15 @@ class Admin::EventsController < Admin::AdminController
 
   # DELETE /events/1
   # DELETE /events/1.json
-  def destroy
-    @event.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_events_path, notice: 'Event was successfully removed.' }
-      format.json { head :no_content }
-    end
+  def make_inactive
+    @event.active = false
+    if @event.update!(new_event_params)
+        format.html { redirect_to admin_events_path, notice: 'Event was successfully updated.' }
+        format.json { render :index, status: :ok, location: @event }
+      else
+        format.html { render :edit }
+        format.json { render json: @address.errors, status: :unprocessable_entity }
+      end
   end
 
   private
@@ -97,7 +104,7 @@ class Admin::EventsController < Admin::AdminController
       @event = Event.find(params[:id])
     end
 
-    def set_edit_event
+    def set_event_address
       @event = Event.find(params[:id])
       @address = @event.address
     end
@@ -107,7 +114,7 @@ class Admin::EventsController < Admin::AdminController
     end
 
     def new_event_params
-      params.require(:event).permit(:id, :title, :start_date, :end_date, :description, :address_id,
+      params.require(:event).permit(:id, :title, :start_date, :end_date, :description, :display, :address_id,
         address_attributes: [:id, :location_name, :address_line_1, :address_line_2, :city, :state_id, :zip_code])
     end
 
