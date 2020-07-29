@@ -1,0 +1,42 @@
+<%= form_with(model: [:admin, content], url: path, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
+	<div class="row vertical-align-middle">
+		<div class="col-xs-2 align-right"><%= f.label :heading, 'Heading:' %></div>
+		<div class="col-xs-9"><%= f.text_field :heading, { class: 'form-control' } %></div>
+	</div>
+	<br />
+	<div class="row vertical-align-middle">
+		<div class="col-xs-2 align-right"><%= f.label :subheading, 'SubHeading:' %></div>
+		<div class="col-xs-9"><%= f.text_field :subheading, { class: 'form-control' } %></div>
+	</div>
+	<br />
+	<div class="row vertical-align-middle">
+		<div class="col-xs-2 align-right"><%= f.label :description, 'Description:' %></div>
+		<div class="col-xs-9"><%= f.cktext_area :description, { class: 'form-control', language: "us", rows: 25 } %></div>
+	</div>
+	<br />
+	<%= f.fields_for :images do |image| %>
+		<div class="row vertical-align-middle">
+			<% if not content.new_record? %>
+				<div class="col-xs-2 align-right"><%= image.label 'Current Image:' %></div>
+				<div class="col-xs-3"><%= image.object.image_file_name %></div>
+			<% end %>
+			<div class="col-xs-3 align-right"><%= image.label :link, 'Replace Current Image:' %></div>
+			<div class="col-xs-3"><%= image.file_field :image, class: 'form-control' %></div>
+		</div>
+	<% end %>
+	<br />
+	<div class="row vertical-align-middle">
+		<div class="col-xs-2 align-right"><%= f.label :index, 'Content Order:' %></div>
+		<div class="col-xs-3"><%= f.select :index, (1..10), {}, { class: 'form-control' } %></div>
+		<% if not content.new_record? %>
+			<div class="col-xs-3 align-right"><%= f.label :display_content_on_page, 'Remove Content:' %></div>
+			<div class="col-xs-3"><%= f.check_box :display_content_on_page, { class: 'form-control', :checked => !content.display_content_on_page }, 0, 1 %></div>
+		<% end %>
+	</div>
+	<br />
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<%= f.submit "Save Changes", class: "btn btn-success btn-block" %>
+		</div>
+	</div>
+<% end %>

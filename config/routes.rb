@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     ### UPDATE CONTENT PAGES (ABOUT, RESOURCES) ###
     resources :contents, only: [:new, :create, :update, :destroy]
     ### ABOUT PAGE ###
-    get :abouts, to: 'contents#about_page'
+    resources :abouts
     ### RESOURCES PAGE ###
     resources :resources
 

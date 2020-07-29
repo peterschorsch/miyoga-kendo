@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= render "templates/buttons/back-to-admin-home" %>
+  </div>
+  <div class="col-md-3 col-md-offset-6">
+    <%= render "templates/buttons/add-new", path: new_admin_about_path, text: "Content" %>
+  </div>
+</div>
+
+<%= render "templates/heading", text: @current_page.name + " Page", list_of_classes: "align-center" %>
+
+<%= render "templates/alerts/notice" %>
+		
+<%= render "table", contents: @contents %>

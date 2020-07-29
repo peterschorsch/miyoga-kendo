@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="col-md-3">
+		<%= render "templates/buttons/back-to-page", text: "About", path: admin_abouts_path %>
+	</div>
+</div>
+
+<div class="row vertical-align-middle">
+	<div class="col-md-10">
+		<h1><%= @content.heading %></h1>
+	</div>
+	<div class="col-md-2">
+		<%= link_to edit_admin_about_path(@content), :class => "btn btn-warning btn-block", title: "Edit", 'data-toggle' => 'tooltip' do %> 
+			<span class="glyphicon glyphicon-edit"></span> Edit
+		<% end %>
+	</div>
+</div>
+<hr />
+
+<% if not tf_check(@content.subheading) %>
+	<div class="row">
+		<div class="col-md-12">
+			<h2><%= @content.subheading %></h2>
+		</div>
+	</div>
+<% end %>
+
+<% if not tf_check(@content.description) %>
+	<div class="paragraph-container">
+		<div class="row">
+			<div class="text-image-column">
+				<p class="indent-paragraph"><%= @content.description.html_safe %></p>
+			</div>
+			<div class="text-image-column">
+				<% @content.images.each do |image| %>
+					<%= image_tag(image.image.url, class: "text-image", alt: "Image") %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+<% end %>
