@@ -1,5 +1,6 @@
 class Content < ApplicationRecord
 	belongs_to :page, optional: true
+	belongs_to :user
 	has_many :practices
 
 	has_many :links, inverse_of: :content, dependent: :destroy

@@ -4,7 +4,7 @@ class Admin::ResourcesController < Admin::AdminController
   
 
   def index
-    @contents = @current_page.contents
+    @contents = @current_page.contents.includes(:user)
 
     @active_resources = @contents.display_non_articles
     @active_readings = @contents.display_articles

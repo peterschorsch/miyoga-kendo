@@ -4,7 +4,7 @@ class Admin::AboutsController < Admin::AdminController
   
 
   def index
-    @contents = @current_page.contents.active_ordered
+    @contents = @current_page.contents.includes(:user).active_ordered
   end
 
   def show
@@ -22,9 +22,10 @@ class Admin::AboutsController < Admin::AdminController
     @content = Content.new(content_params)
     @content.display_content_on_page = true
     @content.page_id = @current_page.id
+    @content.user_id = @current_user.id
 
     respond_to do |format|
-      if @content.save!
+      if @content.save
         format.html { redirect_to admin_about_path(@content), notice: 'Content was successfully created.' }
         format.json { render :show, status: :created, location: @content }
       else
@@ -35,11 +36,12 @@ class Admin::AboutsController < Admin::AdminController
   end
 
   def update
+    @content.user_id = @current_user.id
     respond_to do |format|
       if @content.update(content_params)
         format.html { redirect_to admin_abouts_path, notice: 'Content was successfully updated.' }
       else
-        format.html { render :show, notice: 'Content was unsuccessfully updated.' }
+        format.html { render :edit, notice: 'Content was unsuccessfully updated.' }
       end
     end
   end

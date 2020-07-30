@@ -1,8 +1,11 @@
 <%= render "templates/alerts/notice" %>
 
-<div class="row">
+<div class="row vertical-align-middle">
 	<div class="col-md-3">
 		<%= render "templates/buttons/back-to-page", text: "About", path: admin_abouts_path %>
+	</div>
+	<div class="col-md-9 align-right">
+		<%= render "templates/admin-modified-by", content: @content %>
 	</div>
 </div>
 

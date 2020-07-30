@@ -3,6 +3,7 @@ class Address < ApplicationRecord
     accepts_nested_attributes_for :event
 
 	belongs_to :state
+    belongs_to :state
 
     validates :location_name, :address_line_1, :city, :zip_code, presence: true
     validates :zip_code, length: { is: 5 }

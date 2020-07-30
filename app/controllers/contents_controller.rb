@@ -5,6 +5,7 @@ class ContentsController < ApplicationController
 	def create
 		@content = Content.new(content_params)
 		@content.page_id = @current_page.id
+		@content.user_id = current_user.id
 		@content.images.each do |image|
 			image.content_id = @content.id
 		end
@@ -20,6 +21,8 @@ class ContentsController < ApplicationController
 	end
 
 	def update
+		@content.user_id = current_user.id
+
 		respond_to do |format|
 			if @content.update!(content_params)
 				format.html { redirect_to request.referrer, notice: 'Content was successfully updated.' }
@@ -31,6 +34,8 @@ class ContentsController < ApplicationController
 
 	def destroy
 		@content.display_content_on_page = false
+		@content.user_id = current_user.id
+
 		respond_to do |format|
 			if @content.update(content_params)
 				format.html { redirect_to request.referrer, notice: 'Content was successfully removed.' }

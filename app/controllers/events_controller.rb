@@ -12,9 +12,10 @@ class EventsController < ApplicationController
 
 	def create
 		@event = Event.new(event_params)
+		@event.user_id = current_user.id
 
 		respond_to do |format|
-			if @event.save!
+			if @event.save
 				format.html { redirect_to request.referrer, notice: 'A New Event was successfully created.' }
 			else
 				format.html { redirect_back(fallback_location: root_path) }
@@ -24,6 +25,8 @@ class EventsController < ApplicationController
 	end
 
 	def update
+		@event.user_id = current_user.id
+
 		respond_to do |format|
 	      if @event.update(event_params)
 	        format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
@@ -35,6 +38,8 @@ class EventsController < ApplicationController
 
 	def destroy
 		@event.active = false
+		@event.user_id = current_user.id
+
 	    respond_to do |format|
 			if @event.save
 				format.html { redirect_to events_path, notice: 'Event was successfully deleted.' }

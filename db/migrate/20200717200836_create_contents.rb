@@ -10,6 +10,7 @@ class CreateContents < ActiveRecord::Migration[5.2]
       t.boolean :display_content_fields, :default => false
 
       t.references :page, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
 
       t.timestamps
     end

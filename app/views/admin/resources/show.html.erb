@@ -4,6 +4,9 @@
 	<div class="col-md-3">
 		<%= render "templates/buttons/back-to-page", text: "Resources", path: admin_resources_path %>
 	</div>
+	<div class="col-md-9 align-right">
+		<%= render "templates/admin-modified-by", content: @resource %>
+	</div>
 </div>
 
 <div class="row vertical-align-middle">
@@ -30,6 +33,7 @@
 	<% if not link.image.blank? %>
 		<div class="col-md-3">
 			<%= link_to image_tag(link.image.image.url, class: "text-image", alt: link.image.image_file_name), link.link, target: :_blank  %>
+			<div class="align-center"><%= render "templates/admin-modified-by", content: link %></div>
 		</div>
 	<% end %>
 	<% if link.article %>

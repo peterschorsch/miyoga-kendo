@@ -19,11 +19,13 @@ ActiveRecord::Schema.define(version: 2020_07_27_142905) do
     t.string "city", null: false
     t.string "zip_code", null: false
     t.integer "event_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "state_id"
     t.index ["event_id"], name: "index_addresses_on_event_id"
     t.index ["state_id"], name: "index_addresses_on_state_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "contents", force: :cascade do |t|
@@ -34,19 +36,23 @@ ActiveRecord::Schema.define(version: 2020_07_27_142905) do
     t.boolean "display_content_on_page", default: false
     t.boolean "display_content_fields", default: false
     t.integer "page_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["page_id"], name: "index_contents_on_page_id"
+    t.index ["user_id"], name: "index_contents_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
     t.string "title", null: false
-    t.text "description"
+    t.text "description", null: false
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.boolean "display", default: true
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -68,9 +74,11 @@ ActiveRecord::Schema.define(version: 2020_07_27_142905) do
     t.integer "index", null: false
     t.boolean "article", default: false
     t.integer "content_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["content_id"], name: "index_links_on_content_id"
+    t.index ["user_id"], name: "index_links_on_user_id"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -92,9 +100,11 @@ ActiveRecord::Schema.define(version: 2020_07_27_142905) do
     t.time "end_time", null: false
     t.string "cost_per_month", null: false
     t.integer "content_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["content_id"], name: "index_practices_on_content_id"
+    t.index ["user_id"], name: "index_practices_on_user_id"
   end
 
   create_table "social_media", force: :cascade do |t|

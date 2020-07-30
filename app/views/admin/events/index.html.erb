@@ -18,6 +18,7 @@
       <th>Name</th>
       <th>Date</th>
       <th>Held in</th>
+      <th colspan="2">Last Modified</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -26,7 +27,9 @@
       <tr class="align-center table-hover">
         <td><%= event.title %></td>
         <td><%= formatEventsDateRange(event.start_date, event.end_date) %></td>
-        <td><%= event.address.city %>, <%= event.address.state.name %></td>
+        <td><%= event.address.city %>, <%= event.address.state.abbreviation %></td>
+        <td><%= event.user.concat_name %></td>
+        <td><%= formateDateTimeWithAt(event.updated_at) %></td>
         <td><%= link_to "Show", admin_event_path(event), :class => "btn btn-success btn-block" %></td>
         <td>
           <%= link_to edit_admin_event_path(event), :class => "btn btn-warning btn-block", title: "Edit #{event.title}", 'data-toggle' => 'tooltip' do %> 

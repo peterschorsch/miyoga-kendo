@@ -17,6 +17,7 @@ class PracticesController < ApplicationController
 		@new_practice = Practice.new(practice_params)
 		@new_practice.content_id = @content.id
 		@new_practice.day_of_week_index = check_day_for_index(practice_params.dig("day_of_week"))
+		@new_practice.user_id = current_user.id
 
 		respond_to do |format|
 			if @new_practice.save
@@ -33,6 +34,7 @@ class PracticesController < ApplicationController
 		@practice.start_time = practice_params.dig("start_time(4i)") + ":" + practice_params.dig("start_time(5i)")
 		@practice.end_time = practice_params.dig("end_time(4i)") + ":" + practice_params.dig("end_time(5i)")
 		@practice.content_id = @content.id
+		@practice.user_id = current_user.id
 
 		respond_to do |format|
 	      if @practice.update(practice_params)

@@ -5,7 +5,7 @@ class Admin::PracticesController < Admin::AdminController
   # GET /class_schedules
   # GET /class_schedules.json
   def index
-    @practices = Practice.all
+    @practices = Practice.includes(:user).all
   end
 
   # GET /class_schedules/new
@@ -25,7 +25,10 @@ class Admin::PracticesController < Admin::AdminController
     @practice.day_of_week_index = check_day_for_index(practice_params.dig("day_of_week"))
     @practice.start_time = practice_params.dig("start_time(4i)") + ":" + practice_params.dig("start_time(5i)")
     @practice.end_time = practice_params.dig("end_time(4i)") + ":" + practice_params.dig("end_time(5i)")
-    @practice.content_id = Content.of_page(@current_page).first.id
+
+    @content = @current_page.contents.first
+    @practice.content_id = @content.id
+    @practice.user_id = @current_user.id
 
     respond_to do |format|
       if @practice.save
@@ -41,6 +44,7 @@ class Admin::PracticesController < Admin::AdminController
   # PATCH/PUT /class_schedules/1
   # PATCH/PUT /class_schedules/1.json
   def update
+    @practice.user_id = @current_user.id
     respond_to do |format|
       if @practice.update(practice_params)
         format.html { redirect_to admin_practices_path, notice: 'The class schedule was successfully updated.' }

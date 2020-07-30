@@ -5,7 +5,7 @@ class Admin::EventsController < Admin::AdminController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.includes(address: :state).display_active
+    @events = Event.includes(:user, address: :state).display_active
   end
 
   def show
@@ -25,9 +25,11 @@ class Admin::EventsController < Admin::AdminController
   # POST /events.json
   def create
     @event = Event.new(new_event_params)
+    @event.user_id = @current_user.id
+    @event.address.user_id = @current_user.id
 
     respond_to do |format|
-      if @event.save!
+      if @event.save
         format.html { redirect_to admin_events_path, notice: "A new event was successfully created." }
       else
         format.html { render :new }
@@ -73,6 +75,9 @@ class Admin::EventsController < Admin::AdminController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    @event.user_id = @current_user.id
+    @event.address.user_id = @current_user.id
+
     respond_to do |format|
       if @event.update(new_event_params)
         format.html { redirect_to admin_events_path, notice: 'Event was successfully updated.' }
@@ -106,7 +111,7 @@ class Admin::EventsController < Admin::AdminController
     end
 
     def new_address_params
-      params.require(:address).permit(:id, :location_name, :address_line_1, :address_line_2, :city, :state_id, :zip_code,
+      params.require(:address).permit(:id, :location_name, :address_line_1, :address_line_2, :city, :state_id, :zip_code, :user_id,
       events_attributes: [:id, :title, :start_date, :end_date, :description, :address_id])
     end
 end

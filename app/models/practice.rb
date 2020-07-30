@@ -1,5 +1,6 @@
 class Practice < ApplicationRecord
-	belongs_to :content, optional: true
+	belongs_to :content
+	belongs_to :user
 
 	validates :day_of_week, :day_of_week_index, :start_time, :end_time, :cost_per_month, presence: true
 	validate :start_time_exceed_end_time
