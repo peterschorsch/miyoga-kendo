@@ -1,7 +1,7 @@
 class Link < ApplicationRecord
 	belongs_to :content, optional: true
 	belongs_to :user
-	has_one :image
+	has_one :image, dependent: :destroy
 	accepts_nested_attributes_for :image, allow_destroy: true
 
 	before_save :fix_link
