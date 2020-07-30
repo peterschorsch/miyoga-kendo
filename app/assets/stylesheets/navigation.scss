@@ -21,24 +21,50 @@
 }
 
 // Navigation Bar Font
-.navbar-default .navbar-nav > li > a{
-	color: white !important;
-	font-size: 18px;
-	font-weight: bold !important;
-	font-variant: small-caps;
-}
+	.navbar-default .navbar-nav > li > a{
+		color: white !important;
+		font-size: 18px;
+		font-weight: bold !important;
+		font-variant: small-caps;
+	}
 
 // Navigation Bar Hover Event
-.navbar-collapse .navbar-nav li a:hover{
-	color: #0a0aff !important;
-}
+	.navbar-collapse .navbar-nav li a:hover{
+		color: #0a0aff !important;
+	}
 
-.header-image{
-	height: 50px;
-	padding-right: 15px;
-}
+	.header-image{
+		height: 50px;
+		padding-right: 15px;
+	}
 
-.container-fluid{
-	padding-left: 0px !important;
-	padding-right: 0px !important;
-}
+	.container-fluid{
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+
+
+//LEFT SIDEBAR
+	.btn-sidebar, .btn-sidebar:visited{
+		color: #333333;
+		font-weight: bold !important;
+		font-variant: small-caps;
+		font-size: 28px !important;
+	}
+	.btn-sidebar:hover{
+		background-color: #000080;
+		color: white !important;
+	}
+	.panel-navy-blue{
+		border-color: #ddd !important;
+	}
+	.panel-navy-blue .panel-heading{
+		background-color: #000067;
+		color: white;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px
+	}
+	.second-panel-heading{
+		border-top-left-radius: 0px !important;
+		border-top-right-radius: 0px !important;
+	}
