@@ -1,7 +1,6 @@
 class Admin::AboutsController < Admin::AdminController
   before_action :set_current_page
   before_action :set_content, except: [:index, :new, :create]
-  
 
   def index
     @contents = @current_page.contents.includes(:user).active_ordered

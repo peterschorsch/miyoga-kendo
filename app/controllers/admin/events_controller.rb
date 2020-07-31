@@ -91,11 +91,6 @@ class Admin::EventsController < Admin::AdminController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
-
     def set_event_address
       @event = Event.find(params[:id])
       @address = @event.address

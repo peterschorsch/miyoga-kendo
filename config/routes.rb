@@ -47,9 +47,6 @@ Rails.application.routes.draw do
     ### EVENTS PAGE ###
     resources :events, except: [:destroy]
 
-    ### ADDRESS PAGE ###
-    resources :addresses, except: [:show]
-
     ### SOCIAL MEDIA PAGE ###
     resources :social_media, path: 'social-media', except: [:show]
   end
