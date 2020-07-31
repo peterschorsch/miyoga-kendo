@@ -13,7 +13,8 @@ class Content < ApplicationRecord
 	validates :index, :uniqueness => { :scope => [:page_id, :display_content_on_page, :article] }, :if => :index_changed?
 
 	validates :index, numericality: { greater_than: 0  }
-	validate :strip_fields, :check_links_articles
+	validate :strip_fields
+	validate :check_links_articles, on: :update
 
 	scope :of_page, -> (page) {
 		where(page_id: page).references(:forms).active_ordered
