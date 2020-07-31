@@ -1,4 +1,19 @@
-CKEDITOR.editorConfig = function (config) {
+ClassicEditor
+    .create( document.querySelector( '#editor' ), {
+        plugins: [ Indent, IndentBlock, ... ],
+        toolbar: {
+            items: [ 'heading', '|', 'outdent', 'indent', '|', 'bulletedList', 'numberedList', '|', 'undo', 'redo' ]
+        },
+        indentBlock: {
+            classes: [
+                'custom-block-indent-a', // First step - smallest indentation.
+                'custom-block-indent-b',
+                'custom-block-indent-c'  // Last step - biggest indentation.
+            ]
+        }
+    } )
+
+ CKEDITOR.editorConfig = function (config) {
 	config.toolbar_mini = [
 		["Bold",  "Italic",  "Underline",  "Strike",  "-",  "Subscript",  "Superscript"],
 	];

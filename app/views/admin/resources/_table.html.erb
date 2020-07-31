@@ -16,7 +16,7 @@
 				<td><%= content.index %></td>
 				<td><%= content.heading.truncate_words(5) %></td>
 				<td><%= nil_check(content.subheading).truncate_words(5) %></td>
-				<td><%= description_nil_check(content.description).truncate_words(5) %></td>
+				<td><%= description_nil_check(content.description).truncate_words(5).html_safe %></td>
 				<td><%= content.links.map{ |l| l.name }.join(", ") %></td>
 				<td><%= content.user.concat_name %></td>
 				<td><%= formateDateTimeWithAt(content.updated_at) %></td>

@@ -18,13 +18,27 @@
 						<div class="col-md-10">
 							<h2><%= content.heading %></h2>
 						</div>
-							<div class="col-md-2">
-								<%= button_tag :class => "btn btn-warning btn-block", title: 'Edit', data: { toggle: 'modal', target: "#resourcesEditModal-#{content.id}" } do %>
-									<span class="glyphicon glyphicon-edit"></span> Edit
-								<% end %>
-							</div>
+						<div class="col-md-2">
+							<%= button_tag :class => "btn btn-warning btn-block", title: 'Edit', data: { toggle: 'modal', target: "#resourcesEditModal-#{content.id}" } do %>
+								<span class="glyphicon glyphicon-edit"></span> Edit
+							<% end %>
+						</div>
 					</div>
 					<%= render "edit-modal", content: content, index: content.id, link_end_count: content.links.count+1 %>
+				<% end %>
+				<% if not content.subheading.blank? %>
+					<div class="row">
+						<div class="col-md-12">
+							<h4><%= content.subheading %></h4>
+						</div>
+					</div>
+				<% end %>
+				<% if not content.description.blank? %>
+					<div class="row">
+						<div class="col-md-12">
+							<p><%= content.description.html_safe %></p>
+						</div>
+					</div>
 				<% end %>
 				<div class="row">
 					<% content.links.each do |link| %>

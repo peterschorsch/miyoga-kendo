@@ -61,6 +61,7 @@
 			</div>
 			<div class="modal-footer">
 					<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#resourcesEditModal-#{index}" } %>
+					<%= f.hidden_field :article, :value => content.check_links_articles %>
 					<%= f.submit "Save Changes", class: 'btn btn-success' %>
 				<% end %>
 			</div>
