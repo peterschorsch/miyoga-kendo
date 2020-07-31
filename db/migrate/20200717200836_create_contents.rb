@@ -1,13 +1,13 @@
 class CreateContents < ActiveRecord::Migration[5.2]
   def change
     create_table :contents do |t|
-      t.string :heading
+      t.string :heading, :null => false
       t.string :subheading
       t.string :description
-      t.integer :index, :null => false
+      t.integer :index
 
       t.boolean :display_content_on_page, :default => false
-      t.boolean :display_content_fields, :default => false
+      t.boolean :article, :default => false
 
       t.references :page, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true

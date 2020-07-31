@@ -1,5 +1,5 @@
 class Admin::AboutsController < Admin::AdminController
-  before_action :set_current_page, except: [:new]
+  before_action :set_current_page
   before_action :set_content, except: [:index, :new, :create]
   
 

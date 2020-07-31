@@ -25,7 +25,7 @@
 		          	<br />
 		          	<div class="row vertical-align-middle">
 						<div class="col-xs-3"><%= f.label :index, 'Content Order:' %></div>
-		          		<div class="col-xs-2"><%= f.select :index, (1..content_end_count), {}, { class: 'form-control' } %></div>
+						<div class="col-xs-2"><%= f.select :index, Content.populate_edit_index_dropdown(content), {}, { class: 'form-control' } %></div>
 						<div class="col-xs-3"><%= f.label :display_content_on_page, 'Display Content:' %></div>
 		          		<div class="col-xs-2"><%= f.check_box :display_content_on_page, { class: 'form-control' } %></div>
 		          	</div>

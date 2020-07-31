@@ -19,12 +19,12 @@
 							<h2><%= content.heading %></h2>
 						</div>
 							<div class="col-md-2">
-								<%= button_tag :class => "btn btn-warning btn-block", title: 'Edit', data: { toggle: 'modal', target: "#resourcesEditModal-#{index}" } do %>
+								<%= button_tag :class => "btn btn-warning btn-block", title: 'Edit', data: { toggle: 'modal', target: "#resourcesEditModal-#{content.id}" } do %>
 									<span class="glyphicon glyphicon-edit"></span> Edit
 								<% end %>
 							</div>
 					</div>
-					<%= render "edit-modal", content: content, index: index, content_end_count: @resource_count, link_end_count: content.links.count+1 %>
+					<%= render "edit-modal", content: content, index: content.id, link_end_count: content.links.count+1 %>
 				<% end %>
 				<div class="row">
 					<% content.links.each do |link| %>
@@ -54,8 +54,11 @@
 				<% content.links.each do |link| %>
 					<div class="row padding">
 						<div class="col-md-3">
-							<%= image_tag(link.image.image.url, class: "text-image", alt: link.image.image_file_name) if not link.image.blank? %>
-							<%= image_tag("resources_page/stock_kendo_image.jpg", class: "text-image", alt: "Stock Kendo Image") if link.image.blank? %>
+							<% if not link.image.blank? %>
+								<%= image_tag(link.image.image.url, class: "text-image", alt: link.image.image_file_name) %>
+							<% else %>
+								<%= image_tag("resources_page/stock_kendo_image.jpg", class: "text-image", alt: "Stock Kendo Image") %>
+							<% end %>
 						</div>
 						<div class="col-md-9">
 							<% if not current_user.is_admin? %>
@@ -66,12 +69,11 @@
 								<div class="row vertical-align-middle">
 									<div class="col-md-10 col-xs-12"><h3 class="card-title"><%= content.heading %></h3></div>
 									<div class="col-md-2 col-xs-12">
-										<% edit_count = @resource_count+index %>
-										<%= button_tag :class => "btn btn-warning btn-block", title: 'Edit', data: { toggle: 'modal', target: "editReadingModal#{index}" } do %>
+										<%= button_tag :class => "btn btn-warning btn-block", title: 'Edit', data: { toggle: 'modal', target: "#resourcesEditModal-#{content.id}" } do %>
 											<span class="glyphicon glyphicon-edit"></span> Edit
 										<% end %>
 									</div>
-									<%= render "edit-modal", content: content, index: index, content_end_count: @article_count, link_end_count: content.links.count+1 %>
+									<%= render "edit-modal", content: content, index: content.id, link_end_count: content.links.count+1 %>
 								</div>
 							<% end %>
 							<hr />

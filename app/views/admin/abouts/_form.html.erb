@@ -27,7 +27,8 @@
 	<br />
 	<div class="row vertical-align-middle">
 		<div class="col-xs-2 align-right"><%= f.label :index, 'Content Order:' %></div>
-		<div class="col-xs-3"><%= f.select :index, (1..10), {}, { class: 'form-control' } %></div>
+		<% index_dropdown = content.new_record? ? Content.populate_new_index_dropdown(@current_page) : Content.populate_edit_index_dropdown(content) %>
+		<div class="col-xs-3"><%= f.select :index, index_dropdown, {}, { class: 'form-control' } %></div>
 		<% if not content.new_record? %>
 			<div class="col-xs-3 align-right"><%= f.label :display_content_on_page, 'Remove Content:' %></div>
 			<div class="col-xs-3"><%= f.check_box :display_content_on_page, { class: 'form-control', :checked => !content.display_content_on_page }, 0, 1 %></div>

@@ -1,6 +1,7 @@
 <table class="table table-responsive table-striped">
 	<thead>
 		<tr class="align-center">
+			<th>Order</th>
 			<th>Heading</th>
 			<th>Subheading</th>
 			<th>Description</th>
@@ -11,9 +12,10 @@
 	<tbody>
 		<% contents.each do |content| %>
 			<tr class="align-center table-hover">
+				<td><%= content.index %></td>
 				<td><%= content.heading.truncate_words(5) %></td>
 				<td><%= nil_check(content.subheading).truncate_words(5) %></td>
-				<td><%= description_nil_check(content.description).truncate_words(10) %></td>
+				<td><%= description_nil_check(content.description).truncate_words(10).html_safe %></td>
 				<td><%= content.user.concat_name %></td>
 				<td><%= formateDateTimeWithAt(content.updated_at) %></td>
 				<td><%= link_to "Show", admin_about_path(content), :class => "btn btn-success btn-block" %></td>

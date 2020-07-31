@@ -1,22 +1,24 @@
 class Admin::ResourcesController < Admin::AdminController
-  before_action :set_current_page, except: [:new]
+  before_action :set_current_page
   before_action :set_resource, except: [:index, :new, :create]
   
 
   def index
     @contents = @current_page.contents.includes(:user)
 
-    @active_resources = @contents.display_non_articles
-    @active_readings = @contents.display_articles
+    @active_resources = @contents.display_non_articles.includes(:links)
+    @active_readings = @contents.display_articles.includes(:links)
   end
 
   def show
   end
 
+  def edit
+  end
+
   def new
     @resource = Content.new
     @resource.links.build
-
   end
 
   def create
@@ -52,7 +54,7 @@ class Admin::ResourcesController < Admin::AdminController
     end
 
     def set_resource
-      @resource = Content.of_page(@current_page).find(params[:id]) 
+      @resource = Content.of_page(@current_page).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -29,12 +29,12 @@ ActiveRecord::Schema.define(version: 2020_07_27_142905) do
   end
 
   create_table "contents", force: :cascade do |t|
-    t.string "heading"
+    t.string "heading", null: false
     t.string "subheading"
     t.string "description"
-    t.integer "index", null: false
+    t.integer "index"
     t.boolean "display_content_on_page", default: false
-    t.boolean "display_content_fields", default: false
+    t.boolean "article", default: false
     t.integer "page_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
