@@ -69,7 +69,7 @@ class PracticesController < ApplicationController
     end
 
     def practice_params
-		params.require(:practice).permit(:day_of_week, :start_time, :end_time, :cost_per_month, :content_id)
+		params.require(:practice).permit(:day_of_week, :start_time, :end_time, :cost_per_month, :content_id, :user_id)
     end
 
     def check_day_for_index(day_of_week)
