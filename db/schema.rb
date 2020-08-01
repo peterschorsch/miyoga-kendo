@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_27_142905) do
+ActiveRecord::Schema.define(version: 2020_08_01_031910) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "location_name", null: false
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2020_07_27_142905) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "page_id"
+    t.index ["page_id"], name: "index_events_on_page_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

@@ -1,4 +1,5 @@
 class Admin::EventsController < Admin::AdminController
+  before_action :set_current_page
   before_action :set_event_address, only: [:show, :edit, :update]
   before_action :set_state_collection, only: [:new, :edit]
 
@@ -25,8 +26,7 @@ class Admin::EventsController < Admin::AdminController
   # POST /events.json
   def create
     @event = Event.new(new_event_params)
-    @event.user_id = @current_user.id
-    @event.address.user_id = @current_user.id
+    update_fks
 
     respond_to do |format|
       if @event.save
@@ -75,8 +75,7 @@ class Admin::EventsController < Admin::AdminController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    @event.user_id = @current_user.id
-    @event.address.user_id = @current_user.id
+    update_fks
 
     respond_to do |format|
       if @event.update(new_event_params)
@@ -91,13 +90,23 @@ class Admin::EventsController < Admin::AdminController
 
 
   private
+    def set_current_page
+      @current_page = Page.named("Events")
+    end
+
     def set_event_address
-      @event = Event.find(params[:id])
+      @event = Event.of_page(@current_page).find(params[:id])
       @address = @event.address
     end
 
     def set_state_collection
       @states = State.return_states_w_names
+    end
+
+    def update_fks
+      @event.user_id = @current_user.id
+      @event.address.user_id = @current_user.id
+      @event.page_id = @current_page.id
     end
 
     def new_event_params
@@ -106,7 +115,7 @@ class Admin::EventsController < Admin::AdminController
     end
 
     def new_address_params
-      params.require(:address).permit(:id, :location_name, :address_line_1, :address_line_2, :city, :state_id, :zip_code, :user_id,
+      params.require(:address).permit(:id, :location_name, :address_line_1, :address_line_2, :city, :state_id, :zip_code,
       events_attributes: [:id, :title, :start_date, :end_date, :description, :address_id])
     end
 end

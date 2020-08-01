@@ -1,7 +1,7 @@
 class Page < ApplicationRecord
 	belongs_to :user
 	has_many :contents
-	has_many :class_schedules
+	has_many :events
 
 	scope :active_pages, -> {
 		where(:active => true)

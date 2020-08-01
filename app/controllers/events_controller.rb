@@ -1,8 +1,9 @@
 class EventsController < ApplicationController
+	before_action :set_current_page
 	before_action :set_event, only: [:update, :destroy]
 
 	def index
-		@events = Event.display_active.includes(address: :state).first(3)
+		@events = @current_page.events.display_active.includes(address: :state).first(3)
 		@states_new_form_drop = State.return_states_w_names
 		@states_edit_form_drop = State.return_states_w_abbr
 
@@ -12,7 +13,7 @@ class EventsController < ApplicationController
 
 	def create
 		@event = Event.new(event_params)
-		@event.user_id = current_user.id
+		update_fks
 
 		respond_to do |format|
 			if @event.save
@@ -25,7 +26,7 @@ class EventsController < ApplicationController
 	end
 
 	def update
-		@event.user_id = current_user.id
+		update_fks
 
 		respond_to do |format|
 	      if @event.update(event_params)
@@ -52,13 +53,23 @@ class EventsController < ApplicationController
 
 	private
 	# Use callbacks to share common setup or constraints between actions.
-	def set_event
-		@event = Event.find(params[:id])
+	def set_current_page
+		@current_page = Page.named("Events")
 	end
+
+	def set_event
+		@event = Event.of_page(@current_page).find(params[:id])
+	end
+
+	def update_fks
+		@event.user_id = current_user.id
+		@event.address.user_id = current_user.id
+		@event.page_id = @current_page.id
+    end
 
 	# Only allow a list of trusted parameters through.
 	def event_params
-		params.require(:event).permit(:title, :start_date, :end_date, :description, 
+		params.require(:event).permit(:title, :start_date, :end_date, :description,
 			address_attributes: [:id, :location_name, :address_line_1, :address_line_2, :city, :state_id, :zip_code])
 	end
 end
