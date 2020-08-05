@@ -41,12 +41,15 @@
 					</div>
 				<% end %>
 				<div class="row">
-					<% content.links.each do |link| %>
-						<div class="col-md-3 col-sm-6">
-							<div class="panel panel-default">
-								<div class="panel-body"><%= link_to image_tag(link.image.image.url, class: "image-center", alt: link.image.image_file_name), link.link, class: "header-link-text", target: :_blank if not link.image.blank? %></div>
+					<% content.links.includes(:images).each do |link| %>
+						<% if link.images.exists? %>
+							<% @image = link.images.first %>
+							<div class="col-md-3 col-sm-6">
+								<div class="panel panel-default">
+									<div class="panel-body"><%= link_to image_tag(@image.image.url, class: "image-center", alt: @image.image_file_name), link.link, class: "header-link-text", target: :_blank %></div>
+								</div>
 							</div>
-						</div>
+						<% end %>
 					<% end %>
 				</div>
 				<br />
@@ -61,18 +64,15 @@
 		<hr />
 	</div>
 </div>
-<% @articles.each_with_index do |content, index| %>
+<% @articles.includes(:images).each_with_index do |content, index| %>
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1 col-sm-12">
 			<div class="panel panel-default card">
 				<% content.links.each do |link| %>
+					<% @image = link.images.first %>
 					<div class="row padding">
 						<div class="col-md-3">
-							<% if not link.image.blank? %>
-								<%= image_tag(link.image.image.url, class: "text-image", alt: link.image.image_file_name) %>
-							<% else %>
-								<%= image_tag("resources_page/stock_kendo_image.jpg", class: "text-image", alt: "Stock Kendo Image") %>
-							<% end %>
+							<%= image_tag(@image.image.url, class: "text-image", alt: @image.image_file_name) %>
 						</div>
 						<div class="col-md-9">
 							<% if not current_user.is_admin? %>
