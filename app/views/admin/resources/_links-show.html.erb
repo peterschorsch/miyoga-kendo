@@ -1,6 +1,7 @@
-<% if not link.image.blank? %>
+<% if link.images.exists? %>
+	<% @image = link.images.first %>
 	<div class="col-md-3">
-		<%= link_to image_tag(link.image.image.url, class: "text-image", alt: link.image.image_file_name), link.link, target: :_blank  %>
+		<%= link_to image_tag(@image.image.url, class: "text-image", alt: @image.image_file_name), link.link, target: :_blank  %>
 		<div class="align-center"><%= render "templates/admin-modified-by", content: link %></div>
 	</div>
 <% end %>

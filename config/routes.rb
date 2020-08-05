@@ -40,7 +40,13 @@ Rails.application.routes.draw do
     ### ABOUT PAGE ###
     resources :abouts, except: [:destroy]
     ### RESOURCES PAGE ###
-    resources :resources, except: [:destroy]
+    resources :resources, except: [:new, :destroy] do
+      get :new_resource, on: :collection, path: 'new-resource'
+      post :create_new_resource, on: :collection
+
+      get :new_article, on: :collection, path: 'new-article'
+      post :create_new_article, on: :collection
+    end
 
     ### CLASS SCHEDULE PAGE ###
     resources :practices, except: [:show]

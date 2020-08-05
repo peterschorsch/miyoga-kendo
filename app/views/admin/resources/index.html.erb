@@ -2,9 +2,6 @@
   <div class="col-md-3">
     <%= render "templates/buttons/back-to-admin-home" %>
   </div>
-  <div class="col-md-3 col-md-offset-6">
-    <%= render "templates/buttons/add-new", path: new_admin_resource_path, text: "Content" %>
-  </div>
 </div>
 
 <%= render "templates/heading", text: @current_page.name + " Page", list_of_classes: "align-center" %>
@@ -19,8 +16,22 @@
 <div class="tab-content">
     <div id="resources" class="tab-pane fade in active">
 		<%= render "table", contents: @active_resources %>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<%= link_to new_resource_admin_resources_path, :class => "btn btn-info btn-block", title: "Add New Content", 'data-toggle' => 'tooltip' do %> 
+				  <span class="glyphicon glyphicon-plus"></span> Add New Content
+				<% end %>
+			</div>
+		</div>
 	</div>
 	<div id="readings" class="tab-pane fade">
 		<%= render "table", contents: @active_readings %>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<%= link_to new_article_admin_resources_path, :class => "btn btn-info btn-block", title: "Add New Content", 'data-toggle' => 'tooltip' do %> 
+				  <span class="glyphicon glyphicon-plus"></span> Add New Content
+				<% end %>
+			</div>
+		</div>
 	</div>
 </div>
