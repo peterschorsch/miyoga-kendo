@@ -39,7 +39,7 @@
 	<div class="paragraph-container">
 		<div class="row">
 			<div class="text-image-column">
-				<p class="indent-paragraph"><%=content.description.html_safe%></p>
+				<%= simple_format(content.description, wrapper_tag: "p", class: 'indent-paragraph') %>
 			</div>
 			<div class="text-image-column">
 				<% content.images.each do |image| %>

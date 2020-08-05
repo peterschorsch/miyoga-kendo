@@ -36,7 +36,7 @@
 				<% if not content.description.blank? %>
 					<div class="row">
 						<div class="col-md-12">
-							<p><%= content.description.html_safe %></p>
+							<%= simple_format(content.description, wrapper_tag: "p", class: 'indent-paragraph') %>
 						</div>
 					</div>
 				<% end %>
@@ -91,7 +91,7 @@
 								</div>
 							<% end %>
 							<hr />
-							<p class="card-text"><%= content.description.html_safe %></p>
+							<%= simple_format(content.description, wrapper_tag: "p", class: 'card-text') %>
 							<%= link_to "Visit Article &raquo".html_safe, link.link, :class => "btn btn-info", target: :_blank %>
 						</div>
 					</div>

@@ -13,7 +13,7 @@ ClassicEditor
         }
     } )
 
- CKEDITOR.editorConfig = function (config) {
+/* CKEDITOR.editorConfig = function (config) {
 	config.toolbar_mini = [
 		["Bold",  "Italic",  "Underline",  "Strike",  "-",  "Subscript",  "Superscript"],
 	];
@@ -23,3 +23,18 @@ ClassicEditor
 	config.resize_enabled = false;
 	config.removePlugins = 'resize,autogrow';
 }
+
+CKEDITOR.on('instanceReady', function (ev) {
+        ev.editor.dataProcessor.writer.setRules('br',
+         {
+             indent: false,
+             breakBeforeOpen: false,
+             breakAfterOpen: false,
+             breakBeforeClose: false,
+             breakAfterClose: false
+         });
+    });
+
+    config.enterMode = CKEDITOR.ENTER_BR;
+    config.shiftEnterMode = CKEDITOR.ENTER_BR; */
+

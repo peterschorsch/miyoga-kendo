@@ -26,7 +26,7 @@
 		<h3><%= formatEventsDateRange(@event.start_date, @event.end_date) %></h3>
 		<p><%= @address.location_name %></p>
 		<p><%= @address.city %>, <%= @address.state.name %></p><br />
-		<p><%= @event.description.html_safe %></p>
+		<%= simple_format(@event.description, wrapper_tag: "p", class: 'indent-paragraph') %>
 	</div>
 	<div class="col-md-6 col-sm-12">
 		<%= render "templates/google_maps", location_name: @address.location_name, address: @address, height: 600, width: 650 %>

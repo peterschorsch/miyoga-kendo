@@ -23,7 +23,7 @@
 		          	<br />
 		          	<%= f.fields_for :images do |image| %>
 						<div class="row vertical-align-middle">
-							<div class="col-xs-2 align-right"><%= image.label :image, 'Image:' %></div>
+							<div class="col-xs-2 align-right"><%= image.label :image, 'Replace Image:' %></div>
 							<div class="col-xs-9"><%= image.file_field :image, { class: 'form-control' } %></div>
 						</div>
 					<% end %>
