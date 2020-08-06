@@ -8,6 +8,7 @@ class Content < ApplicationRecord
 
 	has_many :images, inverse_of: :content, dependent: :destroy
 	accepts_nested_attributes_for :images, allow_destroy: true
+	validate :images_presence, on: :create
 
 	validates :heading, presence: true
 	validates :index, :uniqueness => { :scope => [:page_id, :display_content_on_page, :article] }, :if => :index_changed?
@@ -56,6 +57,7 @@ class Content < ApplicationRecord
 	scope :inactive_articles, -> {
 		where(:article => true).inactive_ordered
 	}
+
 
 	def self.populate_new_index_dropdown(page)
 		contents = page.contents.active_ordered
@@ -107,6 +109,10 @@ class Content < ApplicationRecord
 
 	def check_links_articles
 		self.article = self.links.map{|link| link.article }.include?(true)
+	end
+
+	def images_presence
+		errors.add(:images, "You must add at least one image") unless images.present? || self.links.exists?
 	end
 
 end
