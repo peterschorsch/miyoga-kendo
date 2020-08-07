@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
       redirect_to @user.is_admin? ? admin_root_path : root_url
     else
-      flash.now[:alert] = @user.is_archived? ? "Your account has been marked as inactive" : "Email or password is invalid"
+      flash.now[:alert] = @user.blank? ? "Email or password is invalid" : @user.is_archived? ? "Your account has been marked as inactive" : "Email or password is invalid"
       render "new"
     end
   end

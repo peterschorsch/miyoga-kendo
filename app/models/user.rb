@@ -134,6 +134,15 @@ class User < ApplicationRecord
 		save
 	end
 
+	def update_with_password(user_params)
+		if self.authenticate(user_params[:current_password]) && user_params[:password] == user_params[:password_confirmation]
+			self.password_digest = User.digest(user_params[:password])
+			self.save
+		else
+			errors.add(:password_digest, " fields are incorrect.")
+		end
+	end
+
 	private
 
 	def generate_token

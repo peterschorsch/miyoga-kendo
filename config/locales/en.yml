@@ -30,4 +30,18 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        firstname: "First Name"
+        lastname: "Last Name"
+        email: "E-Mail address"
+        password_digest: "Password"
+        role: "Role"
+    errors:
+      models:
+        user:
+          attributes:
+            password_digest:
+              blank: "Password"
+              invalid: "Password"

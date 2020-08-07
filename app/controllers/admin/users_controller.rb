@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::AdminController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :update_password]
 
   # GET /admin/users
   # GET /admin/users.json
@@ -50,7 +50,7 @@ class Admin::UsersController < Admin::AdminController
   # PATCH/PUT /admin/users/1.json
   def update
     respond_to do |format|
-      if @user.update!(user_params)
+      if @user.update(user_params)
         format.html { redirect_to admin_users_path, notice: "#{@user.concat_name} was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -61,17 +61,29 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def update_password
-
+    respond_to do |format|
+      if @user.update_with_password(user_password_params)
+        format.html { redirect_to edit_admin_user_path(current_user), notice: "#{@user.concat_name}'s password was successfully updated." }
+      else
+        format.html { render :edit }
+        format.json { render json: current_user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find(params[:id] || params[:user][:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:firstname, :lastname, :email, :role, :password, :active)
+    end
+
+    def user_password_params
+      # NOTE: Using 'strong_parameters' gem
+      params.require(:user).permit(:id, :current_password, :password, :password_confirmation)
     end
 end

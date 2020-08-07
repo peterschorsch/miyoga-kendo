@@ -28,14 +28,22 @@ Rails.application.routes.draw do
   get :resources, to: 'resources#index'
 
   ### USERS ###
-  resources :users, only: [:edit, :update]
+  resources :users, only: [:edit, :update] do
+    collection do
+      patch 'update_password'
+    end
+  end
   
   ##### ADMIN NAMESPACE #####
   namespace :admin do
     root 'admin#dashboard'
 
     ### USERS PAGE ###
-    resources :users, except: [:show, :destroy]
+    resources :users, except: [:show, :destroy] do
+      collection do
+        patch 'update_password'
+      end
+    end
 
     ### ABOUT PAGE ###
     resources :abouts, except: [:destroy]
