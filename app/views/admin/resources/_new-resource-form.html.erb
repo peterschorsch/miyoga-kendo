@@ -1,21 +1,5 @@
 <%= form_with(model: [:admin, resource], url: create_new_resource_admin_resources_path, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
 	<%= f.fields_for :links do |link| %>
-		<%= link.fields_for :images do |image| %>
-			<% if resource.new_record? %>
-				<div class="row vertical-align-middle">
-					<div class="col-xs-1 align-right"><%= image.label :link, 'Image:' %></div>
-					<div class="col-xs-3"><%= image.file_field :image, class: 'form-control' %></div>
-				</div>
-			<% else %>
-				<div class="row vertical-align-middle">
-					<div class="col-xs-3 align-right"><%= image.label 'Current Image:' %></div>
-					<div class="col-xs-2"><%= image.object.image_file_name %></div>
-					<div class="col-xs-3 align-right"><%= image.label :link, 'Replace Current Image:' %></div>
-					<div class="col-xs-3"><%= image.file_field :image, class: 'form-control' %></div>
-				</div>
-			<% end %>
-		<% end %>
-		<br />
 		<div class="row vertical-align-middle">
 			<div class="col-xs-2 align-right"><%= f.label :heading, 'Heading:' %></div>
 			<div class="col-xs-9"><%= f.text_field :heading, { class: 'form-control' } %></div>
@@ -46,24 +30,40 @@
 		<br />
 
 	<%= render "templates/heading", text: "Link(s)", list_of_classes: "align-center" %>
-		<div class="row vertical-align-middle">
-			<div class="col-xs-2 align-right"><%= link.label :name, 'Name:' %></div>
-			<div class="col-xs-3"><%= link.text_field :name, { class: 'form-control' } %></div>
+		<%= link.fields_for :images do |image| %>
 			<% if resource.new_record? %>
-				<%= link.hidden_field :index, :value => 1 %>
+				<div class="row vertical-align-middle">
+					<div class="col-xs-2 align-right"><%= image.label :link, 'Image:' %></div>
+					<div class="col-xs-3"><%= image.file_field :image, class: 'form-control' %></div>
+				</div>
 			<% else %>
-				<div class="col-xs-2 align-right"><%= link.label :index, 'Index:' %></div>
-				<div class="col-xs-1"><%= link.select :index, (1..15), {}, { class: 'form-control' } %></div>
-				<div class="col-xs-2 align-right"><%= link.label :destroy, 'Remove Link:' %></div>
-				<div class="col-xs-1"><%= link.check_box '_destroy', { class: 'form-control' } %></div>
+				<div class="row vertical-align-middle">
+					<div class="col-xs-3 align-right"><%= image.label 'Current Image:' %></div>
+					<div class="col-xs-2"><%= image.object.image_file_name %></div>
+					<div class="col-xs-3 align-right"><%= image.label :link, 'Replace Current Image:' %></div>
+					<div class="col-xs-3"><%= image.file_field :image, class: 'form-control' %></div>
+				</div>
 			<% end %>
-		</div>
-		<br />
-		<div class="row vertical-align-middle">
-			<div class="col-xs-2 align-right"><%= link.label :link, 'Link:' %></div>
-			<div class="col-xs-9"><%= link.text_field :link, { class: 'form-control' } %></div>
-		</div>
-		<br /><hr /><br />
+			<br />
+			<div class="row vertical-align-middle">
+				<div class="col-xs-2 align-right"><%= link.label :name, 'Name:' %></div>
+				<div class="col-xs-3"><%= link.text_field :name, { class: 'form-control' } %></div>
+				<% if resource.new_record? %>
+					<%= link.hidden_field :index, :value => 1 %>
+				<% else %>
+					<div class="col-xs-2 align-right"><%= link.label :index, 'Index:' %></div>
+					<div class="col-xs-1"><%= link.select :index, (1..15), {}, { class: 'form-control' } %></div>
+					<div class="col-xs-2 align-right"><%= link.label :destroy, 'Remove Link:' %></div>
+					<div class="col-xs-1"><%= link.check_box '_destroy', { class: 'form-control' } %></div>
+				<% end %>
+			</div>
+			<br />
+			<div class="row vertical-align-middle">
+				<div class="col-xs-2 align-right"><%= link.label :link, 'Link:' %></div>
+				<div class="col-xs-9"><%= link.text_field :link, { class: 'form-control' } %></div>
+			</div>
+			<br /><hr /><br />
+		<% end %>
 	<% end %>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
