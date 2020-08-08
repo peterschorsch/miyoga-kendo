@@ -2,7 +2,7 @@ class AboutsController < ApplicationController
 	before_action :set_page
 
 	def index
-		@content = Content.of_page(@current_page).active_ordered
+		@content = Content.of_page(@current_page).active_ordered.includes(:page, :images, :links)
 		
 		@new_content = Content.new
 		@new_content.images.build

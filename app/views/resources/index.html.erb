@@ -41,7 +41,7 @@
 					</div>
 				<% end %>
 				<div class="row">
-					<% content.links.includes(:images).each do |link| %>
+					<% content.links.each do |link| %>
 						<% if link.images.exists? %>
 							<% @image = link.images.first %>
 							<div class="col-md-3 col-sm-6">
@@ -64,7 +64,7 @@
 		<hr />
 	</div>
 </div>
-<% @articles.includes(:images).each_with_index do |content, index| %>
+<% @articles.each_with_index do |content, index| %>
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1 col-sm-12">
 			<div class="panel panel-default card">
