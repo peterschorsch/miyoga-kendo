@@ -91,6 +91,10 @@
 								</div>
 							<% end %>
 							<hr />
+							<% if not tf_check(content.subheading) %>
+								<h4><%= content.subheading %></h4>
+							<% end %>
+							<h5><%= format_header_date(content.created_at) %></h5><br />
 							<%= simple_format(content.description, wrapper_tag: "p", class: 'card-text') %>
 							<%= link_to "Visit Article &raquo".html_safe, link.link, :class => "btn btn-info", target: :_blank %>
 						</div>
