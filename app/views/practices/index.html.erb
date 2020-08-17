@@ -12,7 +12,7 @@
 
 <%= render "templates/heading", text: @content.heading, list_of_classes: "align-center" %>
 
-<%= render "templates/alerts/notice" %>
+<%= render "templates/alerts/admin-notice" %>
 
 <% @practices.each_with_index do |practice, index| %>
 	<%= render "edit-modal", practice: practice, index: index %>

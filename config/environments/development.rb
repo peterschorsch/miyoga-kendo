@@ -22,7 +22,7 @@ Rails.application.configure do
   port:                 587,
   domain:               'example.com',
   user_name:            'peteschorsch@gmail.com',
-  password:             'xRSMBqu9wHiKF9i',
+  password:             'bbkvmfnjfirjosxf',
   authentication:       'plain',
   enable_starttls_auto: true  }
   config.action_mailer.asset_host = "http://localhost:3000"

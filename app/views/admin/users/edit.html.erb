@@ -6,7 +6,7 @@
 
 <%= render "templates/heading", text: "Editing: #{@user.concat_name}", list_of_classes: "align-center" %>
 
-<%= render "templates/alerts/notice" %>
+<%= render "templates/alerts/admin-notice" %>
 <%= render "templates/alerts/form-errors", model: @user %>
 
 <%= render 'form', user: @user %>

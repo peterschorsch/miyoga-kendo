@@ -1,6 +1,14 @@
 <div class="no-padding">
 	<div class="container">
 		<%= image_tag("home_page/group_practice_shot.jpg", class: "home_image", alt: "Group Shot") %>
+		<div class="top-centered">
+			<% if notice %>
+				<div class="alert alert-success alert-dismissable align-center" role="alert">
+					<a href="#" class="close text-link" data-dismiss="alert" aria-label="close">X</a>
+					<span id="notice"><%= raw(notice) %></span>
+				</div>
+			<% end %>
+		</div>
 		<div class="bottom-centered">
 			<h1 class='miyoga-heading-text'><%= @about_miyoga.heading %></h1>
 			<%= simple_format(@about_miyoga.description.truncate_words(60), wrapper_tag: "p") %>

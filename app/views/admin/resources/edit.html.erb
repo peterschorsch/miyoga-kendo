@@ -6,7 +6,7 @@
 
 <%= render "templates/heading", text: "Editing Resource", list_of_classes: "align-center" %>
 
-<%= render "templates/alerts/notice" %>
+<%= render "templates/alerts/admin-notice" %>
 <%= render "templates/alerts/form-errors", model: @resource %>
 
 <%= render "edit-form", resource: @resource, path: admin_resource_path(@resource) %>

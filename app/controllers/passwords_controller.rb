@@ -6,8 +6,6 @@ class PasswordsController < ApplicationController
 	    end
 
 	    @user = User.find_by(email: params[:email]) # if present find user by email
-	    puts @user.inspect
-	    puts @user.present?
 	    if @user.present?
 	      @user.generate_password_token! #generate pass token
 
@@ -22,9 +20,9 @@ class PasswordsController < ApplicationController
 
 	def reset
 	    token = params[:token].to_s
-	    #if params[:email].blank?
-	      #return render json: {error: 'Token not present'}
-	    #end
+	    if params[:email].blank?
+	      return render json: {error: 'Token not present'}
+	    end
 
 	    @user = User.find_by(reset_password_token: token)
 	    respond_to do |format|
@@ -38,5 +36,5 @@ class PasswordsController < ApplicationController
 		      format.html { redirect_to reset_password_path, notice: "User and/or token not found." }
 		    end
 		end
-	  end
+	end
 end
