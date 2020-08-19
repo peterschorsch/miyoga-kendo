@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_01_031910) do
+ActiveRecord::Schema.define(version: 2020_08_17_174505) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "location_name", null: false
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 2020_08_01_031910) do
     t.datetime "last_login"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.boolean "new_user", default: true
   end
 
 end

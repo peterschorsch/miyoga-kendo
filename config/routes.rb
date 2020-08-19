@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       collection do
         patch 'update_password'
       end
+      get 'resend-token', to: 'users#resend_token'
     end
 
     ### ABOUT PAGE ###

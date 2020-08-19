@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::AdminController
-  before_action :set_user, only: [:show, :edit, :update, :update_password]
+  before_action :set_user, only: [:show, :edit, :update, :update_password, :reset_token]
 
   # GET /admin/users
   # GET /admin/users.json
@@ -30,14 +30,11 @@ class Admin::UsersController < Admin::AdminController
   def create
     @user = User.new(user_params)
 
-    temp_password = ('0'..'z').to_a.shuffle.first(8).join
-
-    puts "TEMPORARY PASSWORD: " + temp_password
-    @user.password = temp_password
+    @user.set_user_random_password
 
     respond_to do |format|
-      if @user.save
-        UserMailer.temporary_password_email(@user).deliver_now
+      if @user.generate_password_token! #generate pass token
+        UserMailer.temporary_password_email(@user).deliver_later
 
         format.html { redirect_to admin_users_path, notice: "#{@user.concat_name} was successfully created." }
         format.json { render :show, status: :created, location: @user }
@@ -73,10 +70,21 @@ class Admin::UsersController < Admin::AdminController
     end
   end
 
+  def resend_token
+    respond_to do |format|
+      if @user.send_forgotten_password_email
+        format.html { redirect_to admin_users_path(current_user), notice: "#{@user.concat_name} was sent a password reset email." }
+      else
+        format.html { render :index }
+        format.json { render json: current_user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id] || params[:user][:id])
+      @user = User.find(params[:id] || params[:user_id] || params[:user][:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

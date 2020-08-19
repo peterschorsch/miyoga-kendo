@@ -26,12 +26,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def temporary_password_form
-  end
-
-  def change_temporary_password
-  end
-
   def destroy
     session[:user_id] = User.get_guest_user.id
     redirect_to login_path, notice: "You have been logged out!"

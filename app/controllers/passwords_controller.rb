@@ -7,10 +7,8 @@ class PasswordsController < ApplicationController
 
 	    @user = User.find_by(email: params[:email]) # if present find user by email
 	    if @user.present?
-	      @user.generate_password_token! #generate pass token
+	      @user.send_forgotten_password_email
 
-	      # SEND EMAIL HERE
-	      UserMailer.forgotten_password_email(@user).deliver_now
 	      redirect_to sent_email_path
 	      #render json: {status: 'ok'}, status: :ok
 	    else
@@ -20,18 +18,17 @@ class PasswordsController < ApplicationController
 
 	def reset
 	    token = params[:token].to_s
-	    if params[:email].blank?
-	      return render json: {error: 'Token not present'}
-	    end
 
 	    @user = User.find_by(reset_password_token: token)
+
 	    respond_to do |format|
 		    if @user.present? && @user.password_token_valid?
-		      if @user.reset_password!(params[:password])
-		      	format.html { redirect_to login_path, notice: "Your password was successfully updated." }
-		      else
-		      	format.html { redirect_to reset_password_path, notice: "Your password was unsuccessfully updated." }
-		      end
+				@user.reset_password!(params[:password].to_s)
+				if @user.save
+					format.html { redirect_to login_path, notice: "Your password was successfully updated." }
+				else
+					format.html { redirect_to reset_password_path, notice: "Your password was unsuccessfully updated. Please ensure the token is correct and the password meets the necessary requirments." }
+				end
 		    else
 		      format.html { redirect_to reset_password_path, notice: "User and/or token not found." }
 		    end

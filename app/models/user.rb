@@ -13,7 +13,6 @@ class User < ApplicationRecord
 	validates :email, presence: true, email: true, uniqueness: true
 	has_secure_password
 
-	#validates :password, :confirmation => true, :length => {:within => 8..40}, :on => :create
 	PASSWORD_FORMAT = /\A
 		(?=.{8,})          # Must contain 8 or more characters
 		(?=.*\d)           # Must contain a digit
@@ -21,6 +20,8 @@ class User < ApplicationRecord
 		(?=.*[A-Z])        # Must contain an upper case character
 		(?=.*[[:^alnum:]]) # Must contain a symbol
 	/x
+
+	validates :password_digest, format: PASSWORD_FORMAT
 	
 	scope :active_accounts, -> {
 		where(:active => true).remove_guest_account
@@ -125,15 +126,24 @@ class User < ApplicationRecord
 	end
 
 	def password_token_valid?
-		(self.reset_password_sent_at + 1.hour) > Time.zone.now
+		self.new_user ? true : (self.reset_password_sent_at + 1.hour) > Time.zone.now
 	end
 
 	def reset_password!(password)
 		self.reset_password_token = nil
-		self.password = password
-		save
+		self.reset_password_sent_at = nil
+		self.password_digest = User.digest(password)
+		self.new_user = false
 	end
 
+	def send_forgotten_password_email
+		self.generate_password_token! #generate pass token
+
+	    # SEND EMAIL HERE
+	    UserMailer.forgotten_password_email(self).deliver_later
+	end
+
+	# PASSWORD CONFIRMATION FIELDS
 	def update_with_password(user_params)
 		if self.authenticate(user_params[:current_password]) && user_params[:password] == user_params[:password_confirmation]
 			self.password_digest = User.digest(user_params[:password])
@@ -143,9 +153,17 @@ class User < ApplicationRecord
 		end
 	end
 
+	def set_user_random_password
+		self.password_digest = User.digest(generate_random_password)
+	end
+
 	private
 
 	def generate_token
 		SecureRandom.hex(10)
+	end
+
+	def generate_random_password
+		SecureRandom.urlsafe_base64(8)<<"1!"
 	end
 end

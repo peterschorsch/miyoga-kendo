@@ -18,6 +18,11 @@
             <span class="glyphicon glyphicon-edit"></span> Edit
           <% end %>
         </td>
+        <td>
+          <%= link_to admin_user_resend_token_path(user.id), :class => "btn btn-primary btn-block" do %>
+            <span class="glyphicon glyphicon-lock"></span> Reset Password
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
