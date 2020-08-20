@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get :abouts, to: 'abouts#index', path: 'about'
   ### CLASS SCHEDULE PAGE ###
   resources :practices, only: [:index, :create, :update, :destroy]
+  ### NEWS PAGE ###
+  resources :announcements, path: 'news'#, only: [:index, :create, :update, :destroy]
   ### EVENTS PAGE ###
   resources :events, path: 'events', only: [:index, :create, :update, :destroy]
   ### RESOURCES PAGE ###
@@ -59,6 +61,8 @@ Rails.application.routes.draw do
 
     ### CLASS SCHEDULE PAGE ###
     resources :practices, except: [:show]
+    ### NEWS PAGE ###
+    resources :announcements, path: 'news'#, only: [:index, :create, :update, :destroy]
     ### EVENTS PAGE ###
     resources :events, except: [:destroy]
 
