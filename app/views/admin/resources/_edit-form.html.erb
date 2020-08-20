@@ -26,33 +26,19 @@
 	<br />
 
 	<%= render "templates/heading", text: "Editing Link(s)", list_of_classes: "align-center" %>
-	<%= f.fields_for :links do |link| %>
-		<div class="row vertical-align-middle">
-			<div class="col-xs-2 align-right"><%= link.label :name, 'Name:' %></div>
-			<div class="col-xs-3"><%= link.text_field :name, { class: 'form-control' } %></div>
-			<div class="col-xs-2 align-right"><%= link.label :index, 'Index:' %></div>
-			<div class="col-xs-1"><%= link.select :index, (1..10), {}, { class: 'form-control' } %></div>
-			<% if not resource.new_record? %>
-				<div class="col-xs-2 align-right"><%= link.label :destroy, 'Remove Link:' %></div>
-				<div class="col-xs-1"><%= link.check_box '_destroy', { class: 'form-control' } %></div>
-			<% end %>
-		</div>
-		<br />
-		<div class="row vertical-align-middle">
-			<div class="col-xs-2 align-right"><%= link.label :link, 'Link:' %></div>
-			<div class="col-xs-9"><%= link.text_field :link, { class: 'form-control' } %></div>
-		</div>
-		<br />
-		<%= link.fields_for :images do |image| %>
-			<div class="row vertical-align-middle">
-				<div class="col-xs-3 align-right"><%= image.label 'Current Image:' %></div>
-				<div class="col-xs-2"><%= image.object.image_file_name %></div>
-				<div class="col-xs-3 align-right"><%= image.label :link, 'Replace Current Image:' %></div>
-				<div class="col-xs-3"><%= image.file_field :image, class: 'form-control' %></div>
-			</div>
+	<div id='links'>
+		<%= f.fields_for :links do |link| %>
+			<%= render 'link_fields', :f => link, :resource => resource %>
 		<% end %>
-		<br /><hr /><br />
-	<% end %>
+		<div class="row">
+			<div class="col-xs-4 col-sm-offset-4">
+				<%= link_to_add_association f, :links, :class => "btn btn-info btn-block", :id => "add_link" do %>
+					<span class="glyphicon glyphicon-plus"></span> Add a Link
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<br /><br />
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<%= f.submit "Save Changes", class: "btn btn-success btn-block" %>

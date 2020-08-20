@@ -18,12 +18,12 @@ class Admin::ResourcesController < Admin::AdminController
 
   def new_resource
     @resource = Content.new
-    @resource.links.build.images.build
+    @resource.links.build
   end
 
   def new_article
     @resource = Content.new
-    @resource.links.build.images.build
+    @resource.links.build
   end
 
   def create_new_resource
@@ -91,7 +91,7 @@ class Admin::ResourcesController < Admin::AdminController
     # Only allow a list of trusted parameters through.
     def resource_params
       params.require(:content).permit(:heading, :subheading, :description, :index, :display_content_on_page, :article, :_destroy,
-      links_attributes: [:id, :name, :link, :image_link, :index, :display_logo, :article, :content_id, :_destroy, images_attributes: [:id, :image, :link_id, :_destroy]])
+      links_attributes: [:id, :name, :link, :image_link, :index, :image, :display_logo, :article, :content_id, :_destroy])
     end
 
 end

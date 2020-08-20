@@ -1,0 +1,23 @@
+<div class="row vertical-align-middle">
+	<div class="col-xs-2 align-right"><%= f.label :name, 'Name:' %></div>
+	<div class="col-xs-9"><%= f.text_field :name, { class: 'form-control' } %></div>
+</div>
+<br />
+<div class="row vertical-align-middle">
+	<div class="col-xs-2 align-right"><%= f.label :link, 'Link:' %></div>
+	<div class="col-xs-9"><%= f.text_field :link, { class: 'form-control' } %></div>
+</div>
+<br />
+<div class="row vertical-align-middle">
+	<div class="col-xs-2 align-right"><%= f.label :image, 'New Image:' %></div>
+	<div class="col-xs-9"><%= f.file_field :image, { class: 'form-control' } %></div>
+</div>
+<br />
+<div class="row vertical-align-middle">
+	<div class="col-xs-3 align-right"><%= f.label :index, 'Index:' %></div>
+	<div class="col-xs-2"><%= f.select :index, (1..10), {}, { class: 'form-control' } %></div>
+	<div class="col-xs-3 align-right"><%= f.label :destroy, 'Remove Link:' %></div>
+	<div class="col-xs-2"><%= f.check_box '_destroy', { class: 'form-control' } %></div>
+</div>
+<hr />
+<br />

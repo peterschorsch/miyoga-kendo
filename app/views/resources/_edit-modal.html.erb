@@ -31,33 +31,18 @@
 		          	</div>
 		          	<h1>Edit Links</h1>
 		          	<hr />
-					<%= f.fields_for :links do |link| %>
-			          	<div class="row vertical-align-middle">
-							<div class="col-xs-2 align-right"><%= link.label :name, 'Name:' %></div>
-			          		<div class="col-xs-9"><%= link.text_field :name, { class: 'form-control' } %></div>
-			          	</div>
-			          	<br />
-			          	<div class="row vertical-align-middle">
-							<div class="col-xs-2 align-right"><%= link.label :link, 'Link:' %></div>
-			          		<div class="col-xs-9"><%= link.text_field :link, { class: 'form-control' } %></div>
-			          	</div>
-			          	<br />
-			          	<%= link.fields_for :image do |image| %>
-							<div class="row vertical-align-middle">
-								<div class="col-xs-2 align-right"><%= image.label :image, 'New Image:' %></div>
-								<div class="col-xs-9"><%= image.file_field :image, { class: 'form-control' } %></div>
-							</div>
+		          	<div id='links'>
+						<%= f.fields_for :links do |link| %>
+							<%= render 'link_fields', :f => link, link_end_count: link_end_count %>
 						<% end %>
-						<br />
-			          	<div class="row vertical-align-middle">
-			          		<div class="col-xs-3 align-right"><%= link.label :index, 'Index:' %></div>
-			          		<div class="col-xs-2"><%= link.select :index, (1..link_end_count), {}, { class: 'form-control' } %></div>
-			          		<div class="col-xs-3 align-right"><%= link.label :destroy, 'Remove Link:' %></div>
-			          		<div class="col-xs-2"><%= link.check_box '_destroy', { class: 'form-control' } %></div>
+						<div class="row">
+							<div class="col-xs-4 col-sm-offset-4">
+								<%= link_to_add_association f, :links, :class => "btn btn-info btn-block", :id => "add_link" do %>
+									<span class="glyphicon glyphicon-plus"></span> Add a Link
+								<% end %>
+							</div>
 						</div>
-						<hr />
-						<br />
-		          	<% end %>
+					</div>
 			</div>
 			<div class="modal-footer">
 					<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#resourcesEditModal-#{index}" } %>

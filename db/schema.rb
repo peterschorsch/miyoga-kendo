@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_17_174505) do
+ActiveRecord::Schema.define(version: 2020_08_19_182411) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "location_name", null: false
@@ -60,14 +60,12 @@ ActiveRecord::Schema.define(version: 2020_08_17_174505) do
   create_table "images", force: :cascade do |t|
     t.string "image_file_name"
     t.string "image_content_type"
-    t.bigint "image_file_size"
+    t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.integer "content_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "link_id"
     t.index ["content_id"], name: "index_images_on_content_id"
-    t.index ["link_id"], name: "index_images_on_link_id"
   end
 
   create_table "links", force: :cascade do |t|
@@ -79,6 +77,10 @@ ActiveRecord::Schema.define(version: 2020_08_17_174505) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["content_id"], name: "index_links_on_content_id"
     t.index ["user_id"], name: "index_links_on_user_id"
   end

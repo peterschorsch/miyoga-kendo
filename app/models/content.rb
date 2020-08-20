@@ -4,11 +4,11 @@ class Content < ApplicationRecord
 	has_many :practices
 
 	has_many :links, inverse_of: :content, dependent: :destroy
-	accepts_nested_attributes_for :links, allow_destroy: true#, :reject_if => proc { |attributes| attributes['address_line_1'].blank? || attributes['city'].nil? || attributes['state_id'].nil?|| attributes['zip_code'].nil? }
+	accepts_nested_attributes_for :links, :reject_if => proc { |attributes| attributes['name'].blank? || attributes['link'].blank? } #, allow_destroy: true#, :reject_if => proc { |attributes| attributes['address_line_1'].blank? || attributes['city'].nil? || attributes['state_id'].nil?|| attributes['zip_code'].nil? }
 
 	has_many :images, inverse_of: :content, dependent: :destroy
 	accepts_nested_attributes_for :images, allow_destroy: true
-	validate :images_presence, on: :create
+	#validate :images_presence, on: :create
 
 	validates :heading, presence: true
 	validates :index, :uniqueness => { :scope => [:page_id, :display_content_on_page, :article] }, :if => :index_changed?

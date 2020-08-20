@@ -1,0 +1,30 @@
+<div class="row vertical-align-middle">
+	<div class="col-xs-2 align-right"><%= f.label :name, 'Name:' %></div>
+	<div class="col-xs-3"><%= f.text_field :name, { class: 'form-control' } %></div>
+	<div class="col-xs-2 align-right"><%= f.label :index, 'Index:' %></div>
+	<div class="col-xs-1"><%= f.select :index, (1..10), {}, { class: 'form-control' } %></div>
+	<% if not @resource.new_record? %>
+		<div class="col-xs-2 align-right"><%= f.label :destroy, 'Remove Link:' %></div>
+		<div class="col-xs-1"><%= f.check_box '_destroy', { class: 'form-control' } %></div>
+	<% end %>
+</div>
+<br />
+<% if @resource.new_record? %>
+	<div class="row vertical-align-middle">
+		<div class="col-xs-2 align-right"><%= f.label :link, 'Image:' %></div>
+		<div class="col-xs-3"><%= f.file_field :image, class: 'form-control' %></div>
+	</div>
+	<% else %>
+	<div class="row vertical-align-middle">
+		<div class="col-xs-3 align-right"><%= f.label 'Current Image:' %></div>
+		<div class="col-xs-2"><%= f.object.image_file_name %></div>
+		<div class="col-xs-3 align-right"><%= f.label :link, 'Replace Current Image:' %></div>
+		<div class="col-xs-3"><%= f.file_field :image, class: 'form-control' %></div>
+	</div>
+<% end %>
+<br />
+<div class="row vertical-align-middle">
+	<div class="col-xs-2 align-right"><%= f.label :link, 'Link:' %></div>
+	<div class="col-xs-9"><%= f.text_field :link, { class: 'form-control' } %></div>
+</div>
+<br /><hr /><br />

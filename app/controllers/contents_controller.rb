@@ -6,9 +6,7 @@ class ContentsController < ApplicationController
 		@content = Content.new(content_params)
 		@content.page_id = @current_page.id
 		@content.user_id = current_user.id
-		@content.images.each do |image|
-			image.content_id = @content.id
-		end
+		@content.images.in_batches.update_all(content_id: @content.id)
 
 		respond_to do |format|
 			if @content.save
@@ -22,6 +20,7 @@ class ContentsController < ApplicationController
 
 	def update
 		@content.user_id = current_user.id
+		@content.links.in_batches.update_all(user_id: current_user.id)
 
 		respond_to do |format|
 			if @content.update!(content_params)
@@ -59,7 +58,7 @@ class ContentsController < ApplicationController
 	    # Only allow a list of trusted parameters through.
 	    def content_params
 			params.require(:content).permit(:id, :heading, :subheading, :description, :index, :display_content_on_page, :article,
-			links_attributes: [:id, :name, :link, :index, :content_id, :_destroy, image_attributes: [:id, :image, :link_id, :_destroy]])
+			links_attributes: [:id, :name, :link, :index, :image, :content_id, :_destroy, image_attributes: [:id, :image, :link_id, :_destroy]])
 	    end
 
 end

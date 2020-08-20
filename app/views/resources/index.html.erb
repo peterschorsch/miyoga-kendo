@@ -42,14 +42,11 @@
 				<% end %>
 				<div class="row">
 					<% content.links.each do |link| %>
-						<% if link.images.exists? %>
-							<% @image = link.images.first %>
-							<div class="col-md-3 col-sm-6">
-								<div class="panel panel-default">
-									<div class="panel-body"><%= link_to image_tag(@image.image.url, class: "image-center", alt: @image.image_file_name), link.link, class: "header-link-text", target: :_blank %></div>
-								</div>
+						<div class="col-md-3 col-sm-6">
+							<div class="panel panel-default">
+								<div class="panel-body"><%= link_to image_tag("logos/#{link.image_file_name}", class: "image-center", alt: link.image_file_name), link.link, class: "header-link-text", target: :_blank %></div>
 							</div>
-						<% end %>
+						</div>
 					<% end %>
 				</div>
 				<br />
@@ -69,10 +66,9 @@
 		<div class="col-md-10 col-md-offset-1 col-sm-12">
 			<div class="panel panel-default card">
 				<% content.links.each do |link| %>
-					<% @image = link.images.first %>
 					<div class="row padding">
 						<div class="col-md-3">
-							<%= image_tag(@image.image.url, class: "text-image", alt: @image.image_file_name) %>
+							<%= image_tag("resources_page/#{link.image_file_name}", class: "text-image", alt: link.image_file_name) %>
 						</div>
 						<div class="col-md-9">
 							<% if not current_user.is_admin? %>

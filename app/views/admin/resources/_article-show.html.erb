@@ -1,15 +1,13 @@
 <div class="row">
-	<% if link.images.exists? %>
-		<% @image = link.images.first %>
-		<div class="col-md-3">
-			<%= link_to image_tag(@image.image.url, class: "text-image", alt: @image.image_file_name), link.link, target: :_blank  %>
-			<div class="align-center"><%= render "templates/admin-modified-by", content: link %></div>
-		</div>
-	<% end %>
-	<% if not tf_check(resource.description) %>
-		<div class="col-md-9">
+	<div class="col-md-3">
+		<%= link_to image_tag("resources_page/#{link.image_file_name}", class: "text-image", alt: link.image_file_name), link.link, target: :_blank  %>
+		<div class="align-center"><%= render "templates/admin-modified-by", content: link %></div>
+	</div>
+	<div class="col-md-9">
+		<h5><%= format_header_date(link.created_at) %></h5>
+		<% if not tf_check(resource.description) %>
 			<%= simple_format(resource.description, wrapper_tag: "p") %>
 			<p><%= link_to "Visit Article &raquo".html_safe, link.link, :class => "btn btn-info", target: :_blank %></p>
-		</div>
-	<% end %>
+		<% end %>
+	</div>
 </div>

@@ -40,7 +40,7 @@
 	<% end %>
 <% end %>
 
-<% @resource.links.includes(:images, :user).each do |link| %>
+<% @resource.links.includes(:user).each do |link| %>
 	<% if link.article %>
 		<%= render "article-show", resource: @resource, link: link %>
 	<% else %>
