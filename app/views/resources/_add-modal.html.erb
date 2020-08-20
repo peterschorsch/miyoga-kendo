@@ -1,0 +1,59 @@
+<div class="modal fade" id="resourceAddModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title" id="resourceAddModal">Add Content</h1>
+			</div>
+			<div class="modal-body">
+				<%= form_with(model: new_content, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off", multipart: true }) do |f| %>
+					<div class="row vertical-align-middle">
+						<div class="col-xs-2 align-right"><%= f.label :heading, 'Heading:' %></div>
+						<div class="col-xs-9"><%= f.text_field :heading, { class: 'form-control' } %></div>
+					</div>
+					<br />
+					<div class="row vertical-align-middle">
+						<div class="col-xs-2 align-right"><%= f.label :subheading, 'SubHeading:' %></div>
+						<div class="col-xs-9"><%= f.text_field :subheading, { class: 'form-control' } %></div>
+					</div>
+					<br />
+					<div class="row vertical-align-middle">
+						<div class="col-xs-2"><%= f.label :description, 'Description:' %></div>
+						<div class="col-xs-9"><%= f.cktext_area :description, { class: 'form-control', language: "us", rows: 25 } %></div>
+					</div>
+					<br />
+					<%= f.fields_for :images do |image| %>
+						<div class="row vertical-align-middle">
+							<div class="col-xs-2 align-right"><%= image.label :image, 'Image:' %></div>
+							<div class="col-xs-9"><%= image.file_field :image, { class: 'form-control' } %></div>
+						</div>
+					<% end %>
+					<br />
+					<div class="row vertical-align-middle">
+						<div class="col-xs-3"><%= f.label :index, 'Content Order:' %></div>
+						<div class="col-xs-2"><%= f.select :index, Content.populate_new_index_dropdown(@current_page), {}, { class: 'form-control' } %></div>
+						<div class="col-xs-3"><%= f.label :display_content_on_page, 'Display Content:' %></div>
+						<div class="col-xs-2"><%= f.check_box :display_content_on_page, { class: 'form-control' } %></div>
+					</div>
+					<h1>Add Link(s)</h1>
+		          	<hr />
+		          	<div id='links'>
+						<%= f.fields_for :links do |link| %>
+							<%= render 'link_fields', :f => link %>
+						<% end %>
+						<div class="row">
+							<div class="col-xs-4 col-sm-offset-4">
+								<%= link_to_add_association f, :links, :class => "btn btn-info btn-block", :id => "add_link" do %>
+									<span class="glyphicon glyphicon-plus"></span> Add a Link
+								<% end %>
+							</div>
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#aboutAddModal" } %>
+				<%= f.submit "Save Changes", class: 'btn btn-success' %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

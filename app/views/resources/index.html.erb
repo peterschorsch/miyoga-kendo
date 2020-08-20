@@ -1,4 +1,16 @@
-<%= render "templates/heading", text: @page.name, list_of_classes: "" %>
+<% if current_user.is_admin? %>
+	<div class="row">
+		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
+			<%= button_tag :class => "btn btn-info btn-block", title: 'Add', data: { toggle: 'modal', target: "#resourceAddModal" } do %>
+				<span class="glyphicon glyphicon-plus"></span> Add New Resource
+			<% end %>
+		</div>
+	</div>
+	<%= render "add-modal", new_content: @new_resource %>
+	<%= render "templates/alerts/form-errors", model: @new_resource %>
+<% end %>
+
+<%= render "templates/heading", text: @current_page.name, list_of_classes: "" %>
 
 <%= render "templates/alerts/admin-notice" %>
 
@@ -55,12 +67,20 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-md-12">
-		<h1>Readings</h1>
-		<hr />
+<% if current_user.is_admin? %>
+	<div class="row">
+		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
+			<%= button_tag :class => "btn btn-info btn-block", title: 'Add', data: { toggle: 'modal', target: "#resourceAddModal" } do %>
+				<span class="glyphicon glyphicon-plus"></span> Add New Article
+			<% end %>
+		</div>
 	</div>
-</div>
+	<%= render "add-modal", new_content: @new_resource %>
+	<%= render "templates/alerts/form-errors", model: @new_resource %>
+<% end %>
+
+<%= render "templates/heading", text: "Readings", list_of_classes: "" %>
+
 <% @articles.each_with_index do |content, index| %>
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1 col-sm-12">
