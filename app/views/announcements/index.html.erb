@@ -1,40 +1,61 @@
 <%= render "templates/heading", text: @current_page.name, list_of_classes: "" %>
 
 <div class="row">
-	<% (1..3).each do %>
+	<% @pinned_news.each do |news| %>
 		<div class="col-md-4 col-sm-12">
 			<div class="panel panel-default card">
-				<div class="row padding">
+				<div class="row padding-left-right">
 					<div class="col-md-2">
 						<h2><span class="glyphicon glyphicon-star yellow"></span></h2>
 					</div>
 					<div class="col-md-10">
-						<h2>Testing News</h2><h5><%= format_header_date(DateTime.now) %></h5>
+						<h2><%= news.heading %></h2></h5>
 					</div>
 				</div>
-				<div class="row padding">
+				<div class="row padding-left-right">
+					<div class="col-md-6">
+						<h5><%= format_header_date(news.created_at) %></h5>
+					</div>
+					<div class="col-md-6 align-right">
+						<h5>Posted by: <strong><%= news.user.concat_name %></strong></h5>
+					</div>
+				</div>
+				<div class="row padding-left-right padding-bottom">
 					<div class="col-md-12">
-						<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+						<%= simple_format(news.description, wrapper_tag: "p", class: 'indent-paragraph') %>
 					</div>
 				</div>
 			</div>
 		</div>
 	<% end %>
 </div>
-<% (1..3).each do %>
+<hr />
+<% @other_news.in_groups_of(2, false) do |news_group| %>
 	<div class="row">
-		<div class="col-md-12">
-			<div class="row padding">
-				<div class="col-md-12">
-					<h2>Testing News</h2><h5><%= format_header_date(DateTime.now) %></h5>
+		<% news_group.each do |news| %>
+			<div class="col-md-6 col-xs-12">
+				<div class="row">
+					<div class="col-md-12">
+						<h2><%= news.heading %></h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<h5><%= format_header_date(news.created_at) %></h5>
+					</div>
+					<div class="col-md-4 align-right">
+						<h5>Posted by: <strong><%= news.user.concat_name %></strong></h5>
+					</div>
+				</div>
+				<div class="row">
+					<% if tf_check(news.image_file_name) %>
+						<%= render "text-only-news", news: news %>
+					<% else %>
+						<%= render "text-image-news", news: news %>
+					<% end %>
 				</div>
 			</div>
-			<div class="row padding">
-				<div class="col-md-12">
-					<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
-				</div>
-			</div>
-		</div>
+		<% end %>
 	</div>
 	<hr />
 <% end %>

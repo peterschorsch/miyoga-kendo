@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_19_182411) do
+ActiveRecord::Schema.define(version: 2020_08_20_224958) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "location_name", null: false
@@ -26,6 +26,27 @@ ActiveRecord::Schema.define(version: 2020_08_19_182411) do
     t.index ["event_id"], name: "index_addresses_on_event_id"
     t.index ["state_id"], name: "index_addresses_on_state_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "announcements", force: :cascade do |t|
+    t.string "heading", null: false
+    t.text "description"
+    t.text "link"
+    t.string "pdf_file_name"
+    t.string "pdf_content_type"
+    t.bigint "pdf_file_size"
+    t.datetime "pdf_updated_at"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
+    t.boolean "pinned", default: false
+    t.integer "page_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id"], name: "index_announcements_on_page_id"
+    t.index ["user_id"], name: "index_announcements_on_user_id"
   end
 
   create_table "contents", force: :cascade do |t|

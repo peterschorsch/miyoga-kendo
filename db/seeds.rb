@@ -107,6 +107,15 @@ end
 puts ""
 puts ""
 
+puts "NEWS PAGE"
+@news_page_id = Page.named("News").id
+@announcement = Announcement.create_with(heading: "2020 Dragonboat Race", description: "The Chinese Dragon Boat Race dates back to over 2,000 years and is a popular sport amongst Chinese and Asian communities all over the world. Started in 2000, the Chicago Dragon Boat Race for Literacy is a family-fun activity enjoyed by visitors from all over the city and surrounding suburbs.", link: "https://www.ccc-foundation.org/dragon-boat-race-for-literacy/", pinned: true, :user_id => User.admin_accounts.third.id, page_id: @news_page_id).find_or_create_by(heading: "2020 Dragonboat Race")
+puts @announcement.inspect
+@announcement = Announcement.create_with(heading: "Upcoming Pactice (August 21)", :image_file_name=>"bokken.jpg", :image_content_type=>"application/jpg", :image_file_size=>35143, :image_updated_at=>DateTime.now, description: "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.", :user_id => User.admin_accounts.second.id, page_id: @news_page_id).find_or_create_by(heading: "Upcoming Pactice (August 21)")
+puts @announcement.inspect
+@announcement = Announcement.create_with(heading: "Upcoming Pactice (August 23)", description: "Please make sure to bring a bokken to practice.", :user_id => User.admin_accounts.second.id, page_id: @news_page_id).find_or_create_by(heading: "Upcoming Pactice (August 23)")
+puts @announcement.inspect
+puts ""
 
 puts "EVENTS PAGE"
 @event_page_id = Page.named("Events").id
@@ -139,7 +148,6 @@ puts "RESOURCES PAGE"
 @resources_page_id = Page.named("Resources").id
 @content = Content.create_with(heading: "Equipment", :index => 1, :display_content_on_page => true, :article => false, :page_id => @resources_page_id, :user_id => User.admin_accounts.second.id).find_or_create_by(heading: "Equipment")
 puts @content.inspect
-
 @link = Link.create_with(name: "E-Bogu", :link => "https://www.e-bogu.com/", :index => 1, :image_file_name=>"e_bogu.png", :image_content_type=>"application/png", :image_file_size=>13605, :image_updated_at=>DateTime.now, :content_id => @content.id, :user_id => User.admin_accounts.first.id).find_or_create_by(name: "E-Bogu")
 puts @link.inspect
 @link = Link.create_with(name: "Tozando", :link => "https://www.tozandoshop.com/", :index => 2, :image_file_name=>"tozando.jpg", :image_content_type=>"application/jpg", :image_file_size=>7830, :image_updated_at=>DateTime.now, :content_id => @content.id, :user_id => User.admin_accounts.second.id).find_or_create_by(name: "Tozando")

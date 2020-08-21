@@ -1,0 +1,7 @@
+<div class="col-md-8 text-image-column">
+	<%= simple_format(news.description, wrapper_tag: "p", class: 'indent-paragraph') %>
+	<%= link_to "Visit Link &raquo".html_safe, news.link, :class => "btn btn-info", target: :_blank if not tf_check(news.image_file_name) %>
+</div>
+<div class="col-md-4 text-image-column">
+	<%= link_to image_tag("news_page/#{news.image_file_name}", class: "image-center", alt: news.image_file_name), news.link, class: "text-image", target: :_blank %>
+</div>

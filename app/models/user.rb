@@ -2,6 +2,7 @@ class User < ApplicationRecord
 	has_many :pages, dependent: :destroy
 	has_many :contents
 	has_many :events
+	has_many :announcements
 	has_many :addresses
 	has_many :links
 	has_many :practices

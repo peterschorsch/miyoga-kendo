@@ -2,6 +2,7 @@ class Page < ApplicationRecord
 	belongs_to :user
 	has_many :contents
 	has_many :events
+	has_many :news
 
 	scope :active_pages, -> {
 		where(:active => true)
