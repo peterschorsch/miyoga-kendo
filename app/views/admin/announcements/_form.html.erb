@@ -1,0 +1,53 @@
+<%= form_with(model: [:admin, form], local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |form| %>
+  <div class="row vertical-align-middle">
+    <div class="col-md-2 col-xs-12 align-right"><%= form.label :heading, 'Heading:' %></div>
+    <div class="col-md-9 col-xs-12"><%= form.text_field :heading, { class: 'form-control' } %></div>
+  </div>
+  <br />
+  <div class="row vertical-align-middle">
+    <div class="col-md-2 col-xs-12 align-right"><%= form.label :Description, 'Description:' %></div>
+    <div class="col-md-9 col-xs-12"><%= form.cktext_area :description, { class: 'form-control', language: "us" } %></div>
+  </div>
+  <br />
+  <div class="row vertical-align-middle">
+    <div class="col-md-2 col-xs-12 align-right"><%= form.label :link, 'Link:' %></div>
+    <div class="col-md-9 col-xs-12"><%= form.text_field :link, { class: "form-control" } %></div>
+  </div>
+  <br />
+  <!--<div class="row vertical-align-middle">
+    <%# if form.object.image_file_name.nil? %>
+      <div class="col-xs-1 align-right"><%#= form.label :image, 'Image:' %></div>
+      <div class="col-xs-3"><%#= form.file_field :image, class: 'form-control' %></div>
+    <%# else %>
+      <div class="col-xs-2 align-right"><%#= form.label 'Current Image:' %></div>
+      <div class="col-xs-3"><%= form.object.image_file_name %></div>
+      <div class="col-xs-3 align-right"><%#= form.label :image, 'Replace Current Image:' %></div>
+      <div class="col-xs-3"><%#= form.file_field :image, class: 'form-control' %></div>
+    <%# end %>
+  </div>
+  <br />-->
+  <div class="row vertical-align-middle">
+    <% if form.object.pdf_file_name.nil? %>
+      <div class="col-xs-1 align-right"><%= form.label :pdf, 'Attach PDF:' %></div>
+      <div class="col-xs-3"><%= form.file_field :pdf, class: 'form-control' %></div>
+    <% else %>
+      <div class="col-xs-2 align-right"><%= form.label 'Current PDF:' %></div>
+      <div class="col-xs-3"><%= form.object.image_file_name %></div>
+      <div class="col-xs-3 align-right"><%= form.label :pdf, 'Replace PDF File:' %></div>
+      <div class="col-xs-3"><%= form.file_field :pdf, class: 'form-control' %></div>
+    <% end %>
+  </div>
+  <br />
+  <div class="row vertical-align-middle">
+    <div class="col-md-2 col-xs-12 align-right"><%= form.label :pinned, 'Pin Post:', class: "" %></div>
+    <div class="col-md-1 col-xs-12"><%= form.check_box :pinned, { class: 'form-control' } %></div>
+    <div class="col-md-2 col-xs-12 align-right"><%= form.label :active, 'Display Post:' %></div>
+    <div class="col-md-1 col-xs-12"><%= form.check_box :active, { class: 'form-control' } %></div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-4 col-xs-12 col-md-offset-4">
+      <%= form.submit "Save News", class: 'btn btn-success btn-block' %>
+    </div>
+  </div>
+<% end %>

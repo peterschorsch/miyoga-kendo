@@ -19,4 +19,9 @@ module NilchecksHelper
 		return tf_check(last_login) ? "n/a" : formateDateTimeWithAt(last_login)
 	end
 
+	##### CHECK IF IN ASSET PIPELINE ######
+	def image_in_asset_pipeline(news)
+		File.file? Rails.public_path + "/news_page/#{news.image_file_name}"
+	end
+
 end

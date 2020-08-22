@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= render "templates/buttons/back-to-page", text: "News", path: admin_announcements_path(@announcement) %>
+  </div>
+</div>
+
+<%= render "templates/heading", text: "Add New News Item", list_of_classes: "align-center" %>
+
+<%= render "templates/alerts/admin-notice" %>
+<%= render "templates/alerts/form-errors", model: @announcement %>
+
+<%= render "form", form: @announcement %>

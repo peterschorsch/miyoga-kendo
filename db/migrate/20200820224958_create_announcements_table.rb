@@ -9,6 +9,7 @@ class CreateAnnouncementsTable < ActiveRecord::Migration[5.2]
 		t.attachment :image
 
 		t.boolean :pinned, :default => false
+		t.boolean :active, :default => true
 
 		t.references :page, index: true, foreign_key: true
 		t.references :user, index: true, foreign_key: true
