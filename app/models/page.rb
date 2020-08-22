@@ -16,8 +16,12 @@ class Page < ApplicationRecord
 		find_by(:name => name)
 	}
 
-	def self.active_ordered_pages
-		active_pages.ordered
-	end
+	scope :guest_user_pages, -> {
+		where.not(:name => "News").active_pages.ordered.select(:name, :path, :admin_path)
+	}
+
+	scope :logged_in_user_pages, -> {
+		where(:active => true).active_pages.ordered.select(:name, :path, :admin_path)
+	}
 
 end

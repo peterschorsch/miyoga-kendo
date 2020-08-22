@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def active_header_pages
-		@active_pages = Page.active_ordered_pages.select(:name, :path, :admin_path)
+		@active_pages = current_user.is_logged_in? ? Page.logged_in_user_pages : Page.guest_user_pages
 	end
 
 end
