@@ -22,7 +22,7 @@
 			<% else %>
 				<div class="col-xs-2 align-right"><%= image.label 'Current Image:' %></div>
 				<div class="col-xs-3"><%= image.object.image_file_name %></div>
-				<div class="col-xs-3 align-right"><%= image.label :link, 'Replace Current Image:' %></div>
+				<div class="col-xs-3 align-right"><%= image.label :image, 'Replace Current Image:' %></div>
 				<div class="col-xs-3"><%= image.file_field :image, class: 'form-control' %></div>
 			<% end %>
 		</div>

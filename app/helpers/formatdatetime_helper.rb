@@ -9,9 +9,9 @@ module FormatdatetimeHelper
   def formatFullDate(date)
     date.strftime("%A, %B %d, %Y")
   end
-  # 09/19/17
+  # 9/19/17
   def formatDate(date)
-    date.strftime("%m/%d/%y")
+    date.strftime("%-m/%d/%y")
   end
   # 4:38pm
   def formatTime(date)
