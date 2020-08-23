@@ -1,6 +1,6 @@
 <div class="row miyoga-header">
-  <div class="col-sm-12 col-md-1"><%= link_to image_tag("logos/miyoga_crest.png", class: "miyoga_header_image", alt: "Miyoga Logo"), root_path, class: "header-link-text" %></div>
-  <div class="col-sm-12 col-md-11"><%= link_to raw("<h1 class='miyoga-heading-text'>Miyoga Kendo Club</h1>"), root_path, class: "header-link-text" %></div>
+  <div class="col-sm-1 col-md-1"><%= link_to image_tag("logos/miyoga_crest.png", class: "miyoga_header_image", alt: "Miyoga Logo"), root_path, class: "header-link-text" %></div>
+  <div class="col-sm-4 col-md-4"><%= link_to raw("<h1 class='miyoga-heading-text'>Miyoga Kendo Club</h1>"), root_path, class: "header-link-text" %></div>
 </div>
 
 <% if current_user.is_logged_in? %>

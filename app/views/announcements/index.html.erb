@@ -4,7 +4,7 @@
 	<% @pinned_news.each do |news| %>
 		<div class="col-md-4 col-sm-12">
 			<div class="panel panel-default card">
-				<div class="row padding-left-right">
+				<div class="row">
 					<div class="col-md-2">
 						<h2><span class="glyphicon glyphicon-star yellow"></span></h2>
 					</div>
@@ -12,7 +12,7 @@
 						<h2><%= news.heading %></h2></h5>
 					</div>
 				</div>
-				<div class="row padding-left-right">
+				<div class="row">
 					<div class="col-md-6">
 						<h5><%= format_header_date(news.created_at) %></h5>
 					</div>
@@ -20,7 +20,7 @@
 						<h5>Posted by: <strong><%= news.user.concat_name %></strong></h5>
 					</div>
 				</div>
-				<div class="row padding-left-right padding-bottom">
+				<div class="row">
 					<div class="col-md-12">
 						<%= render "announcements/description-only", news: news %>
 					</div>
@@ -34,27 +34,29 @@
 	<div class="row">
 		<% news_group.each do |news| %>
 			<div class="col-md-6 col-xs-12">
-				<div class="row">
-					<div class="col-md-12">
-						<h2><%= news.heading %></h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4">
-						<h5><%= format_header_date(news.created_at) %></h5>
-					</div>
-					<div class="col-md-4 align-right">
-						<h5>Posted by: <strong><%= news.user.concat_name %></strong></h5>
-					</div>
-				</div>
-				<div class="row">
-					<% if tf_check(news.image_file_name) %>
+				<div class="panel panel-default card">
+					<div class="row">
 						<div class="col-md-12">
-							<%= render "announcements/description-only", news: news %>
+							<h2><%= news.heading %></h2>
 						</div>
-					<% else %>
-						<%= render "description-with-image", news: news %>
-					<% end %>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<h5><%= format_header_date(news.created_at) %></h5>
+						</div>
+						<div class="col-md-4 align-right">
+							<h5>Posted by: <strong><%= news.user.concat_name %></strong></h5>
+						</div>
+					</div>
+					<div class="row">
+						<% if tf_check(news.image_file_name) %>
+							<div class="col-md-12">
+								<%= render "announcements/description-only", news: news %>
+							</div>
+						<% else %>
+							<%= render "description-with-image", news: news %>
+						<% end %>
+					</div>
 				</div>
 			</div>
 		<% end %>
