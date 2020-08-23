@@ -2,11 +2,11 @@ class Announcement < ApplicationRecord
 	belongs_to :user
 	belongs_to :page
 
-	has_attached_file :image
-	validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
+	has_attached_file :image, on: :image_is_blank
+	validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"], on: :image_is_blank
 
 	has_attached_file :pdf
-	validates_attachment :pdf, content_type: { content_type: "application/pdf" }
+	validates_attachment :pdf, content_type: { content_type: "application/pdf" }, size: { in: 0..25.megabytes}
 
 	before_save :fix_link
 
@@ -30,6 +30,10 @@ class Announcement < ApplicationRecord
 
 	def fix_link
 		self.link = !self.link.start_with?("http://", "https://") ? "http://" + self.link : self.link
+	end
+
+	def image_is_blank
+		self.image.exists?
 	end
 
 end

@@ -35,10 +35,11 @@ class Admin::AnnouncementsController < Admin::AdminController
   def update
     @announcement.user_id = @current_user.id
     respond_to do |format|
-      if @announcement.update(announcement_params)
+      if @announcement.update!(announcement_params)
         format.html { redirect_to admin_announcements_path, notice: 'News was successfully updated.' }
       else
         format.html { render :edit, notice: 'News was unsuccessfully updated.' }
+        format.json { render json: @announcement.errors, status: :unprocessable_entity }
       end
     end
   end

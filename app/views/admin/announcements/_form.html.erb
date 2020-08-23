@@ -32,14 +32,14 @@
       <div class="col-xs-3"><%= form.file_field :pdf, class: 'form-control' %></div>
     <% else %>
       <div class="col-xs-2 align-right"><%= form.label 'Current PDF:' %></div>
-      <div class="col-xs-3"><%= form.object.image_file_name %></div>
+      <div class="col-xs-3"><%= form.object.pdf_file_name %></div>
       <div class="col-xs-3 align-right"><%= form.label :pdf, 'Replace PDF File:' %></div>
       <div class="col-xs-3"><%= form.file_field :pdf, class: 'form-control' %></div>
     <% end %>
   </div>
   <br />
   <div class="row vertical-align-middle">
-    <div class="col-md-2 col-xs-12 align-right"><%= form.label :pinned, 'Pin Post:', class: "" %></div>
+    <div class="col-md-2 col-xs-12 align-right"><%= form.label :pinned, 'Pin Post:' %></div>
     <div class="col-md-1 col-xs-12"><%= form.check_box :pinned, { class: 'form-control' } %></div>
     <div class="col-md-2 col-xs-12 align-right"><%= form.label :active, 'Display Post:' %></div>
     <div class="col-md-1 col-xs-12"><%= form.check_box :active, { class: 'form-control' } %></div>

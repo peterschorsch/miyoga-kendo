@@ -1,0 +1,14 @@
+<%= simple_format(news.description, wrapper_tag: "p", class: 'indent-paragraph') %>
+
+<div class="row">
+	<div class="col-md-6 align-left">
+		<% if news.pdf.exists? %>
+			<%= link_to news.pdf(:original, false), :class => "btn btn-success", target: :_blank do %> 
+				<span class="glyphicon glyphicon-download"></span> Download File
+			<% end %>
+		<% end %>
+	</div>
+	<div class="col-md-6 align-right">
+		<%= link_to "Visit Link &raquo".html_safe, news.link, :class => "btn btn-info", target: :_blank if not tf_check(news.link) %>
+	</div>
+</div>

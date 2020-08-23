@@ -22,7 +22,7 @@
 				</div>
 				<div class="row padding-left-right padding-bottom">
 					<div class="col-md-12">
-						<%= simple_format(news.description, wrapper_tag: "p", class: 'indent-paragraph') %>
+						<%= render "announcements/description-only", news: news %>
 					</div>
 				</div>
 			</div>
@@ -49,9 +49,11 @@
 				</div>
 				<div class="row">
 					<% if tf_check(news.image_file_name) %>
-						<%= render "text-only-news", news: news %>
+						<div class="col-md-12">
+							<%= render "announcements/description-only", news: news %>
+						</div>
 					<% else %>
-						<%= render "text-image-news", news: news %>
+						<%= render "description-with-image", news: news %>
 					<% end %>
 				</div>
 			</div>
