@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_224958) do
     t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.boolean "pinned", default: false
-    t.boolean "active", default: true
+    t.boolean "archived", default: false
     t.integer "page_id"
     t.integer "user_id"
     t.datetime "created_at", null: false

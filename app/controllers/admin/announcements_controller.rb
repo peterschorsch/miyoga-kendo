@@ -55,6 +55,6 @@ class Admin::AnnouncementsController < Admin::AdminController
 
     # Only allow a list of trusted parameters through.
     def announcement_params
-      params.require(:announcement).permit(:heading, :description, :link, :pdf, :image, :pinned, :active)
+      params.require(:announcement).permit(:heading, :description, :link, :pdf, :image, :pinned, :archived)
     end
 end
