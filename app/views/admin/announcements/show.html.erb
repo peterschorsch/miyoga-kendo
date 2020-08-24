@@ -10,12 +10,17 @@
 </div>
 
 <div class="row vertical-align-middle">
-	<div class="col-md-10">
+	<div class="col-md-8">
 		<h1><%= @announcement.heading %></h1>
 	</div>
 	<div class="col-md-2">
 		<%= link_to edit_admin_announcement_path(@announcement), :class => "btn btn-warning btn-block", title: "Edit", 'data-toggle' => 'tooltip' do %> 
 			<span class="glyphicon glyphicon-edit"></span> Edit
+		<% end %>
+	</div>
+	<div class="col-md-2">
+		<%= link_to [:admin, @announcement], :class => "btn btn-danger btn-block", method: :delete, data: { confirm: 'Are you sure?' }, title: "Remove News", 'data-toggle' => 'tooltip' do %> 
+			<span class="glyphicon glyphicon-trash"></span> Remove
 		<% end %>
 	</div>
 </div>

@@ -1,9 +1,9 @@
 class Admin::AnnouncementsController < Admin::AdminController
   before_action :set_current_page
-  before_action :set_announcement, only: [:show, :edit, :update]
+  before_action :set_announcement, only: [:show, :edit, :update, :destroy]
 
   def index
-    @news = Announcement.by_recent_creation_date.includes(:user)
+    @news = Announcement.active_news.by_recent_creation_date.includes(:user)
   end
 
   def show
@@ -35,10 +35,24 @@ class Admin::AnnouncementsController < Admin::AdminController
   def update
     @announcement.user_id = @current_user.id
     respond_to do |format|
-      if @announcement.update!(announcement_params)
+      if @announcement.update(announcement_params)
         format.html { redirect_to admin_announcements_path, notice: 'News was successfully updated.' }
       else
         format.html { render :edit, notice: 'News was unsuccessfully updated.' }
+        format.json { render json: @announcement.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @announcement.user_id = @current_user.id
+    @announcement.archived = true
+
+    respond_to do |format|
+      if @announcement.save
+        format.html { redirect_to admin_announcements_path, notice: 'News was successfully removed.' }
+      else
+        format.html { render :edit, notice: 'News was unsuccessfully removed.' }
         format.json { render json: @announcement.errors, status: :unprocessable_entity }
       end
     end

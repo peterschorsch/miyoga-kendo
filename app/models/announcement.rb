@@ -20,6 +20,14 @@ class Announcement < ApplicationRecord
 		includes(:user).where(:pinned => false).by_recent_creation_date
 	}
 
+	scope :active_news, -> {
+		where(:archived => false)
+	}
+
+	scope :archived_news, -> {
+		where(:archived => true)
+	}
+
 	scope :by_recent_creation_date, -> {
 		order('created_at DESC')
 	}

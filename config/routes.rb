@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     ### CLASS SCHEDULE PAGE ###
     resources :practices, except: [:show]
     ### NEWS PAGE ###
-    resources :announcements, path: 'news'#, only: [:index, :create, :update, :destroy]
+    resources :announcements, path: 'news'
     ### EVENTS PAGE ###
     resources :events, except: [:destroy]
 
