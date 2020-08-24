@@ -3,7 +3,7 @@ class Admin::AnnouncementsController < Admin::AdminController
   before_action :set_announcement, only: [:show, :edit, :update]
 
   def index
-    @news = Announcement.all.includes(:user)
+    @news = Announcement.by_recent_creation_date.includes(:user)
   end
 
   def show
