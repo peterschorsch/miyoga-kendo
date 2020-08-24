@@ -29,7 +29,9 @@ class Announcement < ApplicationRecord
 	}
 
 	def fix_link
-		self.link = !self.link.start_with?("http://", "https://") ? "http://" + self.link : self.link
+		if not self.link.nil?
+			self.link = !self.link.start_with?("http://", "https://") ? "http://" + self.link : self.link
+		end
 	end
 
 	def image_is_blank

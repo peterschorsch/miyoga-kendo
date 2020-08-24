@@ -15,16 +15,17 @@
   <thead>
     <tr class="align-center">
       <th>Site</th>
-      <th colspan="2">Last Modified</th>
+      <th>Last Modified</th>
       <th colspan="2"></th>
     </tr>
   </thead>
   <tbody>
     <% @social_media.each do |social_media| %>
       <tr class="align-center table-hover">
-        <td><%= link_to image_tag("logos/#{social_media.image_link}", alt: "#{social_media.site_name} Logo"), social_media.site_link, target: '_blank', class: "social_media_logo" %> <%= social_media.site_name %></td>
-        <td><%= social_media.user.concat_name %></td>
-        <td><%= formateDateTimeWithAt(social_media.updated_at) %></td>
+        <td>
+          <%= link_to image_tag(social_media.image.url, alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, target: '_blank', class: "social_media_logo link-text" %>
+        </td>
+        <td><%= social_media.user.concat_name %> | <%= formateDateTimeWithAt(social_media.updated_at) %></td>
         <td>
           <%= link_to edit_admin_social_medium_path(social_media), :class => "btn btn-warning btn-block", title: "Edit #{social_media.site_name}", 'data-toggle' => 'tooltip' do %> 
             <span class="glyphicon glyphicon-edit"></span> Edit

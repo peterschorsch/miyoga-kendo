@@ -67,6 +67,6 @@ class Admin::SocialMediaController < Admin::AdminController
 
     # Only allow a list of trusted parameters through.
     def social_medium_params
-      params.require(:social_medium).permit(:site_name, :site_link, :image_link)
+      params.require(:social_medium).permit(:site_name, :site_link, :image)
     end
 end

@@ -70,11 +70,11 @@
 					</div>
 				</div>
 				<div class="panel-body">
-					<% @social_media.in_groups_of(3) do |social_media_array| %>
+					<% @social_media.in_groups_of(3, false) do |social_media_array| %>
 						<div class="row align-center">
-							<% social_media_array.compact.each do |social_media| %>
+							<% social_media_array.each do |social_media| %>
 								<div class="col-md-4 col-sm-12 padding-top-bottom">
-									<%= link_to image_tag("logos/#{social_media.image_link}", alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, target: '_blank', class: "social_media_logo" %>
+									<%= link_to image_tag(social_media.image.url, class: "image-center", alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, class: "social_media_logo text-link", target: :_blank %>
 								</div>
 							<% end %>
 						</div>

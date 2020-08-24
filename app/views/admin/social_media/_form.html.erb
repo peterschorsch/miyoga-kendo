@@ -8,12 +8,19 @@
   <br />
   <div class="row vertical-align-middle">
     <div class="col-md-1 col-xs-12 align-right"><%= form.label :site_link, 'Link:' %></div>
-    <div class="col-md-3 col-xs-12"><%= form.text_field :site_link, { class: "form-control" } %></div>
+    <div class="col-md-5 col-xs-12"><%= form.text_field :site_link, { class: "form-control" } %></div>
   </div>
   <br />
   <div class="row vertical-align-middle">
-    <div class="col-md-1 col-xs-12 align-right"><%= form.label :image_link, 'Image Name:' %></div>
-    <div class="col-md-3 col-xs-12"><%= form.text_field :image_link, { class: "form-control" } %></div>
+    <% if social_medium.new_record? %>
+      <div class="col-xs-1 align-right"><%= form.label :image, 'Image:' %></div>
+      <div class="col-xs-5"><%= form.file_field :image, class: 'form-control' %></div>
+    <% else %>
+      <div class="col-xs-2 align-right"><%= form.label 'Current Image:' %></div>
+      <div class="col-xs-2"><%= form.object.image_file_name %></div>
+      <div class="col-xs-3 align-right"><%= form.label :image, 'Replace Current Image:' %></div>
+      <div class="col-xs-3"><%= form.file_field :image, class: 'form-control' %></div>
+    <% end %>
   </div>
   <br />
   <div class="row">

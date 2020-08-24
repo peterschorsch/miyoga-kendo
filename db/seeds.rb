@@ -33,11 +33,34 @@ puts @guest.inspect
 puts ""
 
 puts "SOCIAL MEDIA"
-@social_media = SocialMedium.create_with(site_name: "Miyoga Gmail", site_link: "https://mail.google.com/mail/u/0/#inbox", image_link: "gmail.png", user_id: @admin_user.id).find_or_create_by(site_name: "Miyoga Gmail")
+image_path = "#{Rails.root}/app/assets/images/logos/gmail.png"
+image_file = File.new(image_path)
+@social_media = SocialMedium.create_with(site_name: "Miyoga Gmail", site_link: "https://mail.google.com/mail/u/0/#inbox", user_id: @admin_user.id,
+    :image => ActionDispatch::Http::UploadedFile.new(:filename => File.basename(image_file),:tempfile => image_file,
+    # detect the image's mime type with MIME if you can't provide it yourself.
+    :type => MIME::Types.type_for(image_path).first.content_type
+  )
+).find_or_create_by(site_name: "Miyoga Gmail")
 puts @social_media.inspect
-@social_media = SocialMedium.create_with(site_name: "Facebook Group", site_link: "https://www.facebook.com/groups/672754536102008/", image_link: "facebook.png", user_id: @admin_user.id).find_or_create_by(site_name: "Facebook Group")
+
+image_path = "#{Rails.root}/app/assets/images/logos/facebook.png"
+image_file = File.new(image_path)
+@social_media = SocialMedium.create_with(site_name: "Facebook Group", site_link: "https://www.facebook.com/groups/672754536102008/", user_id: @admin_user.id,
+    :image => ActionDispatch::Http::UploadedFile.new(:filename => File.basename(image_file),:tempfile => image_file,
+    # detect the image's mime type with MIME if you can't provide it yourself.
+    :type => MIME::Types.type_for(image_path).first.content_type
+  )
+).find_or_create_by(site_name: "Facebook Group")
 puts @social_media.inspect
-@social_media = SocialMedium.create_with(site_name: "Miyoga Dropbox", site_link: "https://www.dropbox.com/home/Miyoga%20Kendo%20Kai", image_link: "dropbox.png", user_id: @admin_user.id).find_or_create_by(site_name: "Miyoga Dropbox")
+
+image_path = "#{Rails.root}/app/assets/images/logos/dropbox.png"
+image_file = File.new(image_path)
+@social_media = SocialMedium.create_with(site_name: "Miyoga Dropbox", site_link: "https://www.dropbox.com/home/Miyoga%20Kendo%20Kai", user_id: @admin_user.id,
+    :image => ActionDispatch::Http::UploadedFile.new(:filename => File.basename(image_file),:tempfile => image_file,
+    # detect the image's mime type with MIME if you can't provide it yourself.
+    :type => MIME::Types.type_for(image_path).first.content_type
+  )
+).find_or_create_by(site_name: "Miyoga Dropbox")
 puts @social_media.inspect
 puts ""
 
@@ -53,25 +76,6 @@ puts @page.inspect
 puts @page.inspect
 @page = Page.create_with(name: "Resources", path: "resources_path", admin_path: "admin_resources_path", index: 5, user_id: admin_user_id).find_or_create_by(name: "Resources")
 puts @page.inspect
-puts ""
-
-puts "STATES"
-state_list = Array[ ["AK", "Alaska"], ["AL", "Alabama"], ["AR", "Arkansas"], ["AS", "American Samoa"], ["AZ", "Arizona"], 
-                ["CA", "California"], ["CO", "Colorado"], ["CT", "Connecticut"], ["DC", "District of Columbia"], ["DE", "Delaware"], 
-                ["FL", "Florida"], ["GA", "Georgia"], ["GU", "Guam"], ["HI", "Hawaii"], ["IA", "Iowa"], ["ID", "Idaho"], 
-                ["IL", "Illinois"], ["IN", "Indiana"], ["KS", "Kansas"], ["KY", "Kentucky"], ["LA", "Louisiana"], 
-                ["MA", "Massachusetts"], ["MD", "Maryland"], ["ME", "Maine"], ["MI", "Michigan"], ["MN", "Minnesota"], 
-                ["MO", "Missouri"], ["MS", "Mississippi"], ["MT", "Montana"], ["NC", "North Carolina"], ["ND", "North Dakota"], 
-                ["NE", "Nebraska"], ["NH", "New Hampshire"], ["NJ", "New Jersey"], ["NM", "New Mexico"], ["NV", "Nevada"], 
-                ["NY", "New York"], ["OH", "Ohio"], ["OK", "Oklahoma"], ["OR", "Oregon"], ["PA", "Pennsylvania"], 
-                ["PR", "Puerto Rico"], ["RI", "Rhode Island"], ["SC", "South Carolina"], ["SD", "South Dakota"], 
-                ["TN", "Tennessee"], ["TX", "Texas"], ["UT", "Utah"], ["VA", "Virginia"], ["VI", "Virgin Islands"], 
-                ["VT", "Vermont"], ["WA", "Washington"], ["WI", "Wisconsin"], ["WV", "West Virginia"], ["WY", "Wyoming"] ]
-
-state_list.each do |abbr, name|
-	State.create_with(abbreviation: abbr, name: name).find_or_create_by(abbreviation: abbr, name: name)
-end
-puts "SEEDED all 50 States"
 puts ""
 
 puts "CONTENT"
@@ -107,6 +111,7 @@ end
 puts ""
 puts ""
 
+
 puts "NEWS PAGE"
 @news_page_id = Page.named("News").id
 @announcement = Announcement.create_with(heading: "2020 Dragonboat Race", description: "The Chinese Dragon Boat Race dates back to over 2,000 years and is a popular sport amongst Chinese and Asian communities all over the world. Started in 2000, the Chicago Dragon Boat Race for Literacy is a family-fun activity enjoyed by visitors from all over the city and surrounding suburbs.", link: "https://www.ccc-foundation.org/dragon-boat-race-for-literacy/", pinned: true, :user_id => User.admin_accounts.third.id, page_id: @news_page_id).find_or_create_by(heading: "2020 Dragonboat Race")
@@ -116,6 +121,29 @@ puts @announcement.inspect
 @announcement = Announcement.create_with(heading: "Upcoming Pactice (August 23)", description: "Please make sure to bring a bokken to practice.", :user_id => User.admin_accounts.second.id, page_id: @news_page_id).find_or_create_by(heading: "Upcoming Pactice (August 23)")
 puts @announcement.inspect
 puts ""
+puts ""
+
+
+puts "STATES"
+state_list = Array[ ["AK", "Alaska"], ["AL", "Alabama"], ["AR", "Arkansas"], ["AS", "American Samoa"], ["AZ", "Arizona"], 
+                ["CA", "California"], ["CO", "Colorado"], ["CT", "Connecticut"], ["DC", "District of Columbia"], ["DE", "Delaware"], 
+                ["FL", "Florida"], ["GA", "Georgia"], ["GU", "Guam"], ["HI", "Hawaii"], ["IA", "Iowa"], ["ID", "Idaho"], 
+                ["IL", "Illinois"], ["IN", "Indiana"], ["KS", "Kansas"], ["KY", "Kentucky"], ["LA", "Louisiana"], 
+                ["MA", "Massachusetts"], ["MD", "Maryland"], ["ME", "Maine"], ["MI", "Michigan"], ["MN", "Minnesota"], 
+                ["MO", "Missouri"], ["MS", "Mississippi"], ["MT", "Montana"], ["NC", "North Carolina"], ["ND", "North Dakota"], 
+                ["NE", "Nebraska"], ["NH", "New Hampshire"], ["NJ", "New Jersey"], ["NM", "New Mexico"], ["NV", "Nevada"], 
+                ["NY", "New York"], ["OH", "Ohio"], ["OK", "Oklahoma"], ["OR", "Oregon"], ["PA", "Pennsylvania"], 
+                ["PR", "Puerto Rico"], ["RI", "Rhode Island"], ["SC", "South Carolina"], ["SD", "South Dakota"], 
+                ["TN", "Tennessee"], ["TX", "Texas"], ["UT", "Utah"], ["VA", "Virginia"], ["VI", "Virgin Islands"], 
+                ["VT", "Vermont"], ["WA", "Washington"], ["WI", "Wisconsin"], ["WV", "West Virginia"], ["WY", "Wyoming"] ]
+
+state_list.each do |abbr, name|
+  State.create_with(abbreviation: abbr, name: name).find_or_create_by(abbreviation: abbr, name: name)
+end
+puts "SEEDED all 50 States"
+puts ""
+puts ""
+
 
 puts "EVENTS PAGE"
 @event_page_id = Page.named("Events").id
@@ -156,9 +184,8 @@ puts @link.inspect
 puts @link.inspect
 @link = Link.create_with(name: "Kendo Star", :link => "https://kendostar.com/", :index => 4, :image_file_name=>"kendo_star.jpeg", :image_content_type=>"application/jpeg", :image_file_size=>4889, :image_updated_at=>DateTime.now, :content_id => @content.id, :user_id => User.admin_accounts.first.id).find_or_create_by(name: "Kendo Star")
 puts @link.inspect
-
-
 puts ""
+
 puts "FEDERATIONS"
 @content = Content.create_with(heading: "Federations", :index => 2, :display_content_on_page => true, :article => false, :page_id => @resources_page_id, :user_id => User.admin_accounts.third.id).find_or_create_by(heading: "Federations")
 puts @content.inspect
@@ -166,7 +193,6 @@ puts @content.inspect
 puts @link.inspect
 @link = Link.create_with(name: "All United States Kendo Federation (AUSKF)", :link => "http://www.auskf.info/index.htm", :index => 2, :image_file_name=>"auskf.png", :image_content_type=>"application/png", :image_file_size=>14912, :image_updated_at=>DateTime.now, :content_id => @content.id, :user_id => User.admin_accounts.first.id).find_or_create_by(name: "All United States Kendo Federation (AUSKF)")
 puts @link.inspect
-
 puts ""
 
 puts "KATA"
@@ -181,7 +207,6 @@ puts "TIE HAKAMA"
 puts @content.inspect
 @link = Link.create_with(name: "Kenshi 24/7 copy", :link => "https://www.kendo-world.com/", :index => 2, :image_file_name=>"hakama.jpg", :image_content_type=>"application/jpg", :image_file_size=>268068, :image_updated_at=>DateTime.now, :article => true, :content_id => @content.id, :user_id => User.admin_accounts.third.id).find_or_create_by(name: "Kenshi 24/7 copy")
 puts @link.inspect
-
-
 puts ""
-puts "RAN SEEDING IN " + (Time.now - start).to_s + " SECONDS"
+
+puts "RAN SEEDING IN " + (Time.now - start).round(1).to_s + " SECONDS"
