@@ -38,8 +38,10 @@
 </div>
 <br />
 <div class="row vertical-align-middle">
-	<div class="col-md-2 col-xs-12 align-right"><%= form.label :pinned, 'Pin Post:' %></div>
-	<div class="col-md-1 col-xs-12"><%= form.check_box :pinned, { class: 'form-control' } %></div>
+	<% if form.object.pinned || @num_pinned_news %>
+		<div class="col-md-2 col-xs-12 align-right"><%= form.label :pinned, 'Pin Post:' %></div>
+		<div class="col-md-1 col-xs-12"><%= form.check_box :pinned, { class: 'form-control' } %></div>
+	<% end %>
 	<div class="col-md-2 col-xs-12 align-right"><%= form.label :archived, 'Archive Post:' %></div>
 	<div class="col-md-1 col-xs-12"><%= form.check_box :archived, { class: 'form-control' } %></div>
 </div>

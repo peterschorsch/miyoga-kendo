@@ -1,6 +1,7 @@
 class Admin::AnnouncementsController < Admin::AdminController
   before_action :set_current_page
   before_action :set_announcement, only: [:show, :edit, :update, :destroy]
+  before_action :pinned_news_limit, only: [:new, :edit]
 
   def index
     @news = Announcement.active_news.by_recent_creation_date.includes(:user)
@@ -9,11 +10,11 @@ class Admin::AnnouncementsController < Admin::AdminController
   def show
   end
 
-  def edit
-  end
-
   def new
     @announcement = Announcement.new
+  end
+
+  def edit
   end
 
   def create
@@ -65,6 +66,10 @@ class Admin::AnnouncementsController < Admin::AdminController
 
     def set_announcement
       @announcement = Announcement.find(params[:id]) 
+    end
+
+    def pinned_news_limit
+      @num_pinned_news = !Announcement.reached_pinned_news_limit
     end
 
     # Only allow a list of trusted parameters through.

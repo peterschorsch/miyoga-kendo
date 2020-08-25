@@ -10,5 +10,6 @@
 <%= render "templates/heading", text: @current_page.name + " Page", list_of_classes: "align-center" %>
 
 <%= render "templates/alerts/admin-notice" %>
-		
+
+<p class="align-center">Only 3 News Items can be pinned at one time.</p><br />
 <%= render "table", news: @news %>

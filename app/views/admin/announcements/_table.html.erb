@@ -10,7 +10,9 @@
   <tbody>
     <% news.each do |announcement| %>
       <tr class="align-center table-hover">
-        <td><%= announcement.heading %></td>
+        <td><%= raw("<span class='glyphicon glyphicon-star yellow'></span>") if announcement.pinned %>
+          <%= announcement.heading %>
+        </td>
         <td><%= announcement.user.concat_name %></td>
         <td><%= formatDate(announcement.created_at) %></td>
         <td><%= link_to "Show", admin_announcement_path(announcement), :class => "btn btn-success btn-block" %></td>

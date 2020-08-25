@@ -46,4 +46,8 @@ class Announcement < ApplicationRecord
 		self.image.exists?
 	end
 
+	def self.reached_pinned_news_limit
+		Announcement.pinned_news.count == 3
+	end
+
 end

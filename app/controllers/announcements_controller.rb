@@ -7,6 +7,7 @@ class AnnouncementsController < ApplicationController
 		@other_news = Announcement.active_news.unpinned_news.map { |news| news }
 
 		@new_announcement = Announcement.new
+		@num_pinned_news = !Announcement.reached_pinned_news_limit
 	end
 
 	def create
