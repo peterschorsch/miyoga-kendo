@@ -21,11 +21,11 @@ Rails.application.routes.draw do
   ### ABOUT PAGE ###
   get :abouts, to: 'abouts#index', path: 'about'
   ### CLASS SCHEDULE PAGE ###
-  resources :practices, only: [:index, :create, :update, :destroy]
+  resources :practices, except: [:show, :edit]
   ### NEWS PAGE ###
-  resources :announcements, path: 'news'#, only: [:index, :create, :update, :destroy]
+  resources :announcements, path: 'news', except: [:show, :edit]
   ### EVENTS PAGE ###
-  resources :events, path: 'events', only: [:index, :create, :update, :destroy]
+  resources :events, path: 'events', except: [:show, :edit]
   ### RESOURCES PAGE ###
   get :resources, to: 'resources#index'
 

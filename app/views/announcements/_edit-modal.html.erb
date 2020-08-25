@@ -1,0 +1,18 @@
+<div class="modal fade" id="newsEditModal-<%=announcement.id%>" tabindex="-1" role="dialog" aria-labelledby="newsModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title" id="newsModalLabel">Edit News</h1>
+			</div>
+			<div class="modal-body">
+				<%= form_with(model: announcement, url: announcement_path(announcement), method: "patch", local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |form| %>
+		          	<%= render "admin/announcements/form-fields", form: form %>
+		    </div>
+			<div class="modal-footer">
+				<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#newsEditModal-#{announcement.id}" } %>
+				<%= form.submit "Save Changes", class: 'btn btn-success' %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,15 +1,29 @@
+<% if @current_user.is_admin? %>
+	<div class="row">
+		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
+			<%= button_tag :class => "btn btn-info btn-block", title: 'Add New', data: { toggle: 'modal', target: "#newsAddModal" } do %>
+				<span class="glyphicon glyphicon-plus"></span> Add New News Item
+			<% end %>
+			<%= render "add-modal", new_announcement: @new_announcement %>
+		</div>
+	</div>
+<% end %>
+
 <%= render "templates/heading", text: @current_page.name, list_of_classes: "" %>
+<%= render "templates/alerts/admin-notice" %>
+<%= render "templates/alerts/form-errors", model: @new_announcement %>
 
 <div class="row">
 	<% @pinned_news.each do |news| %>
 		<div class="col-md-4 col-sm-12">
 			<div class="panel panel-default card">
-				<div class="row">
-					<div class="col-md-2">
+				<%= render "admin-function", announcement: news if @current_user.is_admin? %>
+				<div class="row vertical-align-middle">
+					<div class="col-md-1">
 						<h2><span class="glyphicon glyphicon-star yellow"></span></h2>
 					</div>
-					<div class="col-md-10">
-						<h2><%= news.heading %></h2></h5>
+					<div class="col-md-11">
+						<h2><%= news.heading %></h2>
 					</div>
 				</div>
 				<div class="row">
@@ -35,6 +49,7 @@
 		<% news_group.each do |news| %>
 			<div class="col-md-6 col-xs-12">
 				<div class="panel panel-default card">
+					<%= render "admin-function", announcement: news if @current_user.is_admin? %>
 					<div class="row">
 						<div class="col-md-12">
 							<h2><%= news.heading %></h2>
