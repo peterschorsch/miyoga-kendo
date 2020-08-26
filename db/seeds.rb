@@ -1,12 +1,10 @@
 start = Time.now
-puts "STARTED SEEDING"
+puts "---------------STARTED SEEDING---------------"
 puts ""
 
-### CREATE TEST USERS ###
-puts "CREATE TEST USERS"
+puts "----------CREATE TEST ADMINS/USERS----------"
 
-## ADMINS ##
-puts "ADMINS"
+puts "----------TEST ADMINS----------"
 @admin_user = User.create_with(firstname: "Peter", lastname: "Schorsch", active: true, password_digest: User.digest("Peteschorsch1!"), role: "Admin", new_user: false, last_login: DateTime.now-1.week).find_or_create_by(email: "peteschorsch@icloud.com")
 puts @admin_user.inspect
 @admin_user = User.create_with(firstname: "Jason", lastname: "Toy", active: true, password_digest: User.digest("Jasontoy2!"), role: "Admin", new_user: false, last_login: DateTime.now-1.week).find_or_create_by(email: "jasontoy@icloud.com")
@@ -17,8 +15,7 @@ puts @admin_user.inspect
 puts @admin_user.inspect
 puts ""
 
-puts "USERS"
-## USERS ##
+puts "----------TEST USERS----------"
 @user = User.create_with(firstname: "John", lastname: "Smith", active: true, password_digest: User.digest("Johnsmith4!"), role: "User", new_user: false, last_login: DateTime.now-2.weeks).find_or_create_by(email: "jsmith@gmail.com")
 puts @user.inspect
 @user = User.create_with(firstname: "Donald", lastname: "Long", active: true, password_digest: User.digest("Donaldlong5!"), role: "User", new_user: false, last_login: DateTime.now-2.weeks).find_or_create_by(email: "dlong@yahoo.com")
@@ -27,12 +24,13 @@ puts @user.inspect
 puts @user.inspect
 puts ""
 
-puts "GUEST"
+puts "----------GUEST----------"
 @guest = User.create_with(firstname: "Not Logged In", lastname: "User", active: false, password_digest: User.digest("Testpassword1!"), role: "Guest", new_user: false, last_login: DateTime.now-2.weeks).find_or_create_by(email: "guestuser@gmail.com")
 puts @guest.inspect
 puts ""
+puts ""
 
-puts "SOCIAL MEDIA"
+puts "----------SOCIAL MEDIA----------"
 image_path = "#{Rails.root}/app/assets/images/logos/gmail.png"
 image_file = File.new(image_path)
 @social_media = SocialMedium.create_with(site_name: "Miyoga Gmail", site_link: "https://mail.google.com/mail/u/0/#inbox", user_id: @admin_user.id,
@@ -63,8 +61,9 @@ image_file = File.new(image_path)
 ).find_or_create_by(site_name: "Miyoga Dropbox")
 puts @social_media.inspect
 puts ""
+puts ""
 
-puts "PAGES"
+puts "----------PAGES----------"
 admin_user_id = User.active_accounts.first.id
 @page = Page.create_with(name: "About", path: "abouts_path", admin_path: "admin_abouts_path", index: 1, user_id: admin_user_id).find_or_create_by(name: "About")
 puts @page.inspect
@@ -77,9 +76,9 @@ puts @page.inspect
 @page = Page.create_with(name: "Resources", path: "resources_path", admin_path: "admin_resources_path", index: 5, user_id: admin_user_id).find_or_create_by(name: "Resources")
 puts @page.inspect
 puts ""
+puts ""
 
-puts "CONTENT"
-puts "ABOUT PAGE"
+puts "----------ABOUT PAGE----------"
 @about_page_id = Page.named("About").id
 @content = Content.create_with(heading: "About Kendo", :subheading => nil, :index => 1, :display_content_on_page => true, :article => false, :page_id => @about_page_id, :user_id => User.admin_accounts.first.id, :description => "Simply put, it is fencing, Japanese style. It is based on the legacy of classical Japanese swordsmanship, that is as old as Japan herself. 'Bushi' or 'samurai' used the sword to establish and maintain order from the 9th to the 19th centuries. These men and women followed an unwritten code called 'Bushido'. Bravery, honesty, and integrity were at its core. Today, the kendo student has the unique opportunity to study an art that has been handed down through the centuries, its theory and methods slowly evolving through generations of great swordsman. Although modern kendo only faintly resembles its feudal origins, it still retains its bushido concepts of dedication, hard work, calm-mindedness, patience, and seizing the moment.\r\n\r\nOver the years, like most other martial arts of Japan, the emphasis has changed from killing ones enemy to training for self-discipline, and mental physical fitness. Kendo can help develop posture, poise, grace under pressure, agility, quickness, clarity of thought, and the power of concentration.\r\nKendoists use a lightweight split bamboo sword, and a set of protective armor that consists of a helmet, gloves, chest protector, and a waist flap-groin protector. The armor is not needed for the beginners, for they will practice the basic swings of the attacking motions with their 'shinai' (bamboo sword). They learn the correct footwork and then combine it with their swinging strike, together with the 'ki-ai' (shout). Then time is spent attacking and practicing on their seniors. After weeks or months they are finally allowed to wear 'bogu' (armor), and freely practice with others. Finally they can now freely practice the full delivery of their attacks without injury to certain target areas on their opponent's body. Later one can enter tournaments and participate in matches, with judges.\r\n\r\nRanking in kendo is similar to other martial ways, with six levels below black belt and ten levels above. In contrast though, there are no colored belts, or outward sign of rank. Certification is under the All U.S. Kendo Federation, and registered in the International Kendo Federation. Also in contrast, the art doesn’t have to compete with many schools and traditions for the self-defense dollar the average person is looking to spend. Instructors in this country rarely profit from their activity, usually giving up their own time, merely for the love of kendo. Kendo is not recommended for those who are looking for a flashy or even a practical style of self-defense.\r\n\r\nKendo, like its ancient ancestor, benefits the practitioner forever with the ideals of the formidable warriors of the past. It builds character, adds strength, tones bodies, relieves stress, and teaches one to shoulder responsibility for ones actions. It is for those who desire to become strong in spirit, quick in action, gentle in preserving life, but above all, kendo is from the heart.").find_or_create_by(heading: "About Kendo")
 image_path = "#{Rails.root}/app/assets/images/about_page/kendo_strike.jpg"
@@ -109,10 +108,9 @@ puts @content.inspect
   puts ""
 end
 puts ""
-puts ""
 
 
-puts "NEWS PAGE"
+puts "----------NEWS PAGE----------"
 @news_page_id = Page.named("News").id
 @announcement = Announcement.create_with(heading: "2020 Dragonboat Race", description: "The Chinese Dragon Boat Race dates back to over 2,000 years and is a popular sport amongst Chinese and Asian communities all over the world. Started in 2000, the Chicago Dragon Boat Race for Literacy is a family-fun activity enjoyed by visitors from all over the city and surrounding suburbs.", link: "https://www.ccc-foundation.org/dragon-boat-race-for-literacy/", pinned: true, :user_id => User.admin_accounts.third.id, page_id: @news_page_id).find_or_create_by(heading: "2020 Dragonboat Race")
 puts @announcement.inspect
@@ -124,7 +122,7 @@ puts ""
 puts ""
 
 
-puts "STATES"
+puts "----------STATES----------"
 state_list = Array[ ["AK", "Alaska"], ["AL", "Alabama"], ["AR", "Arkansas"], ["AS", "American Samoa"], ["AZ", "Arizona"], 
                 ["CA", "California"], ["CO", "Colorado"], ["CT", "Connecticut"], ["DC", "District of Columbia"], ["DE", "Delaware"], 
                 ["FL", "Florida"], ["GA", "Georgia"], ["GU", "Guam"], ["HI", "Hawaii"], ["IA", "Iowa"], ["ID", "Idaho"], 
@@ -145,7 +143,7 @@ puts ""
 puts ""
 
 
-puts "EVENTS PAGE"
+puts "----------EVENTS PAGE----------"
 @event_page_id = Page.named("Events").id
 @event = Event.create_with(title: "2020 MWKF Summer Camp", start_date: Date.new(2020, 7, 31), end_date: Date.new(2020, 8, 2), :user_id => User.admin_accounts.third.id, page_id: @event_page_id, description: "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.").find_or_create_by(title: "2020 MWKF Summer Camp")
 puts @event.inspect
@@ -160,7 +158,7 @@ puts ""
 puts ""
 
 
-puts "PRACTICES PAGE"
+puts "----------PRACTICES PAGE----------"
 @content = Content.create_with(heading: "Class Schedule", :index => 1, :display_content_on_page => true, :article => false, :page_id => Page.named("Classes").id, :user_id => User.admin_accounts.first.id).find_or_create_by(heading: "Class Schedule")
 puts @content.inspect
 now = DateTime.now
@@ -172,7 +170,7 @@ puts ""
 puts ""
 
 
-puts "RESOURCES PAGE"
+puts "----------RESOURCES PAGE----------"
 @resources_page_id = Page.named("Resources").id
 @content = Content.create_with(heading: "Equipment", :index => 1, :display_content_on_page => true, :article => false, :page_id => @resources_page_id, :user_id => User.admin_accounts.second.id).find_or_create_by(heading: "Equipment")
 puts @content.inspect
@@ -186,7 +184,7 @@ puts @link.inspect
 puts @link.inspect
 puts ""
 
-puts "FEDERATIONS"
+puts "----------FEDERATIONS----------"
 @content = Content.create_with(heading: "Federations", :index => 2, :display_content_on_page => true, :article => false, :page_id => @resources_page_id, :user_id => User.admin_accounts.third.id).find_or_create_by(heading: "Federations")
 puts @content.inspect
 @link = Link.create_with(name: "Midwest Kendo Federation (MWKF)", :link => "https://midwestkendofederation.wordpress.com/", :index => 1, :image_file_name=>"mwkf.jpg", :image_content_type=>"application/jpg", :image_file_size=>28791, :image_updated_at=>DateTime.now, :content_id => @content.id, :user_id => User.admin_accounts.second.id).find_or_create_by(name: "Midwest Kendo Federation (MWKF)")
@@ -195,18 +193,19 @@ puts @link.inspect
 puts @link.inspect
 puts ""
 
-puts "KATA"
+puts "----------KATA----------"
 @content = Content.create_with(:heading => "Kata 7", :description => "A very interesting article about kata number 7.", :index => 1, :display_content_on_page => true, :article => true, :page_id => @resources_page_id, :user_id => User.admin_accounts.first.id,).find_or_create_by(heading: "Kata 7")
 puts @content.inspect
 @link = Link.create_with(name: "Kenshi 24/7", :link => "https://kenshi247.net/", :index => 1, :image_file_name=>"kata_7.jpg", :image_content_type=>"application/jpg", :image_file_size=>111832, :image_updated_at=>DateTime.now, :article => true, :content_id => @content.id, :user_id => User.admin_accounts.second.id).find_or_create_by(name: "Kenshi 24/7")
 puts @link.inspect
-
 puts ""
-puts "TIE HAKAMA"
+
+puts "----------TIE HAKAMA----------"
 @content = Content.create_with(:heading => "How to tie your Hakama", :description => "Checkout this article on how to tie your hakama.", :index => 2, :display_content_on_page => true, :article => true, :page_id => @resources_page_id, :user_id => User.admin_accounts.second.id).find_or_create_by(heading: "How to tie your Hakama")
 puts @content.inspect
 @link = Link.create_with(name: "Kenshi 24/7 copy", :link => "https://www.kendo-world.com/", :index => 2, :image_file_name=>"hakama.jpg", :image_content_type=>"application/jpg", :image_file_size=>268068, :image_updated_at=>DateTime.now, :article => true, :content_id => @content.id, :user_id => User.admin_accounts.third.id).find_or_create_by(name: "Kenshi 24/7 copy")
 puts @link.inspect
+puts ""
 puts ""
 
 puts "RAN SEEDING IN " + (Time.now - start).round(1).to_s + " SECONDS"
