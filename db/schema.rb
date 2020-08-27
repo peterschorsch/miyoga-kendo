@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_08_23_194024) do
   create_table "contents", force: :cascade do |t|
     t.string "heading", null: false
     t.string "subheading"
-    t.string "description"
+    t.text "description"
     t.integer "index"
     t.boolean "display_content_on_page", default: false
     t.boolean "article", default: false

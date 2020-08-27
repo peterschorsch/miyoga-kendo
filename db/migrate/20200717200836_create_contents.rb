@@ -3,7 +3,7 @@ class CreateContents < ActiveRecord::Migration[5.2]
     create_table :contents do |t|
       t.string :heading, :null => false
       t.string :subheading
-      t.string :description
+      t.text :description
       t.integer :index
 
       t.boolean :display_content_on_page, :default => false
