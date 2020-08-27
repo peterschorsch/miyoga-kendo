@@ -23,6 +23,14 @@
 		          	<br />
 		          	<%= f.fields_for :images do |image| %>
 						<div class="row vertical-align-middle">
+							<div class="col-xs-2 align-right"><%= f.label 'Current Image:' %></div>
+							<div class="col-xs-9">
+								<% content_image = f.object.images.first %>
+								<%= image_tag("about_page/" + content_image.image_file_name, class: "small-form-image", alt: content_image.image_file_name) if not content_image.image_file_name.nil? %>
+							</div>
+						</div>
+						<br />
+						<div class="row vertical-align-middle">
 							<div class="col-xs-2 align-right"><%= image.label :image, 'Replace Image:' %></div>
 							<div class="col-xs-9"><%= image.file_field :image, { class: 'form-control' } %></div>
 						</div>

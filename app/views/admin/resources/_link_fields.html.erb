@@ -14,10 +14,13 @@
 		<div class="col-xs-2 align-right"><%= f.label :link, 'Image:' %></div>
 		<div class="col-xs-3"><%= f.file_field :image, class: 'form-control' %></div>
 	</div>
-	<% else %>
+<% else %>
 	<div class="row vertical-align-middle">
 		<div class="col-xs-3 align-right"><%= f.label 'Current Image:' %></div>
-		<div class="col-xs-2"><%= f.object.image_file_name %></div>
+		<div class="col-xs-2">
+			<% path = f.object.article ? "resources_page/" : "logos/" %>
+			<%= image_tag(path + f.object.image_file_name, class: "small-form-image", alt: f.object.image_file_name) if not f.object.image_file_name.nil? %>
+		</div>
 		<div class="col-xs-3 align-right"><%= f.label :link, 'Replace Current Image:' %></div>
 		<div class="col-xs-3"><%= f.file_field :image, class: 'form-control' %></div>
 	</div>

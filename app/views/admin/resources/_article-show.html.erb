@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-3">
-		<%= link_to image_tag("resources_page/#{link.image_file_name}", class: "text-image", alt: link.image_file_name), link.link, target: :_blank  %>
+		<%= image_tag("resources_page/#{link.image_file_name}", class: "text-image", alt: link.image_file_name) %>
 		<div class="align-center"><%= render "templates/admin-modified-by", content: link %></div>
 	</div>
 	<div class="col-md-9">

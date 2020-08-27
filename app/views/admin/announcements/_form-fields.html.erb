@@ -31,7 +31,7 @@
 		<div class="col-xs-9"><%= form.file_field :image, class: 'form-control' %></div>
 	<% else %>
 		<div class="col-xs-2 align-right"><%= form.label 'Current Image:' %></div>
-		<div class="col-xs-3"><%= form.object.image_file_name %></div>
+		<div class="col-xs-3"><%= image_tag("news_page/" + form.object.image_file_name, class: "small-form-image", alt: form.object.image_file_name) if not form.object.image_file_name.nil? %></div>
 		<div class="col-xs-3 align-right"><%= form.label :image, 'Replace Current Image:' %></div>
 		<div class="col-xs-3"><%= form.file_field :image, class: 'form-control' %></div>
 	<% end %>
