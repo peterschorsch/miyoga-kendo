@@ -39,3 +39,9 @@
 .small-form-image{
   width: 100px;
 }
+
+.carousel-inner .item img{
+  width: 100%;
+  height: 500px !important;
+  max-height: 750px;
+}

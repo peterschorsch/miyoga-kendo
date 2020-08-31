@@ -1,52 +1,1 @@
-<% if current_user.is_admin? %>
-	<div class="row">
-		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
-			<%= button_tag :class => "btn btn-info btn-block btn-lg", title: 'Add', data: { toggle: 'modal', target: "#aboutAddModal" } do %>
-				<span class="glyphicon glyphicon-plus"></span> Add New Content
-			<% end %>
-		</div>
-	</div>
-	<%= render "add-modal", new_content: @new_content %>
-	<%= render "templates/alerts/form-errors", model: @new_content %>
-	<%= render "templates/alerts/admin-notice" %>
-<% end %>
-
-
-<% @content.each_with_index do |content, index| %>
-	<% if not current_user.is_admin? %>
-		<div class="row">
-			<div class="col-md-12"><h1><%=content.heading%></h1></div>
-		</div>
-	<% else %>
-		<div class="row vertical-align-middle">
-			<div class="col-md-10"><h1><%=content.heading%></h1></div>
-			<div class="col-md-2">
-				<%= button_tag :class => "btn btn-warning btn-block btn-lg", title: 'Edit', data: { toggle: 'modal', target: "#aboutEditModal-#{index}" } do %>
-					<span class="glyphicon glyphicon-edit"></span> Edit
-				<% end %>
-			</div>
-		</div>
-		<%= render "edit-modal", content: content, index: index %>
-	<% end %>
-	<hr />
-	<% if not content.subheading.blank? %>
-		<div class="row">
-			<div class="col-md-12">
-				<h2><%= content.subheading %></h2>
-			</div>
-		</div>
-	<% end %>
-	<div class="paragraph-container">
-		<div class="row">
-			<div class="text-image-column">
-				<%= simple_format(content.description, wrapper_tag: "p", class: 'indent-paragraph') %>
-			</div>
-			<div class="text-image-column">
-				<% content.images.each do |image| %>
-					<%= image_tag(image.image.url, class: "text-image", alt: "Image") %>
-				<% end %>
-			</div>
-		</div>
-	</div>
-	<br />
-<% end %>
+<% if current_user.is_admin? %>	<div class="row">		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">			<%= button_tag :class => "btn btn-info btn-block btn-lg", title: 'Add', data: { toggle: 'modal', target: "#aboutAddModal" } do %>				<span class="glyphicon glyphicon-plus"></span> Add New Content			<% end %>		</div>	</div>	<%= render "add-modal", new_content: @new_content %>	<%= render "templates/alerts/form-errors", model: @new_content %>	<%= render "templates/alerts/admin-notice" %><% end %><% @content.each_with_index do |content, index| %>	<% if not current_user.is_admin? %>		<div class="row">			<div class="col-md-12"><h1><%=content.heading%></h1></div>		</div>	<% else %>		<div class="row vertical-align-middle">			<div class="col-md-10"><h1><%=content.heading%></h1></div>			<div class="col-md-2">				<%= button_tag :class => "btn btn-warning btn-block btn-lg", title: 'Edit', data: { toggle: 'modal', target: "#aboutEditModal-#{index}" } do %>					<span class="glyphicon glyphicon-edit"></span> Edit				<% end %>			</div>		</div>		<%= render "edit-modal", content: content, index: index %>	<% end %>	<hr />	<% if not content.subheading.blank? %>		<div class="row">			<div class="col-md-12">				<h2><%= content.subheading %></h2>			</div>		</div>	<% end %>	<div class="paragraph-container">		<div class="row">			<div class="text-image-column">				<%= simple_format(content.description, wrapper_tag: "p", class: 'indent-paragraph') %>			</div>			<div class="text-image-column">				<% if content.images.count > 1 %>					<div class="aboutCarousel carousel slide" data-ride="carousel">						<ol class="carousel-indicators">							<% content.images.each_with_index do |image, index| %>								<% active_option = index==0 ? 'active' : '' %>								<li data-slide-to="<%=index%>" class="aboutCarousel <%=active_option%>"></li>							<% end %>						</ol>						<div class="carousel-inner">							<% content.images.each_with_index do |image, index| %>								<div class="item <%= "active" if index == 0 %>">									<%= image_tag(image.image.url, class: "d-block w-100", alt: image.image_file_name) %>								</div>							<% end %>						</div>					</div>				<% else %>					<% content_image = content.images.first %>					<%= image_tag(content_image.image.url, class: "text-image", alt: content_image.image_file_name) %>				<% end %>			</div>		</div>	</div>	<br /><% end %>

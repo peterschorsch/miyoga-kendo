@@ -21,27 +21,25 @@
 		          		<div class="col-xs-9"><%= f.cktext_area :description, { class: 'form-control', language: "us", rows: 25 } %></div>
 		          	</div>
 		          	<br />
-		          	<%= f.fields_for :images do |image| %>
-						<div class="row vertical-align-middle">
-							<div class="col-xs-2 align-right"><%= f.label 'Current Image:' %></div>
-							<div class="col-xs-9">
-								<% content_image = f.object.images.first %>
-								<%= image_tag("about_page/" + content_image.image_file_name, class: "small-form-image", alt: content_image.image_file_name) if not content_image.image_file_name.nil? %>
-							</div>
-						</div>
-						<br />
-						<div class="row vertical-align-middle">
-							<div class="col-xs-2 align-right"><%= image.label :image, 'Replace Image:' %></div>
-							<div class="col-xs-9"><%= image.file_field :image, { class: 'form-control' } %></div>
-						</div>
-					<% end %>
-					<br />
 		          	<div class="row vertical-align-middle">
 						<div class="col-xs-3"><%= f.label :index, 'Content Order:' %></div>
 						<div class="col-xs-2"><%= f.select :index, Content.populate_edit_index_dropdown(content), {}, { class: 'form-control' } %></div>
 						<div class="col-xs-3"><%= f.label :display_content_on_page, 'Display Content:' %></div>
-		          		<div class="col-xs-2"><%= f.check_box :display_content_on_page, { class: 'form-control' } %></div>
-		          	</div>
+						<div class="col-xs-2"><%= f.check_box :display_content_on_page, { class: 'form-control' } %></div>
+					</div>
+					<br />
+					<div id='images'>
+						<%= f.fields_for :images do |image| %>
+							<%= render 'image_fields', :f => image %>
+						<% end %>
+						<div class="row">
+							<div class="col-xs-4 col-sm-offset-4">
+								<%= link_to_add_association f, :images, :class => "btn btn-info btn-block", :id => "add_image" do %>
+									<span class="glyphicon glyphicon-plus"></span> Add an Image
+								<% end %>
+							</div>
+						</div>
+					</div>
 			</div>
 			<div class="modal-footer">
 				<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#aboutEditModal-#{index}" } %>

@@ -17,3 +17,10 @@
 //= require cocoon
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+	$('.aboutCarousel').carousel({
+		// 1000ms = 1 second
+		interval: 3000
+	});
+});
