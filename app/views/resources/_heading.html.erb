@@ -1,0 +1,12 @@
+<% if current_user.is_admin? %>
+	<div class="row">
+		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
+			<%= render "templates/buttons/crud/new-button-tag", target: target, button_text: button_text %>
+		</div>
+	</div>
+	<%= render "add-modal", new_content: object %>
+	<%= render "templates/alerts/form-errors", model: object %>
+	<%= render "templates/alerts/admin-notice" %>
+<% end %>
+
+<%= render "templates/heading", text: @current_page.name, list_of_classes: "" %>

@@ -5,16 +5,8 @@
 <% else %>
 	<div class="row vertical-align-middle">
 		<div class="col-md-8"><h1 class=""><%= event.title %></h1></div>
-		<div class="col-md-2">
-			<%= button_tag :class => "btn btn-warning btn-block btn-lg", title: 'Edit', data: { toggle: 'modal', target: "#eventEditModal-#{index}" } do %>
-				<span class="glyphicon glyphicon-edit"></span> Edit
-			<% end %>
-		</div>
-		<div class="col-md-2">
-			<%= button_tag :class => "btn btn-danger btn-block btn-lg", title: 'Remove', data: { toggle: 'modal', target: "#youSureModal-#{index}" } do %>
-				<span class="glyphicon glyphicon-trash"></span> Remove
-			<% end %>
-		</div>
+		<div class="col-md-2"><%= render "templates/buttons/crud/edit-button-tag", target: "#eventEditModal-#{index}" %></div>
+		<div class="col-md-2"><%= render "templates/buttons/crud/remove-button-tag", target: "#youSureModal-#{index}" %></div>
 	</div>
 <% end %>
 <hr />

@@ -1,17 +1,15 @@
 <% if @current_user.is_admin? %>
 	<div class="row">
 		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
-			<%= button_tag :class => "btn btn-info btn-block", title: 'Add New', data: { toggle: 'modal', target: "#newsAddModal" } do %>
-				<span class="glyphicon glyphicon-plus"></span> Add New News Item
-			<% end %>
+			<%= render "templates/buttons/crud/new-button-tag", target: "#newsAddModal", button_text: "News Item" %>
 			<%= render "add-modal", new_announcement: @new_announcement %>
 		</div>
 	</div>
+	<%= render "templates/alerts/admin-notice" %>
+	<%= render "templates/alerts/form-errors", model: @new_announcement %>
 <% end %>
 
 <%= render "templates/heading", text: @current_page.name, list_of_classes: "" %>
-<%= render "templates/alerts/admin-notice" %>
-<%= render "templates/alerts/form-errors", model: @new_announcement %>
 
 <div class="row">
 	<% @pinned_news.each do |news| %>

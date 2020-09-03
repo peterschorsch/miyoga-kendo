@@ -1,18 +1,15 @@
 <% if current_user.is_admin? %>
 	<div class="row">
 		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
-			<%= button_tag :class => "btn btn-info btn-block btn-lg", title: 'Add', data: { toggle: 'modal', target: "#practiceAddModal" } do %>
-				<span class="glyphicon glyphicon-plus"></span> Add New Class
-			<% end %>
+			<%= render "templates/buttons/crud/new-button-tag", target: "#practiceAddModal", button_text: "Class" %>
 		</div>
 	</div>
 	<%= render "add-modal", new_practice: @new_practice %>
 	<%= render "templates/alerts/form-errors", model: @new_practice %>
+	<%= render "templates/alerts/admin-notice" %>
 <% end %>
 
 <%= render "templates/heading", text: @content.heading, list_of_classes: "align-center" %>
-
-<%= render "templates/alerts/admin-notice" %>
 
 <% @practices.each_with_index do |practice, index| %>
 	<%= render "edit-modal", practice: practice, index: index %>
@@ -23,14 +20,10 @@
 		</div>
 		<% if current_user.is_admin? %>
 			<div class="col-md-2">
-				<%= button_tag :class => "btn btn-warning btn-block btn-lg", title: 'Edit', data: { toggle: 'modal', target: "#practiceEditModal-#{index}" } do %>
-					<span class="glyphicon glyphicon-edit"></span> Edit
-				<% end %>
+				<%= render "templates/buttons/crud/edit-button-tag", target: "#practiceEditModal-#{index}" %>
 			</div>
 			<div class="col-md-2">
-				<%= button_tag :class => "btn btn-danger btn-block btn-lg", title: 'Remove', data: { toggle: 'modal', target: "#youSureModal-#{index}" } do %>
-					<span class="glyphicon glyphicon-trash"></span> Remove
-				<% end %>
+				<%= render "templates/buttons/crud/remove-button-tag", target: "#youSureModal-#{index}" %>
 			</div>
 		<% end %>
 	</div>
@@ -49,14 +42,10 @@
 	<div class="col-md-10 col-md-offset-1">
 		<table style="width:100%;">
 			<tr>
-				<td rowspan="2">
-					<%= embed_google_maps(address: "Japanese Culture Center 1016 W. Belmont Ave Chicago IL 60657", height: 600, width: 600).html_safe %>	
-				</td>
+				<td rowspan="2"><%= embed_google_maps(address: "Japanese Culture Center 1016 W. Belmont Ave Chicago IL 60657", height: 600, width: 600).html_safe %></td>
 				<td class="jcc-images"><%= image_tag("practices_page/outside_jcc.jpg", alt: "JCC") %></td>
 			</tr>
-			<tr>
-				<td class="jcc-images"><%= image_tag("practices_page/second_floor_jcc.jpg", alt: "Second Floor of JCC") %></td>
-			</tr>
+			<tr><td class="jcc-images"><%= image_tag("practices_page/second_floor_jcc.jpg", alt: "Second Floor of JCC") %></td></tr>
 		</table>
 		
 	</div>

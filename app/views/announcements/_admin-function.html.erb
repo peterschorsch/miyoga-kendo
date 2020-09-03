@@ -1,8 +1,6 @@
 <div class="row">
 	<div class="col-md-4 col-md-offset-4">
-		<%= button_tag :class => "btn btn-warning btn-block", title: 'Edit', data: { toggle: 'modal', target: "#newsEditModal-#{announcement.id}" } do %>
-			<span class="glyphicon glyphicon-edit"></span> Edit
-		<% end %>
+		<%= render "templates/buttons/crud/edit-button-tag", target: "#newsEditModal-#{announcement.id}" %>
 		<%= render "edit-modal", announcement: announcement %>
 	</div>
 	<div class="col-md-4">

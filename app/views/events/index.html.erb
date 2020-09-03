@@ -1,15 +1,12 @@
-<%= render "templates/alerts/admin-notice" %>
-
 <% if current_user.is_admin? %>
 	<div class="row">
 		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
-			<%= button_tag :class => "btn btn-info btn-block btn-lg", title: 'Add', data: { toggle: 'modal', target: "#eventAddModal" } do %>
-				<span class="glyphicon glyphicon-plus"></span> Add New Event
-			<% end %>
+			<%= render "templates/buttons/crud/new-button-tag", target: "#eventAddModal", button_text: "Event" %>
 		</div>
 	</div>
 	<%= render "add-modal", new_event: @new_event %>
 	<%= render "templates/alerts/form-errors", model: @new_event %>
+	<%= render "templates/alerts/admin-notice" %>
 <% end %>
 
 <% @events.each_with_index do |event, index| %>
@@ -24,7 +21,7 @@
 			<%= simple_format(event.description, wrapper_tag: "p", class: 'indent-paragraph') %>
 		</div>
 		<div class="col-md-6 col-sm-12">
-			<%= render "templates/google_maps", location_name: event.address.location_name, address: event.address, height: 600, width: 650 %>
+			<%= render "templates/google_maps", location_name: @address.location_name, address: @address, height: 600, width: 650 %>
 		</div>
 	</div>
 	<br /><hr /><br />
