@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
 	def landing_page
 		@about_miyoga = Content.about_miyoga
-		@upcoming_event = Event.display_active.limit(1).first
-		@miyoga_user = User.get_miyoga_user
+		@upcoming_event = Event.display_active.first
+		@miyoga_contact_email = User.get_miyoga_user.email
 	end
 end

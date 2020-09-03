@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   ### LOGIN ###
   resources :sessions, only: [:new, :create, :destroy]
-  get 'signup', to: 'users#new', as: 'signup'
+  #get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
@@ -21,11 +21,11 @@ Rails.application.routes.draw do
   ### ABOUT PAGE ###
   get :abouts, to: 'abouts#index', path: 'about'
   ### CLASS SCHEDULE PAGE ###
-  resources :practices, except: [:show, :edit]
+  resources :practices, except: [:show, :new, :edit]
   ### NEWS PAGE ###
-  resources :announcements, path: 'news', except: [:show, :edit]
+  resources :announcements, path: 'news', except: [:show, :new, :edit]
   ### EVENTS PAGE ###
-  resources :events, path: 'events', except: [:show, :edit]
+  resources :events, path: 'events', except: [:show, :new, :edit]
   ### RESOURCES PAGE ###
   get :resources, to: 'resources#index'
 
@@ -51,7 +51,7 @@ Rails.application.routes.draw do
     ### ABOUT PAGE ###
     resources :abouts, except: [:destroy]
     ### RESOURCES PAGE ###
-    resources :resources, except: [:new, :destroy] do
+    resources :resources, except: [:new, :create, :destroy] do
       get :new_resource, on: :collection, path: 'new-resource'
       post :create_new_resource, on: :collection
 
