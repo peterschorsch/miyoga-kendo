@@ -6,8 +6,6 @@
 		<%= render "edit-modal", announcement: announcement %>
 	</div>
 	<div class="col-md-4">
-		<%= link_to announcement, :class => "btn btn-danger btn-block", method: :delete, data: { confirm: 'Are you sure?' }, title: "Remove News", 'data-toggle' => 'tooltip' do %> 
-			<span class="glyphicon glyphicon-trash"></span> Remove
-		<% end %>
+		<%= render "templates/buttons/crud/remove", remove_model: announcement %>
 	</div>
 </div>

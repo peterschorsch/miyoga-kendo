@@ -17,12 +17,8 @@
         <td><%= formatEventsHomeDateRange(event.start_date, event.end_date) %></td>
         <td><%= event.address.city %>, <%= event.address.state.abbreviation %></td>
         <td><%= event.user.concat_name %></td>
-        <td><%= link_to "Show", admin_event_path(event), :class => "btn btn-success btn-block" %></td>
-        <td>
-          <%= link_to edit_admin_event_path(event), :class => "btn btn-warning btn-block", title: "Edit #{event.title}", 'data-toggle' => 'tooltip' do %> 
-            <span class="glyphicon glyphicon-edit"></span> Edit
-          <% end %>
-        </td>
+        <td><%= render "templates/buttons/crud/show", show_path: admin_event_path(event) %></td>
+        <td><%= render "templates/buttons/crud/edit", edit_path: edit_admin_event_path(event) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -18,16 +18,8 @@
         <td>$<%= practice.cost_per_month %></td>
         <td><%= practice.user.concat_name %></td>
         <td><%= formateDateTimeWithAt(practice.updated_at) %></td>
-        <td>
-          <%= link_to edit_admin_practice_path(practice), :class => "btn btn-warning btn-block", title: "Edit #{practice.day_of_week}", 'data-toggle' => 'tooltip' do %> 
-            <span class="glyphicon glyphicon-edit"></span> Edit
-          <% end %>
-        </td>
-        <td>
-          <%= link_to [:admin, practice], :class => "btn btn-danger btn-block", method: :delete, data: { confirm: 'Are you sure?' }, title: "Remove #{practice.day_of_week} Class", 'data-toggle' => 'tooltip' do %> 
-            <span class="glyphicon glyphicon-trash"></span> Remove
-          <% end %>
-        </td>
+        <td><%= render "templates/buttons/crud/edit", edit_path: edit_admin_practice_path(practice) %></td>
+        <td><%= render "templates/buttons/crud/remove", remove_model: [:admin, practice] %></td>
       </tr>
     <% end %>
   </tbody>

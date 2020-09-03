@@ -14,9 +14,7 @@
 		<h1><%= object.heading %></h1>
 	</div>
 	<div class="col-md-2">
-		<%= link_to edit_path, :class => "btn btn-warning btn-block", title: "Edit", 'data-toggle' => 'tooltip' do %> 
-			<span class="glyphicon glyphicon-edit"></span> Edit
-		<% end %>
+		<%= render "templates/buttons/crud/edit", edit_path: edit_path %>
 	</div>
 </div>
 <hr />

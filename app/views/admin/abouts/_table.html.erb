@@ -18,12 +18,8 @@
 				<td><%= description_nil_check(content.description).truncate_words(10).html_safe %></td>
 				<td><%= content.user.concat_name %></td>
 				<td><%= formateDateTimeWithAt(content.updated_at) %></td>
-				<td><%= link_to "Show", admin_about_path(content), :class => "btn btn-success btn-block" %></td>
-				<td>
-					<%= link_to edit_admin_about_path(content), :class => "btn btn-warning btn-block" do %> 
-						<span class="glyphicon glyphicon-edit"></span> Edit
-					<% end %>
-				</td>
+				<td><%= render "templates/buttons/crud/show", show_path: admin_about_path(content) %></td>
+				<td><%= render "templates/buttons/crud/edit", edit_path: edit_admin_about_path(content) %></td>
 			</tr>
 		<% end %>
 	</tbody>
