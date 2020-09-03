@@ -1,30 +1,4 @@
-<%= render "templates/alerts/admin-notice" %>
-
-<div class="row vertical-align-middle">
-	<div class="col-md-3">
-		<%= render "templates/buttons/back-to-page", text: "News Page", path: admin_announcements_path %>
-	</div>
-	<div class="col-md-9 align-right">
-		<%= render "templates/admin-modified-by", content: @announcement %>
-	</div>
-</div>
-
-<div class="row vertical-align-middle">
-	<div class="col-md-8">
-		<h1><%= @announcement.heading %></h1>
-	</div>
-	<div class="col-md-2">
-		<%= link_to edit_admin_announcement_path(@announcement), :class => "btn btn-warning btn-block", title: "Edit", 'data-toggle' => 'tooltip' do %> 
-			<span class="glyphicon glyphicon-edit"></span> Edit
-		<% end %>
-	</div>
-	<div class="col-md-2">
-		<%= link_to [:admin, @announcement], :class => "btn btn-danger btn-block", method: :delete, data: { confirm: 'Are you sure?' }, title: "Remove News", 'data-toggle' => 'tooltip' do %> 
-			<span class="glyphicon glyphicon-trash"></span> Remove
-		<% end %>
-	</div>
-</div>
-<hr />
+<%= render "layouts/admin/show-header", back_text: "News Page", back_path: admin_announcements_path, object: @announcement, edit_path: edit_admin_announcement_path(@announcement) %>
 
 <div class="row">
 	<% if tf_check(@announcement.image.present?) %>

@@ -1,0 +1,22 @@
+<%= render "templates/alerts/admin-notice" %>
+
+<div class="row vertical-align-middle">
+	<div class="col-md-3">
+		<%= render "templates/buttons/back-to-page", text: back_text, path: back_path %>
+	</div>
+	<div class="col-md-9 align-right">
+		<%= render "templates/admin-modified-by", content: object %>
+	</div>
+</div>
+
+<div class="row vertical-align-middle">
+	<div class="col-md-10">
+		<h1><%= object.heading %></h1>
+	</div>
+	<div class="col-md-2">
+		<%= link_to edit_path, :class => "btn btn-warning btn-block", title: "Edit", 'data-toggle' => 'tooltip' do %> 
+			<span class="glyphicon glyphicon-edit"></span> Edit
+		<% end %>
+	</div>
+</div>
+<hr />
