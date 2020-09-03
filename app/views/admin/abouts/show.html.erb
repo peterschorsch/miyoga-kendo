@@ -36,8 +36,25 @@
 				<%= simple_format(@content.description, wrapper_tag: "p", class: 'indent-paragraph') %>
 			</div>
 			<div class="text-image-column">
-				<% @content.images.each do |image| %>
-					<%= image_tag(image.image.url, class: "text-image", alt: "Image") %>
+				<% if @content.images.count > 1 %>
+					<div class="aboutCarousel carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<% @content.images.each_with_index do |image, index| %>
+								<% active_option = index==0 ? 'active' : '' %>
+								<li data-slide-to="<%=index%>" class="aboutCarousel <%=active_option%>"></li>
+							<% end %>
+						</ol>
+						<div class="carousel-inner">
+							<% @content.images.each_with_index do |image, index| %>
+								<div class="item <%= "active" if index == 0 %>">
+									<%= image_tag(image.image.url, class: "d-block w-100", alt: image.image_file_name) %>
+								</div>
+							<% end %>
+						</div>
+					</div>
+				<% else %>
+					<% content_image = content.images.first %>
+					<%= image_tag(content_image.image.url, class: "text-image", alt: content_image.image_file_name) %>
 				<% end %>
 			</div>
 		</div>
