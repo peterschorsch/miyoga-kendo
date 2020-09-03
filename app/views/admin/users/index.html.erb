@@ -1,15 +1,4 @@
-<div class="row">
-  <div class="col-md-3">
-    <%= render "templates/buttons/back-to-admin-home" %>
-  </div>
-  <div class="col-md-3 col-md-offset-6">
-    <%= render "templates/buttons/add-new", path: new_admin_user_path, text: "User" %>
-  </div>
-</div>
-
-<%= render "templates/heading", text: "Miyoga Kendo Roster", list_of_classes: "align-center" %>
-
-<%= render "templates/alerts/admin-notice" %>
+<%= render "layouts/admin/index-header", path: new_admin_user_path, new_btn_text: "User", heading_text: "Miyoga Kendo Roster" %>
 
 <ul class="nav nav-tabs nav-justified text-link">
   <li class="active"><a data-toggle="tab" href="#active_users">Active Users</a></li>

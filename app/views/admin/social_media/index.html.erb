@@ -1,15 +1,4 @@
-<div class="row">
-  <div class="col-md-3">
-    <%= render "templates/buttons/back-to-admin-home" %>
-  </div>
-  <div class="col-md-3 col-md-offset-6">
-    <%= render "templates/buttons/add-new", path: new_admin_social_medium_path, text: "Social Media Site" %>
-  </div>
-</div>
-
-<%= render "templates/heading", text: "Social Media", list_of_classes: "align-center" %>
-
-<%= render "templates/alerts/admin-notice" %>
+<%= render "layouts/admin/index-header", path: new_admin_social_medium_path, new_btn_text: "Social Media Site", heading_text: "Social Media" %>
 
 <table class="table table-responsive table-striped" id="social_media_table">
   <thead>

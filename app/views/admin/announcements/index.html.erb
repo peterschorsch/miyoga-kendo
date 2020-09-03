@@ -1,15 +1,6 @@
-<div class="row">
-  <div class="col-md-3">
-    <%= render "templates/buttons/back-to-admin-home" %>
-  </div>
-  <div class="col-md-3 col-md-offset-6">
-    <%= render "templates/buttons/add-new", path: new_admin_announcement_path, text: "News Item" %>
-  </div>
-</div>
+<%= render "layouts/admin/index-header", path: new_admin_announcement_path, new_btn_text: "News Item", heading_text: @current_page.name + " Page" %>
 
-<%= render "templates/heading", text: @current_page.name + " Page", list_of_classes: "align-center" %>
+<p class="align-center">Only 3 News Items can be pinned at one time.</p>
+<br />
 
-<%= render "templates/alerts/admin-notice" %>
-
-<p class="align-center">Only 3 News Items can be pinned at one time.</p><br />
 <%= render "table", news: @news %>
