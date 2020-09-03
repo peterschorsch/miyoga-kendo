@@ -12,6 +12,7 @@ gem 'awesome_print'
 gem 'ckeditor'
 gem 'paperclip'
 gem 'cocoon'
+gem 'cancancan'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
