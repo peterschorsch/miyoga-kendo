@@ -5,13 +5,13 @@
 		<%= render "templates/buttons/back-to-page", text: back_text, path: back_path %>
 	</div>
 	<div class="col-md-9 align-right">
-		<%= render "templates/admin-modified-by", content: object %>
+		<%= render "templates/admin/last-modified-by", content: object %>
 	</div>
 </div>
 
 <div class="row vertical-align-middle">
 	<div class="col-md-10">
-		<h1><%= object.heading %></h1>
+		<h1><%= object_heading %></h1>
 	</div>
 	<div class="col-md-2">
 		<%= render "templates/buttons/crud/edit", edit_path: edit_path %>

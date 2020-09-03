@@ -1,4 +1,4 @@
-<%= render "layouts/admin/show-header", back_text: "Resources", back_path: admin_resources_path, object: @resource, edit_path: edit_admin_resource_path(@resource) %>
+<%= render "templates/admin/show-header", back_text: "Resources", back_path: admin_resources_path, object: @resource, object_heading: @resource.heading, edit_path: edit_admin_resource_path(@resource) %>
 
 <% if tf_check(@resource.subheading) %>
 	<div class="row">

@@ -1,4 +1,4 @@
-<%= render "layouts/admin/show-header", back_text: "News Page", back_path: admin_announcements_path, object: @announcement, edit_path: edit_admin_announcement_path(@announcement) %>
+<%= render "templates/admin/show-header", back_text: "News Page", back_path: admin_announcements_path, object: @announcement, object_heading: @announcement.heading, edit_path: edit_admin_announcement_path(@announcement) %>
 
 <div class="row">
 	<% if tf_check(@announcement.image.present?) %>

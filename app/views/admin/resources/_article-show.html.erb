@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-3">
 		<%= image_tag("resources_page/#{link.image_file_name}", class: "text-image", alt: link.image_file_name) %>
-		<div class="align-center"><%= render "templates/admin-modified-by", content: link %></div>
+		<div class="align-center"><%= render "templates/admin/last-modified-by", content: link %></div>
 	</div>
 	<div class="col-md-9">
 		<h5><%= format_header_date(link.created_at) %></h5>
