@@ -1,7 +1,3 @@
-<%= render 'templates/buttons/back-to-page', path: admin_practices_path, text: "Class Schedule" %>
-
-<%= render "templates/heading", text: "Editing Class Schedule", list_of_classes: "align-center" %>
-
-<%= render "templates/alerts/admin-notice" %>
+<%= render "templates/admin/edit-header", back_text: "Class Schedule", back_path: admin_practices_path, heading_text: "Editing Class Schedule", object: @practice %>
 
 <%= render 'form', practice: @practice %>
