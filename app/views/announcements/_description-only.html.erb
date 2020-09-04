@@ -8,7 +8,7 @@
 			<% end %>
 		<% end %>
 	</div>
-	<% if @current_user.is_admin? %>
+	<% if can? :manage, news %>
 		<div class="col-md-3">
 			<%= news.pdf_file_name %>
 		</div>

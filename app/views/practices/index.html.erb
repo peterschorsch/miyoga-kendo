@@ -1,12 +1,12 @@
-<% if current_user.is_admin? %>
+<% if can? :manage, @new_practice %>
 	<div class="row">
 		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
 			<%= render "templates/buttons/crud/new-button-tag", target: "#practiceAddModal", button_text: "Class" %>
 		</div>
 	</div>
 	<%= render "add-modal", new_practice: @new_practice %>
+	<%= render "templates/alerts/notice" %>
 	<%= render "templates/alerts/form-errors", model: @new_practice %>
-	<%= render "templates/alerts/admin-notice" %>
 <% end %>
 
 <%= render "templates/heading", text: @content.heading, list_of_classes: "align-center" %>
@@ -14,11 +14,11 @@
 <% @practices.each_with_index do |practice, index| %>
 	<%= render "edit-modal", practice: practice, index: index %>
 	<%= render "templates/modals/remove-record-dialog", record: practice, index: index, heading: "Class" %>
-	<%= current_user.is_admin? ? raw("<div class='row vertical-align-middle'>") : raw("<div class='row'>") %>
+	<% if can? :manage, practice ? raw("<div class='row vertical-align-middle'>") : raw("<div class='row'>") %>
 		<div class="col-md-4 col-md-offset-4">
 			<p class="align-center"><%= practice.day_of_week %> | <%= formatPracticeTime(practice.start_time, practice.end_time) %></p>
 		</div>
-		<% if current_user.is_admin? %>
+		<% if can? :manage, practice %>
 			<div class="col-md-2">
 				<%= render "templates/buttons/crud/edit-button-tag", target: "#practiceEditModal-#{index}" %>
 			</div>

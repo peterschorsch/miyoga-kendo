@@ -1,12 +1,12 @@
-<% if @current_user.is_admin? %>
+<% if can? :manage, @new_announcement %>
 	<div class="row">
 		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
 			<%= render "templates/buttons/crud/new-button-tag", target: "#newsAddModal", button_text: "News Item" %>
 			<%= render "add-modal", new_announcement: @new_announcement %>
 		</div>
 	</div>
-	<%= render "templates/alerts/admin-notice" %>
 	<%= render "templates/alerts/form-errors", model: @new_announcement %>
+	<%= render "templates/alerts/notice" %>
 <% end %>
 
 <%= render "templates/heading", text: @current_page.name, list_of_classes: "" %>
@@ -15,7 +15,7 @@
 	<% @pinned_news.each do |news| %>
 		<div class="col-md-4 col-sm-12">
 			<div class="panel panel-default card">
-				<%= render "admin-function", announcement: news if @current_user.is_admin? %>
+				<%= render "admin-function", announcement: news if can? :manage, news %>
 				<div class="row vertical-align-middle">
 					<div class="col-md-1">
 						<h2><span class="glyphicon glyphicon-star yellow"></span></h2>
@@ -47,7 +47,7 @@
 		<% news_group.each do |news| %>
 			<div class="col-md-6 col-xs-12">
 				<div class="panel panel-default card">
-					<%= render "admin-function", announcement: news if @current_user.is_admin? %>
+					<%= render "admin-function", announcement: news if can? :manage, news %>
 					<div class="row">
 						<div class="col-md-12">
 							<h2><%= news.heading %></h2>

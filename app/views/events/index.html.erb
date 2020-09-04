@@ -1,12 +1,12 @@
-<% if current_user.is_admin? %>
+<% if can? :manage, @new_event %>
 	<div class="row">
 		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
 			<%= render "templates/buttons/crud/new-button-tag", target: "#eventAddModal", button_text: "Event" %>
 		</div>
 	</div>
 	<%= render "add-modal", new_event: @new_event %>
+	<%= render "templates/alerts/notice" %>
 	<%= render "templates/alerts/form-errors", model: @new_event %>
-	<%= render "templates/alerts/admin-notice" %>
 <% end %>
 
 <% @events.each_with_index do |event, index| %>

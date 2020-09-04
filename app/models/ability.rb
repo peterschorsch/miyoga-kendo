@@ -31,4 +31,15 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
   end
+
+  def initialize(user)
+        user ||= User.get_guest_user # guest user
+
+        # Admin can do anything and everything
+        if user.is_admin?
+            can :manage, :all
+        else
+            cannot :manage, :all
+        end
+    end
 end
