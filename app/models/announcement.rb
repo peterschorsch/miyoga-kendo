@@ -2,7 +2,7 @@ class Announcement < ApplicationRecord
 	belongs_to :user
 	belongs_to :page
 
-	has_many :images, dependent: :destroy
+	has_many :images, inverse_of: :announcement, dependent: :destroy
 	accepts_nested_attributes_for :images, allow_destroy: true
 
 	has_many :file_uploads, inverse_of: :announcement, dependent: :destroy

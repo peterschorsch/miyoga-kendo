@@ -1,12 +1,19 @@
-<div class="row vertical-align-middle">
-	<%= f.inspect%>
-	<%# if f.object.new_record? %>
-	<!--	<div class="col-xs-2 align-right"><%#= f.label :pdf, 'Attach PDF:' %></div>
-		<div class="col-xs-9"><%#= f.file_field :pdf, class: 'form-control' %></div>
-	<%# else %>
-		<div class="col-xs-2 align-right"><%#= f.label 'Current PDF:' %></div>
-		<div class="col-xs-3"><%#= pdf.pdf_file_name %></div>
-		<div class="col-xs-3 align-right"><%#= f.label :pdf, 'Replace Current PDF:' %></div>
-		<div class="col-xs-3"><%#= f.file_field :pdf, class: 'form-control' %></div>-->
-	<%# end %>
-</div>
+<% if f.object.new_record? %>
+	<div class="row vertical-align-middle">
+		<div class="col-xs-2 align-right"><%= f.label :pdf, 'Attach New PDF:' %></div>
+		<div class="col-xs-9"><%= f.file_field :pdf, class: 'form-control' %></div>
+	</div>
+	<br />
+<% else %>
+	<div class="row vertical-align-middle nested-fields">
+		<div class="col-xs-1">
+			<%= link_to_remove_association f, :class => "btn btn-danger", data: { confirm: 'Are you sure?' }, title: 'Remove', 'data-toggle' => 'tooltip' do %>
+				<span class="glyphicon glyphicon-trash"></span>
+			<% end %>
+		</div>
+		<div class="col-xs-1 align-right"><strong>PDF <%=f.index+1%>:</strong></div>
+		<div class="col-xs-6"><%= f.object.pdf_file_name %></div>
+	</div>
+	<hr />
+<% end %>
+<

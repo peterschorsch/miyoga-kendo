@@ -6,8 +6,8 @@ class AnnouncementsController < ApplicationController
 		@pinned_news = Announcement.pinned_news.active_news
 		@other_news = Announcement.active_news.unpinned_news.map { |news| news }
 
-		@new_announcement = Announcement.new
-		@new_announcement.file_uploads.build
+		@announcement = Announcement.new
+		@announcement.file_uploads.build
 		@num_pinned_news = !Announcement.reached_pinned_news_limit
 	end
 
@@ -67,8 +67,8 @@ class AnnouncementsController < ApplicationController
 
 	# Only allow a list of trusted parameters through.
 	def announcement_params
-	  params.require(:announcement).permit(:heading, :description, :link, :pdf, :pinned, :archived,
-		images_attributes: [:id, :image, :announcement_id],
-		file_uploads_attributes: [:id, :pdf, :announcement_id])
+	  params.require(:announcement).permit(:id, :heading, :description, :link, :pdf, :pinned, :archived,
+		images_attributes: [:id, :image, :announcement_id, :_destroy],
+		file_uploads_attributes: [:id, :pdf, :announcement_id, :_destroy])
 	end
 end

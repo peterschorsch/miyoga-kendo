@@ -1,11 +1,11 @@
-<% if can? :manage, @new_announcement %>
+<% if can? :manage, @announcement %>
 	<div class="row">
 		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
 			<%= render "templates/buttons/crud/new-button-tag", target: "#newsAddModal", button_text: "News Item" %>
-			<%= render "add-modal", new_announcement: @new_announcement %>
+			<%= render "add-modal", new_announcement: @announcement %>
 		</div>
 	</div>
-	<%= render "templates/alerts/form-errors", model: @new_announcement %>
+	<%= render "templates/alerts/form-errors", model: @announcement %>
 	<%= render "templates/alerts/notice" %>
 <% end %>
 

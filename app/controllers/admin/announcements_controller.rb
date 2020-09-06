@@ -12,6 +12,8 @@ class Admin::AnnouncementsController < Admin::AdminController
 
   def new
     @announcement = Announcement.new
+    @announcement.images.build
+    @announcement.file_uploads.build
   end
 
   def edit
@@ -74,6 +76,8 @@ class Admin::AnnouncementsController < Admin::AdminController
 
     # Only allow a list of trusted parameters through.
     def announcement_params
-      params.require(:announcement).permit(:heading, :description, :link, :pdf, :image, :pinned, :archived)
+      params.require(:announcement).permit(:id, :heading, :description, :link, :pdf, :pinned, :archived,
+        images_attributes: [:id, :image, :announcement_id, :_destroy],
+        file_uploads_attributes: [:id, :pdf, :announcement_id, :_destroy])
     end
 end
