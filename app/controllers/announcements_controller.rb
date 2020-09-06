@@ -7,6 +7,7 @@ class AnnouncementsController < ApplicationController
 		@other_news = Announcement.active_news.unpinned_news.map { |news| news }
 
 		@announcement = Announcement.new
+		@announcement.images.build
 		@announcement.file_uploads.build
 		@num_pinned_news = !Announcement.reached_pinned_news_limit
 	end
