@@ -1,0 +1,16 @@
+<% if f.object.new_record? %>
+	<div class="row vertical-align-middle">
+		<div class="col-xs-2 align-right"><%= f.label :pdf, 'Attach New PDF:' %></div>
+		<div class="col-xs-9"><%= f.file_field :pdf, class: 'form-control' %></div>
+	</div>
+<% else %>
+	<div class="row vertical-align-middle">
+		<div class="col-xs-2 align-right"><%= f.label 'Current PDF:' %></div>
+		<div class="col-xs-9"><%= f.object.pdf_file_name %></div>
+	</div>
+	<div class="row vertical-align-middle">
+		<div class="col-xs-2 align-right"><%= f.label :pdf, 'Replace PDF:' %></div>
+		<div class="col-xs-9"><%= f.file_field :pdf, class: 'form-control' %></div>
+	</div>
+	<hr />
+<% end %>

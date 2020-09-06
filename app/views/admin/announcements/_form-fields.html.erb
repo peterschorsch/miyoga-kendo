@@ -26,6 +26,19 @@
 	</div>
 </div>
 <br />
+<div id='files'>
+	<%= form.fields_for :file_uploads do |file| %>
+		<%= render 'file_upload_fields', :f => file %>
+	<% end %>
+	<div class="row">
+		<div class="col-xs-4 col-sm-offset-4">
+			<%= link_to_add_association form, :file_uploads, :class => "btn btn-info btn-block", :id => "add_image" do %>
+				<span class="glyphicon glyphicon-plus"></span> Add a File
+			<% end %>
+		</div>
+	</div>
+</div>
+<br />
 <div class="row vertical-align-middle">
 	<% if form.object.pinned || @num_pinned_news %>
 		<div class="col-md-2 col-xs-12 align-right"><%= form.label :pinned, 'Pin Post:' %></div>

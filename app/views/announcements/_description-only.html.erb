@@ -1,17 +1,19 @@
 <%= simple_format(news.description, wrapper_tag: "p", class: 'indent-paragraph') %>
 
 <div class="row vertical-align-middle">
-	<% if news.pdf.exists? %>
-		<div class="col-md-3 align-left">
-			<%= link_to news.pdf(:original, false), :class => "btn btn-success btn-block", target: :_blank do %>
-				<span class="glyphicon glyphicon-download"></span> Download File
+	<% if news.file_uploads.exists? %>
+		<% news.file_uploads.each do |file| %>
+			<div class="col-md-3 align-left">
+				<%= link_to file.pdf(:original, false), :class => "btn btn-success btn-block", target: :_blank do %>
+					<span class="glyphicon glyphicon-download"></span> Download File
+				<% end %>
+			</div>
+			<% if can? :manage, file %>
+				<div class="col-md-3">
+					<%= file.pdf_file_name %>
+				</div>
 			<% end %>
-		</div>
-	<% end %>
-	<% if can? :manage, news %>
-		<div class="col-md-3">
-			<%= news.pdf_file_name %>
-		</div>
+		<% end %>
 	<% end %>
 	<% if not tf_check(news.link) %>
 		<div class="col-md-6 align-right">

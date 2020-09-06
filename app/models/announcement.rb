@@ -5,19 +5,19 @@ class Announcement < ApplicationRecord
 	has_many :images, dependent: :destroy
 	accepts_nested_attributes_for :images, allow_destroy: true
 
-	has_attached_file :pdf
-	validates_attachment :pdf, content_type: { content_type: "application/pdf" }, size: { in: 0..25.megabytes}
+	has_many :file_uploads, inverse_of: :announcement, dependent: :destroy
+	accepts_nested_attributes_for :file_uploads, allow_destroy: true
 
 	before_save :fix_link
 
 	validates :heading, presence: true
 
 	scope :pinned_news, -> {
-		includes(:user, :images).where(:pinned => true).by_recent_creation_date
+		includes(:user, :images, :file_uploads).where(:pinned => true).by_recent_creation_date
 	}
 
 	scope :unpinned_news, -> {
-		includes(:user, :images).where(:pinned => false).by_recent_creation_date
+		includes(:user, :images, :file_uploads).where(:pinned => false).by_recent_creation_date
 	}
 
 	scope :active_news, -> {

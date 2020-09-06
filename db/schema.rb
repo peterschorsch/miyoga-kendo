@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_23_194024) do
+ActiveRecord::Schema.define(version: 2020_09_06_003931) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "location_name", null: false
@@ -32,10 +32,6 @@ ActiveRecord::Schema.define(version: 2020_08_23_194024) do
     t.string "heading", null: false
     t.text "description"
     t.text "link"
-    t.string "pdf_file_name"
-    t.string "pdf_content_type"
-    t.bigint "pdf_file_size"
-    t.datetime "pdf_updated_at"
     t.boolean "pinned", default: false
     t.boolean "archived", default: false
     t.integer "page_id"
@@ -73,6 +69,17 @@ ActiveRecord::Schema.define(version: 2020_08_23_194024) do
     t.integer "page_id"
     t.index ["page_id"], name: "index_events_on_page_id"
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "file_uploads", force: :cascade do |t|
+    t.string "pdf_file_name"
+    t.string "pdf_content_type"
+    t.bigint "pdf_file_size"
+    t.datetime "pdf_updated_at"
+    t.integer "announcement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["announcement_id"], name: "index_file_uploads_on_announcement_id"
   end
 
   create_table "images", force: :cascade do |t|
