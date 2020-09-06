@@ -1,0 +1,11 @@
+<div class="row vertical-align-middle">
+	<% if f.object.new_record? %>
+		<div class="col-xs-2 align-right"><%= f.label :image, 'Attach New Image:' %></div>
+		<div class="col-xs-9"><%= f.file_field :image, class: 'form-control' %></div>
+	<% else %>
+		<div class="col-xs-2 align-right"><%= f.label 'Current Image:' %></div>
+		<div class="col-xs-3"><%= image_tag(f.object.image.url, class: "small-form-image", alt: f.object.image_file_name) if not f.object.image_file_name.nil? %></div>
+		<div class="col-xs-3 align-right"><%= f.label :image, 'Replace Current Image:' %></div>
+		<div class="col-xs-3"><%= f.file_field :image, class: 'form-control' %></div>
+	<% end %>
+</div>

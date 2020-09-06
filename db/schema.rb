@@ -36,10 +36,6 @@ ActiveRecord::Schema.define(version: 2020_08_23_194024) do
     t.string "pdf_content_type"
     t.bigint "pdf_file_size"
     t.datetime "pdf_updated_at"
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.bigint "image_file_size"
-    t.datetime "image_updated_at"
     t.boolean "pinned", default: false
     t.boolean "archived", default: false
     t.integer "page_id"
@@ -85,8 +81,10 @@ ActiveRecord::Schema.define(version: 2020_08_23_194024) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.integer "content_id"
+    t.integer "announcement_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["announcement_id"], name: "index_images_on_announcement_id"
     t.index ["content_id"], name: "index_images_on_content_id"
   end
 

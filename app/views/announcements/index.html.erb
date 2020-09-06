@@ -32,11 +32,24 @@
 						<h5>Posted by: <strong><%= news.user.concat_name %></strong></h5>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<%= render "announcements/description-only", news: news %>
+				<% if tf_check(news.images) %>
+					<div class="row">
+						<div class="col-md-12">
+							<%= render "announcements/description-only", news: news %>
+						</div>
 					</div>
-				</div>
+				<% else %>
+					<div class="row">
+						<div class="col-md-12">
+							<%= render "announcements/description-only", news: news %>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<%= render "carousel", news: news %>
+						</div>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	<% end %>
@@ -62,7 +75,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<% if tf_check(news.image_file_name) %>
+						<% if tf_check(news.images) %>
 							<div class="col-md-12">
 								<%= render "announcements/description-only", news: news %>
 							</div>

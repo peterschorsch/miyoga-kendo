@@ -7,7 +7,7 @@ class PracticesController < ApplicationController
 		@miyoga_user = User.get_miyoga_user
 		
 		@practices = Practice.all
-		@practice_count = @practices.count-1
+		@practices_count = @practices.count-1
 		@practice_cost = "$" + @practices.first.cost_per_month + " per month"
 
 		@new_practice = Practice.new

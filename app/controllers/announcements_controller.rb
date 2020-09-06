@@ -29,7 +29,7 @@ class AnnouncementsController < ApplicationController
 		set_user_id
 
 		respond_to do |format|
-			if @announcement.update(announcement_params)
+			if @announcement.update!(announcement_params)
 				format.html { redirect_to announcements_path, notice: 'The News Item was successfully updated.' }
 			else
 				format.html { render :index }
@@ -66,6 +66,7 @@ class AnnouncementsController < ApplicationController
 
 	# Only allow a list of trusted parameters through.
 	def announcement_params
-	  params.require(:announcement).permit(:heading, :description, :link, :pdf, :image, :pinned, :archived)
+	  params.require(:announcement).permit(:heading, :description, :link, :pdf, :pinned, :archived,
+		images_attributes: [:id, :image, :announcement_id])
 	end
 end

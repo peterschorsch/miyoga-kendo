@@ -6,7 +6,6 @@ class CreateAnnouncementsTable < ActiveRecord::Migration[5.2]
 		t.text :link
 
 		t.attachment :pdf
-		t.attachment :image
 
 		t.boolean :pinned, :default => false
 		t.boolean :archived, :default => false

@@ -2,5 +2,5 @@
 	<%= render "announcements/description-only", news: news %>
 </div>
 <div class="col-md-4 text-image-column">
-	<%= link_to image_tag("news_page/#{news.image_file_name}", class: "image-center", alt: news.image_file_name), news.link, class: "text-image", target: :_blank %>
+	<%= render "carousel", news: news %>
 </div>

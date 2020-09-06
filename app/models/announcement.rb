@@ -2,8 +2,8 @@ class Announcement < ApplicationRecord
 	belongs_to :user
 	belongs_to :page
 
-	has_attached_file :image, on: :image_is_blank
-	validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"], on: :image_is_blank
+	has_many :images, dependent: :destroy
+	accepts_nested_attributes_for :images, allow_destroy: true
 
 	has_attached_file :pdf
 	validates_attachment :pdf, content_type: { content_type: "application/pdf" }, size: { in: 0..25.megabytes}
@@ -13,11 +13,11 @@ class Announcement < ApplicationRecord
 	validates :heading, presence: true
 
 	scope :pinned_news, -> {
-		includes(:user).where(:pinned => true).by_recent_creation_date
+		includes(:user, :images).where(:pinned => true).by_recent_creation_date
 	}
 
 	scope :unpinned_news, -> {
-		includes(:user).where(:pinned => false).by_recent_creation_date
+		includes(:user, :images).where(:pinned => false).by_recent_creation_date
 	}
 
 	scope :active_news, -> {

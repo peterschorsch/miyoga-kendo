@@ -40,8 +40,14 @@
   width: 100px;
 }
 
-.carousel-inner .item img{
+.abouts_carousel_image_size .item img{
   width: 100%;
   height: 500px !important;
   max-height: 750px;
+}
+
+.news_carousel_image_size .item img{
+  width: 100%;
+  height: 250px !important;
+  max-height: 400px;
 }

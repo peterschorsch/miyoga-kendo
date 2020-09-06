@@ -13,28 +13,17 @@
 	<div class="col-md-9 col-xs-12"><%= form.text_field :link, { class: "form-control" } %></div>
 </div>
 <br />
-<div class="row vertical-align-middle">
-	<% if form.object.pdf_file_name.nil? %>
-		<div class="col-xs-2 align-right"><%= form.label :pdf, 'Attach PDF:' %></div>
-		<div class="col-xs-9"><%= form.file_field :pdf, class: 'form-control' %></div>
-	<% else %>
-		<div class="col-xs-2 align-right"><%= form.label 'Current PDF:' %></div>
-		<div class="col-xs-3"><%= form.object.pdf_file_name %></div>
-		<div class="col-xs-3 align-right"><%= form.label :pdf, 'Replace PDF File:' %></div>
-		<div class="col-xs-3"><%= form.file_field :pdf, class: 'form-control' %></div>
+<div id='images'>
+	<%= form.fields_for :images do |image| %>
+		<%= render 'image_fields', :f => image %>
 	<% end %>
-</div>
-<br />
-<div class="row vertical-align-middle">
-	<% if form.object.image_file_name.nil? %>
-		<div class="col-xs-2 align-right"><%= form.label :image, 'Image:' %></div>
-		<div class="col-xs-9"><%= form.file_field :image, class: 'form-control' %></div>
-	<% else %>
-		<div class="col-xs-2 align-right"><%= form.label 'Current Image:' %></div>
-		<div class="col-xs-3"><%= image_tag("news_page/" + form.object.image_file_name, class: "small-form-image", alt: form.object.image_file_name) if not form.object.image_file_name.nil? %></div>
-		<div class="col-xs-3 align-right"><%= form.label :image, 'Replace Current Image:' %></div>
-		<div class="col-xs-3"><%= form.file_field :image, class: 'form-control' %></div>
-	<% end %>
+	<div class="row">
+		<div class="col-xs-4 col-sm-offset-4">
+			<%= link_to_add_association form, :images, :class => "btn btn-info btn-block", :id => "add_image" do %>
+				<span class="glyphicon glyphicon-plus"></span> Add an Image
+			<% end %>
+		</div>
+	</div>
 </div>
 <br />
 <div class="row vertical-align-middle">

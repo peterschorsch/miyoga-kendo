@@ -14,7 +14,7 @@
 <% @practices.each_with_index do |practice, index| %>
 	<%= render "edit-modal", practice: practice, index: index %>
 	<%= render "templates/modals/remove-record-dialog", record: practice, index: index, heading: "Class" %>
-	<% if can? :manage, practice ? raw("<div class='row vertical-align-middle'>") : raw("<div class='row'>") %>
+	<div class='row vertical-align-middle'>
 		<div class="col-md-4 col-md-offset-4">
 			<p class="align-center"><%= practice.day_of_week %> | <%= formatPracticeTime(practice.start_time, practice.end_time) %></p>
 		</div>
@@ -27,11 +27,7 @@
 			</div>
 		<% end %>
 	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<p class="align-center"><%= @practice_count==index ? "" : "&" %></p>
-		</div>
-	</div>
+	<br /><br />
 <% end %>
 
 <br /><br />
@@ -47,7 +43,6 @@
 			</tr>
 			<tr><td class="jcc-images"><%= image_tag("practices_page/second_floor_jcc.jpg", alt: "Second Floor of JCC") %></td></tr>
 		</table>
-		
 	</div>
 </div>
 
