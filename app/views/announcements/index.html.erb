@@ -32,18 +32,12 @@
 						<h5>Posted by: <strong><%= news.user.concat_name %></strong></h5>
 					</div>
 				</div>
-				<% if tf_check(news.images) %>
-					<div class="row">
-						<div class="col-md-12">
-							<%= render "announcements/description-only", news: news %>
-						</div>
+				<div class="row">
+					<div class="col-md-12">
+						<%= render "announcements/description-only", news: news %>
 					</div>
-				<% else %>
-					<div class="row">
-						<div class="col-md-12">
-							<%= render "announcements/description-only", news: news %>
-						</div>
-					</div>
+				</div>
+				<% if not tf_check(news.images) %>
 					<div class="row">
 						<div class="col-md-12">
 							<%= render "carousel", news: news %>

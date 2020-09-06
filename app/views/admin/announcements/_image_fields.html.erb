@@ -11,7 +11,7 @@
 				<span class="glyphicon glyphicon-trash"></span>
 			<% end %>
 		</div>
-		<div class="col-xs-1 align-right"><strong>Image <%=f.index+1%>:</strong></div>
+		<div class="col-xs-2 align-right"><strong>Image <%=f.index+1%>:</strong></div>
 		<div class="col-xs-3"><%= image_tag(f.object.image.url, class: "small-form-image", alt: f.object.image_file_name) if not f.object.image_file_name.nil? %></div>
 	</div>
 	<hr />
