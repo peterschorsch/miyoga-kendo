@@ -15,11 +15,11 @@
 <br />
 <div id='images'>
 	<%= form.fields_for :images do |image| %>
-		<%= render 'templates/forms/image_fields', :f => image %>
+		<%= render 'templates/nested-forms/image_fields', :f => image %>
 	<% end %>
 	<div class="row">
 		<div class="col-xs-4 col-sm-offset-4">
-			<%= render "templates/buttons/crud/new-image-nested", form: form %>
+			<%= render "templates/nested-forms/new-image-button", form: form %>
 		</div>
 	</div>
 </div>
@@ -27,11 +27,11 @@
 <hr />
 <div id='files'>
 	<%= form.fields_for :file_uploads do |file| %>
-		<%= render 'templates/forms/file_upload_fields', :f => file %>
+		<%= render 'templates/nested-forms/file_upload_fields', :f => file %>
 	<% end %>
 	<div class="row">
 		<div class="col-xs-4 col-sm-offset-4">
-			<%= render 'templates/buttons/crud/new-file-nested', :form => form %>
+			<%= render 'templates/nested-forms/new-file-button', :form => form %>
 		</div>
 	</div>
 </div>

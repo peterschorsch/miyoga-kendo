@@ -33,11 +33,11 @@
 		          	<hr />
 		          	<div id='links'>
 						<%= f.fields_for :links do |link| %>
-							<%= render 'templates/forms/link_fields', :f => link, link_end_count: link_end_count %>
+							<%= render 'templates/nested-forms/link_fields', :f => link %>
 						<% end %>
 						<div class="row">
 							<div class="col-xs-4 col-sm-offset-4">
-								<%= render "templates/buttons/crud/new-link-nested", form: f %>
+								<%= render "templates/nested-forms/new-link-button", form: f %>
 							</div>
 						</div>
 					</div>

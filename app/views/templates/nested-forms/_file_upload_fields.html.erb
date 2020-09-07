@@ -7,13 +7,10 @@
 <% else %>
 	<div class="row vertical-align-middle nested-fields">
 		<div class="col-xs-1">
-			<%= link_to_remove_association f, :class => "btn btn-danger", data: { confirm: 'Are you sure?' }, title: 'Remove', 'data-toggle' => 'tooltip' do %>
-				<span class="glyphicon glyphicon-trash"></span>
-			<% end %>
+			<%= render "templates/nested-forms/remove-button", f: f %>
 		</div>
 		<div class="col-xs-2 align-right"><strong>PDF <%=f.index+1%>:</strong></div>
 		<div class="col-xs-6"><%= f.object.pdf_file_name %></div>
 	</div>
 	<hr />
 <% end %>
-<

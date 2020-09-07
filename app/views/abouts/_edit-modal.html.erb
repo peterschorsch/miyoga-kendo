@@ -30,11 +30,11 @@
 					<br />
 					<div id='images'>
 						<%= f.fields_for :images do |image| %>
-							<%= render 'templates/forms/image_fields', :f => image %>
+							<%= render 'templates/nested-forms/image_fields', :f => image %>
 						<% end %>
 						<div class="row">
 							<div class="col-xs-4 col-sm-offset-4">
-								<%= render "templates/buttons/crud/new-image-nested", form: f %>
+								<%= render "templates/nested-forms/new-image-button", form: f %>
 							</div>
 						</div>
 					</div>
