@@ -33,13 +33,11 @@
 		          	<hr />
 		          	<div id='links'>
 						<%= f.fields_for :links do |link| %>
-							<%= render 'link_fields', :f => link, link_end_count: link_end_count %>
+							<%= render 'templates/forms/link_fields', :f => link, link_end_count: link_end_count %>
 						<% end %>
 						<div class="row">
 							<div class="col-xs-4 col-sm-offset-4">
-								<%= link_to_add_association f, :links, :class => "btn btn-info btn-block", :id => "add_link" do %>
-									<span class="glyphicon glyphicon-plus"></span> Add a Link
-								<% end %>
+								<%= render "templates/buttons/crud/new-link-nested", form: f %>
 							</div>
 						</div>
 					</div>

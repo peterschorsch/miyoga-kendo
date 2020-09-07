@@ -14,20 +14,23 @@
 	<div class="col-xs-9"><%= f.text_field :link, { class: 'form-control' } %></div>
 </div>
 <br />
-<% if @resource.new_record? %>
+<% if f.object.new_record? %>
 	<div class="row vertical-align-middle">
 		<div class="col-xs-2 align-right"><%= f.label :link, 'Image:' %></div>
-		<div class="col-xs-3"><%= f.file_field :image, class: 'form-control' %></div>
+		<div class="col-xs-9"><%= f.file_field :image, class: 'form-control' %></div>
 	</div>
 <% else %>
 	<div class="row vertical-align-middle">
-		<div class="col-xs-3 align-right"><%= f.label 'Current Image:' %></div>
+		<div class="col-xs-1">
+			<%= link_to_remove_association f, :class => "btn btn-danger", data: { confirm: 'Are you sure?' }, title: 'Remove', 'data-toggle' => 'tooltip' do %>
+				<span class="glyphicon glyphicon-trash"></span>
+			<% end %>
+		</div>
+		<div class="col-xs-2 align-right"><strong>Image <%=f.index+1%>:</strong></div>
 		<div class="col-xs-2">
 			<% path = f.object.article ? "resources_page/" : "logos/" %>
 			<%= image_tag(path + f.object.image_file_name, class: "small-form-image", alt: f.object.image_file_name) if not f.object.image_file_name.nil? %>
 		</div>
-		<div class="col-xs-3 align-right"><%= f.label :link, 'Replace Current Image:' %></div>
-		<div class="col-xs-3"><%= f.file_field :image, class: 'form-control' %></div>
 	</div>
 <% end %>
 <br /><hr /><br />
