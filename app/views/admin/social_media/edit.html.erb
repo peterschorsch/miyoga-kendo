@@ -1,3 +1,3 @@
-<%= render "templates/admin/edit-header", back_text: "Social Media", back_path: admin_social_media_path, heading_text: "Editing Social Media Site", object: @social_medium %>
+<%= render "templates/admin/edit-header", back_text: "Social Media", back_path: admin_social_media_path, heading_text: "Editing: <strong>#{@social_medium.site_name}</strong>".html_safe, object: @social_medium %>
 
 <%= render 'form', social_medium: @social_medium %>
