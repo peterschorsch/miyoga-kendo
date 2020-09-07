@@ -1,14 +1,9 @@
-<% if news.images.count > 1 %>
-	<div class="aboutCarousel carousel slide" data-ride="carousel">
-		<div class="carousel-inner news_carousel_image_size">
-			<% news.images.each_with_index do |image, index| %>
-				<div class="item <%= "active" if index == 0 %>">
-					<%= image_tag(image.image.url, class: "d-block w-100", alt: image.image_file_name) %>
-				</div>
-			<% end %>
-		</div>
+<div class="aboutCarousel carousel slide" data-ride="carousel">
+	<div class="carousel-inner news_carousel_image_size">
+		<% news.images.each_with_index do |image, index| %>
+			<div class="item <%= "active" if index == 0 %>">
+				<%= image_tag(image.image.url, class: "d-block w-100", alt: image.image_file_name) %>
+			</div>
+		<% end %>
 	</div>
-<% else %>
-	<% news_image = news.images.first %>
-	<%= image_tag(news_image.image.url, class: "text-image", alt: news_image.image_file_name) %>
-<% end %>
+</div>
