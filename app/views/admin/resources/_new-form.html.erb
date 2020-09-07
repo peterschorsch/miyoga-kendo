@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, resource], url: create_new_article_admin_resources_path, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
+<%= form_with(model: [:admin, resource], url: create_new_resource_admin_resources_path, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
 	<div class="row vertical-align-middle">
 		<div class="col-xs-2 align-right"><%= f.label :heading, 'Heading:' %></div>
 		<div class="col-xs-9"><%= f.text_field :heading, { class: 'form-control' } %></div>
@@ -20,13 +20,15 @@
 		<div class="row vertical-align-middle">
 			<div class="col-xs-3 align-right"><%= f.label :index, 'Content Order:' %></div>
 			<div class="col-xs-2"><%= f.select :index, Content.populate_edit_index_dropdown(resource), {}, { class: 'form-control' } %></div>
-			<div class="col-xs-3 align-right"><%= f.label :display_content_on_page, 'Remove Content:' %></div>
-			<div class="col-xs-2"><%= f.check_box :display_content_on_page, { class: 'form-control', :checked => !resource.display_content_on_page }, 0, 1 %></div>
+			<% if not resource.new_record? %>
+				<div class="col-xs-3 align-right"><%= f.label :display_content_on_page, 'Remove Content:' %></div>
+				<div class="col-xs-2"><%= f.check_box :display_content_on_page, { class: 'form-control', :checked => !resource.display_content_on_page }, 0, 1 %></div>
+			<% end %>
 		</div>
 	<% end %>
 	<br />
-
 	<%= render "templates/heading", text: "Link(s)", list_of_classes: "align-center" %>
+
 	<div id='links'>
 		<%= f.fields_for :links do |link| %>
 			<%= render 'templates/forms/link_fields', :f => link %>
@@ -40,7 +42,7 @@
 	<br />
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<%= f.hidden_field :article, :value => true %>
+			<%= f.hidden_field :article, :value => true if article %>
 			<%= f.submit "Save Changes", class: "btn btn-success btn-block" %>
 		</div>
 	</div>

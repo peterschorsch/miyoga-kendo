@@ -1,3 +1,3 @@
-<%= render "templates/admin/new-header", back_text: "Resource", back_path: admin_resources_path(@resource), heading_text: "Add New Resource", object: @resource %>
+<%= render "templates/admin/new-header", back_text: "Resources", back_path: admin_resources_path(@resource), heading_text: "Add New Resource", object: @resource %>
 
-<%= render "new-resource-form", resource: @resource %>
+<%= render "new-form", resource: @resource, article: false %>
