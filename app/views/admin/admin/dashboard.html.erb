@@ -1,4 +1,4 @@
-<%#= render "templates/heading", text: "Admin Dashboard", list_of_classes: "align-center" %>
+<%#= render "templates/heading", text: "Admin Dashboard", list_of_classes: "text-center" %>
 <%= render "templates/alerts/notice"%>
 <%= render "templates/alerts/alert" %>
 
@@ -8,13 +8,13 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
-						<div class="col-xs-12"><h1 class="align-center">Recent Users</h1></div>
+						<div class="col-xs-12"><h1 class="text-center">Recent Users</h1></div>
 					</div>
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped">
 						<thead>
-							<tr class="align-center">
+							<tr class="text-center">
 								<th>Name</th>
 								<th>Role</th>
 								<th>Last Login</th>
@@ -22,7 +22,7 @@
 						</thead>
 						<tbody>
 							<% @users.each do |user| %>
-								<tr class="align-center table-hover">
+								<tr class="text-center table-hover">
 									<td><%=user.concat_name%></td>
 									<td><%=user.role%></td>
 									<td><%=user_nil_last_login(user.last_login)%></td>
@@ -44,13 +44,13 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
-						<div class="col-xs-12"><h1 class="align-center">My Profile</h1></div>
+						<div class="col-xs-12"><h1 class="text-center">My Profile</h1></div>
 					</div>
 				</div>
 				<div class="panel-body">
-					<h2 class="align-center"><%= current_user.concat_name %></h2>
-					<p class="align-center"><%= current_user.email %></p>
-					<p class="align-center"><%= current_user.role %></p>
+					<h2 class="text-center"><%= current_user.concat_name %></h2>
+					<p class="text-center"><%= current_user.email %></p>
+					<p class="text-center"><%= current_user.role %></p>
 					<br />
 					<div class="row">
 						<div class="col-md-8 col-md-offset-2">
@@ -66,12 +66,12 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
-						<div class="col-xs-12"><h1 class="align-center">Social Media Accounts</h1></div>
+						<div class="col-xs-12"><h1 class="text-center">Social Media Accounts</h1></div>
 					</div>
 				</div>
 				<div class="panel-body">
 					<% @social_media.in_groups_of(3, false) do |social_media_array| %>
-						<div class="row align-center">
+						<div class="row text-center">
 							<% social_media_array.each do |social_media| %>
 								<div class="col-md-4 col-sm-12 padding-top-bottom">
 									<%= link_to image_tag(social_media.image.url, class: "image-center", alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, class: "social_media_logo text-link", target: :_blank %>

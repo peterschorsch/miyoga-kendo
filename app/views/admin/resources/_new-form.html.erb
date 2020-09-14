@@ -1,16 +1,16 @@
 <%= form_with(model: [:admin, resource], url: create_new_resource_admin_resources_path, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
 	<div class="row vertical-align-middle">
-		<div class="col-xs-2 align-right"><%= f.label :heading, 'Heading:' %></div>
+		<div class="col-xs-2 text-right"><%= f.label :heading, 'Heading:' %></div>
 		<div class="col-xs-9"><%= f.text_field :heading, { class: 'form-control' } %></div>
 	</div>
 	<br />
 	<div class="row vertical-align-middle">
-		<div class="col-xs-2 align-right"><%= f.label :subheading, 'SubHeading:' %></div>
+		<div class="col-xs-2 text-right"><%= f.label :subheading, 'SubHeading:' %></div>
 		<div class="col-xs-9"><%= f.text_field :subheading, { class: 'form-control' } %></div>
 	</div>
 	<br />
 	<div class="row vertical-align-middle">
-		<div class="col-xs-2 align-right"><%= f.label :description, 'Description:' %></div>
+		<div class="col-xs-2 text-right"><%= f.label :description, 'Description:' %></div>
 		<div class="col-xs-9"><%= f.cktext_area :description, { class: 'form-control', language: "us", rows: 25 } %></div>
 	</div>
 	<% if resource.new_record? %>
@@ -18,16 +18,16 @@
 	<% else %>
 		<br />
 		<div class="row vertical-align-middle">
-			<div class="col-xs-3 align-right"><%= f.label :index, 'Content Order:' %></div>
+			<div class="col-xs-3 text-right"><%= f.label :index, 'Content Order:' %></div>
 			<div class="col-xs-2"><%= f.select :index, Content.populate_edit_index_dropdown(resource), {}, { class: 'form-control' } %></div>
 			<% if not resource.new_record? %>
-				<div class="col-xs-3 align-right"><%= f.label :display_content_on_page, 'Remove Content:' %></div>
+				<div class="col-xs-3 text-right"><%= f.label :display_content_on_page, 'Remove Content:' %></div>
 				<div class="col-xs-2"><%= f.check_box :display_content_on_page, { class: 'form-control', :checked => !resource.display_content_on_page }, 0, 1 %></div>
 			<% end %>
 		</div>
 	<% end %>
 	<br />
-	<%= render "templates/heading", text: "Link(s)", list_of_classes: "align-center" %>
+	<%= render "templates/heading", text: "Link(s)", list_of_classes: "text-center" %>
 
 	<div id='links'>
 		<%= f.fields_for :links do |link| %>

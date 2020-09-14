@@ -1,33 +1,33 @@
 <% if f.object.new_record? %>
 	<div class="row vertical-align-middle">
-		<div class="col-xs-2 align-right"><%= f.label :link, 'Image:' %></div>
+		<div class="col-xs-2 text-right"><%= f.label :link, 'Image:' %></div>
 		<div class="col-xs-9"><%= f.file_field :image, class: 'form-control' %></div>
 	</div>
 <% else %>
 	<div class="row vertical-align-middle">
-		<div class="col-xs-2 align-right"><strong>Link Image:</strong></div>
+		<div class="col-xs-2 text-right"><strong>Link Image:</strong></div>
 		<div class="col-xs-2">
 			<% path = f.object.article ? "resources_page/" : "logos/" %>
 			<%= image_tag(path + f.object.image_file_name, class: "small-form-image", alt: f.object.image_file_name) if not f.object.image_file_name.nil? %>
 		</div>
-		<div class="col-xs-2 align-right"><%= f.label :image, 'Replace Image:' %></div>
+		<div class="col-xs-2 text-right"><%= f.label :image, 'Replace Image:' %></div>
 		<div class="col-xs-6"><%= f.file_field :image, class: 'form-control' %></div>
 	</div>
 <% end %>
 <br />
 <div class="row vertical-align-middle">
-	<div class="col-xs-2 align-right"><%= f.label :name, 'Name:' %></div>
+	<div class="col-xs-2 text-right"><%= f.label :name, 'Name:' %></div>
 	<div class="col-xs-6"><%= f.text_field :name, { class: 'form-control' } %></div>
-	<div class="col-xs-2 align-right"><%= f.label :index, 'Index:' %></div>
+	<div class="col-xs-2 text-right"><%= f.label :index, 'Index:' %></div>
 	<div class="col-xs-2"><%= f.select :index, (1..10), {}, { class: 'form-control' } %></div>
 
 </div>
 <br />
 <div class="row vertical-align-middle">
-	<div class="col-xs-2 align-right"><%= f.label :link, 'Link:' %></div>
+	<div class="col-xs-2 text-right"><%= f.label :link, 'Link:' %></div>
 	<div class="col-xs-6"><%= f.text_field :link, { class: 'form-control' } %></div>
 	<% if not f.object.new_record? %>
-		<div class="col-xs-2 align-right"><%= f.label :destroy, 'Remove Link:' %></div>
+		<div class="col-xs-2 text-right"><%= f.label :destroy, 'Remove Link:' %></div>
 		<div class="col-xs-2"><%= f.check_box '_destroy', { class: 'form-control' } %></div>
 	<% end %>
 </div>

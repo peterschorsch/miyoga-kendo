@@ -1,6 +1,6 @@
 <table class="table table-responsive table-striped">
   <thead>
-    <tr class="align-center">
+    <tr class="text-center">
       <th>Name</th>
       <th>Email</th>
       <th>Last Login</th>
@@ -9,7 +9,7 @@
   </thead>
   <tbody>
     <% users.each do |user| %>
-      <tr class="align-center table-hover">
+      <tr class="text-center table-hover">
         <td><%= user.concat_name %></td>
         <td><%= mail_to user.email, user.email, class: "link-text" %></td>
         <td><%= user_nil_last_login(user.last_login) %></td>

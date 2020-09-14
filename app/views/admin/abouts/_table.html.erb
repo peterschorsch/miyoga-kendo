@@ -1,6 +1,6 @@
 <table class="table table-responsive table-striped">
 	<thead>
-		<tr class="align-center">
+		<tr class="text-center">
 			<th>Order</th>
 			<th>Heading</th>
 			<th>Subheading</th>
@@ -11,7 +11,7 @@
 	</thead>
 	<tbody>
 		<% contents.each do |content| %>
-			<tr class="align-center table-hover">
+			<tr class="text-center table-hover">
 				<td><%= content.index %></td>
 				<td><%= content.heading.truncate_words(5) %></td>
 				<td><%= nil_check(content.subheading).truncate_words(5) %></td>

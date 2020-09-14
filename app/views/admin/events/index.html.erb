@@ -2,7 +2,7 @@
 
 <table class="table table-responsive table-striped" id="events_table">
   <thead>
-    <tr class="align-center">
+    <tr class="text-center">
       <th>Name</th>
       <th>Date</th>
       <th>Held in</th>
@@ -12,7 +12,7 @@
   </thead>
   <tbody>
     <% @events.each do |event| %>
-      <tr class="align-center table-hover">
+      <tr class="text-center table-hover">
         <td><%= event.title %></td>
         <td><%= formatEventsHomeDateRange(event.start_date, event.end_date) %></td>
         <td><%= event.address.city %>, <%= event.address.state.abbreviation %></td>

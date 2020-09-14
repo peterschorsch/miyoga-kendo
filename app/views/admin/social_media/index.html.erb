@@ -2,7 +2,7 @@
 
 <table class="table table-responsive table-striped" id="social_media_table">
   <thead>
-    <tr class="align-center">
+    <tr class="text-center">
       <th>Site</th>
       <th>Last Modified</th>
       <th colspan="2"></th>
@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <% @social_media.each do |social_media| %>
-      <tr class="align-center table-hover">
+      <tr class="text-center table-hover">
         <td>
           <%= link_to image_tag(social_media.image.url, alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, target: '_blank', class: "social_media_logo link-text" %>
         </td>

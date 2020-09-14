@@ -7,12 +7,12 @@
 			<div class="modal-body">
 				<%= form_with(model: content, url: content_path(content), method: "patch", local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
 					<div class="row vertical-align-middle">
-						<div class="col-xs-2 align-right"><%= f.label :heading, 'Heading:' %></div>
+						<div class="col-xs-2 text-right"><%= f.label :heading, 'Heading:' %></div>
 		          		<div class="col-xs-9"><%= f.text_field :heading, { class: 'form-control' } %></div>
 		          	</div>
 		          	<br />
 		          	<div class="row vertical-align-middle">
-						<div class="col-xs-2 align-right"><%= f.label :subheading, 'SubHeading:' %></div>
+						<div class="col-xs-2 text-right"><%= f.label :subheading, 'SubHeading:' %></div>
 		          		<div class="col-xs-9"><%= f.text_field :subheading, { class: 'form-control' } %></div>
 		          	</div>
 		          	<br />
