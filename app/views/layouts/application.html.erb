@@ -15,6 +15,10 @@
 
   <body class="container-fluid">
     <%= render "layouts/header" %>
+     <% begin %>
+      <%= javascript_include_tag params[:controller] %>
+      <% rescue => ex %>
+    <% end %>
     <div class="padding">
       <%= yield %>
     </div>
