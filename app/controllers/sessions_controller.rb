@@ -16,13 +16,13 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       @user.update_last_login
 
-      route = can? :manage, :all ? admin_root_path : root_url
+      route = @user.is_admin? ? admin_root_path : root_url
 
       respond_to do |format|
         format.html { redirect_to route, notice: "Welcome, #{@user.concat_name}!" }
       end
     else
-      flash.now[:alert] = @user.blank? ? "Email or password is invalid" : @user.is_archived? ? "Your account has been marked as inactive" : "Email or password is invalid"
+      flash[:alert] = @user.blank? ? "Email or password is invalid" : @user.is_archived? ? "Your account has been marked as inactive" : "Email or password is invalid"
       render "new"
     end
   end
