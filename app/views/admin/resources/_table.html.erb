@@ -18,12 +18,8 @@
 				<td><%= content.links.map{ |l| l.name }.join(", ") %></td>
 				<td><%= content.user.concat_name %></td>
 				<td><%= formateDateTimeWithAt(content.updated_at) %></td>
-				<td><%= link_to "Show", admin_resource_path(content), :class => "btn btn-success btn-block" %></td>
-				<td>
-					<%= link_to edit_admin_resource_path(content), :class => "btn btn-warning btn-block" do %> 
-						<span class="glyphicon glyphicon-edit"></span> Edit
-					<% end %>
-				</td>
+				<td><%= render "templates/buttons/crud/show", show_path: admin_resource_path(content) %></td>
+				<td><%= render "templates/buttons/crud/edit", edit_path: edit_admin_resource_path(content) %></td>
 			</tr>
 		<% end %>
 	</tbody>

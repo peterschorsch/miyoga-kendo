@@ -9,7 +9,7 @@
 	<%= render "templates/alerts/notice" %>
 <% end %>
 
-<%= render "templates/heading", text: @current_page.name, list_of_classes: "" %>
+<%= render "templates/heading", text: @current_page.name, list_of_classes: "text-center" %>
 
 <div class="row">
 	<% @pinned_news.each do |news| %>
@@ -18,7 +18,7 @@
 				<%= render "admin-function", announcement: news if can? :manage, news %>
 				<div class="row vertical-align-middle">
 					<div class="col-md-1">
-						<h2><span class="glyphicon glyphicon-star yellow"></span></h2>
+						<h2><span class="glyphicon glyphicon-pushpin"></span></h2>
 					</div>
 					<div class="col-md-11">
 						<h2><%= news.heading %></h2>

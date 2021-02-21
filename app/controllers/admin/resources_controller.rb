@@ -43,12 +43,8 @@ class Admin::ResourcesController < Admin::AdminController
   def create_new_article
     create_new
 
-    @resource.links.each do |link|
-        link.article = true
-    end
-
     respond_to do |format|
-      if @resource.save!
+      if @resource.save
         format.html { redirect_to admin_resource_path(@resource), notice: 'Resource was successfully created.' }
         format.json { render :show, status: :created, location: @resource }
       else
@@ -75,7 +71,7 @@ class Admin::ResourcesController < Admin::AdminController
     end
 
     def set_resource
-      @resource = Content.of_page(@current_page).find(params[:id])
+      @resource = @current_page.contents.find(params[:id])
     end
 
     def create_new
@@ -83,9 +79,7 @@ class Admin::ResourcesController < Admin::AdminController
       @resource.display_content_on_page = true
       @resource.page_id = @current_page.id
       @resource.user_id = @current_user.id
-      @resource.links.each do |link|
-        link.user_id = @current_user.id
-      end
+      @resource.links.update_all(:article => true, :user_id => @current_user.id)
     end
 
     # Only allow a list of trusted parameters through.
