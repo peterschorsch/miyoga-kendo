@@ -1,6 +1,6 @@
-<%= render 'templates/buttons/back-to-page', path: back_path, text: back_text %>
+<%= render back_to_page_path, path: back_path, text: back_text %>
 
-<%= render "templates/heading", text: heading_text, list_of_classes: "text-center" %>
+<%= render heading_path, text: heading_text %>
 
-<%= render "templates/alerts/notice" %>
-<%= render "templates/alerts/form-errors", model: object %>
+<%= render notice_path %>
+<%= render form_errors_path, model: object %>

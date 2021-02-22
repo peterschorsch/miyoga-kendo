@@ -5,7 +5,7 @@
 				<h1 class="modal-title" id="resoucesModalLabel">Edit Content</h1>
 			</div>
 			<div class="modal-body">
-				<%= render "templates/alerts/form-errors", model: content %>
+				<%= render form_errors_path, model: content %>
 
 				<%= form_with(model: content, url: content_path(content), method: "patch", local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
 					<div class="row vertical-align-middle">

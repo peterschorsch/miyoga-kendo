@@ -1,5 +1,5 @@
 <%= form_with(model: [:admin, practice], local: true) do |form| %>
-  <%= render "templates/alerts/form-errors", model: practice %>
+  <%= render form_errors_path, model: practice %>
   
   <div class="row vertical-align-middle">
     <div class="col-md-2 col-xs-12 text-right"><%= form.label :day_of_week, 'Day of Week:' %></div>

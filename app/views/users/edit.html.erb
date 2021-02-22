@@ -1,8 +1,8 @@
-<%= render "templates/heading", text: "My Profile", list_of_classes: "text-center" %>
+<%= render heading_path, text: "My Profile" %>
 
-<%= render "templates/alerts/notice" %>
+<%= render notice_path %>
 
-<%= render "templates/alerts/form-errors", model: current_user %>
+<%= render form_errors_path, model: current_user %>
 
 <div class="row">
 	<div class="col-md-6 col-sm-12">

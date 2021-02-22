@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-md-3">
-    <%= render "templates/buttons/back-to-admin-home" %>
+    <%= render back_to_admin_home_path %>
   </div>
 </div>
 
-<%= render "templates/heading", text: @current_page.name + " Page", list_of_classes: "text-center" %>
+<%= render heading_path, text: @current_page.name + " Page" %>
 
-<%= render "templates/alerts/notice" %>
+<%= render notice_path %>
 
 
 <ul class="nav nav-tabs nav-justified text-link tab-text">

@@ -5,7 +5,7 @@
 				<h1 class="modal-title" id="eventModalLabel">Edit Event</h1>
 			</div>
 			<div class="modal-body">
-				<%= render "templates/alerts/form-errors", model: event %>
+				<%= render form_errors_path, model: event %>
 
 				<%= form_with(model: event, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
 					<div class="row vertical-align-middle">

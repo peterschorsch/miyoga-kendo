@@ -15,8 +15,8 @@
           <%= link_to image_tag(social_media.image.url, alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, target: '_blank', class: "social_media_logo link-text" %>
         </td>
         <td><%= social_media.user.concat_name %> | <%= formateDateTimeWithAt(social_media.updated_at) %></td>
-        <td><%= render "templates/buttons/crud/edit", edit_path: edit_admin_social_medium_path(social_media) %></td>
-        <td><%= render "templates/buttons/crud/remove", remove_model: [:admin, social_media] %></td>
+        <td><%= render edit_btn_path, edit_path: edit_admin_social_medium_path(social_media) %></td>
+        <td><%= render remove_btn_path, remove_model: [:admin, social_media] %></td>
       </tr>
     <% end %>
   </tbody>

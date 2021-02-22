@@ -8,6 +8,6 @@
 		<%= simple_format(@event.description, wrapper_tag: "p", class: 'indent-paragraph') %>
 	</div>
 	<div class="col-md-6 col-sm-12">
-		<%= render "templates/google_maps", location_name: @address.location_name, address: @address, height: 600, width: 650 %>
+		<%= render google_maps_path, location_name: @address.location_name, address: @address, height: 600, width: 650 %>
 	</div>
 </div>

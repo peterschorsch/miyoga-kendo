@@ -27,7 +27,7 @@
 		</div>
 	<% end %>
 	<br />
-	<%= render "templates/heading", text: "Link(s)", list_of_classes: "text-center" %>
+	<%= render heading_path, text: "Link(s)" %>
 
 	<div id='links'>
 		<%= f.fields_for :links do |link| %>
