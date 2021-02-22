@@ -52,6 +52,18 @@ module PathHelper
 		"templates/buttons/crud/show"
 	end
 
+	def save_btn_path
+		"templates/buttons/crud/save"
+	end
+
+	def modal_cancel_btn_path
+		"templates/modals/cancel-btn"
+	end
+
+	def modal_cancel_save_btn_path
+		"templates/modals/cancel-save-btn"
+	end
+
 
 	def remove_record_dialog
 		"templates/modals/remove-record-dialog"

@@ -40,10 +40,9 @@
 					</div>
 			</div>
 			<div class="modal-footer">
-				<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#aboutEditModal-#{index}" } %>
 				<%= f.hidden_field :id, :value => content.id %>
 				<%= f.hidden_field :article, :value => content.check_links_articles %>
-				<%= f.submit "Save Changes", class: 'btn btn-success' %>
+				<%= render modal_cancel_save_btn_path, f: f, target: "#aboutEditModal-#{index}" %>
 			</div>
 			<% end %>
 		</div>

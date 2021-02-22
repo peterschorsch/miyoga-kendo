@@ -49,8 +49,7 @@
 					</div>
 			</div>
 			<div class="modal-footer">
-				<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#resourceAddModal" } %>
-				<%= f.submit "Save Changes", class: 'btn btn-success' %>
+				<%= render modal_cancel_save_btn_path, f: f, target: "#resourceAddModal" %>
 			</div>
 			<% end %>
 		</div>
