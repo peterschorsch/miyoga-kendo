@@ -1,0 +1,5 @@
+menubar: 
+  - menubar: false
+toolbar:
+  - bold italic underline strikethrough | undo redo
+plugins:

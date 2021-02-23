@@ -5,7 +5,8 @@
 <br />
 <div class="row vertical-align-middle">
 	<div class="col-md-2 col-xs-12 text-right"><%= form.label :Description, 'Description:' %></div>
-	<div class="col-md-9 col-xs-12"><%= form.cktext_area :description, { class: 'form-control', language: "us" } %></div>
+	<%= tinymce %>
+	<div class="col-md-9 col-xs-12"><%= form.text_area :description, { class: 'form-control tinymce' } %></div>
 </div>
 <br />
 <div class="row vertical-align-middle">

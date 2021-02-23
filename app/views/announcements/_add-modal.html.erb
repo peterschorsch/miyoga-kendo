@@ -6,6 +6,7 @@
 			</div>
 			<div class="modal-body">
 				<%= form_with(model: new_announcement, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off", multipart: true }) do |form| %>
+					<%= tinymce %>
 					<%= render "admin/announcements/form-fields", form: form %>
 			</div>
 			<div class="modal-footer">
