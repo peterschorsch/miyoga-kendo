@@ -14,12 +14,15 @@ class Admin::AdminController < ApplicationController
 	end
 
 	private
-	  def authorized?
-		if current_user && (current_user.is_user? || current_user.is_archived? || current_user.is_guest?)
-	  		session[:user_id] = current_user.id || nil
-	    	flash[:alert] = "You are not authorized to do said action."
-	    	redirect_to root_path
-	    end
-	  end
-
+		def authorized?
+			if current_user.nil?
+				reset_session
+				render_session_timeout
+			else
+				if current_user.is_user? || current_user.is_archived? || current_user.is_guest?
+					flash[:alert] = "You are not authorized to do said action."
+					redirect_to root_path
+				end
+			end
+		end
 end

@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  auto_session_timeout_actions
+
   def forgot_password
   end
   def sent_email
@@ -28,7 +30,18 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = User.get_guest_user.id
+    reset_session
     redirect_to login_path, notice: "You have been logged out!"
+  end
+
+   # For session timeout
+  def active
+    render_session_status
+  end
+
+  # For session timeout
+  def timeout
+    reset_session
+    render_session_timeout
   end
 end
