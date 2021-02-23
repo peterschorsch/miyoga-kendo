@@ -19,7 +19,7 @@ class Admin::AdminController < ApplicationController
 				reset_session
 				render_session_timeout
 			else
-				if current_user.is_user? || current_user.is_archived? || current_user.is_guest?
+				if not current_user.is_admin? || current_user.is_archived?
 					flash[:alert] = "You are not authorized to do said action."
 					redirect_to root_path
 				end
