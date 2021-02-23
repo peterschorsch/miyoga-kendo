@@ -7,7 +7,6 @@ class PracticesController < ApplicationController
 		@miyoga_user = User.get_miyoga_user
 		
 		@practices = Practice.all
-		@practices_count = @practices.count-1
 		@practice_cost = "$" + @practices.first.cost_per_month + " per month"
 
 		@new_practice = Practice.new
@@ -15,9 +14,8 @@ class PracticesController < ApplicationController
 
 	def create
 		@new_practice = Practice.new(practice_params)
-		@new_practice.content_id = @content.id
 		@new_practice.day_of_week_index = check_day_for_index(practice_params.dig("day_of_week"))
-		@new_practice.user_id = current_user.id
+		set_fk
 
 		respond_to do |format|
 			if @new_practice.save
@@ -33,8 +31,7 @@ class PracticesController < ApplicationController
 		@practice.day_of_week_index = check_day_for_index(practice_params.dig("day_of_week"))
 		@practice.start_time = practice_params.dig("start_time(4i)") + ":" + practice_params.dig("start_time(5i)")
 		@practice.end_time = practice_params.dig("end_time(4i)") + ":" + practice_params.dig("end_time(5i)")
-		@practice.content_id = @content.id
-		@practice.user_id = current_user.id
+		set_fk
 
 		respond_to do |format|
 	      if @practice.update(practice_params)
@@ -61,7 +58,7 @@ class PracticesController < ApplicationController
 	end
 
 	def set_content
-		@content = Content.of_page(@current_page).named("Class Schedule")
+		@content = @current_page.contents.named("Class Schedule")
 	end
 
 	def set_practice
@@ -75,5 +72,10 @@ class PracticesController < ApplicationController
     def check_day_for_index(day_of_week)
 		days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 		return days.index(day_of_week)+1
+    end
+
+    def set_fk
+		@practice.content_id = @content.id
+		@practice.user_id = current_user.id
     end
 end

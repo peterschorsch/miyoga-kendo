@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_003931) do
     t.time "start_time", null: false
     t.time "end_time", null: false
     t.string "cost_per_month", null: false
+    t.text "notes"
     t.integer "content_id"
     t.integer "user_id"
     t.datetime "created_at", null: false

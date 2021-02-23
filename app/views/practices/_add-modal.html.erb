@@ -8,7 +8,9 @@
 				<%= form_with(model: new_practice, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
 					<div class="row vertical-align-middle">
 						<div class="col-xs-3 text-right"><%= f.label :day_of_week, 'Day of Week:' %></div>
-						<div class="col-xs-8"><%= f.select :day_of_week, Practice.days_of_week_dropdown_options, {}, { class: 'form-control' } %></div>
+						<div class="col-xs-3"><%= f.select :day_of_week, Practice.days_of_week_dropdown_options, {}, { class: 'form-control' } %></div>
+						<div class="col-xs-3 text-right"><%= f.label :cost_per_month, 'Cost per Month:' %></div>
+						<div class="col-xs-2"><%= f.text_field :cost_per_month, { class: 'form-control' } %></div>
 					</div>
 					<br />
 					<div class="row vertical-align-middle">
@@ -17,8 +19,8 @@
 					</div>
 					<br />
 					<div class="row vertical-align-middle">
-						<div class="col-xs-3 text-right"><%= f.label :cost_per_month, 'Cost per Month:' %></div>
-						<div class="col-xs-8"><%= f.text_field :cost_per_month, { class: 'form-control' } %></div>
+						<div class="col-xs-3 text-right"><%= f.label :notes, 'Notes:' %></div>
+						<div class="col-xs-8"><%= f.text_area :notes, { class: 'form-control', rows: 10 } %></div>
 					</div>
 			</div>
 			<div class="modal-footer">
