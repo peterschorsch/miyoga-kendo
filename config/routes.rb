@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
   ### LOGIN ###
   resources :sessions, only: [:new, :create, :destroy]
+  get "active",  to: "sessions#active"
+  get "timeout", to: "sessions#timeout"
   #get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
-  get 'logout', to: 'sessions#destroy', as: 'logout'
+  get 'sessions/destroy', to: 'sessions#destroy', as: 'logout'
 
   ### PAGES FOR FORGOTTEN PASSWORD ###
   get 'forgotton-password', to: 'sessions#forgot_password'

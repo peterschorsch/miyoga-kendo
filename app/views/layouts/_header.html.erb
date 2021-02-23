@@ -3,7 +3,7 @@
   <div class="col-sm-4 col-md-4"><%= link_to raw("<h1 class='miyoga-heading-text'>Miyoga Kendo Club</h1>"), root_path, class: "header-link-text" %></div>
 </div>
 
-<% if current_user.is_logged_in? %>
+<% if current_user %>
   <p class="text-right padding-right">Logged in as: <strong><%=current_user.concat_name%></strong></p>
 <% end %>
 
@@ -25,7 +25,7 @@
         <% @active_pages.each do |page| %>
           <li><%= link_to page.name, send("#{page.path}") %></li>
         <% end %>
-        <% if current_user.is_logged_in? %>
+        <% if current_user %>
           <% if cannot? :manage, :all %>
             <li><%= link_to "My Profile", edit_user_path(current_user) %></li>
           <% else %>
@@ -33,7 +33,7 @@
           <% end %>
           <li><%= link_to "Logout", logout_path %></li>
         <% end %>
-        <li><%= link_to "Login", login_path if not current_user.is_logged_in? %></li>
+        <li><%= link_to "Login", login_path if not current_user %></li>
       </ul>
     </div>
   </div>
