@@ -1,29 +1,29 @@
 <% if can? :manage, @new_practice %>
 	<div class="row">
 		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
-			<%= render "templates/buttons/crud/new-button-tag", target: "#practiceAddModal", button_text: "Class" %>
+			<%= render new_btn_tag_path, target: "#practiceAddModal", button_text: "Class" %>
 		</div>
 	</div>
 	<%= render "add-modal", new_practice: @new_practice %>
-	<%= render "templates/alerts/notice" %>
-	<%= render "templates/alerts/form-errors", model: @new_practice %>
+	<%= render notice_path %>
+	<%= render form_errors_path, model: @new_practice %>
 <% end %>
 
-<%= render "templates/heading", text: @content.heading, list_of_classes: "text-center" %>
+<%= render heading_path, text: @content.heading %>
 
 <% @practices.each_with_index do |practice, index| %>
 	<%= render "edit-modal", practice: practice, index: index %>
-	<%= render "templates/modals/remove-record-dialog", record: practice, index: index, heading: "Class" %>
+	<%= render remove_record_dialog, record: practice, index: index, heading: "Class" %>
 	<div class='row vertical-align-middle'>
 		<div class="col-md-4 col-md-offset-4">
 			<p class="text-center"><%= practice.day_of_week %> | <%= formatPracticeTime(practice.start_time, practice.end_time) %></p>
 		</div>
 		<% if can? :manage, practice %>
 			<div class="col-md-2">
-				<%= render "templates/buttons/crud/edit-button-tag", target: "#practiceEditModal-#{index}" %>
+				<%= render edit_btn_tag_path, target: "#practiceEditModal-#{index}" %>
 			</div>
 			<div class="col-md-2">
-				<%= render "templates/buttons/crud/remove-button-tag", target: "#youSureModal-#{index}" %>
+				<%= render remove_btn_tag_path, target: "#youSureModal-#{index}" %>
 			</div>
 		<% end %>
 	</div>

@@ -1,12 +1,12 @@
 <% if can? :manage, @new_event %>
 	<div class="row">
 		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
-			<%= render "templates/buttons/crud/new-button-tag", target: "#eventAddModal", button_text: "Event" %>
+			<%= render new_btn_tag_path, target: "#eventAddModal", button_text: "Event" %>
 		</div>
 	</div>
 	<%= render "add-modal", new_event: @new_event %>
-	<%= render "templates/alerts/notice" %>
-	<%= render "templates/alerts/form-errors", model: @new_event %>
+	<%= render notice_path %>
+	<%= render form_errors_path, model: @new_event %>
 <% end %>
 
 <% @events.each_with_index do |event, index| %>
@@ -21,10 +21,10 @@
 			<%= simple_format(event.description, wrapper_tag: "p", class: 'indent-paragraph') %>
 		</div>
 		<div class="col-md-6 col-sm-12">
-			<%= render "templates/google_maps", location_name: @address.location_name, address: @address, height: 600, width: 650 %>
+			<%= render google_maps_path, location_name: @address.location_name, address: @address, height: 600, width: 650 %>
 		</div>
 	</div>
 	<br /><hr /><br />
 	<%= render "edit-modal", event: event, index: index %>
-	<%= render "templates/modals/remove-record-dialog", record: event, index: index, heading: "Event" %>
+	<%= render remove_record_dialog, record: event, index: index, heading: "Event" %>
 <% end %>

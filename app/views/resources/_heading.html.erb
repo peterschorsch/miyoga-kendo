@@ -1,12 +1,12 @@
 <% if can? :manage, object %>
 	<div class="row">
 		<div class="col-md-2 col-md-offset-10 col-xs-6 col-xs-offset-3">
-			<%= render "templates/buttons/crud/new-button-tag", target: target, button_text: button_text %>
+			<%= render new_btn_tag_path, target: target, button_text: button_text %>
 		</div>
 	</div>
 	<%= render "add-modal", new_content: object %>
-	<%= render "templates/alerts/notice" %>
-	<%= render "templates/alerts/form-errors", model: object %>
+	<%= render notice_path %>
+	<%= render form_errors_path, model: object %>
 <% end %>
 
-<%= render "templates/heading", text: @current_page.name, list_of_classes: "text-center" %>
+<%= render heading_path, text: @current_page.name %>

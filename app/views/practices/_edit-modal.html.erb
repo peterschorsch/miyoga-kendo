@@ -5,7 +5,7 @@
 				<h1 class="modal-title" id="practiceModalLabel">Edit Class</h1>
 			</div>
 			<div class="modal-body">
-				<%= render "templates/alerts/form-errors", model: practice %>
+				<%= render form_errors_path, model: practice %>
 
 				<%= form_with(model: practice, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
 					<div class="row vertical-align-middle">
@@ -24,8 +24,7 @@
 					</div>
 			</div>
 			<div class="modal-footer">
-					<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#practiceEditModal-#{index}" } %>
-					<%= f.submit "Save Changes", class: 'btn btn-success' %>
+				<%= render modal_cancel_save_btn_path, f: f, target: "#practiceEditModal-#{index}" %>
 				<% end %>
 			</div>
 		</div>

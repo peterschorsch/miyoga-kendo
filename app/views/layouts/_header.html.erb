@@ -31,9 +31,19 @@
           <% else %>
             <li><%= link_to "Admin Home", admin_root_path %></li>
           <% end %>
-          <li><%= link_to "Logout", logout_path %></li>
+          <li>
+            <%= link_to logout_path do %>
+              <span class="glyphicon glyphicon-log-out"></span> Logout
+            <% end %>
+          </li>
         <% end %>
-        <li><%= link_to "Login", login_path if not current_user %></li>
+        <% if not current_user %>
+          <li>
+            <%= link_to login_path do %>
+              <span class="glyphicon glyphicon-log-in"></span> Login
+            <% end %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

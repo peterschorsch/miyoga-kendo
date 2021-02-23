@@ -16,6 +16,7 @@
 //= require jquery_ujs
 //= require cocoon
 //= require dataTables/jquery.dataTables
+//= require tinymce
 //= require_tree .
 
 $(function() {

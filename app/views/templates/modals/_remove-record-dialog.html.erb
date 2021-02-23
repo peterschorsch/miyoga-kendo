@@ -8,8 +8,9 @@
 				<h2 class="text-center">Are you sure?</h2>
 			</div>
 			<div class="modal-footer">
-				<%= button_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', dismiss: 'modal' } %>
-				<%= link_to record, :class => "btn btn-success", method: :delete, title: 'Remove', 'data-toggle' => 'tooltip' do %>Yes<% end %>
+				<%= render modal_cancel_btn_path, target: "#youSureModal-#{index}" %>
+				<%= link_to record, :class => "btn btn-success", method: :delete, title: 'Remove', 'data-toggle' => 'tooltip' do %><span class="<%= save_btn_glyph%>"></span> Yes<% end %>
+
 			</div>
 		</div>
 	</div>

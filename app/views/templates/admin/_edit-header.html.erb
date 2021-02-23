@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-md-3">
-    <%= render "templates/buttons/back-to-page", text: back_text, path: back_path %>
+    <%= render back_to_page_path, text: back_text, path: back_path %>
   </div>
 </div>
 
-<%= render "templates/heading", text: heading_text, list_of_classes: "text-center" %>
+<%= render heading_path, text: heading_text %>
 
-<%= render "templates/alerts/notice" %>
-<%= render "templates/alerts/form-errors", model: object %>
+<%= render notice_path %>
+<%= render form_errors_path, model: object %>

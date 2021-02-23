@@ -18,7 +18,7 @@
 					<br />
 					<div class="row vertical-align-middle">
 						<div class="col-xs-2"><%= f.label :description, 'Description:' %></div>
-						<div class="col-xs-9"><%= f.cktext_area :description, { class: 'form-control', language: "us", rows: 25 } %></div>
+						<div class="col-xs-9"><%= f.text_area :description, { class: 'form-control', rows: 25 } %></div>
 					</div>
 					<br />
 					<div class="row vertical-align-middle">
@@ -40,8 +40,7 @@
 					</div>
 			</div>
 			<div class="modal-footer">
-				<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#aboutAddModal" } %>
-				<%= f.submit "Save Changes", class: 'btn btn-success' %>
+				<%= render modal_cancel_save_btn_path, f: f, target: "#aboutAddModal" %>
 			</div>
 			<% end %>
 		</div>

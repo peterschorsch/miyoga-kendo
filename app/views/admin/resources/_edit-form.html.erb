@@ -11,7 +11,8 @@
 	<br />
 	<div class="row vertical-align-middle">
 		<div class="col-xs-2 text-right"><%= f.label :description, 'Description:' %></div>
-		<div class="col-xs-9"><%= f.cktext_area :description, { class: 'form-control', language: "us", rows: 25 } %></div>
+		<%= tinymce %>
+		<div class="col-xs-9"><%= f.text_area :description, { class: 'form-control tinymce', rows: 25 } %></div>
 	</div>
 	<br />
 	<div class="row vertical-align-middle">
@@ -25,7 +26,7 @@
 	</div>
 	<br />
 
-	<%= render "templates/heading", text: "Editing Link(s)", list_of_classes: "text-center" %>
+	<%= render heading_path, text: "Editing Link(s)" %>
 	<div id='links'>
 		<%= f.fields_for :links do |link| %>
 			<%= render 'templates/nested-forms/link_fields', :f => link %>
@@ -39,7 +40,7 @@
 	<br /><br />
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-			<%= f.submit "Save Changes", class: "btn btn-success btn-block" %>
+			<%= render save_btn_path, f: f %>
 		</div>
 	</div>
 <% end %>

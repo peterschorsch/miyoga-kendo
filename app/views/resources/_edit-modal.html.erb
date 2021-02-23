@@ -5,7 +5,7 @@
 				<h1 class="modal-title" id="resoucesModalLabel">Edit Content</h1>
 			</div>
 			<div class="modal-body">
-				<%= render "templates/alerts/form-errors", model: content %>
+				<%= render form_errors_path, model: content %>
 
 				<%= form_with(model: content, url: content_path(content), method: "patch", local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
 					<div class="row vertical-align-middle">
@@ -43,9 +43,8 @@
 					</div>
 			</div>
 			<div class="modal-footer">
-					<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#resourcesEditModal-#{index}" } %>
 					<%= f.hidden_field :article, :value => content.check_links_articles %>
-					<%= f.submit "Save Changes", class: 'btn btn-success' %>
+					<%= render modal_cancel_save_btn_path, f: f, target: "#resourcesEditModal-#{index}" %>
 				<% end %>
 			</div>
 		</div>

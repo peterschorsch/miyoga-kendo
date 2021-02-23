@@ -16,7 +16,7 @@
 							<h2><%= content.heading %></h2>
 						</div>
 						<div class="col-md-2">
-							<%= render "templates/buttons/crud/edit-button-tag", target: "#resourcesEditModal-#{content.id}" %>
+							<%= render edit_btn_tag_path, target: "#resourcesEditModal-#{content.id}" %>
 						</div>
 					</div>
 					<%= render "edit-modal", content: content, index: content.id, link_end_count: content.links.count+1 %>
@@ -69,7 +69,7 @@
 							<% else %>
 								<div class="row vertical-align-middle">
 									<div class="col-md-10 col-xs-12"><h3 class="card-title"><%= content.heading %></h3></div>
-									<div class="col-md-2 col-xs-12"><%= render "templates/buttons/crud/edit-button-tag", target: "#resourcesEditModal-#{content.id}" %></div>
+									<div class="col-md-2 col-xs-12"><%= render edit_btn_tag_path, target: "#resourcesEditModal-#{content.id}" %></div>
 									<%= render "edit-modal", content: content, index: content.id, link_end_count: content.links.count+1 %>
 								</div>
 							<% end %>

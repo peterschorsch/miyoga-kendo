@@ -5,8 +5,8 @@
 <% else %>
 	<div class="row vertical-align-middle">
 		<div class="col-md-8"><h1 class=""><%= event.title %></h1></div>
-		<div class="col-md-2"><%= render "templates/buttons/crud/edit-button-tag", target: "#eventEditModal-#{index}" %></div>
-		<div class="col-md-2"><%= render "templates/buttons/crud/remove-button-tag", target: "#youSureModal-#{index}" %></div>
+		<div class="col-md-2"><%= render edit_btn_tag_path, target: "#eventEditModal-#{index}" %></div>
+		<div class="col-md-2"><%= render remove_btn_tag_path, target: "#youSureModal-#{index}" %></div>
 	</div>
 <% end %>
 <hr />

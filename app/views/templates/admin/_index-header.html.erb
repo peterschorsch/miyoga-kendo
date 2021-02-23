@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-md-3">
-    <%= render "templates/buttons/back-to-admin-home" %>
+    <%= render back_to_admin_home_path %>
   </div>
   <div class="col-md-3 col-md-offset-6">
-    <%= render "templates/buttons/crud/new", path: path, text: new_btn_text %>
+    <%= render new_btn_path, path: path, text: new_btn_text %>
   </div>
 </div>
 
-<%= render "templates/heading", text: heading_text, list_of_classes: "text-center" %>
+<%= render heading_path, text: heading_text %>
 
-<%= render "templates/alerts/admin-notice" %>
+<%= render admin_notice_path %>

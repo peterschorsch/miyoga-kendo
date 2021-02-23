@@ -1,4 +1,4 @@
-<%= render "templates/admin/show-header", back_text: "Event", back_path: admin_events_path, object: @event, object_heading: @event.title, edit_path: edit_admin_event_path(@event) %>
+<%= render "templates/admin/show-header", back_text: "Events Page", back_path: admin_events_path, object: @event, object_heading: @event.title, edit_path: edit_admin_event_path(@event) %>
 
 <div class="row">
 	<div class="col-md-6 col-sm-12">
@@ -8,6 +8,6 @@
 		<%= simple_format(@event.description, wrapper_tag: "p", class: 'indent-paragraph') %>
 	</div>
 	<div class="col-md-6 col-sm-12">
-		<%= render "templates/google_maps", location_name: @address.location_name, address: @address, height: 600, width: 650 %>
+		<%= render google_maps_path, location_name: @address.location_name, address: @address, height: 600, width: 650 %>
 	</div>
 </div>

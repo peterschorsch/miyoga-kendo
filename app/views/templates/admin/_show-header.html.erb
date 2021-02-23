@@ -1,8 +1,8 @@
-<%= render "templates/alerts/notice" %>
+<%= render notice_path %>
 
 <div class="row vertical-align-middle">
 	<div class="col-md-3">
-		<%= render "templates/buttons/back-to-page", text: back_text, path: back_path %>
+		<%= render back_to_page_path, text: back_text, path: back_path %>
 	</div>
 	<div class="col-md-9 text-right">
 		<%= render "templates/admin/last-modified-by", content: object %>
@@ -14,7 +14,7 @@
 		<h1><%= object_heading %></h1>
 	</div>
 	<div class="col-md-2">
-		<%= render "templates/buttons/crud/edit", edit_path: edit_path %>
+		<%= render edit_btn_path, edit_path: edit_path %>
 	</div>
 </div>
 <hr />

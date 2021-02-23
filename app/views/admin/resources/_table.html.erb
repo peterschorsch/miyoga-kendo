@@ -18,8 +18,8 @@
 				<td><%= content.links.map{ |l| l.name }.join(", ") %></td>
 				<td><%= content.user.concat_name %></td>
 				<td><%= formateDateTimeWithAt(content.updated_at) %></td>
-				<td><%= render "templates/buttons/crud/show", show_path: admin_resource_path(content) %></td>
-				<td><%= render "templates/buttons/crud/edit", edit_path: edit_admin_resource_path(content) %></td>
+				<td><%= render show_btn_path, show_path: admin_resource_path(content) %></td>
+				<td><%= render edit_btn_path, edit_path: edit_admin_resource_path(content) %></td>
 			</tr>
 		<% end %>
 	</tbody>

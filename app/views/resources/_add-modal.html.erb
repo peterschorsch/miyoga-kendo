@@ -34,7 +34,8 @@
 						<div class="col-xs-3"><%= f.label :display_content_on_page, 'Display Content:' %></div>
 						<div class="col-xs-2"><%= f.check_box :display_content_on_page, { class: 'form-control' } %></div>
 					</div>
-					<h1>Add Link(s)</h1>
+					<br />
+					<h1 class="text-center">Add Link(s)</h1>
 		          	<hr />
 		          	<div id='links'>
 						<%= f.fields_for :links do |link| %>
@@ -48,8 +49,7 @@
 					</div>
 			</div>
 			<div class="modal-footer">
-				<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': "#aboutAddModal" } %>
-				<%= f.submit "Save Changes", class: 'btn btn-success' %>
+				<%= render modal_cancel_save_btn_path, f: f, target: "#resourceAddModal" %>
 			</div>
 			<% end %>
 		</div>
