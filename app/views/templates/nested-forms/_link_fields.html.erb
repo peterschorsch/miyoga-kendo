@@ -1,34 +1,45 @@
 <% if f.object.new_record? %>
-	<div class="row vertical-align-middle">
-		<div class="col-xs-2 text-right"><%= f.label :link, 'Image:' %></div>
-		<div class="col-xs-9"><%= f.file_field :image, class: 'form-control' %></div>
+	<div class="row text-center">
+		<div class="col-xs-6 col-xs-offset-3">
+			<%= f.label :link, 'Image:' %>
+			<%= f.file_field :image, class: 'form-control' %>		
+		</div>
 	</div>
 <% else %>
-	<div class="row vertical-align-middle">
-		<div class="col-xs-2 text-right"><strong>Link Image:</strong></div>
-		<div class="col-xs-2">
+	<div class="row text-center">
+		<div class="col-xs-2 col-xs-offset-2">
 			<% path = f.object.article ? "resources_page/" : "logos/" %>
 			<%= image_tag(path + f.object.image_file_name, class: "small-form-image", alt: f.object.image_file_name) if not f.object.image_file_name.nil? %>
 		</div>
-		<div class="col-xs-2 text-right"><%= f.label :image, 'Replace Image:' %></div>
-		<div class="col-xs-6"><%= f.file_field :image, class: 'form-control' %></div>
+		<div class="col-xs-5 col-xs-offset-1">
+			<%= f.label :image, 'Replace Image:' %>
+			<%= f.file_field :image, class: 'form-control' %>
+		</div>
 	</div>
 <% end %>
 <br />
-<div class="row vertical-align-middle">
-	<div class="col-xs-2 text-right"><%= f.label :name, 'Name:' %></div>
-	<div class="col-xs-6"><%= f.text_field :name, { class: 'form-control' } %></div>
-	<div class="col-xs-2 text-right"><%= f.label :index, 'Index:' %></div>
-	<div class="col-xs-2"><%= f.select :index, (1..10), {}, { class: 'form-control' } %></div>
+<div class="row text-center">
+	<div class="col-xs-2 col-xs-offset-1">
+		<%= f.label :index, 'Index:' %>
+		<%= f.select :index, (1..10), {}, { class: 'form-control' } %>
 
+	</div>
+	<div class="col-xs-8">
+		<%= f.label :name, 'Name:' %>
+		<%= f.text_field :name, { class: 'form-control' } %>
+	</div>
 </div>
 <br />
-<div class="row vertical-align-middle">
-	<div class="col-xs-2 text-right"><%= f.label :link, 'Link:' %></div>
-	<div class="col-xs-6"><%= f.text_field :link, { class: 'form-control' } %></div>
+<div class="row text-center">
+	<div class="col-xs-8 col-xs-offset-1">
+		<%= f.label :link, 'Link:' %>
+		<%= f.text_field :link, { class: 'form-control' } %>
+	</div>
 	<% if not f.object.new_record? %>
-		<div class="col-xs-2 text-right"><%= f.label :destroy, 'Remove Link:' %></div>
-		<div class="col-xs-2"><%= f.check_box '_destroy', { class: 'form-control' } %></div>
+		<div class="col-xs-3">
+			<%= f.label :destroy, 'Remove Link?' %>
+			<%= f.check_box '_destroy', { class: 'form-control' } %>
+		</div>
 	<% end %>
 </div>
-<br /><hr /><br />
+<hr /><br />
