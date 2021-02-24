@@ -6,7 +6,7 @@ class PracticesController < ApplicationController
 
 	def index
 		@miyoga_user = User.get_miyoga_user
-		
+		@content = @current_page.contents.named("Class Schedule")
 		@practices = Practice.all
 		@practice_cost = "$" + @practices.first.cost_per_month + " per month"
 
