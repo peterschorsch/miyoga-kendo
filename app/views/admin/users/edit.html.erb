@@ -1,3 +1,4 @@
-<%= render "templates/admin/edit-header", back_text: "Admin Home", back_path: admin_root_path, heading_text: "Editing: #{@user.concat_name}", object: @user %>
+<%= render "templates/admin/edit-header", back_text: "Users Page", back_path: admin_users_path, heading_text: "Editing: #{@user.concat_name}", object: @user %>
 
-<%= render 'form', user: @user %>
+<%= render "basic-user-attr-form", user: @user %>
+<%= render "update-password-form", user: @user if current_user == @user %>
