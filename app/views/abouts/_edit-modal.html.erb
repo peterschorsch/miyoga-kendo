@@ -6,26 +6,35 @@
 			</div>
 			<div class="modal-body">
 				<%= form_with(model: content, url: content_path(content), method: "patch", local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
-					<div class="row vertical-align-middle">
-						<div class="col-xs-2 text-right"><%= f.label :heading, 'Heading:' %></div>
-		          		<div class="col-xs-9"><%= f.text_field :heading, { class: 'form-control' } %></div>
-		          	</div>
-		          	<br />
-		          	<div class="row vertical-align-middle">
-						<div class="col-xs-2 text-right"><%= f.label :subheading, 'SubHeading:' %></div>
-		          		<div class="col-xs-9"><%= f.text_field :subheading, { class: 'form-control' } %></div>
-		          	</div>
-		          	<br />
-		          	<div class="row vertical-align-middle">
-						<div class="col-xs-2"><%= f.label :description, 'Description:' %></div>
-						<div class="col-xs-9"><%= f.text_area :description, class: "form-control tinymce" %></div>
-		          	</div>
-		          	<br />
-		          	<div class="row vertical-align-middle">
-						<div class="col-xs-3"><%= f.label :index, 'Content Order:' %></div>
-						<div class="col-xs-2"><%= f.select :index, Content.populate_edit_index_dropdown(content), {}, { class: 'form-control' } %></div>
-						<div class="col-xs-3"><%= f.label :display_content_on_page, 'Display Content:' %></div>
-						<div class="col-xs-2"><%= f.check_box :display_content_on_page, { class: 'form-control' } %></div>
+					<div class="row text-center">
+						<div class="col-xs-3">
+							<%= f.label :index, 'Content Order:' %>
+							<%= f.select :index, Content.populate_edit_index_dropdown(content), {}, { class: 'form-control' } %>
+						</div>
+						<div class="col-xs-3 col-xs-offset-6">
+							<%= f.label :display_content_on_page, 'Display Content?' %>
+							<%= f.check_box :display_content_on_page, { class: 'form-control' } %>
+						</div>
+					</div>
+					<div class="row text-center">
+						<div class="col-xs-12">
+							<%= f.label :heading, 'Heading:' %>
+							<%= f.text_field :heading, { class: 'form-control' } %>
+						</div>
+					</div>
+					<br />
+					<div class="row text-center">
+						<div class="col-xs-12">
+							<%= f.label :subheading, 'SubHeading:' %>
+							<%= f.text_field :subheading, { class: 'form-control' } %>
+						</div>
+					</div>
+					<br />
+					<div class="row text-center">
+						<div class="col-xs-12">
+							<%= f.label :description, 'Description:' %>
+							<%= f.text_area :description, { class: 'form-control tinymce', rows: 25 } %>
+						</div>
 					</div>
 					<br />
 					<div id='images'>

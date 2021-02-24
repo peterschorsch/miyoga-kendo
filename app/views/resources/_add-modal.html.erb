@@ -6,34 +6,48 @@
 			</div>
 			<div class="modal-body">
 				<%= form_with(model: new_content, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off", multipart: true }) do |f| %>
-					<div class="row vertical-align-middle">
-						<div class="col-xs-2 text-right"><%= f.label :heading, 'Heading:' %></div>
-						<div class="col-xs-9"><%= f.text_field :heading, { class: 'form-control' } %></div>
+					<div class="row text-center">
+						<div class="col-xs-3">
+							<%= f.label :index, 'Content Order:' %>
+							<%= f.select :index, Content.populate_new_index_dropdown(@current_page), {}, { class: 'form-control' } %>
+						</div>
+						<% if not new_content.new_record? %>
+							<div class="col-xs-3 col-xs-offset-6">
+								<%= f.label :display_content_on_page, 'Display Content:' %>
+								<%= f.check_box :display_content_on_page, { class: 'form-control' } %>
+							</div>
+						<% end %>
+					</div>
+					<div class="row text-center">
+						<div class="col-xs-12">
+							<%= f.label :heading, 'Heading:' %>
+							<%= f.text_field :heading, { class: 'form-control' } %>
+						</div>
 					</div>
 					<br />
-					<div class="row vertical-align-middle">
-						<div class="col-xs-2 text-right"><%= f.label :subheading, 'SubHeading:' %></div>
-						<div class="col-xs-9"><%= f.text_field :subheading, { class: 'form-control' } %></div>
+					<div class="row text-center">
+						<div class="col-xs-12">
+							<%= f.label :subheading, 'SubHeading:' %>
+							<%= f.text_field :subheading, { class: 'form-control' } %>
+						</div>
 					</div>
 					<br />
-					<div class="row vertical-align-middle">
-						<div class="col-xs-2"><%= f.label :description, 'Description:' %></div>
-						<div class="col-xs-9"><%= f.cktext_area :description, { class: 'form-control', language: "us", rows: 25 } %></div>
+					<div class="row text-center">
+						<div class="col-xs-12">
+							<%= tinymce %>
+							<%= f.label :description, 'Description:' %>
+							<%= f.text_area :description, { class: 'form-control tinymce', rows: 25 } %>
+						</div>
 					</div>
 					<br />
 					<%= f.fields_for :images do |image| %>
-						<div class="row vertical-align-middle">
-							<div class="col-xs-2 text-right"><%= image.label :image, 'Image:' %></div>
-							<div class="col-xs-9"><%= image.file_field :image, { class: 'form-control' } %></div>
+						<div class="row text-center">
+							<div class="col-xs-2">
+								<%= image.label :image, 'Image:' %>
+								<%= image.file_field :image, { class: 'form-control' } %>
+							</div>
 						</div>
 					<% end %>
-					<br />
-					<div class="row vertical-align-middle">
-						<div class="col-xs-3"><%= f.label :index, 'Content Order:' %></div>
-						<div class="col-xs-2"><%= f.select :index, Content.populate_new_index_dropdown(@current_page), {}, { class: 'form-control' } %></div>
-						<div class="col-xs-3"><%= f.label :display_content_on_page, 'Display Content:' %></div>
-						<div class="col-xs-2"><%= f.check_box :display_content_on_page, { class: 'form-control' } %></div>
-					</div>
 					<br />
 					<h1 class="text-center">Add Link(s)</h1>
 		          	<hr />

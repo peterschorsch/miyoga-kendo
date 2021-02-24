@@ -1,17 +1,33 @@
-<div class="row vertical-align-middle">
-	<div class="col-md-2 col-xs-12 text-right"><%= form.label :heading, 'Heading:' %></div>
-	<div class="col-md-9 col-xs-12"><%= form.text_field :heading, { class: 'form-control' } %></div>
+<div class="row text-center">
+	<div class="col-xs-8 col-xs-offset-1">
+		<%= form.label :heading, 'Heading:' %>
+		<%= form.text_field :heading, { class: 'form-control' } %>
+	</div>
+	<% if form.object.pinned || @num_pinned_news %>
+		<div class="col-xs-2">
+			<%= form.label :pinned, 'Pin Post:' %>
+			<%= form.check_box :pinned, { class: 'form-control' } %>
+		</div>
+<% end %>
 </div>
 <br />
-<div class="row vertical-align-middle">
-	<div class="col-md-2 col-xs-12 text-right"><%= form.label :Description, 'Description:' %></div>
-	<%= tinymce %>
-	<div class="col-md-9 col-xs-12"><%= form.text_area :description, { class: 'form-control tinymce' } %></div>
+<div class="row text-center">
+	<div class="col-xs-10 col-xs-offset-1">
+		<%= tinymce %>
+		<%= form.label :Description, 'Description:' %>
+		<%= form.text_area :description, { class: 'form-control tinymce' } %>
+	</div>
 </div>
 <br />
-<div class="row vertical-align-middle">
-	<div class="col-md-2 col-xs-12 text-right"><%= form.label :link, 'Link:' %></div>
-	<div class="col-md-9 col-xs-12"><%= form.text_field :link, { class: "form-control" } %></div>
+<div class="row text-center">
+	<div class="col-md-7 col-xs-12 col-md-offset-1">
+		<%= form.label :link, 'Link:' %>
+		<%= form.text_field :link, { class: "form-control" } %>
+	</div>
+	<div class="col-md-3 col-xs-12">
+		<%= form.label :archived, 'Archive Post:' %>
+		<%= form.check_box :archived, { class: 'form-control' } %>
+	</div>
 </div>
 <br />
 <div id='images'>
@@ -35,13 +51,4 @@
 			<%= render 'templates/nested-forms/new-file-button', :form => form %>
 		</div>
 	</div>
-</div>
-<br />
-<div class="row vertical-align-middle">
-	<% if form.object.pinned || @num_pinned_news %>
-		<div class="col-md-2 col-xs-12 text-right"><%= form.label :pinned, 'Pin Post:' %></div>
-		<div class="col-md-1 col-xs-12"><%= form.check_box :pinned, { class: 'form-control' } %></div>
-	<% end %>
-	<div class="col-md-2 col-xs-12 text-right"><%= form.label :archived, 'Archive Post:' %></div>
-	<div class="col-md-1 col-xs-12"><%= form.check_box :archived, { class: 'form-control' } %></div>
 </div>

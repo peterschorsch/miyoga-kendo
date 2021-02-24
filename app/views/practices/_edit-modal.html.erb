@@ -4,29 +4,7 @@
 			<div class="modal-header">
 				<h1 class="modal-title" id="practiceModalLabel">Edit Class</h1>
 			</div>
-			<div class="modal-body">
-				<%= render form_errors_path, model: practice %>
-
-				<%= form_with(model: practice, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
-					<div class="row vertical-align-middle">
-						<div class="col-xs-3 text-right"><%= f.label :day_of_week, 'Day of Week:' %></div>
-						<div class="col-xs-8"><%= f.select :day_of_week, Practice.days_of_week_dropdown_options, {}, { class: 'form-control' } %></div>
-					</div>
-					<br />
-					<div class="row vertical-align-middle">
-						<div class="col-xs-4 text-right"><%= f.label :start_time, 'Start Time - End Time' %></div>
-						<div class="col-xs-7"><%= f.time_select :start_time, { ampm: true } %> to <%= f.time_select :end_time, { ampm: true } %></div>
-					</div>
-					<br />
-					<div class="row vertical-align-middle">
-						<div class="col-xs-3 text-right"><%= f.label :cost_per_month, 'Cost per Month:' %></div>
-						<div class="col-xs-8"><%= f.text_field :cost_per_month, { class: 'form-control' } %></div>
-					</div>
-			</div>
-			<div class="modal-footer">
-				<%= render modal_cancel_save_btn_path, f: f, target: "#practiceEditModal-#{index}" %>
-				<% end %>
-			</div>
+			<%= render "form", record: practice, cancel_target: "#practiceEditModal-#{index}" %>
 		</div>
 	</div>
 </div>

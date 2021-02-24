@@ -1,4 +1,6 @@
 class AnnouncementsController < ApplicationController
+	include SharedPractices
+
 	before_action :set_page
 	before_action :set_announcement, except: [:index, :create]
 
@@ -14,7 +16,7 @@ class AnnouncementsController < ApplicationController
 
 	def create
 		@announcement = Announcement.new(announcement_params)
-		set_user_id
+		set_user_id(@announcement, current_user)
 		@announcement.page_id = @current_page.id
 
 		respond_to do |format|
@@ -28,7 +30,7 @@ class AnnouncementsController < ApplicationController
 	end
 
 	def update
-		set_user_id
+		set_user_id(@announcement, current_user)
 
 		respond_to do |format|
 			if @announcement.update!(announcement_params)
@@ -42,7 +44,7 @@ class AnnouncementsController < ApplicationController
 
 	def destroy
 		@announcement.archived = true
-		set_user_id
+		set_user_id(@announcement, current_user)
 
 		respond_to do |format|
 			if @announcement.save
@@ -59,11 +61,7 @@ class AnnouncementsController < ApplicationController
 	end
 
 	def set_announcement
-	  @announcement = Announcement.find(params[:id])
-	end
-
-	def set_user_id
-		@announcement.user_id = current_user.id
+		@announcement = Announcement.find(params[:id])
 	end
 
 	# Only allow a list of trusted parameters through.

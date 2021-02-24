@@ -6,6 +6,7 @@ class CreatePractices < ActiveRecord::Migration[5.2]
       t.time :start_time, :null => false
       t.time :end_time, :null => false
       t.string :cost_per_month, :null => false
+      t.text :notes
 
       t.references :content, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
