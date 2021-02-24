@@ -16,4 +16,8 @@ module SharedPractices
     	record.content_id = content.id
 		record.user_id = current_user.id
     end
+
+    def set_user_id(record, user)
+        record.user_id = user.id
+    end
 end
