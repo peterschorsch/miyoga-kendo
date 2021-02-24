@@ -1,6 +1,7 @@
 class PracticesController < ApplicationController
+	include SharedPractices
+
 	before_action :set_page, only: [:index, :create, :update]
-	before_action :set_content, only: [:index, :create, :update]
 	before_action :set_practice, only: [:update, :destroy]
 
 	def index
@@ -15,7 +16,7 @@ class PracticesController < ApplicationController
 	def create
 		@new_practice = Practice.new(practice_params)
 		@new_practice.day_of_week_index = check_day_for_index(practice_params.dig("day_of_week"))
-		set_fk
+		set_contents_fk(@practice, @current_page.contents.first)
 
 		respond_to do |format|
 			if @new_practice.save
@@ -28,14 +29,12 @@ class PracticesController < ApplicationController
 	end
 
 	def update
-		@practice.day_of_week_index = check_day_for_index(practice_params.dig("day_of_week"))
-		@practice.start_time = practice_params.dig("start_time(4i)") + ":" + practice_params.dig("start_time(5i)")
-		@practice.end_time = practice_params.dig("end_time(4i)") + ":" + practice_params.dig("end_time(5i)")
-		set_fk
+		set_start_end_time(@practice, practice_params)
+		set_contents_fk(@practice, @current_page.contents.first)
 
 		respond_to do |format|
 	      if @practice.update(practice_params)
-	        format.html { redirect_to practices_path, notice: "#{@practice.day_of_week} practice was successfully updated." }
+	        format.html { redirect_to practices_path, notice: "#{@practice.day_of_week} Practice was successfully updated." }
 	        format.json { render :show, status: :ok, location: @user }
 	      else
 	        format.html { render :edit }
@@ -57,25 +56,11 @@ class PracticesController < ApplicationController
 		@current_page = Page.named("Classes")
 	end
 
-	def set_content
-		@content = @current_page.contents.named("Class Schedule")
-	end
-
 	def set_practice
 		@practice = Practice.find(params[:id])
     end
 
     def practice_params
-		params.require(:practice).permit(:day_of_week, :start_time, :end_time, :cost_per_month, :content_id, :user_id)
-    end
-
-    def check_day_for_index(day_of_week)
-		days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-		return days.index(day_of_week)+1
-    end
-
-    def set_fk
-		@practice.content_id = @content.id
-		@practice.user_id = current_user.id
+		params.require(:practice).permit(:day_of_week, :start_time, :end_time, :cost_per_month, :notes, :content_id, :user_id)
     end
 end

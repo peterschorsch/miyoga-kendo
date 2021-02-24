@@ -1,0 +1,31 @@
+<div class="modal-body">
+	<%= form_with(model: record, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
+		<%= render "templates/alerts/form-errors", model: record %>
+
+		<div class="row text-center">
+			<div class="col-xs-3">
+				<%= f.label :day_of_week, 'Day of Week:' %>
+				<%= f.select :day_of_week, Practice.days_of_week_dropdown_options, {}, { class: 'form-control' } %>
+			</div>
+			<div class="col-xs-6">
+				<%= f.label :start_time, 'Start Time - End Time' %><br />
+				<%= f.time_select :start_time, { ampm: true } %> to <%= f.time_select :end_time, { ampm: true } %>
+			</div>
+			<div class="col-xs-3">
+				<%= f.label :cost_per_month, 'Cost per Month:' %>
+				<%= f.text_field :cost_per_month, { class: 'form-control' } %>
+			</div>
+		</div>
+		<br />
+		<div class="row text-center">
+			<div class="col-xs-10 col-xs-offset-1">
+				<%= f.label :notes, 'Notes:' %>
+				<%= f.text_area :notes, { class: 'form-control', rows: 10 } %>
+			</div>
+		</div>
+</div>
+<div class="modal-footer">
+	<%= submit_tag 'Cancel', :type => 'button', class: "btn btn-danger", data: { toggle: 'modal', 'target': cancel_target } %>
+	<%= f.submit "Save Changes", class: 'btn btn-success' %>
+</div>
+<% end %>

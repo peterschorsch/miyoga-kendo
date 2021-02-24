@@ -1,21 +1,26 @@
 <%= form_with(model: [:admin, practice], local: true) do |form| %>
   <%= render "templates/alerts/form-errors", model: practice %>
   
-  <div class="row vertical-align-middle">
-    <div class="col-md-2 col-xs-12 text-right"><%= form.label :day_of_week, 'Day of Week:' %></div>
-    <div class="col-md-2 col-xs-12">
+  <div class="row text-center">
+    <div class="col-md-2 col-xs-12 col-md-offset-2">
+      <%= form.label :day_of_week, 'Day of Week:' %>
       <%= form.select :day_of_week, Practice.days_of_week_dropdown_options, {}, { class: 'form-control' } %>
+    </div>
+    <div class="col-md-4 col-xs-12">
+      <%= form.label :start_time, 'Time:' %><br />
+      <%= form.time_select :start_time, { ampm: true } %> to <%= form.time_select :end_time, { ampm: true } %>
+    </div>
+    <div class="col-md-2 col-xs-12">
+      <%= form.label :cost_per_month, 'Cost per Month:' %>
+      <%= form.text_field :cost_per_month, { class: "form-control" } %>
     </div>
   </div>
   <br />
-  <div class="row vertical-align-middle">
-    <div class="col-md-1 col-md-offset-1 col-xs-12 text-right"><%= form.label :start_time, 'Time:' %></div>
-    <div class="col-md-3 col-xs-12"><%= form.time_select :start_time, { ampm: true } %> to <%= form.time_select :end_time, {ampm: true} %></div>
-  </div>
-  <br />
-  <div class="row vertical-align-middle">
-    <div class="col-md-2 col-xs-12 text-right"><%= form.label :cost_per_month, 'Cost per Month:' %></div>
-    <div class="col-md-2 col-xs-12"><%= form.text_field :cost_per_month, { class: "form-control" } %></div>
+  <div class="row text-center">
+    <div class="col-md-8 col-xs-12 col-md-offset-2">
+      <%= form.label :notes, 'Notes:' %>
+      <%= form.text_area :notes, { class: "form-control", rows: 10 } %>
+    </div>
   </div>
   <br />
   <div class="row">

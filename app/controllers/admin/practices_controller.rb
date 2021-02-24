@@ -1,34 +1,25 @@
 class Admin::PracticesController < Admin::AdminController
-  before_action :set_class_schedule, only: [:edit, :update, :destroy]
-  before_action :set_current_page, only: [:create]
+  include SharedPractices
 
-  # GET /class_schedules
-  # GET /class_schedules.json
+  before_action :set_class_schedule, only: [:edit, :update, :destroy]
+  before_action :set_current_page, only: [:create, :update]
+
   def index
     @practices = Practice.includes(:user).all
   end
 
-  # GET /class_schedules/new
   def new
     @practice = Practice.new
   end
 
-  # GET /class_schedules/1/edit
   def edit
   end
 
-  # POST /class_schedules
-  # POST /class_schedules.json
   def create
     @practice = Practice.new(practice_params)
 
-    @practice.day_of_week_index = check_day_for_index(practice_params.dig("day_of_week"))
-    @practice.start_time = practice_params.dig("start_time(4i)") + ":" + practice_params.dig("start_time(5i)")
-    @practice.end_time = practice_params.dig("end_time(4i)") + ":" + practice_params.dig("end_time(5i)")
-
-    @content = @current_page.contents.first
-    @practice.content_id = @content.id
-    @practice.user_id = @current_user.id
+    set_start_end_time(@practice, practice_params)
+    set_contents_fk(@practice, @current_page.contents.first)
 
     respond_to do |format|
       if @practice.save
@@ -41,13 +32,12 @@ class Admin::PracticesController < Admin::AdminController
     end
   end
 
-  # PATCH/PUT /class_schedules/1
-  # PATCH/PUT /class_schedules/1.json
   def update
-    @practice.user_id = @current_user.id
+    set_contents_fk(@practice, @current_page.contents.first)
+
     respond_to do |format|
       if @practice.update(practice_params)
-        format.html { redirect_to admin_practices_path, notice: 'The class schedule was successfully updated.' }
+        format.html { redirect_to admin_practices_path, notice: "#{@practice.day_of_week} Practice was successfully updated." }
         format.json { render :show, status: :ok, location: @practice }
       else
         format.html { render :edit }
@@ -56,8 +46,6 @@ class Admin::PracticesController < Admin::AdminController
     end
   end
 
-  # DELETE /class_schedules/1
-  # DELETE /class_schedules/1.json
   def destroy
     @practice.destroy
     respond_to do |format|
@@ -78,11 +66,6 @@ class Admin::PracticesController < Admin::AdminController
 
     # Only allow a list of trusted parameters through.
     def practice_params
-      params.require(:practice).permit(:day_of_week, :start_time, :end_time, :cost_per_month, :content_id)
-    end
-
-    def check_day_for_index(day_of_week)
-      days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-      return days.index(day_of_week)+1
+      params.require(:practice).permit(:day_of_week, :start_time, :end_time, :notes, :cost_per_month, :content_id, :user_id)
     end
 end
