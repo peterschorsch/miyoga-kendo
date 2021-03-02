@@ -11,7 +11,7 @@ class Content < ApplicationRecord
 	#validate :images_presence, on: :create
 
 	validates :heading, presence: true
-	validates :index, :uniqueness => { :scope => [:page_id, :display_content_on_page, :article] }, :if => :index_changed?
+	validates :index, :uniqueness => { :scope => [:page_id, :archived, :article] }, :if => :index_changed?
 
 	validates :index, numericality: { greater_than: 0  }
 	validate :strip_fields
@@ -30,11 +30,11 @@ class Content < ApplicationRecord
 	}
 
 	scope :active_ordered, -> {
-		where(display_content_on_page: true).order_by_index
+		where(archived: false).order_by_index
 	}
 
-	scope :inactive_ordered, -> {
-		where(display_content_on_page: true).order_by_index
+	scope :archived_ordered, -> {
+		where(archived: true).order_by_index
 	}
 
 	scope :order_by_index, -> {
@@ -51,11 +51,11 @@ class Content < ApplicationRecord
 	}
 
 	scope :inactive_non_articles, -> {
-		where(:article => false).inactive_ordered
+		where(:article => false).archived_ordered
 	}
 
 	scope :inactive_articles, -> {
-		where(:article => true).inactive_ordered
+		where(:article => true).archived_ordered
 	}
 
 

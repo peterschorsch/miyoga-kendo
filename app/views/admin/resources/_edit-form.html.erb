@@ -7,8 +7,8 @@
 		</div>
 		<% if not resource.new_record? %>
 			<div class="col-xs-3 col-xs-offset-6">
-				<%= f.label :display_content_on_page, 'Remove Content?' %>
-				<%= f.check_box :display_content_on_page, { class: 'form-control', :checked => !resource.display_content_on_page }, 0, 1 %>
+				<%= f.label :archived, 'Archive?' %>
+				<%= f.check_box :archived, { class: 'form-control' } %>
 			</div>
 		<% end %>
 	</div>

@@ -7,8 +7,8 @@
 		</div>
 		<% if not content.new_record? %>
 			<div class="col-xs-3 col-xs-offset-6">
-				<%= f.label :display_content_on_page, 'Display Content:' %>
-				<%= f.check_box :display_content_on_page, { class: 'form-control' } %>
+				<%= f.label :archived, 'Archive?' %>
+				<%= f.check_box :archived, { class: 'form-control' } %>
 			</div>
 		<% end %>
 	</div>

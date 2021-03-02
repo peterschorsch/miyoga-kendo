@@ -32,7 +32,7 @@ class ContentsController < ApplicationController
 	end
 
 	def destroy
-		@content.display_content_on_page = false
+		@content.archived = true
 		@content.user_id = current_user.id
 
 		respond_to do |format|
@@ -57,7 +57,7 @@ class ContentsController < ApplicationController
 
 	    # Only allow a list of trusted parameters through.
 	    def content_params
-			params.require(:content).permit(:id, :heading, :subheading, :description, :index, :display_content_on_page, :article,
+			params.require(:content).permit(:id, :heading, :subheading, :description, :index, :archived, :article,
 			images_attributes: [:id, :image, :link_id, :content_id, :_destroy],
 			links_attributes: [:id, :name, :link, :index, :image, :content_id, :_destroy, image_attributes: [:id, :image, :link_id, :_destroy]])
 	    end
