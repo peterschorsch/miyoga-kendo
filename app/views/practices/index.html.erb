@@ -29,14 +29,14 @@
 	<br /><br />
 <% end %>
 
-<p class="text-center"><%=@practice_cost%></p>
+<p class="text-center"><%="$" + @practices.first.cost_per_month + " per month "%></p>
 <br />
 
 <div class="row paragraph-indentation">
 	<div class="col-md-10 col-md-offset-1">
 		<table style="width:100%;">
 			<tr>
-				<td rowspan="2"><%= embed_google_maps(address: "Japanese Culture Center 1016 W. Belmont Ave Chicago IL 60657", height: 600, width: 600).html_safe %></td>
+				<td rowspan="2"><%= embed_google_maps(address: @dojo_address.google_maps_address, height: 600, width: 600).html_safe %></td>
 				<td class="jcc-images"><%= image_tag("practices_page/outside_jcc.jpg", alt: "JCC") %></td>
 			</tr>
 			<tr><td class="jcc-images"><%= image_tag("practices_page/second_floor_jcc.jpg", alt: "Second Floor of JCC") %></td></tr>
