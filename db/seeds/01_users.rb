@@ -8,8 +8,22 @@ puts @admin_user.inspect
 puts @admin_user.inspect
 @miyoga_user = User.create_with(firstname: "Miyoga", lastname: "Kendo Club", active: true, password_digest: User.digest("MiyogaKendo1!"), role: "Admin", new_user: false, last_login: DateTime.now-1.day).find_or_create_by(email: "miyoga.kendo.kai@gmail.com")
 puts @miyoga_user.inspect
-@miyoga_address = Address.create_with(location_name: "Japanese Culture Center", address_line_1: "1016 W. Belmont Ave", city: "Chicago", state_id: State.find_by_abbr("IL").id, zip_code: "60657", user_id: @miyoga_user.id).find_or_create_by(address_line_1: "1016 W. Belmont Ave")
+@miyoga_address = Address.create_with(location_name: "Japanese Culture Center", address_line_1: "1016 W. Belmont Ave", city: "Chicago", state_id: State.find_by_abbr("IL").id, zip_code: "60657", notes: "https://japaneseculturecenter.com/", user_id: @miyoga_user.id).find_or_create_by(address_line_1: "1016 W. Belmont Ave")
 puts @miyoga_address.inspect
+image_path = "#{Rails.root}/app/assets/images/practices_page/outside_jcc.jpg"
+image_file = File.new(image_path)
+Image.create_with(:address_id => @miyoga_address.id, :image => ActionDispatch::Http::UploadedFile.new(:filename => File.basename(image_file), :tempfile => image_file,
+    # detect the image's mime type with MIME if you can't provide it yourself.
+    :type => MIME::Types.type_for(image_path).first.content_type
+  )
+).find_or_create_by(address_id: @miyoga_address.id, image_file_name: File.basename(image_file))
+image_path = "#{Rails.root}/app/assets/images/practices_page/second_floor_jcc.jpg"
+image_file = File.new(image_path)
+Image.create_with(:address_id => @miyoga_address.id, :image => ActionDispatch::Http::UploadedFile.new(:filename => File.basename(image_file), :tempfile => image_file,
+    # detect the image's mime type with MIME if you can't provide it yourself.
+    :type => MIME::Types.type_for(image_path).first.content_type
+  )
+).find_or_create_by(address_id: @miyoga_address.id, image_file_name: File.basename(image_file))
 puts ""
 
 puts "----------TEST USERS----------"

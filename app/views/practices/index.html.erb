@@ -11,47 +11,61 @@
 
 <%= render heading_path, text: @content.heading %>
 
-<% @practices.each_with_index do |practice, index| %>
-	<div class='row vertical-align-middle'>
-		<div class="col-md-4 col-md-offset-4 text-center">
-			<p><%= practice.day_of_week %> | <%= formatPracticeTime(practice.start_time, practice.end_time) %></p>
-		</div>
-		<% if can? :manage, practice %>
-			<%= render "edit-modal", practice: practice, index: index %>
-			<%= render remove_record_dialog, record: practice, index: index, heading: "Class" %>
-			<div class="col-md-2"><%= render edit_btn_tag_path, target: "#practiceEditModal-#{index}" %></div>
-			<div class="col-md-2"><%= render remove_btn_tag_path, target: "#youSureModal-#{index}" %></div>
+<div class="row">
+	<div class="col-md-4 col-sm-12 col-md-offset-1 my-auto">
+		<%= embed_google_maps(address: @dojo_address.google_maps_address).html_safe %>
+	</div>
+	<div class="col-md-7 col-sm-12 my-auto text-center">
+		<% @practices.each_with_index do |practice, index| %>
+			<div class="row">
+				<div class="col-md-12">
+					<% if can? :manage, practice %>
+						<%= render "edit-modal", practice: practice, index: index %>
+						<%= render remove_record_dialog, record: practice, index: index, heading: "Class" %>
+						<div class="row">
+							<div class="col-md-2 col-md-offset-4"><%= render edit_btn_tag_path, target: "#practiceEditModal-#{index}" %></div>
+							<div class="col-md-2"><%= render remove_btn_tag_path, target: "#youSureModal-#{index}" %></div>
+						</div>
+						<br />
+					<% end %>
+					<p><%= practice.day_of_week %> | <%= formatPracticeTime(practice.start_time, practice.end_time) %></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4 text-center"><p><%= practice.notes %></p></div>
+			</div>
+			<br />
 		<% end %>
-	</div>
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4 text-center"><p><%= practice.notes %></p></div>
-	</div>
-	<br /><br />
-<% end %>
-
-<p class="text-center"><%="$" + @practices.first.cost_per_month + " per month "%></p>
-<br />
-
-<div class="row paragraph-indentation">
-	<div class="col-md-10 col-md-offset-1">
-		<table style="width:100%;">
-			<tr>
-				<td rowspan="2"><%= embed_google_maps(address: @dojo_address.google_maps_address, height: 600, width: 600).html_safe %></td>
-				<td class="jcc-images"><%= image_tag("practices_page/outside_jcc.jpg", alt: "JCC") %></td>
-			</tr>
-			<tr><td class="jcc-images"><%= image_tag("practices_page/second_floor_jcc.jpg", alt: "Second Floor of JCC") %></td></tr>
-		</table>
+		<div class="row">
+			<div class="col-md-12">
+				<p class=""><%="$" + @practices.first.cost_per_month + " per month "%></p>
+			</div>
+		</div>
+		<br />
+		<div class="row">
+			<div class="col-md-12">
+				<p>Contact Us:</p>
+				<p><%= mail_to @miyoga_user.email, @miyoga_user.email, class: "link-text" %></p>
+				<br />
+				<p>To learn more information about the <%= @dojo_address.location_name %>:</p>
+				<p><%= link_to @dojo_address.notes, @dojo_address.notes, class: "link-text", target: :_blank %></p>
+			</div>
+		</div>
 	</div>
 </div>
-
 <br />
 
-<div class="row paragraph-indentation">
-	<div class="col-md-6 col-md-offset-3">
-		<p class="text-center">Contact Us:</p>
-		<p class="text-center"><%= mail_to @miyoga_user.email, @miyoga_user.email, class: "link-text" %></p>
-		<br />
-		<p class="text-center">To Learn more information about the Japanese Culture Center:</p>
-		<p class="text-center"><%= link_to "https://japaneseculturecenter.com/", "https://japaneseculturecenter.com/", class: "link-text", target: :_blank %></p>
+<% @dojo_images.in_groups_of(2, false) do |images| %>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<% images.each do |image| %>
+			<div class="col-md-5 col-sm-12 jcc-images">
+				<%= image_tag("practices_page/" + image.image_file_name, alt: image.image_file_name ) %>
+			</div>
+		<% end %>
 	</div>
+<% end %>
+<br />
+<div class="row">
+	
 </div>

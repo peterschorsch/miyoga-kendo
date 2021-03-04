@@ -2,6 +2,7 @@ class Image < ApplicationRecord
 	belongs_to :content, optional: true
 	belongs_to :link, optional: true
 	belongs_to :announcement, optional: true
+	belongs_to :address, optional: true
 
     has_attached_file :image
 

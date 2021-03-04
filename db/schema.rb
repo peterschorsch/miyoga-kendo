@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_003931) do
     t.string "address_line_2"
     t.string "city", null: false
     t.string "zip_code", null: false
+    t.text "notes"
     t.integer "event_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -89,8 +90,10 @@ ActiveRecord::Schema.define(version: 2020_09_06_003931) do
     t.datetime "image_updated_at"
     t.integer "content_id"
     t.integer "announcement_id"
+    t.integer "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_images_on_address_id"
     t.index ["announcement_id"], name: "index_images_on_announcement_id"
     t.index ["content_id"], name: "index_images_on_content_id"
   end

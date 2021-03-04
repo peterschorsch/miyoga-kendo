@@ -7,6 +7,8 @@ class PracticesController < ApplicationController
 	def index
 		@miyoga_user = User.get_miyoga_user
 		@dojo_address = @miyoga_user.dojo_address
+		@dojo_images = @dojo_address.images
+
 		@content = @current_page.contents.named("Class Schedule")
 		@practices = Practice.all
 
