@@ -169,6 +169,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_003931) do
     t.string "users"
     t.string "password_digest"
     t.boolean "active", default: true
+    t.boolean "dojo_account", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "role"

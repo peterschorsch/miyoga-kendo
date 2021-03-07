@@ -15,11 +15,11 @@ class State < ApplicationRecord
 
 	### FOR FORMS ###
 	scope :return_states_w_names, -> {
-		sort_by_abbr.select(:id, :name)
+		sort_by_abbr.pluck(:name, :id)
 	}
 
 	scope :return_states_w_abbr, -> {
-		sort_by_abbr.select(:id, :abbreviation)
+		sort_by_abbr.pluck(:abbreviation, :id)
 	}
 
 end

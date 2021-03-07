@@ -61,8 +61,12 @@ class User < ApplicationRecord
 	}
 
 	scope :get_miyoga_user, -> {
-		find_by(:firstname => "Miyoga", :lastname => "Kendo Club")
+		find_by(:dojo_account => true)
 	}
+
+	def get_dojo_address
+		self.addresses.first
+	end
 
 	def is_logged_in?
 		self.is_admin? || self.is_user?
@@ -86,6 +90,10 @@ class User < ApplicationRecord
 
 	def is_not_guest?
 		self.role != "Guest"
+	end
+
+	def is_dojo_account?
+		self.dojo_account
 	end
 
 	def is_active?

@@ -1,5 +1,6 @@
 class Admin::UsersController < Admin::AdminController
   before_action :set_user, only: [:show, :edit, :update, :update_password, :reset_token]
+  before_action :set_dojo_address, only: [:edit, :update_dojo_address]
 
   def index
     @users = User.select(:id, :firstname, :lastname, :email, :role, :active, :last_login).remove_guest_account
@@ -60,6 +61,17 @@ class Admin::UsersController < Admin::AdminController
     end
   end
 
+  def update_dojo_address
+    respond_to do |format|
+      if @dojo_address.update(dojo_address_params)
+        format.html { redirect_to edit_admin_user_path(@dojo_address.user), notice: "<strong>#{@dojo_address.location_name}</strong> was successfully updated." }
+      else
+        format.html { render :edit }
+        format.json { render json: current_user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def resend_token
     respond_to do |format|
       if @user.send_forgotten_password_email
@@ -77,6 +89,10 @@ class Admin::UsersController < Admin::AdminController
       @user = User.find(params[:id] || params[:user_id] || params[:user][:id])
     end
 
+    def set_dojo_address
+      @dojo_address = User.get_miyoga_user.get_dojo_address
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:firstname, :lastname, :email, :role, :password, :active)
@@ -85,5 +101,10 @@ class Admin::UsersController < Admin::AdminController
     def user_password_params
       # NOTE: Using 'strong_parameters' gem
       params.require(:user).permit(:id, :current_password, :password, :password_confirmation)
+    end
+
+    def dojo_address_params
+      # NOTE: Using 'strong_parameters' gem
+      params.require(:address).permit(:id, :location_name, :address_line_1, :address_line_2, :city, :state_id, :zip_code, :notes, :user_id)
     end
 end

@@ -7,6 +7,7 @@ class CreateUsersTable < ActiveRecord::Migration[5.2]
       t.string :users, :password_digest
 
       t.boolean :active, :default => true
+      t.boolean :dojo_account, :default => false
 
       t.timestamps
     end

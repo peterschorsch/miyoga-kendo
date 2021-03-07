@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     ### USERS PAGE ###
     resources :users, except: [:show, :destroy] do
       collection do
+        patch 'update_dojo_address'
         patch 'update_password'
       end
       get 'resend-token', to: 'users#resend_token'

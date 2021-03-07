@@ -6,7 +6,7 @@ puts @admin_user.inspect
 puts @admin_user.inspect
 @admin_user = User.create_with(firstname: "Vince", lastname: "Chan", active: true, password_digest: User.digest("Vincechan3!"), role: "Admin", new_user: false, last_login: DateTime.now-6.days).find_or_create_by(email: "vincechan@yahoo.com")
 puts @admin_user.inspect
-@miyoga_user = User.create_with(firstname: "Miyoga", lastname: "Kendo Club", active: true, password_digest: User.digest("MiyogaKendo1!"), role: "Admin", new_user: false, last_login: DateTime.now-1.day).find_or_create_by(email: "miyoga.kendo.kai@gmail.com")
+@miyoga_user = User.create_with(firstname: "Miyoga", lastname: "Kendo Club", active: true, password_digest: User.digest("MiyogaKendo1!"), role: "Admin", new_user: false, last_login: DateTime.now-1.day, dojo_account: true).find_or_create_by(email: "miyoga.kendo.kai@gmail.com")
 puts @miyoga_user.inspect
 @miyoga_address = Address.create_with(location_name: "Japanese Culture Center", address_line_1: "1016 W. Belmont Ave", city: "Chicago", state_id: State.find_by_abbr("IL").id, zip_code: "60657", notes: "https://japaneseculturecenter.com/", user_id: @miyoga_user.id).find_or_create_by(address_line_1: "1016 W. Belmont Ave")
 puts @miyoga_address.inspect
