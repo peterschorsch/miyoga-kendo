@@ -1,21 +1,28 @@
 <%= form_with(model: [:admin, user], local: true, class: "form-horizontal", html: { autocomplete: "off" }) do |form| %>
-  <div class="row vertical-align-middle">
-    <div class="col-md-2 col-xs-12 text-right"><%= form.label :firstname, 'First Name:' %></div>
-    <div class="col-md-3 col-xs-12"><%= form.text_field :firstname, class: 'form-control' %></div>
-    <div class="col-md-2 col-xs-12 text-right"><%= form.label :lastname, 'Last Name:' %></div>
-    <div class="col-md-3 col-xs-12"><%= form.text_field :lastname, class: 'form-control' %></div>
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-1">
+      <%= form.label :firstname, 'First Name:' %>
+      <%= form.text_field :firstname, class: 'form-control' %>
+    </div>
+    <div class="col-xs-4">
+      <%= form.label :lastname, 'Last Name:' %>
+      <%= form.text_field :lastname, class: 'form-control' %>
+    </div>
+    <div class="col-xs-1 text-center">
+      <%= form.label :active, 'Active?', class: 'cursor-pointer' %><br />
+      <label><%= form.check_box :active, class: 'cursor-pointer' %><span class="checkmark"></span>
+    </div>
   </div>
   <br />
-  <div class="row vertical-align-middle">
-    <div class="col-md-2 col-xs-12 text-right"><%= form.label :email, 'Email:' %></div>
-    <div class="col-md-8 col-xs-12"><%= form.text_field :email, class: 'form-control' %></div>
-  </div>
-  <br />
-  <div class="row vertical-align-middle">
-    <div class="col-md-2 col-xs-12 text-right"><%= form.label :user_role_id, 'User Role:' %></div>
-    <div class="col-md-3 col-xs-12"><%= form.select :role, ["Admin", "User"], { :include_blank => "Please select a User Role" }, { class: "form-control", id: :user_role } %></div>
-    <div class="col-md-2 col-xs-12 text-right"><%= form.label :active, 'Active?', class: 'cursor-pointer' %></div>
-    <div class="col-md-3 col-xs-12"><label><%= form.check_box :active, class: 'cursor-pointer' %><span class="checkmark"></span></div>
+  <div class="row">
+    <div class="col-xs-7 col-xs-offset-1">
+      <%= form.label :email, 'Email:' %>
+      <%= form.text_field :email, class: 'form-control' %>
+    </div>
+    <div class="col-xs-3">
+      <%= form.label :user_role_id, 'User Role:' %>
+      <%= form.select :role, ["Admin", "User"], { :include_blank => "Please select a User Role" }, { class: "form-control", id: :user_role } %>
+    </div>
   </div>
   <br />
   <div class="row">
