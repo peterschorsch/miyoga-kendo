@@ -10,7 +10,7 @@ class Admin::AdminController < ApplicationController
 	end
 
 	def sidebar_objects
-		@user_data = [["All Users", admin_users_path], ["Miyoga Kendo", edit_admin_user_path(@miyoga_user)], ["My User Settings", edit_admin_user_path(current_user)]]
+		@user_data = [["All Users", admin_users_path], [@miyoga_user.concat_name, edit_admin_user_path(@miyoga_user)], ["My User Settings", edit_admin_user_path(current_user)]]
 		@miscellaneous = [["Social Media", admin_social_media_path]]
 	end
 
