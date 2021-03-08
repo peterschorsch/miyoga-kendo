@@ -1,9 +1,8 @@
 class Admin::UsersController < Admin::AdminController
   before_action :set_user, only: [:show, :edit, :update, :update_password, :reset_token]
-  before_action :set_dojo_address, only: [:edit, :update_dojo_address]
 
   def index
-    @users = User.select(:id, :firstname, :lastname, :email, :role, :active, :last_login).remove_guest_account
+    @users = User.select(:id, :firstname, :lastname, :email, :role, :active, :last_login).remove_guest_account.remove_miyoga_user
     @active_users = @users.user_accounts.active_accounts.order_by_name
     @active_admins = @users.admin_accounts.active_accounts.order_by_name
     @inactive_users = @users.user_accounts.archived_accounts.order_by_name
@@ -87,10 +86,6 @@ class Admin::UsersController < Admin::AdminController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id] || params[:user_id] || params[:user][:id])
-    end
-
-    def set_dojo_address
-      @dojo_address = User.get_miyoga_user.get_dojo_address
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

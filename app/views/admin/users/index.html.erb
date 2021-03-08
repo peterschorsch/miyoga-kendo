@@ -1,10 +1,12 @@
 <%= render "templates/admin/index-header", path: new_admin_user_path, new_btn_text: "User", heading_text: "Miyoga Kendo Roster" %>
 
+<p class="text-center">Active Users: <%= @active_users.size + @active_admins.size %> | Inactive Users: <%= @inactive_users.size + @inactive_admins.size %></p>
+<br />
 <ul class="nav nav-tabs nav-justified text-link">
-  <li class="active"><a data-toggle="tab" href="#active_users">Active Users</a></li>
-  <li><a data-toggle="tab" href="#active_admins">Active Admins</a></li>
-  <li><a data-toggle="tab" href="#inactive_users">Inactive Users</a></li>
-  <li><a data-toggle="tab" href="#inactive_admins">Inactive Admins</a></li>
+  <li class="active"><a data-toggle="tab" href="#active_users">Active Users <span class="badge badge-light"><%= @active_users.size %></span></a></li>
+  <li><a data-toggle="tab" href="#active_admins">Active Admins <span class="badge badge-light"><%= @active_admins.size %></span></a></li>
+  <li><a data-toggle="tab" href="#inactive_users">Inactive Users <span class="badge badge-light"><%= @inactive_users.size %></span></a></li>
+  <li><a data-toggle="tab" href="#inactive_admins">Inactive Admins <span class="badge badge-light"><%= @inactive_admins.size %></span></a></li>
 </ul>
 
 <div class="tab-content">

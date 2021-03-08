@@ -9,6 +9,14 @@
 			<% end %>
 		</div>
 		<div class="panel-heading second-panel-heading">
+			<h1 class="text-center no-padding">User Data</h1>
+		</div>
+		<div class="panel-body">
+			<% @user_data.each do |item| %>
+				<%= link_to item[0], item[1], :class => "btn btn-sidebar btn-block btn-lg" %>
+			<% end %>
+		</div>
+		<div class="panel-heading second-panel-heading">
 			<h1 class="text-center no-padding">Miscellaneous</h1>
 		</div>
 		<div class="panel-body">

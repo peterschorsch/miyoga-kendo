@@ -64,6 +64,10 @@ class User < ApplicationRecord
 		find_by(:dojo_account => true)
 	}
 
+	scope :remove_miyoga_user, -> {
+		where(:dojo_account => false)
+	}
+
 	def get_dojo_address
 		self.addresses.first
 	end
