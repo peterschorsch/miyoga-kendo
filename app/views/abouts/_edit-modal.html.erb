@@ -12,8 +12,8 @@
 							<%= f.select :index, Content.populate_edit_index_dropdown(content), {}, { class: 'form-control' } %>
 						</div>
 						<div class="col-xs-3 col-xs-offset-6">
-							<%= f.label :display_content_on_page, 'Display Content?' %>
-							<%= f.check_box :display_content_on_page, { class: 'form-control' } %>
+							<%= f.label :archived, 'Archive?' %>
+							<%= f.check_box :archived, { class: 'form-control' } %>
 						</div>
 					</div>
 					<div class="row text-center">

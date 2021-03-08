@@ -11,12 +11,6 @@
 							<%= f.label :index, 'Content Order:' %>
 							<%= f.select :index, Content.populate_new_index_dropdown(@current_page), {}, { class: 'form-control' } %>
 						</div>
-						<% if not new_content.new_record? %>
-							<div class="col-xs-3">
-								<%= f.label :display_content_on_page, 'Display Content:' %>
-								<%= f.check_box :display_content_on_page, { class: 'form-control' } %>
-							</div>
-						<% end %>
 					</div>
 					<div class="row text-center">
 						<div class="col-xs-12">

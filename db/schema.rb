@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_003931) do
     t.string "subheading"
     t.text "description"
     t.integer "index"
-    t.boolean "display_content_on_page", default: false
+    t.boolean "archived", default: false
     t.boolean "article", default: false
     t.integer "page_id"
     t.integer "user_id"

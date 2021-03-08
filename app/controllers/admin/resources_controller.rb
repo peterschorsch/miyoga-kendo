@@ -76,7 +76,6 @@ class Admin::ResourcesController < Admin::AdminController
 
     def create_new
       @resource = Content.new(resource_params)
-      @resource.display_content_on_page = true
       @resource.page_id = @current_page.id
       @resource.user_id = @current_user.id
       @resource.links.update_all(:article => true, :user_id => @current_user.id)
@@ -84,7 +83,7 @@ class Admin::ResourcesController < Admin::AdminController
 
     # Only allow a list of trusted parameters through.
     def resource_params
-      params.require(:content).permit(:heading, :subheading, :description, :index, :display_content_on_page, :article, :_destroy,
+      params.require(:content).permit(:heading, :subheading, :description, :index, :archived, :article, :_destroy,
       links_attributes: [:id, :name, :link, :image_link, :index, :image, :display_logo, :article, :content_id, :_destroy])
     end
 

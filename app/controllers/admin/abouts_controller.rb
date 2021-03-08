@@ -19,7 +19,6 @@ class Admin::AboutsController < Admin::AdminController
 
   def create
     @content = Content.new(content_params)
-    @content.display_content_on_page = true
     @content.page_id = @current_page.id
     @content.user_id = @current_user.id
 
@@ -51,12 +50,12 @@ class Admin::AboutsController < Admin::AdminController
     end
 
     def set_content
-      @content = Content.of_page(@current_page).find(params[:id]) 
+      @content = @current_page.contents.find(params[:id]) 
     end
 
     # Only allow a list of trusted parameters through.
     def content_params
-      params.require(:content).permit(:heading, :subheading, :description, :index, :display_content_on_page, :_destroy,
+      params.require(:content).permit(:heading, :subheading, :description, :index, :archived, :_destroy,
       images_attributes: [:id, :image, :content_id, :_destroy])
     end
 end
