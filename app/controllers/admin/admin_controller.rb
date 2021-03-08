@@ -1,7 +1,7 @@
 class Admin::AdminController < ApplicationController
 	layout "admin/application"
 
-	before_action :authorized?, :set_miyoga_user, :sidebar_objects, 
+	before_action :authorized?, :sidebar_objects, 
 
 	def dashboard
 		@users = User.select(:firstname, :lastname, :email, :role, :last_login).order_by_last_login.first(5)
@@ -27,8 +27,4 @@ class Admin::AdminController < ApplicationController
 			end
 		end
 
-		def set_miyoga_user
-			@miyoga_user = User.get_miyoga_user
-			@dojo_address = @miyoga_user.addresses.first
-		end
 end

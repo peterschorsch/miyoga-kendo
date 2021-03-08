@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
 	helper_method :current_user
 
-	before_action :active_header_pages
+	before_action :set_miyoga_user, :active_header_pages
 
 	def current_user
 		@current_user = session[:user_id] ? User.find(session[:user_id]) : nil
@@ -13,5 +13,12 @@ class ApplicationController < ActionController::Base
 	def active_header_pages
 		@active_pages = current_user ? Page.logged_in_user_pages : Page.guest_user_pages
 	end
+
+	private
+
+		def set_miyoga_user
+			@miyoga_user = User.get_miyoga_user
+			@dojo_address = @miyoga_user.addresses.first
+		end
 
 end
