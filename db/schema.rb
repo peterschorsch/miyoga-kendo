@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_003931) do
     t.string "city", null: false
     t.string "zip_code", null: false
     t.text "notes"
+    t.boolean "archived", default: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

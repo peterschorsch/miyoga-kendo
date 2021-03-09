@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
-    belongs_to :user
+    belongs_to :user, optional: true
     has_many :event
     has_many :images
 
@@ -18,10 +18,14 @@ class Address < ApplicationRecord
         order(:location_name, :address_line_1)
     }
 
+    scope :active_addresses, -> {
+        where(:archived => false)
+    }
+
     ### FOR FORMS ###
     scope :return_address_dropdown, -> {
         #order_by_name.pluck(:location_name, :id)
-        includes(:state).order_by_name.map{ |address| ["#{address.location_name} - #{address.city}, #{address.state.abbreviation}", address.id ]}
+        includes(:state).active_addresses.order_by_name.map{ |address| ["#{address.location_name} - #{address.city}, #{address.state.abbreviation}", address.id ]}
     }
 
     def strip_fields

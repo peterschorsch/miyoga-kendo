@@ -9,6 +9,8 @@ class CreateAddresses < ActiveRecord::Migration[5.2]
       t.string :zip_code, :null => false
       t.text :notes
 
+      t.boolean :archived, :default => false
+
       t.references :user, index: true, foreign_key: true
 
       t.timestamps

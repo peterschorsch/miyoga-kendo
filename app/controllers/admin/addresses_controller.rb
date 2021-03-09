@@ -2,7 +2,7 @@ class Admin::AddressesController < Admin::AdminController
   before_action :set_address, except: [:index, :new, :create]
   
   def index
-    @addresses = Address.all.includes(:state, :user)
+    @addresses = Address.active_addresses.includes(:state)
   end
 
   def new
@@ -37,9 +37,22 @@ class Admin::AddressesController < Admin::AdminController
     end
   end
 
+  def destroy
+    @address.archived = true
+
+    respond_to do |format|
+      if @address.save!
+        format.html { redirect_to admin_addresses_path, notice: 'Address was successfully removed.' }
+        format.json { render :index, status: :ok, location: @address }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
   private
     def set_address
-      @address = Address.find(params[:id])
+      @address = Address.active_addresses.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
