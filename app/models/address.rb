@@ -14,6 +14,16 @@ class Address < ApplicationRecord
     before_create :strip_fields
     before_save :strip_fields
 
+    scope :order_by_name, -> {
+        order(:location_name, :address_line_1)
+    }
+
+    ### FOR FORMS ###
+    scope :return_address_dropdown, -> {
+        #order_by_name.pluck(:location_name, :id)
+        includes(:state).order_by_name.map{ |address| ["#{address.location_name} - #{address.city}, #{address.state.name}", address.id ]}
+    }
+
     def strip_fields
         self.address_line_2 = self.address_line_2.blank? ? nil : self.address_line_2
     end
