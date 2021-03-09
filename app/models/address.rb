@@ -21,7 +21,7 @@ class Address < ApplicationRecord
     ### FOR FORMS ###
     scope :return_address_dropdown, -> {
         #order_by_name.pluck(:location_name, :id)
-        includes(:state).order_by_name.map{ |address| ["#{address.location_name} - #{address.city}, #{address.state.name}", address.id ]}
+        includes(:state).order_by_name.map{ |address| ["#{address.location_name} - #{address.city}, #{address.state.abbreviation}", address.id ]}
     }
 
     def strip_fields

@@ -5,6 +5,13 @@
     </div>
     <br />
     <div class="row vertical-align-middle">
+      <div class="col-md-2 col-xs-12 text-right"><%= form.label :address_id, 'Event Location:' %></div>
+      <div class="col-md-5 col-xs-12"><%= form.select :address_id, Address.return_address_dropdown, {}, { class: 'form-control' } %></div>
+      <div class="col-md-2 col-xs-12"><%= render new_btn_path, path: new_admin_address_path, text: "Address" %></div>
+      <div class="col-md-2 col-xs-12"><%= render edit_btn_path, edit_path: admin_addresses_path %></div>
+    </div>
+    <br />
+    <div class="row vertical-align-middle">
       <div class="col-md-2 col-xs-12 text-right"><%= form.label :start_date, 'Start Date:' %></div>
       <div class="col-md-2 col-xs-12"><%= form.date_field :start_date, { class: 'form-control' } %></div>
       <div class="col-md-2 col-xs-12 text-right"><%= form.label :end_date, 'End Date:' %></div>
@@ -17,11 +24,6 @@
       <div class="col-md-2 col-xs-12 text-right"><%= form.label :Description, 'Event Description:' %></div>
       <%= tinymce %>
       <div class="col-md-9 col-xs-12"><%= form.text_area :description, { class: 'form-control tinymce' } %></div>
-    </div>
-    <br />
-    <div class="row vertical-align-middle">
-      <div class="col-md-2 col-xs-12 text-right"><%= form.label :address_id, 'Event Location:' %></div>
-      <div class="col-md-9 col-xs-12"><%= form.select :address_id, Address.return_address_dropdown, {}, { class: 'form-control' } %></div>
     </div>
     <br />
   <div class="row">

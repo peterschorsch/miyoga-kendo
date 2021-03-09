@@ -1,0 +1,3 @@
+<%= render "templates/admin/edit-header", back_text: "Address Page", back_path: admin_addresses_path(@address), heading_text: "Editing: #{@address.location_name}", object: @address %>
+
+<%= render "form", address: @address %>
