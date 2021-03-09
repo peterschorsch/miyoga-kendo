@@ -19,12 +19,10 @@ ActiveRecord::Schema.define(version: 2020_09_06_003931) do
     t.string "city", null: false
     t.string "zip_code", null: false
     t.text "notes"
-    t.integer "event_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "state_id"
-    t.index ["event_id"], name: "index_addresses_on_event_id"
     t.index ["state_id"], name: "index_addresses_on_state_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
@@ -64,10 +62,12 @@ ActiveRecord::Schema.define(version: 2020_09_06_003931) do
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.boolean "display", default: true
+    t.integer "address_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "page_id"
+    t.index ["address_id"], name: "index_events_on_address_id"
     t.index ["page_id"], name: "index_events_on_page_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end

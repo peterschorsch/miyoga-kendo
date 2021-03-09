@@ -1,6 +1,6 @@
 class Address < ApplicationRecord
-	belongs_to :event, optional: true
     belongs_to :user
+    has_many :event
     has_many :images
 
     accepts_nested_attributes_for :event

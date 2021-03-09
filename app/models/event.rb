@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-	has_one :address
+	belongs_to :address
 	belongs_to :user
 	belongs_to :page
 
