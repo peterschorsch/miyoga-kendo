@@ -6,7 +6,7 @@
     <br />
     <div class="row vertical-align-middle">
       <div class="col-md-2 col-xs-12 text-right"><%= form.label :address_id, 'Event Location:' %></div>
-      <div class="col-md-5 col-xs-12"><%= form.select :address_id, Address.return_address_dropdown, {}, { class: 'form-control' } %></div>
+      <div class="col-md-5 col-xs-12"><%= form.select :address_id, Address.return_address_dropdown_w_state_abbr, {}, { class: 'form-control' } %></div>
       <div class="col-md-2 col-xs-12"><%= render new_btn_path, path: new_admin_address_path, text: "Address" %></div>
       <div class="col-md-2 col-xs-12"><%= render edit_btn_path, edit_path: admin_addresses_path %></div>
     </div>

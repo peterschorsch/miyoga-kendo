@@ -1,4 +1,4 @@
-<% if current_user.is_not_admin? %>
+<% if not @current_user.is_admin? %>
 	<div class="row">
 		<div class="col-md-12"><h1 class="no-margin"><%= event.title %></h1></div>
 	</div>
