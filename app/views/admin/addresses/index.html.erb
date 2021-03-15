@@ -28,7 +28,7 @@
           <%= "#{address.address_line_2}<br />" if not address.address_line_2.nil? %>
           <%= address.city %>, <%= address.state.abbreviation %> <%= address.zip_code %>
         </td>
-        <td><%= nil_check(address.notes) %></td>
+        <td><%= link_nil_check(address.notes) %></td>
         <td><%= render edit_btn_path, edit_path: edit_admin_address_path(address) %></td>
         <td><%= render remove_btn_path, remove_model: [:admin, address] %></td>
       </tr>
