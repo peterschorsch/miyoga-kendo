@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 	before_action :set_miyoga_user, :active_header_pages
 
 	def current_user
-		@current_user = session[:user_id] ? User.find(session[:user_id]) : nil
+		@current_user = session[:user_id] ? User.find(session[:user_id]) : User.get_guest_user
 	end
 
 	def active_header_pages
