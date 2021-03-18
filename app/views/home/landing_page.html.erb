@@ -1,6 +1,6 @@
 <div class="no-padding">
 	<div class="container">
-		<%= image_tag("home_page/group_practice_shot.jpg", class: "home_image", alt: "Group Shot") %>
+		<%= image_tag("home_page/#{@top_home_image.image_file_name}", class: "home_image", alt: @top_home_image.image_file_name) %>
 		<div class="top-centered">
 			<% if notice %>
 				<div class="alert alert-success alert-dismissable text-center" role="alert">
@@ -28,7 +28,7 @@
 		</div>
 	</div>
 	<div class="container">
-		<%= image_tag("home_page/group_post_practice.jpg", class: "home_image", alt: "Group Shot Post Practice") %>
+		<%= image_tag("home_page/#{@bottom_home_image.image_file_name}", class: "home_image", alt: @bottom_home_image.image_file_name) %>
 		<div class="very-bottom-centered">
 			<h3>Contact Us:</h3>
 			<h3><%= mail_to @miyoga_contact_email, @miyoga_contact_email, class: "link-text", style: "color: #000080" %></h3>
