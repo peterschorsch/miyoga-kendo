@@ -1,5 +1,5 @@
 puts "----------PAGES----------"
-@page = Page.create_with(name: "Home", path: "root_path", admin_path: "admin_root_path", index: 1, user_id: User.admin_accounts.first.id).find_or_create_by(name: "Home")
+@page = Page.create_with(name: "Home", path: "root_path", admin_path: "admin_home_index_path", index: 1, user_id: User.admin_accounts.first.id).find_or_create_by(name: "Home")
 puts @page.inspect
 @page = Page.create_with(name: "About", path: "abouts_path", admin_path: "admin_abouts_path", index: 2, user_id: User.admin_accounts.first.id).find_or_create_by(name: "About")
 puts @page.inspect
