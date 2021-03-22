@@ -5,63 +5,11 @@
 				<h1 class="modal-title" id="eventAddModal">Add Event</h1>
 			</div>
 			<div class="modal-body">
-				<%= form_with(model: new_event, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |event| %>
-				    <div class="row vertical-align-middle">
-				      <div class="col-md-2 col-xs-12 text-right"><%= event.label :title, 'Event Name:' %></div>
-				      <div class="col-md-9 col-xs-12"><%= event.text_field :title, { class: 'form-control' } %></div>
-				    </div>
-				    <br />
-				    <div class="row vertical-align-middle">
-				      <div class="col-md-2 col-xs-12 text-right"><%= event.label :start_date, 'Start Date:' %></div>
-				      <div class="col-md-9 col-xs-12"><%= event.date_field :start_date, { class: 'form-control' } %></div>
-				    </div>
-				    <br />
-				    <div class="row vertical-align-middle">
-				      <div class="col-md-2 col-xs-12 text-right"><%= event.label :end_date, 'End Date:' %></div>
-				      <div class="col-md-9 col-xs-12"><%= event.date_field :end_date, { class: 'form-control' } %></div>
-				    </div>
-				    <br />
-				    <div class="row vertical-align-middle">
-				      <div class="col-md-2 col-xs-12 text-right"><%= event.label :Description, 'Event Description:' %></div>
-				      <div class="col-md-9 col-xs-12"><%= event.text_area :description, { class: 'form-control', rows: 25 } %></div>
-				    </div>
-				    <br />
-
-				    <h1>Event Address</h1>
-				    <hr />
-				    <!--<div class="row vertical-align-middle">
-				      <div class="col-md-2 col-xs-12 text-right"><%#= address.label :id, 'Saved Addresses:' %></div>
-				      <div class="col-md-9 col-xs-12"><%#= address.collection_select :id, Address.all.includes(:state), :id, :concat_address_dropdown, {:include_blank => "Select an Address"}, { class: "form-control chosen-select", id: "event_address_dropdown"} %></div>
-				    </div>
-				    <br />-->
-				    <%= event.fields_for :address do |address| %>
-					    <div id="address_contact_form_div">
-					      <div class="row vertical-align-middle">
-					        <div class="col-md-2 col-xs-12 text-right"><%= address.label :location_name, 'Location Name:' %></div>
-					        <div class="col-md-9 col-xs-12"><%= address.text_field :location_name, { placeholder: "Location Name", class: 'form-control' } %></div>
-					      </div>
-					      <br />
-					      <div class="row vertical-align-middle">
-					        <div class="col-md-2 col-xs-12 text-right"><%= address.label :address_line_1, 'Address:' %></div>
-					        <div class="col-md-9 col-xs-12"><%= address.text_field :address_line_1, { placeholder: "Address Line 1", class: 'form-control' } %></div>
-					      </div>
-					      <br />
-					      <div class="row vertical-align-middle">
-					        <div class="col-md-2 col-xs-12 text-right"><%= address.label :address_line_2, 'Line 2:' %></div>
-					        <div class="col-md-9 col-xs-12"><%= address.text_field :address_line_2, { placeholder: "Address Line 2", class: 'form-control' } %></div>
-					      </div>
-					      <br />
-					      <div class="row vertical-align-middle">
-					        <div class="col-md-2 col-xs-12 text-right"><%= address.label :city, 'City, State Zip Code:' %></div>
-					        <div class="col-md-4 col-xs-12"><%= address.text_field :city, { placeholder: "City", class: 'form-control' } %></div>
-					        <div class="col-md-2 col-xs-12"><%= address.collection_select :state_id, @states_new_form_drop, :id, :name, { :include_blank => "Select a State" }, {class: "form-control chosen-select"} %></div>
-					        <div class="col-md-3 col-xs-12"><%= address.text_field :zip_code, { placeholder: "Zip Code", class: 'form-control', size: 5 } %></div>
-					      </div>
-					    </div>
-				  	<% end %>
+				<%= form_with(model: new_event, local: true, :validate => true, html: { class: "form-horizontal", autocomplete: "off" }) do |f| %>
+				    <%= render "form-fields", f: f %>
 			</div>
 			<div class="modal-footer">
-				<%= render modal_cancel_save_btn_path, f: event, target: "#eventAddModal" %>
+				<%= render modal_cancel_save_btn_path, f: f, target: "#eventAddModal" %>
 			</div>
 			<% end %>
 		</div>

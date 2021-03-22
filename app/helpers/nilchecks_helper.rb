@@ -19,6 +19,10 @@ module NilchecksHelper
 		return tf_check(last_login) ? "n/a" : formateDateTimeWithAt(last_login)
 	end
 
+	def link_nil_check(field)
+		return tf_check(field) ? "n/a" : (link_to field, field, :class => "link-text", target: '_blank')
+	end
+
 	##### CHECK IF IN ASSET PIPELINE ######
 	def image_in_asset_pipeline(news)
 		File.file? Rails.public_path + "/news_page/#{news.image_file_name}"

@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= render back_to_page_path, path: admin_events_path, text: "Events Page" %>
+  </div>
+  <div class="col-md-3 col-md-offset-6">
+    <%= render new_btn_path, path: new_admin_address_path, text: "Address" %>
+  </div>
+</div>
+
+<%= render heading_path, text: "Event Addresses" %>
+
+<%= render admin_notice_path %>
+
+<table class="table table-responsive table-striped" id="events_table">
+  <thead>
+    <tr class="text-center">
+      <th>Location Name</th>
+      <th>Link</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @addresses.each do |address| %>
+      <tr class="text-center table-hover">
+        <td>
+          <%= address.location_name %><br />
+          <%= address.address_line_1 %><br />
+          <%= "#{address.address_line_2}<br />" if not address.address_line_2.nil? %>
+          <%= address.city %>, <%= address.state.abbreviation %> <%= address.zip_code %>
+        </td>
+        <td><%= link_nil_check(address.notes) %></td>
+        <td><%= render edit_btn_path, edit_path: edit_admin_address_path(address) %></td>
+        <td><%= render remove_btn_path, remove_model: [:admin, address] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

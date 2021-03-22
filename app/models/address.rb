@@ -1,6 +1,6 @@
 class Address < ApplicationRecord
-	belongs_to :event, optional: true
-    belongs_to :user
+    belongs_to :user, optional: true
+    has_many :event
     has_many :images
 
     accepts_nested_attributes_for :event
@@ -13,6 +13,23 @@ class Address < ApplicationRecord
 
     before_create :strip_fields
     before_save :strip_fields
+
+    scope :order_by_name, -> {
+        order(:location_name, :address_line_1)
+    }
+
+    scope :active_addresses, -> {
+        where(:archived => false)
+    }
+
+    ### FOR FORMS ###
+    scope :return_address_dropdown_w_state_abbr, -> {
+        includes(:state).active_addresses.order_by_name.map{ |address| ["#{address.location_name} - #{address.city}, #{address.state.abbreviation}", address.id ]}
+    }
+
+    scope :return_address_dropdown_w_state_name, -> {
+        includes(:state).active_addresses.order_by_name.map{ |address| ["#{address.location_name} - #{address.city}, #{address.state.name}", address.id ]}
+    }
 
     def strip_fields
         self.address_line_2 = self.address_line_2.blank? ? nil : self.address_line_2

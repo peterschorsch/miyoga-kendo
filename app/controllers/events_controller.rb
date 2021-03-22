@@ -63,13 +63,11 @@ class EventsController < ApplicationController
 
 	def update_fks
 		@event.user_id = current_user.id
-		@event.address.user_id = current_user.id
 		@event.page_id = @current_page.id
     end
 
 	# Only allow a list of trusted parameters through.
 	def event_params
-		params.require(:event).permit(:title, :start_date, :end_date, :description,
-			address_attributes: [:id, :location_name, :address_line_1, :address_line_2, :city, :state_id, :zip_code])
+		params.require(:event).permit(:id, :title, :start_date, :end_date, :description, :display, :address_id)
 	end
 end
