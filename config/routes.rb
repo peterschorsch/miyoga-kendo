@@ -53,6 +53,7 @@ Rails.application.routes.draw do
 
     ### HOME PAGE ###
     resources :home, except: [:create, :new, :destroy]
+    resources :images, except: [:create, :new, :destroy], path: 'home-images'
     ### ABOUT PAGE ###
     resources :abouts, except: [:destroy]
     ### RESOURCES PAGE ###
