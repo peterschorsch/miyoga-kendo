@@ -51,6 +51,8 @@ Rails.application.routes.draw do
       get 'resend-token', to: 'users#resend_token'
     end
 
+    ### HOME PAGE IMAGES ###
+    resources :home_images, except: [:create, :new, :destroy], path: 'home-images'
     ### ABOUT PAGE ###
     resources :abouts, except: [:destroy]
     ### RESOURCES PAGE ###

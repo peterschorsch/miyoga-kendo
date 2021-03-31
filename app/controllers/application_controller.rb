@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 	# For session timeout
-	auto_session_timeout 10.minutes
+	#auto_session_timeout 10.minutes
 
 	helper_method :current_user
 

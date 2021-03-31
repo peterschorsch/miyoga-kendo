@@ -1,0 +1,24 @@
+<%= render heading_path, text: "Home Page Images" %>
+
+<table class="table table-responsive table-striped" id="events_table">
+  <thead>
+    <tr class="text-center">
+      <th>Placement</th>
+      <th>Image</th>
+      <th colspan="2">Last Modified by</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contents.each do |content| %>
+      <% image = content.images.first %>
+      <tr class="text-center table-hover">
+        <td><%= content.heading %></td>
+        <td><%= image_tag("home_page/#{image.image_file_name}", class: "admin-home-table-image", alt: image.image_file_name) %></td>
+        <td><%= content.user.concat_name %></td>
+        <td><%= formateDateTimeWithAt(content.updated_at) %></td>
+        <td><%= render edit_btn_path, edit_path: edit_admin_home_image_path(image) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
