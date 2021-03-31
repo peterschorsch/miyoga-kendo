@@ -1,4 +1,4 @@
-class Admin::ImagesController < Admin::AdminController
+class Admin::HomeImagesController < Admin::AdminController
   before_action :set_current_page, :set_contents
   before_action :set_image, only: [:edit, :update]
 
@@ -15,7 +15,7 @@ class Admin::ImagesController < Admin::AdminController
     if @image.update(image_params)
       redirect_to admin_images_path, notice: 'Image was successfully updated.'
     else
-      render :edit
+      format.html { render :edit }
     end
   end
 
