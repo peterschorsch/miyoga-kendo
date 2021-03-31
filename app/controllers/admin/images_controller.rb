@@ -1,28 +1,33 @@
 class Admin::ImagesController < Admin::AdminController
+  before_action :set_current_page, :set_contents
   before_action :set_image, only: [:edit, :update]
 
   def index
-    @images = Image.all
+    @contents = @contents.includes(:user).active_ordered
   end
 
   def edit
   end
 
   def update
+    @image.content.user_id = @current_user.id
+
     if @image.update(image_params)
-      redirect_to @image, notice: 'Image was successfully updated.'
+      redirect_to admin_images_path, notice: 'Image was successfully updated.'
     else
       render :edit
     end
   end
 
-  def destroy
-    @image.destroy
-    redirect_to admin_images_url, notice: 'Image was successfully destroyed.'
-  end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def set_current_page
+      @current_page = Page.named("Home")
+    end
+
+    def set_contents
+      @contents = @current_page.contents
+    end
+
     def set_image
       @image = Image.find(params[:id])
     end
