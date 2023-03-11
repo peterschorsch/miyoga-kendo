@@ -1,4 +1,4 @@
-class ChangeSocialMediumTable < ActiveRecord::Migration[5.2]
+class ChangeSocialMediaTable < ActiveRecord::Migration[5.2]
   def up
   	remove_column :social_media, :image_link, :string
 

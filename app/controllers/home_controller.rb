@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-	layout "landing_page"
+	layout "main_page"
 	before_action :set_page
 
 	def landing_page

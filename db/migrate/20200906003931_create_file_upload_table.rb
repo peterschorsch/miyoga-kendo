@@ -3,9 +3,9 @@ class CreateFileUploadTable < ActiveRecord::Migration[5.2]
     create_table :file_uploads do |t|
     	t.attachment :pdf
 
-		t.references :announcement, index: true, foreign_key: true
+		  t.references :announcement, index: true, foreign_key: true
 
-		t.timestamps
+		  t.timestamps
     end
   end
 end
