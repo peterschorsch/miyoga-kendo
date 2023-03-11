@@ -1,6 +1,6 @@
-class AddImagesTable < ActiveRecord::Migration[5.2]
+class CreateImagesTable < ActiveRecord::Migration[7.0]
   def change
-  	create_table :images do |t|
+    create_table :images do |t|
       t.attachment :image
 
       t.references :content, index: true, foreign_key: true

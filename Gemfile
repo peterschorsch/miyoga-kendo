@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/peterschorsch/miyoga-kendo.git" }
 
-ruby '2.6.3'
+ruby '3.1.3'
+
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'bcrypt'#, '~> 3.1.7'
@@ -9,14 +10,15 @@ gem 'pry-rails'
 gem 'database_cleaner'
 gem 'google_maps_rails'
 gem 'awesome_print'
-gem 'paperclip'
+gem 'kt-paperclip'
 gem 'cocoon'
 gem 'cancancan'
 gem 'auto-session-timeout'
 gem 'tinymce-rails'
+gem 'mimemagic', git: 'https://github.com/mimemagicrb/mimemagic', ref: 'a4b038c6c1b9d76dac33d5711d28aaa9b4c42c66'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.4'
+gem 'rails', '~> 7.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
