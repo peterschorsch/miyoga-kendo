@@ -4,6 +4,7 @@
 	.no-padding{
 		padding: 0px !important;
 	}
+
 	.no-left-padding{
 		padding-left: 0px;
 	}
@@ -19,6 +20,10 @@
 
 	.padding-top{
 		padding-top: 10px;
+	}
+
+	.padding-bottom{
+		padding-bottom: 15px;
 	}
 
 	.padding-right{
@@ -38,6 +43,8 @@
 		margin-top: 5px
 	}
 
-	.padding-bottom{
-		padding-bottom: 15px;
+	.center-vertically{
+		margin: auto;
+		width: 60%;
+		padding: 10px;
 	}
