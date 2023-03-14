@@ -22,11 +22,6 @@ module FormatdatetimeHelper
     start_time.strftime("%l:%M%P") + " - " + end_time.strftime("%l:%M%P")
   end
 
-  # 7.31.20 - 8.2.20
-  def formatEventsHomeDateRange(startdate, enddate)
-    startdate.strftime("%-m.%-d.%y") + " - " + enddate.strftime("%-m.%-d.%y")
-  end
-
   # Jul. 31, 2020 - Aug. 2, 2020
   def formatEventsDateRange(startdate, enddate)
     startdate.strftime("%b. %-d, %Y") + " - " + enddate.strftime("%b. %-d, %Y")
@@ -34,7 +29,7 @@ module FormatdatetimeHelper
 
   # Jul 31 - Aug. 2, 2020
   def formatDateRange(startdate, enddate)
-    startdate.strftime("%B %d") + " - " + enddate.strftime("%B %d, %Y")
+    startdate.strftime("%B %-d") + " - " + enddate.strftime("%B %-d, %Y")
   end
 
   # 09/19/17 04:38pm
