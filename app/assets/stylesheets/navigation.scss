@@ -16,8 +16,13 @@
 	list-style:none; 
 }
 
+.input-group-addon {
+  padding: 0 12px;
+  vertical-align: bottom;
+}
+
 .navbar-default .navbar-nav > li {
-	display: inline !important;
+	display: inline;
 }
 
 // Navigation Bar Font

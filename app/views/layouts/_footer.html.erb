@@ -1,7 +1,7 @@
 <div class="footer">
 	<nav class="navbar navbar-default">
-		<p class="center-vertically bolded-font white-text">
-			© <%= Date.today.year %> <%= @miyoga_user.concat_name %> | 
+		<p class="center-vertically footer-center-vertically bolded-font white-text">
+			© <%= Date.today.year %> <%= favicon_link_tag asset_path('logos/miyoga_crest.png') %> <%= @miyoga_user.concat_name %> | 
 			<%= @dojo_address.address_line_1 %> 
 			<%= @dojo_address.address_line_2 %> 
 			<%= @dojo_address.city %>, <%= @dojo_address.state.abbreviation %> <%= @dojo_address.zip_code %> | 
