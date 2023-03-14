@@ -11,6 +11,14 @@ class Practice < ApplicationRecord
 		[['Sunday', 'Sunday'], ['Monday', 'Monday'], ['Tuesday', 'Tuesday'], ['Wednesday', 'Wednesday'], ['Thursday', 'Thursday'], ['Friday', 'Friday'], ['Saturday', 'Saturday']]
 	end
 
+	def self.get_practice_notes
+		first.notes
+	end
+
+	def update_practice_notes
+		Practice.where.not(:id => self.id).in_batches.update_all(notes: self.notes)
+	end
+
 	def update_cost_per_month
 		Practice.where.not(:id => self.id).in_batches.update_all(cost_per_month: self.cost_per_month)
 	end

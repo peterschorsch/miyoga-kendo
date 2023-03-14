@@ -12,10 +12,10 @@
 <%= render heading_path, text: @content.heading %>
 
 <div class="row">
-	<div class="col-md-4 col-sm-12 col-md-offset-1 my-auto">
-		<%= embed_google_maps(address: @dojo_address.google_maps_address).html_safe %>
+	<div class="col-md-5 col-sm-12 col-md-offset-1 my-auto">
+		<%= render google_maps_path, location_name: @dojo_address.location_name, address: @dojo_address, height: "500", width: "100%" %>
 	</div>
-	<div class="col-md-7 col-sm-12 my-auto text-center">
+	<div class="col-md-5 col-sm-12 my-auto text-center">
 		<% @practices.each_with_index do |practice, index| %>
 			<div class="row">
 				<div class="col-md-12">
@@ -31,15 +31,16 @@
 					<p><%= practice.day_of_week %> | <%= formatPracticeTime(practice.start_time, practice.end_time) %></p>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-4 col-md-offset-4 text-center"><p><%= practice.notes %></p></div>
-			</div>
 			<br />
 		<% end %>
 		<div class="row">
 			<div class="col-md-12">
 				<p class=""><%="$" + @practices.first.cost_per_month + " per month "%></p>
 			</div>
+		</div>
+		<br />
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4 text-center"><p><%= @practice_notes %></p></div>
 		</div>
 		<br />
 		<div class="row">

@@ -11,6 +11,7 @@ class PracticesController < ApplicationController
 
 		@content = @current_page.contents.named("Class Schedule")
 		@practices = Practice.all
+		@practice_notes = @practices.get_practice_notes
 
 		@new_practice = Practice.new
 	end
