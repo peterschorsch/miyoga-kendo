@@ -84,3 +84,15 @@ div {
 label {
   display: block;
 }
+
+hr{
+  background-color: #000080 !important;
+  height: 1px !important;
+}
+.panel-default{
+  border-color: #000080 !important;
+}
+.panel-default .panel-heading{
+  background-color: #000080 !important;
+  color: white !important;
+}
