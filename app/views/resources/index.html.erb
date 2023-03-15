@@ -1,26 +1,18 @@
 <%= render "heading", target: "#resourceAddModal", button_text: "Resource", object: @new_resource, heading_text: @current_page.name %>
 
 <div class="row">
-	<div class="col-md-10 col-md-offset-1 col-sm-12">
+	<div class="col-md-8 col-md-offset-2 col-sm-12">
 		<div class="row">
-			<% @resources.each_with_index do |content, index| %>
-				<% if cannot? :manage, content %>
-					<div class="row">
-						<div class="col-md-12">
-							<h2><%= content.heading %></h2>
-						</div>
-					</div>
-				<% else %>
-					<div class="row vertical-align-middle">
-						<div class="col-md-10">
-							<h2><%= content.heading %></h2>
-						</div>
-						<div class="col-md-2">
+			<% @resources.each_with_index do |content| %>
+				<div class="row vertical-align-middle">
+					<div class="col-md-12">
+						<% if can? :manage, content %>
 							<%= render edit_btn_tag_path, target: "#resourcesEditModal-#{content.id}" %>
-						</div>
+							<%= render "edit-modal", content: content, index: content.id, link_end_count: content.links.count+1 %>
+						<% end %>
+						<h2><%= content.heading %></h2>
 					</div>
-					<%= render "edit-modal", content: content, index: content.id, link_end_count: content.links.count+1 %>
-				<% end %>
+				</div>
 				<% if not content.subheading.blank? %>
 					<div class="row">
 						<div class="col-md-12">
@@ -36,12 +28,14 @@
 					</div>
 				<% end %>
 				<div class="row">
-					<% content.links.each do |link| %>
-						<div class="col-md-3 col-sm-6">
-							<div class="panel panel-default">
-								<div class="panel-body"><%= link_to image_tag("logos/#{link.image_file_name}", class: "image-center", alt: link.image_file_name), link.link, class: "header-link-text", target: :_blank %></div>
+					<% content.links.in_groups_of(4, false).each do |content_links| %>
+						<% content_links.each do |link| %>
+							<div class="col-md-3 col-xs-12">
+								<div class="panel panel-default">
+									<div class="panel-body"><%= link_to image_tag("logos/#{link.image_file_name}", class: "image-center", alt: link.image_file_name), link.link, class: "header-link-text", target: :_blank %></div>
+								</div>
 							</div>
-						</div>
+						<% end %>
 					<% end %>
 				</div>
 				<br />
@@ -50,40 +44,45 @@
 	</div>
 </div>
 
-<%= render "heading", target: "#resourceAddModal", button_text: "Article", object: @new_resource, heading_text: "Readings" %>
-
-<% @articles.each_with_index do |content, index| %>
+<%= render "heading", target: "#resourceAddModal", button_text: "Article", object: @new_resource, heading_text: "Articles" %>
+<% @articles.in_groups_of(3, false) do |article| %>
 	<div class="row">
-		<div class="col-md-10 col-md-offset-1 col-sm-12">
-			<div class="panel panel-default card">
-				<% content.links.each do |link| %>
-					<div class="row padding">
-						<div class="col-md-3">
-							<%= image_tag("resources_page/#{link.image_file_name}", class: "text-image", alt: link.image_file_name) %>
-						</div>
-						<div class="col-md-9">
-							<% if not current_user.is_admin? %>
-								<div class="row vertical-align-middle">
-									<div class="col-md-12"><h3 class="card-title"><%= content.heading %></h3></div>
+		<% article.each do |content| %>
+			<div class="col-md-3 col-sm-12 col-md-offset-1">
+				<div class="panel panel-default">
+					<% content.links.each do |link| %>
+						<% if current_user.is_admin? %>
+							<div class="panel-body no-top-bottom-padding">
+								<%= render edit_btn_tag_path, target: "#resourcesEditModal-#{content.id}" %>
+								<%= render "edit-modal", content: content, index: content.id, link_end_count: content.links.count+1 %>
+							</div>
+						<% end %>
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-12">
+									<h2><%= content.heading %></h2>
 								</div>
-							<% else %>
-								<div class="row vertical-align-middle">
-									<div class="col-md-10 col-xs-12"><h3 class="card-title"><%= content.heading %></h3></div>
-									<div class="col-md-2 col-xs-12"><%= render edit_btn_tag_path, target: "#resourcesEditModal-#{content.id}" %></div>
-									<%= render "edit-modal", content: content, index: content.id, link_end_count: content.links.count+1 %>
-								</div>
-							<% end %>
-							<hr />
+							</div>
 							<% if not tf_check(content.subheading) %>
-								<h4><%= content.subheading %></h4>
+								<div class="col-md-12">
+									<h4><small><%= content.subheading %></small></h4>
+								</div>
 							<% end %>
-							<h5><%= format_header_date(content.created_at) %></h5><br />
-							<%= simple_format(content.description, wrapper_tag: "p", class: 'card-text') %>
-							<%= link_to "Visit Article &raquo".html_safe, link.link, :class => "btn btn-info", target: :_blank %>
 						</div>
-					</div>
-				<% end %>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-4 col-xs-12">
+									<%= image_tag("resources_page/#{link.image_file_name}", class: "text-image", alt: link.image_file_name) %>
+								</div>
+								<div class="col-md-8 col-xs-12">
+									<%= simple_format(content.description, wrapper_tag: "p", class: 'card-text') %>
+									<%= link_to "Visit Article &raquo".html_safe, link.link, :class => "btn btn-info", target: :_blank %>
+								</div>
+							</div>
+						</div>
+					<% end %>
+				</div>
 			</div>
-		</div>
+		<% end %>
 	</div>
 <% end %>
