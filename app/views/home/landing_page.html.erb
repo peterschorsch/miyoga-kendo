@@ -9,15 +9,15 @@
 				</div>
 			<% end %>
 		</div>
-		<div class="bottom-centered">
+		<div class="bottom-centered landing-page-font">
 			<h1 class='miyoga-heading-text'><%= @about_miyoga.heading %></h1>
 			<%= simple_format(@about_miyoga.description.truncate_words(60), wrapper_tag: "p") %>
-			<%= link_to "What's Kendo?", abouts_path, :class => "btn btn-info btn-lg" %>
-			<%= link_to "Class Schedule", practices_path, :class => "btn btn-info btn-lg" %>
+			<%= link_to "What's Kendo?", abouts_path, :class => "btn btn-info btn-lg btn-bold-font" %>
+			<%= link_to "Class Schedule", practices_path, :class => "btn btn-info btn-lg btn-bold-font" %>
 		</div>
 	</div>
 	<div class="container blue-back">
-		<div class="middle-centered white-text">
+		<div class="middle-centered white-text landing-page-font">
 			<h1 class='miyoga-heading-text'>Upcoming Events</h1>
 			<p><%= @upcoming_event.title %></p>
 			<p><%= formatEventsDateRange(@upcoming_event.start_date, @upcoming_event.end_date) %></p>

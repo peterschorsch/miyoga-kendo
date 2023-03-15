@@ -76,7 +76,9 @@
 								</div>
 								<div class="col-md-8 col-xs-12">
 									<%= simple_format(content.description, wrapper_tag: "p", class: 'card-text') %>
-									<%= link_to "Visit Article &raquo".html_safe, link.link, :class => "btn btn-info", target: :_blank %>
+									<%= link_to link.link, :class => "btn btn-info", :target => :blank do %>
+										Visit Article <span class="glyphicon glyphicon-chevron-right"></span>
+									<% end %>
 								</div>
 							</div>
 						</div>
