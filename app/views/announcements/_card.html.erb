@@ -1,0 +1,36 @@
+<div class="col-md-4 col-sm-12">
+	<div class="panel panel-default">
+		<div class="panel-body no-top-bottom-padding">
+			<%= render "admin-function", announcement: news if can? :manage, news %>
+			<div class="row">
+				<div class="col-md-4">
+					<h4><%= formatDate(news.created_at) %></h4>
+				</div>
+				<div class="col-md-8 text-right">
+					<h4>Posted by: <strong><%= news.user.concat_name %></strong></h4>
+				</div>
+			</div>
+		</div>
+		<div class="panel-heading">
+			<div class="row vertical-align-middle">
+				<div class="col-md-12">
+					<h2><%= news.heading %></h2>
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-12">
+					<%= render "announcements/description-only", news: news %>
+				</div>
+			</div>
+			<% if not tf_check(news.images) %>
+				<div class="row">
+					<div class="col-md-12">
+						<%= render "announcements/carousel", news: news %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

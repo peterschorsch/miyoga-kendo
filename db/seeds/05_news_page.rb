@@ -21,7 +21,7 @@ Image.create_with(:announcement_id => @announcement.id, :image => ActionDispatch
 end
 puts ""
 
-@announcement = Announcement.create_with(heading: "Upcoming Practice (August 21)", description: "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.", :user_id => User.admin_accounts.second.id, page_id: @news_page_id).find_or_create_by(heading: "Upcoming Pactice (August 21)")
+@announcement = Announcement.create_with(heading: "Upcoming Practice (August 21)", description: "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.", :user_id => User.admin_accounts.second.id, page_id: @news_page_id).find_or_create_by(heading: "Upcoming Practice (August 21)")
 puts @announcement.inspect
 
 image_path = "#{Rails.root}/app/assets/images/news_page/bokken.jpg"
@@ -44,7 +44,7 @@ Image.create_with(:announcement_id => @announcement.id, :image => ActionDispatch
 end
 puts ""
 
-@announcement = Announcement.create_with(heading: "Upcoming Practice (August 23)", description: "Please make sure to bring a bokken to practice.", :user_id => User.admin_accounts.second.id, page_id: @news_page_id).find_or_create_by(heading: "Upcoming Pactice (August 23)")
+@announcement = Announcement.create_with(heading: "Upcoming Practice (August 23)", description: "Please make sure to bring a bokken to practice.", :user_id => User.admin_accounts.second.id, page_id: @news_page_id).find_or_create_by(heading: "Upcoming Practice (August 23)")
 puts @announcement.inspect
 puts ""
 puts ""
