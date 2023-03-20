@@ -12,19 +12,16 @@
 		<div class="bottom-centered landing-page-font">
 			<h1 class='miyoga-heading-text'><%= @about_miyoga.heading %></h1>
 			<%= simple_format(@about_miyoga.description.truncate_words(60), wrapper_tag: "p") %>
-			<%= link_to "What's Kendo?", abouts_path, :class => "btn btn-info btn-lg btn-bold-font" %>
-			<%= link_to "Class Schedule", practices_path, :class => "btn btn-info btn-lg btn-bold-font" %>
+			<%= link_to "What's Kendo?", abouts_path, :class => "btn btn-blue btn-lg btn-bold-font" %>
+			<%= link_to "Class Schedule", practices_path, :class => "btn btn-blue btn-lg btn-bold-font" %>
 		</div>
 	</div>
 	<div class="container blue-back">
-		<div class="middle-centered white-text landing-page-font">
-			<h1 class='miyoga-heading-text'>Upcoming Events</h1>
-			<p><%= @upcoming_event.title %></p>
-			<p><%= formatEventsDateRange(@upcoming_event.start_date, @upcoming_event.end_date) %></p>
-			<%= simple_format(@upcoming_event.description.truncate_words(50), wrapper_tag: "p") %>
-			<%= link_to events_path, :class => "btn btn-info btn-lg" do %>
-				Read More <span class="glyphicon glyphicon-chevron-right"></span>
-			<% end %>
+		<div class="middle-centered white-text landing-page-font no-link-text">
+			<h1><%= link_to "Upcoming " + @upcoming_event.page.name, events_path, class: "" %></h1>
+			<p><%= link_to @upcoming_event.title, events_path %></p>
+			<p><%= link_to formatEventsDateRange(@upcoming_event.start_date, @upcoming_event.end_date), events_path %></p>
+			<%= link_to simple_format(@upcoming_event.description.truncate_words(50), wrapper_tag: "p"), events_path %>
 		</div>
 	</div>
 	<div class="container">
