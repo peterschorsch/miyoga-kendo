@@ -12,16 +12,16 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   </head>
 
+  <%= render "layouts/header" %>
   <body class="container-fluid">
-    <%= render "layouts/header" %>
-     <% begin %>
+    <% begin %>
       <%= javascript_include_tag params[:controller] %>
-      <% rescue => ex %>
+    <% rescue => ex %>
     <% end %>
     <%= auto_session_timeout_js frequency: 15 if current_user %>
     <div class="padding">
       <%= yield %>
     </div>
-    <%= render "layouts/footer" %>
   </body>
+  <%= render "layouts/footer" %>
 </html>
