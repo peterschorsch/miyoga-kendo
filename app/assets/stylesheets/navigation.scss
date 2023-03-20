@@ -1,9 +1,9 @@
 .navbar{
 	margin-bottom: 0px !important;
-	text-align:center;
 }
 
 .navbar-default{
+	text-align:center;
 	background-color: #000067 !important;
 	border-color: #00004d !important;
 	border-radius: 0px !important;
@@ -16,12 +16,17 @@
 	list-style:none; 
 }
 
+.input-group-addon {
+  padding: 0 12px;
+  vertical-align: bottom;
+}
+
 .navbar-default .navbar-nav > li {
-	display: inline !important;
+	display: inline;
 }
 
 // Navigation Bar Font
-	.navbar-default .navbar-nav > li > a{
+	.navbar-default .navbar-nav > li > a, .bolded-font{
 		color: white !important;
 		font-size: 18px;
 		font-weight: bold !important;

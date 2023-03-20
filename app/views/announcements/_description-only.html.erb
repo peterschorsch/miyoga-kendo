@@ -16,7 +16,9 @@
 <% if not tf_check(news.link) %>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-8">
-			<%= link_to "Visit Link &raquo".html_safe, news.link, :class => "btn btn-info btn-block", target: :_blank %>
+			<%= link_to news.link, :class => "btn btn-info btn-block", :target => :blank do %>
+				Visit Link <span class="glyphicon glyphicon-chevron-right"></span>
+			<% end %>
 		</div>
 	</div>
 	<br />

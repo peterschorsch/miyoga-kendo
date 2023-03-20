@@ -18,6 +18,15 @@
 @import "bootstrap";
 @import "bootstrap-sprockets";
 
+/********************* Colour reference chart****************
+*************************** comment ********* colour ******** 
+
+Header, Footer background color               #000067
+Gradient Above Header, Panels, Hr             #000080
+0a0aff
+
+*/
+
 .body-container{
 	background-color: #000080;
 	color: white;
@@ -33,6 +42,12 @@
 	padding-bottom: 10px;
 }
 
-.h1-heading{
-	font-size: 36px !important;
+h1{
+	font-size: 36px;
+}
+h1, h2, h3, .btn{
+    font-weight: bold;
+}
+h1, h2, h3, h4, h5, h6, .landing-page-font p, .btn-bold-font{
+    font-variant: small-caps;
 }

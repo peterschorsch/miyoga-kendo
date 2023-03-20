@@ -8,23 +8,29 @@
 	<%= render notice_path %>
 	<%= render form_errors_path, model: @new_event %>
 <% end %>
-
+<% first_done = false %>
 <% @events.each_with_index do |event, index| %>
-	<%= render "heading", event: event, index: index %>
 	<div class="row">
-		<div class="col-md-6 col-sm-12">
+		<div class="col-md-6 col-sm-6">
 			<% @address = event.address %>
-			<h3><%= formatEventsDateRange(event.start_date, event.end_date) %></h3>
-			<p><%= @address.location_name %></p>
-			<p><%= @address.city %>, <%= @address.state.name %></p>
-			<br />
-			<%= simple_format(event.description, wrapper_tag: "p", class: 'indent-paragraph') %>
+			<h4><%= formatDateRange(event.start_date, event.end_date) %></h4>
+			<h1><strong><%= event.title %></strong></h1>
+			<h3><small><%= @address.location_name %> | <%= @address.city %>, <%= @address.state.name %></small></h3>
+			<hr />
+			<div class="row">
+				<div class="col-sm-12">
+					<%= simple_format(event.description, wrapper_tag: "p", class: 'indent-paragraph') %>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-6 col-sm-12">
-			<%= render google_maps_path, location_name: @address.location_name, address: @address, height: 600, width: 650 %>
+		<div class="col-md-6 col-sm-6">
+			<%= render google_maps_path, location_name: @address.location_name, address: @address, height: 500, width: "100%" %>
 		</div>
 	</div>
-	<br /><hr /><br />
 	<%= render "edit-modal", event: event, index: index %>
 	<%= render remove_record_dialog, record: event, index: index, heading: "Event" %>
+	<% unless first_done %>
+		<br /><hr /><br />
+	<% end %>
+	<% first_done = true %>
 <% end %>

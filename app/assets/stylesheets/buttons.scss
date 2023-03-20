@@ -6,6 +6,16 @@
 		white-space: normal !important;
 	}
 
+	.btn-blue{
+		background-color: #000080;
+		border: 1px solid #808080 !important;
+	}
+
+	.btn-blue:hover{
+		background-color: #000080;
+		color: #0a0aff !important;
+	}
+
 	.btn-group-vertical{
 		width: 100%;
 	}
@@ -17,7 +27,7 @@
 		background-color: #2db92d;
 	}
 
-	.btn-primary, .btn-success, .btn-info, .btn-danger, .btn-warning, .btn-green, .btn-nupurple{
+	.btn-blue, .btn-primary, .btn-success, .btn-info, .btn-danger, .btn-warning, .btn-green{
 		color: white !important;
 	}
 

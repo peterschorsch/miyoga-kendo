@@ -1,19 +1,30 @@
 .home_image{
 	width: 100%;
+  bottom: 0px;
+  top: 0px;
+  box-shadow: inset -10px -10px 10px 20px #000080;
 }
 
 .miyoga-header{
 	padding: 10px;
+  background-image: linear-gradient(to right, white, #000080 60%);
 }
-.miyoga_header_image{
-	vertical-align:middle;
+.miyoga-header-image{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 65%;
 }
 
 .miyoga-heading-text{
 	font-weight: bold;
-	font-size: 50px;
-	font-variant: small-caps;
-	padding-left: 15px;
+  font-variant: small-caps;
+}
+.miyoga-heading-text a:hover{
+  color: white;
+  font-size: 18px;
+  font-weight: bold !important;
+  font-variant: small-caps;
 }
 
 .jcc_logo_container a:hover, .social_media_logo:hover {
@@ -28,7 +39,7 @@
 
 .social_media_logo img, .social_media_logo img{
 	width: 48px !important;
-    height: 48px !important;
+  height: 48px !important;
 }
 .social_media_logo, .social_media_logo:visited{
 	color: #333333;
@@ -80,4 +91,3 @@
   color: #333333;
   height: 320px;
 }
-

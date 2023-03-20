@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
 		def set_miyoga_user
 			@miyoga_user = User.get_miyoga_user
-			@dojo_address = @miyoga_user.addresses.first
+			@dojo_address = @miyoga_user.get_dojo_address
 		end
 
 end

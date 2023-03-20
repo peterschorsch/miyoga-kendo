@@ -9,76 +9,19 @@
 	<%= render notice_path %>
 <% end %>
 
-<%= render heading_path, text: @current_page.name %>
+<%= render heading_path, text: raw("<span class='glyphicon glyphicon-pushpin'></span> Pinned ") + @current_page.name %>
 
 <div class="row">
 	<% @pinned_news.each do |news| %>
-		<div class="col-md-4 col-sm-12">
-			<div class="panel panel-default card">
-				<%= render "admin-function", announcement: news if can? :manage, news %>
-				<div class="row vertical-align-middle">
-					<div class="col-md-1">
-						<h2><span class="glyphicon glyphicon-pushpin"></span></h2>
-					</div>
-					<div class="col-md-11">
-						<h2><%= news.heading %></h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<h5><%= format_header_date(news.created_at) %></h5>
-					</div>
-					<div class="col-md-6 text-right">
-						<h5>Posted by: <strong><%= news.user.concat_name %></strong></h5>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<%= render "announcements/description-only", news: news %>
-					</div>
-				</div>
-				<% if not tf_check(news.images) %>
-					<div class="row">
-						<div class="col-md-12">
-							<%= render "announcements/carousel", news: news %>
-						</div>
-					</div>
-				<% end %>
-			</div>
-		</div>
+		<%= render "announcements/card", news: news %>
 	<% end %>
 </div>
-<hr />
-<% @other_news.in_groups_of(2, false) do |news_group| %>
+
+<%= render heading_path, text: "Other " + @current_page.name %>
+<% @other_news.in_groups_of(3, false) do |news_group| %>
 	<div class="row">
 		<% news_group.each do |news| %>
-			<div class="col-md-6 col-xs-12">
-				<div class="panel panel-default card">
-					<%= render "announcements/admin-function", announcement: news if can? :manage, news %>
-					<div class="row">
-						<div class="col-md-12">
-							<h2><%= news.heading %></h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<h5><%= format_header_date(news.created_at) %></h5>
-						</div>
-						<div class="col-md-4 col-md-offset-4 text-right">
-							<h5>Posted by: <strong><%= news.user.concat_name %></strong></h5>
-						</div>
-					</div>
-					<div class="row">
-						<% if tf_check(news.images) %>
-							<div class="col-md-12">
-								<%= render "announcements/description-only", news: news %>
-							</div>
-						<% else %>
-							<%= render "announcements/description-with-image", news: news %>
-						<% end %>
-					</div>
-				</div>
-			</div>
+			<%= render "announcements/card", news: news %>
 		<% end %>
 	</div>
 <% end %>

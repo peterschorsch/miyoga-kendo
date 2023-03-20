@@ -9,8 +9,12 @@ module FormatdatetimeHelper
   def formatFullDate(date)
     date.strftime("%A, %B %d, %Y")
   end
-  # 9/19/17
+  # October 10, 2017
   def formatDate(date)
+    date.strftime("%B %d, %Y")
+  end
+  # 9/19/17
+  def formatAbreviatedDate(date)
     date.strftime("%-m/%d/%y")
   end
   # 4:38pm
@@ -22,11 +26,6 @@ module FormatdatetimeHelper
     start_time.strftime("%l:%M%P") + " - " + end_time.strftime("%l:%M%P")
   end
 
-  # 7.31.20 - 8.2.20
-  def formatEventsHomeDateRange(startdate, enddate)
-    startdate.strftime("%-m.%-d.%y") + " - " + enddate.strftime("%-m.%-d.%y")
-  end
-
   # Jul. 31, 2020 - Aug. 2, 2020
   def formatEventsDateRange(startdate, enddate)
     startdate.strftime("%b. %-d, %Y") + " - " + enddate.strftime("%b. %-d, %Y")
@@ -34,7 +33,7 @@ module FormatdatetimeHelper
 
   # Jul 31 - Aug. 2, 2020
   def formatDateRange(startdate, enddate)
-    startdate.strftime("%B %d") + " - " + enddate.strftime("%B %d, %Y")
+    startdate.strftime("%B %-d") + " - " + enddate.strftime("%B %-d, %Y")
   end
 
   # 09/19/17 04:38pm

@@ -13,7 +13,7 @@
     <% @events.each do |event| %>
       <tr class="text-center table-hover">
         <td>
-          <strong><small><%= formatEventsHomeDateRange(event.start_date, event.end_date) %></small></strong><br />
+          <strong><small><%= formatEventsDateRange(event.start_date, event.end_date) %></small></strong><br />
           <%= event.title %>
         </td>
         <td><%= event.address.city %>, <%= event.address.state.abbreviation %></td>

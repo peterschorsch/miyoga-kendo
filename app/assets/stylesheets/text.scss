@@ -44,7 +44,7 @@ h1, h2, h3{
   background-color: white;
 }
 
-.no-link-text:hover, .no-link-text:visited, .no-link-text:link, .no-link-text.active {
+.no-link-text a:hover, .no-link-text a:visited, .no-link-text a:link, .no-link-text a.active {
   text-decoration: none;
   color: white;
   background-color: #000080;
