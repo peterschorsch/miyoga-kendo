@@ -1,5 +1,5 @@
-<div class="footer">
-	<nav class="navbar navbar-default">
+<footer>
+	<nav class="navbar-default">
 		<h4 class="center-vertically margins-auto white-text">
 			© <%= Date.today.year %> <%= favicon_link_tag asset_path('logos/miyoga_crest.png') %> <%= @miyoga_user.concat_name %> | 
 			<%= @dojo_address.address_line_1 %> 
@@ -8,4 +8,4 @@
 			<%= mail_to @miyoga_user.email, @miyoga_user.email, class: "link-text", style: "color: white" %>
 		</h4>
 	</nav>
-</div>
+</footer>

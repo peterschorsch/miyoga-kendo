@@ -4,6 +4,13 @@ body {
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer{
+  margin-top: auto;
 }
 
 p, ol, ul, td {
