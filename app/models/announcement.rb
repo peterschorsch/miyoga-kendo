@@ -17,7 +17,7 @@ class Announcement < ApplicationRecord
 	}
 
 	scope :unpinned_news, -> {
-		includes(:user, :images, :file_uploads).where(:pinned => false).by_recent_creation_date
+		includes(:users, :images, :file_uploads).where(:pinned => false).by_recent_creation_date
 	}
 
 	scope :active_news, -> {
@@ -33,7 +33,7 @@ class Announcement < ApplicationRecord
 	}
 
 	scope :by_recent_update_date, -> {
-		order('created_at ASC')
+		order('updated_at DESC, created_at DESC')
 	}
 
 	def fix_link

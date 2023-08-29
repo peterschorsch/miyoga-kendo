@@ -5,7 +5,7 @@
 			<th>Heading</th>
 			<th>Subheading</th>
 			<th>Description</th>
-			<th colspan="2">Last Modified</th>
+			<th>Last Modified by</th>
 			<th colspan="2"></th>
 		</tr>
 	</thead>
@@ -16,8 +16,7 @@
 				<td><%= content.heading.truncate_words(5) %></td>
 				<td><%= nil_check(content.subheading).truncate_words(5) %></td>
 				<td><%= description_nil_check(content.description).truncate_words(10).html_safe %></td>
-				<td><%= content.user.concat_name %></td>
-				<td><%= formateDateTimeWithAt(content.updated_at) %></td>
+				<td><%= formatModifiedNameandDate(content.user.concat_name, content.updated_at) %></td>
 				<td><%= render show_btn_path, show_path: admin_about_path(content) %></td>
 				<td><%= render edit_btn_path, edit_path: edit_admin_about_path(content) %></td>
 			</tr>
