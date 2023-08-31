@@ -52,3 +52,14 @@
 		cursor: pointer;
 	}
 
+	.active ul li{
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+
+		/* For making demo more fun: */
+		border-top: 2px solid #000080;
+		border-left: 2px solid #000080;
+		border-right: 2px solid #000080;
+		margin: 10px;
+	}

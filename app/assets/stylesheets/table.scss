@@ -3,7 +3,14 @@
 }
 
 // When hovering over table rows, change background color and font color
-.table-hover:hover {
+.table-hover:hover, .table-striped > tbody > tr:nth-of-type(odd):hover {
 	background-color: #000080 !important;
 	color: white !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #dddded !important;
+}
+.table-striped thead tr th{
+	border-bottom: 1px solid #000080 !important;
 }
