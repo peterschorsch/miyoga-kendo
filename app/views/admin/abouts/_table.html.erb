@@ -11,13 +11,12 @@
 	</thead>
 	<tbody>
 		<% contents.each do |content| %>
-			<tr class="text-center table-hover">
+			<tr class="text-center table-hover cursor-pointer" onclick="followLink('<%=admin_about_path(content)%>')">
 				<td><%= content.index %></td>
 				<td><%= content.heading.truncate_words(5) %></td>
 				<td><%= nil_check(content.subheading).truncate_words(5) %></td>
 				<td><%= description_nil_check(content.description).truncate_words(10).html_safe %></td>
 				<td><%= formatModifiedNameandDate(content.user.concat_name, content.updated_at) %></td>
-				<td><%= render show_btn_path, show_path: admin_about_path(content) %></td>
 				<td><%= render edit_btn_path, edit_path: edit_admin_about_path(content) %></td>
 			</tr>
 		<% end %>

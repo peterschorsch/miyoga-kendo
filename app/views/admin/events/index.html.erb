@@ -6,19 +6,18 @@
       <th>Event</th>
       <th>Held in</th>
       <th>Last Modified by</th>
-      <th colspan="2"></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @events.each do |event| %>
-      <tr class="text-center table-hover">
+      <tr class="text-center table-hover cursor-pointer" onclick="followLink('<%=admin_event_path(event)%>')">
         <td>
           <strong><small><%= formatEventsDateRange(event.start_date, event.end_date) %></small></strong><br />
           <%= event.title %>
         </td>
         <td><%= event.address.city %>, <%= event.address.state.abbreviation %></td>
         <td><%= formatModifiedNameandDate(event.user.concat_name, event.updated_at) %></td>
-        <td><%= render show_btn_path, show_path: admin_event_path(event) %></td>
         <td><%= render edit_btn_path, edit_path: edit_admin_event_path(event) %></td>
       </tr>
     <% end %>
