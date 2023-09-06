@@ -13,10 +13,11 @@ table, .unselectable-link{
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: #dddded;
+	/* Light blue for every other row in table */
+	background-color: #dddded;
 }
 .table-striped thead tr th{
-	border-bottom: 1px solid #000080;
+	border-bottom: 1px solid #000080 !important;
 }
 
 .cursor-pointer{
