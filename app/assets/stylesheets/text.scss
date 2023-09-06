@@ -51,9 +51,10 @@ h1, h2, h3{
 }
 
 /* Link that looks like text */
-.text-link:hover, .text-link:visited, .text-link:link, .text-link:active, 
+.text-link, .text-link:hover, .text-link:visited, .text-link:link, .text-link:active, 
 .text-link a:hover, .text-link a:visited, .text-link a:link, .text-link a:active {
   text-decoration: none;
+  background-color: transparent;
   color: #333333; /*Black*/
 }
 
