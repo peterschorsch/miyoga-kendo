@@ -14,16 +14,16 @@
 					<table class="table table-striped">
 						<thead>
 							<tr class="text-center">
+								<th>Page</th>
 								<th>Heading</th>
-								<th>Description</th>
 								<th>Last Modified by:</th>
 							</tr>
 						</thead>
 						<tbody>
 							<% @contents.each do |content| %>
 								<tr class="text-center table-hover cursor-pointer" onclick="followLink('<%=send(content.page.admin_path)+'/'+content.id.to_s%>')">
+									<td><%= content.page.name %></td>
 									<td><%= content.heading %></td>
-									<td><%= nil_check(content.description).truncate_words(5) %></td>
 									<td><%= formatModifiedNameandDate(content.user.concat_name, content.updated_at) %></td>
 								</tr>
 							<% end %>
