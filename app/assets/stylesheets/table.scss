@@ -1,18 +1,22 @@
+table, .unselectable-link{
+	user-select: none
+}
 .table-cell-background{
 	background-color: #dee2e6;
 }
 
-// When hovering over table rows, change background color and font color
-.table-hover:hover, .table-striped > tbody > tr:nth-of-type(odd):hover {
+/* When hovering over table rows, change background color and font color */
+.table-hover:hover, .table-hover:hover .table-link, .table-hover td .text-link:hover, .table-link:hover {
+	text-decoration: none;
 	background-color: #000080 !important;
 	color: white !important;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: #dddded !important;
+    background-color: #dddded;
 }
 .table-striped thead tr th{
-	border-bottom: 1px solid #000080 !important;
+	border-bottom: 1px solid #000080;
 }
 
 .cursor-pointer{

@@ -73,7 +73,7 @@
 						<div class="row text-center">
 							<% social_media_array.each do |social_media| %>
 								<div class="col-md-4 col-sm-12 padding-top-bottom">
-									<%= link_to image_tag(social_media.image.url, class: "image-center", alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, class: "social_media_logo text-link", target: :_blank %>
+									<%= link_to image_tag(social_media.image.url, class: "image-center", alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, class: "social_media_logo text-link unselectable-link", target: :_blank %>
 								</div>
 							<% end %>
 						</div>

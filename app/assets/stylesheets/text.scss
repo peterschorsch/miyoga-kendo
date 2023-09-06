@@ -37,7 +37,7 @@ h1, h2, h3{
 	object-position: 50% 50%;
 }
 
-//Header Links/Tabs
+/* Header Links/Tabs */
 .header-link-text:hover, .header-link-text:visited, .header-link-text:link {
   text-decoration: none;
   color: inherit;
@@ -50,19 +50,11 @@ h1, h2, h3{
   background-color: #000080;
 }
 
-//Link that looks like text
+/* Link that looks like text */
 .text-link:hover, .text-link:visited, .text-link:link, .text-link:active, 
 .text-link a:hover, .text-link a:visited, .text-link a:link, .text-link a:active {
   text-decoration: none;
-  color: #333333;
-  background-color: transparent;
-}
-
-//Emails & Links
-.link-text:hover, .link-text:visited, .link-text:link, .link-text.active {
-  text-decoration: none;
-  color: #428bca;
-  background-color: transparent;
+  color: #333333; /*Black*/
 }
 
 .paragraph-container{
@@ -74,7 +66,7 @@ h1, h2, h3{
   text-indent: 30px;
 }
 
-//PANELS
+/* PANELS */
 .panel-heading{
   font-size: 20px;
 }
@@ -93,8 +85,10 @@ h1, h2, h3{
   padding-bottom: 5px;
 }
 
-.tab-text li a{
-  color: #333333 !important;
+.tab-text li a, .table-link{
+  text-decoration: none;
+  background-color: transparent;
+  color: #333333; /*Black*/
 }
 
 .yellow{
@@ -107,6 +101,7 @@ h1, h2, h3{
   border: 1px solid red;
 }
 
+/* CHANGE COLOR OF NAV TABS */
 ul.nav li.active {
   border-left: 1px solid #000080;
   border-right: 1px solid #000080;
