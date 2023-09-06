@@ -32,7 +32,7 @@
 						</div>
 					</div>
 				<% else %>
-					<% content_image = content.images.first %>
+					<% content_image = @content.images.first %>
 					<%= image_tag(content_image.image.url, class: "text-image", alt: content_image.image_file_name) %>
 				<% end %>
 			</div>

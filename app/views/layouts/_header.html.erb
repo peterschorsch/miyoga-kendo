@@ -1,12 +1,13 @@
 <header>
   <div class="row miyoga-header">
     <div class="col-sm-2 col-md-1"><%= link_to image_tag("logos/miyoga_crest.png", class: "miyoga-header-image", alt: "Miyoga Logo"), root_path, class: "header-link-text" %></div>
-    <div class="col-sm-10 col-md-11"><%= link_to raw("<h1 class='miyoga-heading-text center-vertically'>#{@miyoga_user.concat_name}</h1>"), root_path, class: "header-link-text" %></div>
+    <div class="col-sm-10 col-md-8"><%= link_to raw("<h1 class='miyoga-heading-text center-vertically'>#{@miyoga_user.concat_name}</h1>"), root_path, class: "header-link-text" %></div>
+    <% if current_user.is_logged_in? %>
+      <div class="col-sm-12 col-md-3 white-text">
+        <p class="text-right padding-right">Logged in as: <strong><%= current_user.concat_name %></strong></p>
+      </div>
+    <% end %>
   </div>
-
-  <% if current_user.is_logged_in? %>
-    <p class="text-right padding-right">Logged in as: <strong><%=current_user.concat_name%></strong></p>
-  <% end %>
 
   <nav class="navbar navbar-default">
     <div class="container-fluid">

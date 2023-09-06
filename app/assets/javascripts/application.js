@@ -25,3 +25,7 @@ $(function() {
 		interval: 3000
 	});
 });
+
+function followLink(url){
+	document.location.href = url;
+}

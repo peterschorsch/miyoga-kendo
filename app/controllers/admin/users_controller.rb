@@ -1,4 +1,5 @@
 class Admin::UsersController < Admin::AdminController
+  before_action :authorized?, only: [:show, :edit, :update, :update_password, :reset_token]
   before_action :set_user, only: [:show, :edit, :update, :update_password, :reset_token]
 
   def index
@@ -101,5 +102,14 @@ class Admin::UsersController < Admin::AdminController
     def dojo_address_params
       # NOTE: Using 'strong_parameters' gem
       params.require(:address).permit(:id, :location_name, :address_line_1, :address_line_2, :city, :state_id, :zip_code, :notes, :user_id)
+    end
+    def authorized?
+    user = User.find(params[:id] || params[:user][:id])
+
+    ### IF CURRENT USER IS EXISTS || IS NOT ANOTHER ADMIN EXCEPT FOR CURRENT USER
+    if current_user.blank? || (user.is_admin? unless @current_user == user)
+        flash[:alert] = "You are not authorized to do said action."
+        redirect_to admin_users_path
+      end
     end
 end

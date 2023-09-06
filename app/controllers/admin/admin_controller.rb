@@ -4,7 +4,8 @@ class Admin::AdminController < ApplicationController
 	before_action :authorized?, :sidebar_objects, 
 
 	def dashboard
-		@users = User.select(:firstname, :lastname, :email, :role, :last_login).order_by_last_login.first(5)
+		@users = User.select(:id, :firstname, :lastname, :email, :role, :last_login).order_by_last_login.first(6)
+		@contents = Content.active_last_updated.first(5)
 
 		@social_media = SocialMedium.all
 	end

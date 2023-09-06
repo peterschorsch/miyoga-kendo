@@ -6,7 +6,18 @@
     margin-left: auto;
     margin-right: auto;
     width: 65%;
-    height: 150px;
+  }
+
+  @media (max-width: 1250px) {
+    .image-center{
+      height: 150px;
+      width: 100%;
+    }
+  }
+  @media (max-width: 1000px) {
+    .image-center{
+      width: 40%;
+    }
   }
 
   .admin-home-table-image{

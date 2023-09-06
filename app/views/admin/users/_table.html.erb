@@ -4,16 +4,16 @@
       <th>Name</th>
       <th>Email</th>
       <th>Last Login</th>
-      <th></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
   <tbody>
     <% users.each do |user| %>
       <tr class="text-center table-hover">
         <td><%= user.concat_name %></td>
-        <td><%= mail_to user.email, user.email, class: "link-text" %></td>
+        <td><%= mail_to user.email, user.email, class: "table-link" %></td>
         <td><%= user_nil_last_login(user.last_login) %></td>
-        <td><%= render edit_btn_path, edit_path: edit_admin_user_path(user) %></td>
+        <td><%= render edit_btn_path, edit_path: edit_admin_user_path(user) if user.is_user? || user == @current_user %></td>
         <td>
           <%= link_to admin_user_resend_token_path(user.id), :class => "btn btn-primary btn-block" do %>
             <span class="glyphicon glyphicon-lock"></span> Reset Password

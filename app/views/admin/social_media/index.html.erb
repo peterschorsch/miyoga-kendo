@@ -4,7 +4,7 @@
   <thead>
     <tr class="text-center">
       <th>Site</th>
-      <th>Last Modified</th>
+      <th>Last Modified by</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -12,9 +12,9 @@
     <% @social_media.each do |social_media| %>
       <tr class="text-center table-hover">
         <td>
-          <%= link_to image_tag(social_media.image.url, alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, target: '_blank', class: "social_media_logo link-text" %>
+          <%= link_to image_tag(social_media.image.url, alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, target: '_blank', class: "social_media_logo table-link" %>
         </td>
-        <td><%= social_media.user.concat_name %> | <%= formateDateTimeWithAt(social_media.updated_at) %></td>
+        <td><%= formatModifiedNameandDate(social_media.user.concat_name, social_media.updated_at) %></td>
         <td><%= render edit_btn_path, edit_path: edit_admin_social_medium_path(social_media) %></td>
         <td><%= render remove_btn_path, remove_model: [:admin, social_media] %></td>
       </tr>

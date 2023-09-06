@@ -41,9 +41,14 @@ module FormatdatetimeHelper
     date.strftime("%m/%d/%y %I:%M%p")
   end
 
+  # First and Last Name on 9/19/17 at 4:38pm
+  def formatModifiedNameandDate(concat_name, date)
+    ("<strong>#{concat_name}</strong> on " + formatDateTimeWithAt(date)).html_safe
+  end
+
   # 9/19/17 at 4:38pm
-  def formateDateTimeWithAt(date)
-    date.strftime("%-m/%d/%y at %-I:%M%p")
+  def formatDateTimeWithAt(date)
+    date.strftime("<strong>%-m/%d/%y</strong> at <strong>%-I:%M%p</strong>").html_safe
   end
 
 end

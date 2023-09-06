@@ -35,7 +35,7 @@
 		<% end %>
 		<div class="row">
 			<div class="col-md-12">
-				<p class=""><%="$" + @practices.first.cost_per_month + " per month "%></p>
+				<p><%="$" + @practices.first.cost_per_month + " per month "%></p>
 			</div>
 		</div>
 		<br />
@@ -46,10 +46,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<p>Contact Us:</p>
-				<p><%= mail_to @miyoga_user.email, @miyoga_user.email, class: "link-text" %></p>
+				<p><%= mail_to @miyoga_user.email, @miyoga_user.email, class: "text-link" %></p>
 				<br />
 				<p>To learn more information about the <%= @dojo_address.location_name %>:</p>
-				<p><%= link_to @dojo_address.notes, @dojo_address.notes, class: "link-text", target: :_blank %></p>
+				<p><%= link_to @dojo_address.notes, @dojo_address.notes, class: "text-link", target: :_blank %></p>
 			</div>
 		</div>
 	</div>

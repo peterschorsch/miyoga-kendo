@@ -1,11 +1,11 @@
 <div class="panel-group">
-	<div class="panel panel-navy-blue">
+	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h1 class="text-center no-padding">Content</h1>
 		</div>
 		<div class="panel-body">
 			<% @active_pages.each do |page| %>
-				<%= link_to page.name, send("#{page.admin_path}"), :class => "btn btn-sidebar btn-block btn-lg" %>
+				<%= link_to page.name, send(page.admin_path), :class => "btn btn-sidebar btn-block btn-lg" %>
 			<% end %>
 		</div>
 		<div class="panel-heading second-panel-heading">

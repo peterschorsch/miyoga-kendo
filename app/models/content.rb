@@ -37,6 +37,10 @@ class Content < ApplicationRecord
 		where(archived: true).order_by_index
 	}
 
+	scope :active_last_updated, -> {
+		where(archived: false).order(updated_at: :DESC)
+	}
+
 	scope :order_by_index, -> {
 		order(:index)
 	}

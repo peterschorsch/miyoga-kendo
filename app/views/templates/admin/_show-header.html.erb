@@ -5,7 +5,8 @@
 		<%= render back_to_page_path, text: back_text, path: back_path %>
 	</div>
 	<div class="col-md-9 text-right">
-		<%= render "templates/admin/last-modified-by", content: object %>
+		<%= render "templates/admin/last-by", text: "Last Modified", content: object %>
+		<%= render "templates/admin/last-by", text: "Created", content: object %>
 	</div>
 </div>
 

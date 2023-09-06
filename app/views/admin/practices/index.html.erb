@@ -3,21 +3,18 @@
 <table class="table table-responsive table-striped" id="class_schedule_table">
   <thead>
     <tr class="text-center">
-      <th>Day</th>
-      <th>Time</th>
+      <th>Day & Time</th>
       <th>Cost per Month</th>
-      <th colspan="2">Last Modified</th>
+      <th>Last Modified by</th>
       <th colspan="2"></th>
     </tr>
   </thead>
   <tbody>
     <% @practices.each do |practice| %>
       <tr class="text-center table-hover">
-        <td><%= practice.day_of_week %></td>
-        <td><%= formatTime(practice.start_time) %> - <%= formatTime(practice.end_time) %></td>
+        <td><%= practice.day_of_week %> | <%= formatTime(practice.start_time) %> - <%= formatTime(practice.end_time) %></td>
         <td>$<%= practice.cost_per_month %></td>
-        <td><%= practice.user.concat_name %></td>
-        <td><%= formateDateTimeWithAt(practice.updated_at) %></td>
+        <td><%= formatModifiedNameandDate(practice.user.concat_name, practice.updated_at) %></td>
         <td><%= render edit_btn_path, edit_path: edit_admin_practice_path(practice) %></td>
         <td><%= render remove_btn_path, remove_model: [:admin, practice] %></td>
       </tr>

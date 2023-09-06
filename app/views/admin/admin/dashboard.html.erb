@@ -2,12 +2,46 @@
 <%= render alert_path %>
 
 <div class="row">
+	<div class="col-md-12 col-sm-12">
+		<div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="row">
+						<div class="col-xs-12"><h1 class="text-center">Recently Updated Content</h1></div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<thead>
+							<tr class="text-center">
+								<th>Page</th>
+								<th>Heading</th>
+								<th>Last Modified by:</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @contents.each do |content| %>
+								<tr class="text-center table-hover cursor-pointer" onclick="followLink('<%=send(content.page.admin_path)+'/'+content.id.to_s%>')">
+									<td><%= content.page.name %></td>
+									<td><%= content.heading %></td>
+									<td><%= formatModifiedNameandDate(content.user.concat_name, content.updated_at) %></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
 	<div class="col-md-6 col-sm-12">
 		<div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="row">
-						<div class="col-xs-12"><h1 class="text-center">Recent Users</h1></div>
+						<div class="col-xs-12"><h1 class="text-center">Recently Logged In Users</h1></div>
 					</div>
 				</div>
 				<div class="panel-body">
@@ -21,7 +55,7 @@
 						</thead>
 						<tbody>
 							<% @users.each do |user| %>
-								<tr class="text-center table-hover">
+								<tr class="text-center table-hover cursor-pointer" onclick="followLink('<%=edit_admin_user_path(user.id)%>')">
 									<td><%=user.concat_name%></td>
 									<td><%=user.role%></td>
 									<td><%=user_nil_last_login(user.last_login)%></td>
@@ -47,9 +81,8 @@
 					</div>
 				</div>
 				<div class="panel-body">
-					<h2 class="text-center"><%= current_user.concat_name %></h2>
-					<p class="text-center"><%= current_user.email %></p>
-					<p class="text-center"><%= current_user.role %></p>
+					<h2 class="text-center"><%= current_user.concat_name %> <small>| <%= current_user.role %></small></h2>
+					<p class="text-center"><%= mail_to current_user.email, current_user.email, class: "text-link" %></p>
 					<br />
 					<div class="row">
 						<div class="col-md-8 col-md-offset-2">
@@ -60,7 +93,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-12">
+	<div class="col-md-6 col-sm-12">
 		<div class="panel-group">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -73,7 +106,7 @@
 						<div class="row text-center">
 							<% social_media_array.each do |social_media| %>
 								<div class="col-md-4 col-sm-12 padding-top-bottom">
-									<%= link_to image_tag(social_media.image.url, class: "image-center", alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, class: "social_media_logo text-link", target: :_blank %>
+									<%= link_to image_tag(social_media.image.url, class: "image-center", alt: "#{social_media.site_name} Logo") + " #{social_media.site_name}", social_media.site_link, class: "social_media_logo text-link unselectable-link", target: :_blank %>
 								</div>
 							<% end %>
 						</div>

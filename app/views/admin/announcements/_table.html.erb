@@ -2,21 +2,17 @@
   <thead>
     <tr class="text-center">
       <th>Title</th>
-      <th colspan="2">Modified by</th>
-      <th>Created On</th>
+      <th>Last Modified by</th>
       <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
     <% news.each do |announcement| %>
-      <tr class="text-center table-hover">
+      <tr class="text-center table-hover cursor-pointer" onclick="followLink('<%=admin_announcement_path(announcement)%>')">
         <td><%= raw("<span class='glyphicon glyphicon-pushpin'></span>") if announcement.pinned %>
           <%= announcement.heading %>
         </td>
-        <td><%= announcement.user.concat_name %></td>
-        <td><%= formateDateTimeWithAt(announcement.updated_at) %></td>
-        <td><%= formateDateTimeWithAt(announcement.created_at) %></td>
-        <td><%= render show_btn_path, show_path: admin_announcement_path(announcement) %></td>
+        <td><%= formatModifiedNameandDate(announcement.user.concat_name, announcement.updated_at) %></td>
         <td><%= render edit_btn_path, edit_path: edit_admin_announcement_path(announcement) %></td>
         <td><%= render remove_btn_path, remove_model: [:admin, announcement] %></td>
       </tr>

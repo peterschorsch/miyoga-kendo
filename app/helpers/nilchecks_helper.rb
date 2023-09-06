@@ -16,11 +16,11 @@ module NilchecksHelper
 
 	##### RETURNS N/A - FOR USER LAST LOGIN #####
 	def user_nil_last_login(last_login)
-		return tf_check(last_login) ? "n/a" : formateDateTimeWithAt(last_login)
+		return tf_check(last_login) ? "n/a" : formatDateTimeWithAt(last_login)
 	end
 
 	def link_nil_check(field)
-		return tf_check(field) ? "n/a" : (link_to field, field, :class => "link-text", target: '_blank')
+		return tf_check(field) ? "n/a" : (link_to field, field, :class => "table-link", target: '_blank')
 	end
 
 	##### CHECK IF IN ASSET PIPELINE ######

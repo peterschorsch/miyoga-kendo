@@ -4,7 +4,7 @@ class Admin::AnnouncementsController < Admin::AdminController
   before_action :pinned_news_limit, only: [:new, :edit]
 
   def index
-    @news = Announcement.active_news.by_recent_creation_date.includes(:user)
+    @news = Announcement.active_news.by_recent_update_date.includes(:user)
   end
 
   def show
