@@ -100,3 +100,21 @@ h1, h2, h3{
 .yellow{
   color: gold;
 }
+
+.nav-tabs .nav-item .nav-link {
+  background-color: #0080FF;
+  color: #FFF;
+  border: 1px solid red;
+}
+
+ul.nav li.active {
+  border-left: 1px solid #000080;
+  border-right: 1px solid #000080;
+  border-top: 1px solid #000080;
+  border-bottom: 0px;
+  border-radius: 5px 5px 0px 0px;
+}
+
+ul.nav li {
+  border-bottom: 1px solid #000080;
+}
