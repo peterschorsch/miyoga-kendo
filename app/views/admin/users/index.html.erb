@@ -2,6 +2,7 @@
 
 <p class="text-center">Active Users: <%= @active_users.size + @active_admins.size %> | Inactive Users: <%= @inactive_users.size + @inactive_admins.size %></p>
 <br />
+<%= render alert_path %>
 <ul class="nav nav-tabs nav-justified text-link">
   <li class="active"><a data-toggle="tab" href="#active_users">Active Users <span class="badge badge-light"><%= @active_users.size %></span></a></li>
   <li><a data-toggle="tab" href="#active_admins">Active Admins <span class="badge badge-light"><%= @active_admins.size %></span></a></li>
