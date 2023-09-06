@@ -105,8 +105,9 @@ class Admin::UsersController < Admin::AdminController
     end
     def authorized?
     user = User.find(params[:id] || params[:user][:id])
-    ### IF CURRENT USER IS EXISTS || USER DOESN'T MATCH CURRENT USER || IS NOT AN ADMIN, ARCHIVED OR A GUEST
-    if current_user.blank? || current_user != user || !(current_user.is_admin? || current_user.is_archived? || current_user.is_guest?)
+
+    ### IF CURRENT USER IS EXISTS || IS NOT ANOTHER ADMIN EXCEPT FOR CURRENT USER
+    if current_user.blank? || (user.is_admin? unless @current_user == user)
         flash[:alert] = "You are not authorized to do said action."
         redirect_to admin_users_path
       end
